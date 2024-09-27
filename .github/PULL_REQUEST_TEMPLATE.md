@@ -13,3 +13,5 @@
 - [ ] I have written E2E tests for the proposed changes
 - [ ] I have tested the proposed changes locally
 - [ ] I have tested the changes on multiple screen sizes
+- [ ] I follow Prettier and ESLint rules
+- [ ] I have checked for warnings in the console and Google Lighthouse
