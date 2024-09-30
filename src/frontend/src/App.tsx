@@ -1,7 +1,7 @@
-import { Homepage } from "./pages/Homepage";
+import { PlayerDashboard } from "./pages/PlayerDashboard.tsx";
 
 function App() {
-  return <Homepage />;
+  return <PlayerDashboard />;
 }
 
 export default App;
