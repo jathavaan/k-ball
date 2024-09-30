@@ -1,4 +1,4 @@
-﻿import { Navbar } from "../features/navbar";
+﻿import { Navbar } from "../features/ui";
 
 export const Homepage = () => {
   return (
