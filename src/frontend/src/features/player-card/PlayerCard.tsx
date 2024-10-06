@@ -79,7 +79,7 @@ export const PlayerCardGrid = () => {
         </Grid>
       ) : (
         playerCards.map((playerCard) => (
-          <Grid key={playerCard.playerId} size={{ xs: 12, md: 6, lg: 4 }}>
+          <Grid key={playerCard.playerId} size={{ xs: 12, sm: 6, lg: 4 }}>
             <PlayerCard
               key={playerCard.playerId}
               playerId={playerCard.playerId}
