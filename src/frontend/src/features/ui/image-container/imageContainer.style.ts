@@ -1,6 +1,6 @@
 ﻿import { styled } from "@mui/material";
 
 export const StyledImage = styled("img")(() => ({
-  borderRadius: "50%",
-  width: "5rem",
+  borderRadius: "0.2rem",
+  width: "7rem",
 }));

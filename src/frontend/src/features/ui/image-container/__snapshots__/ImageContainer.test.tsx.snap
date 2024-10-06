@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tests for ImageContainer > Should match ImageContainer snapshot 1`] = `
+<DocumentFragment>
+  <img
+    alt="Test Image"
+    class="css-1sws5au"
+    src="test-image.jpg"
+  />
+</DocumentFragment>
+`;

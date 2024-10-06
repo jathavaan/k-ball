@@ -1,0 +1,94 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Snapshot tests for PlayerCard > Should match PlayerCard snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-e6mcx0-MuiPaper-root-MuiCard-root"
+    data-testid="player-card"
+    style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+  >
+    <div
+      class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-1qw9nqc-MuiGrid2-root"
+    >
+      <div
+        class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-5 css-1tcukf-MuiGrid2-root"
+      >
+        <img
+          alt="Portrait of Jo Hyeon-Woo"
+          class="css-1sws5au"
+          src="https://media.api-sports.io/football/players/2890.png"
+        />
+      </div>
+      <div
+        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-7 css-hvt765-MuiGrid2-root"
+      >
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+        >
+          <h4
+            class="MuiTypography-root MuiTypography-h4 css-1gp0puz-MuiTypography-root"
+          >
+            Jo Hyeon-Woo
+          </h4>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="Ulsan Hyundai FC"
+            title="Team"
+          >
+            <b>
+              Team:
+            </b>
+             Ulsan Hyundai FC
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="Goalkeeper"
+            title="Pos."
+          >
+            <b>
+              Pos.:
+            </b>
+             Goalkeeper
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="Korea Republic"
+            title="Nat."
+          >
+            <b>
+              Nat.:
+            </b>
+             Korea Republic
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="33"
+            title="Age"
+          >
+            <b>
+              Age:
+            </b>
+             33
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
