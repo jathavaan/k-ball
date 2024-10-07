@@ -1,12 +1,19 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { PlayerDashboard } from "./pages/PlayerDashboard.tsx";
+import { PlayerProfile } from "./pages/PlayerProfile.tsx";
 import { Container } from "@mui/material";
 
 function App() {
   return (
     <>
-      <Container>
-        <PlayerDashboard />
-      </Container>
+      <Router>
+        <Container>
+          <Routes>
+        <Route path="/project2" element={<PlayerDashboard />} />
+        <Route path="/project2/profile" element={<PlayerProfile />} />
+          </Routes>
+        </Container>
+      </Router>
     </>
   );
 }

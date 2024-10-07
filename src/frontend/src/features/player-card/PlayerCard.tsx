@@ -1,6 +1,5 @@
 ﻿import { StyledPlayerCard } from "./playerCard.style.ts";
-import { CardContentText, CardHeader } from "../ui";
-import { ImageContainer } from "../ui/image-container/ImageContainer.tsx";
+import { CardContentText, CardHeader, ImageContainer } from "../ui";
 import Grid from "@mui/material/Grid2";
 import { PlayerCardProps } from "./playerCard.types.ts";
 
