@@ -1,7 +1,14 @@
-import { Homepage } from "./pages/Homepage";
+import { PlayerDashboard } from "./pages/PlayerDashboard.tsx";
+import { Container } from "@mui/material";
 
 function App() {
-  return <Homepage />;
+  return (
+    <>
+      <Container>
+        <PlayerDashboard />
+      </Container>
+    </>
+  );
 }
 
 export default App;
