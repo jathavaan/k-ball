@@ -12,7 +12,7 @@ const mockPlayerCardProps: PlayerCardProps = {
   age: 33,
 };
 
-describe("PlayerCard displays player information", () => {
+describe("PlayerCard", () => {
   it("Should render the player name", () => {
     render(<PlayerCard {...mockPlayerCardProps} />);
     expect(screen.getByText(mockPlayerCardProps.name)).toBeDefined();
@@ -37,9 +37,7 @@ describe("PlayerCard displays player information", () => {
     render(<PlayerCard {...mockPlayerCardProps} />);
     expect(screen.getByText(mockPlayerCardProps.age)).toBeDefined();
   });
-});
 
-describe("Snapshot tests for PlayerCard", () => {
   it("Should match PlayerCard snapshot", () => {
     const { asFragment } = render(<PlayerCard {...mockPlayerCardProps} />);
     expect(asFragment()).toMatchSnapshot();

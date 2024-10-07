@@ -1,7 +1,7 @@
 ﻿import { render, screen } from "@testing-library/react";
 import { CardHeader } from "./CardHeader";
 
-describe("Tests for CardHeader", () => {
+describe("CardHeader", () => {
   it("Should render the header text", () => {
     const mockProps = {
       headerText: "Test Header",

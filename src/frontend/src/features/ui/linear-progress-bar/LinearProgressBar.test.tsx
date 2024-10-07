@@ -1,7 +1,7 @@
 ﻿import { render, screen } from "@testing-library/react";
 import { LinearProgressBar } from "./LinearProgressBar";
 
-describe("Tests for LinearProgressBar", () => {
+describe("LinearProgressBar", () => {
   it("Should render the LinearProgressBar", () => {
     render(<LinearProgressBar />);
 

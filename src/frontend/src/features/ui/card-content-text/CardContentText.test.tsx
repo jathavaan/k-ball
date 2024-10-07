@@ -1,7 +1,7 @@
 ﻿import { render, screen } from "@testing-library/react";
 import { CardContentText } from "./CardContentText";
 
-describe("Tests for CardContentText", () => {
+describe("CardContentText", () => {
   it("Should render the title and text", () => {
     const mockProps = {
       title: "Test Title",

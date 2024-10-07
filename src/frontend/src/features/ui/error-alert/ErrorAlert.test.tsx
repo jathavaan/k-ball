@@ -1,7 +1,7 @@
 ﻿import { render, screen } from "@testing-library/react";
 import { ErrorAlert } from "./ErrorAlert";
 
-describe("Tests for ErrorAlert", () => {
+describe("ErrorAlert", () => {
   it("Should render the error message", () => {
     const mockProps = {
       message: "Test Error Message",
