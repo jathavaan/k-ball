@@ -3,15 +3,14 @@ import { Card, styled } from "@mui/material";
 export const StyledPlayerInfoCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.primary.light,
   color: theme.palette.primary.contrastText,
-  padding: "0.5rem",
+  padding: "1.5rem",
   display: "flex",
-  flexDirection: "column",
+  flexDirection: "row",
   alignItems: "center",
-  justifyContent: "center",
-  transition: "transform 0.05s ease-in-out, box-shadow 0.05s ease-in-out",
+  justifyContent: "space-between",
+  borderRadius: "8px",
+  transition: "box-shadow 0.2s ease-in-out", // Jevn overgangseffekt ved hover
   "&:hover": {
-    cursor: "pointer",
-    transform: "scale(1.03)",
-    boxShadow: "0px 5px 10px rgba(0,0,0,0.19), 0px 2px 2px rgba(0,0,0,0.13)",
+    boxShadow: "0px 8px 15px rgba(0,0,0,0.2)"
   },
 }));

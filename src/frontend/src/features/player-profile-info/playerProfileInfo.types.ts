@@ -1,7 +1,7 @@
 import { Player } from "../../shared/types.ts";
 import { CardProps } from "@mui/material";
 
-export interface PlayerProfileInfoProps extends Player, CardProps {
+export interface PlayerProfileInfoBase extends Player {
   position: string;
   nationality: string;
   place: string;
@@ -11,6 +11,8 @@ export interface PlayerProfileInfoProps extends Player, CardProps {
   weight: number;
 }
 
+export interface PlayerProfileInfoProps extends PlayerProfileInfoBase, CardProps {}
+
 export interface PlayerProfileInfoState {
-  playerProfileInfos: PlayerProfileInfoProps[];
+  playerProfileInfos: PlayerProfileInfoBase[];
 }
