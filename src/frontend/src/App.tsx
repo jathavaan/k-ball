@@ -10,7 +10,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/project2" element={<PlayerDashboard />} />
-            <Route path="/project2/profile" element={<PlayerProfile />} />
+            <Route path="/project2/:playerId" element={<PlayerProfile />} />
           </Routes>
         </Container>
       </Router>

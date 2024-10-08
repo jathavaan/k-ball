@@ -1,6 +1,11 @@
 import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
 
-export const getPlayerProfileInfos = (): Promise<PlayerProfileInfoProps[]> => {
+export const getPlayerProfileInfos = ({
+  queryKey,
+}: {
+  queryKey: [string, number];
+}): Promise<PlayerProfileInfoProps[]> => {
+  const [, playerId] = queryKey;
   return new Promise((resolve) => {
     setTimeout(() => {
       const playerProfileInfos: PlayerProfileInfoProps[] = [
@@ -125,7 +130,8 @@ export const getPlayerProfileInfos = (): Promise<PlayerProfileInfoProps[]> => {
           place: "Daejeon, Korea Republic",
         },
       ];
-      resolve(playerProfileInfos);
+      const player = playerProfileInfos.find((p) => p.playerId === playerId);
+      resolve(player ? [player] : []);
     }, 1000);
   });
 };
