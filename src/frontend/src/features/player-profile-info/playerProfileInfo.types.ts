@@ -18,5 +18,5 @@ export interface PlayerProfileInfoProps
     CardProps {}
 
 export interface PlayerProfileInfoState {
-  playerProfileInfos: PlayerProfileInfoBase[];
+  playerProfileInfo: PlayerProfileInfoBase | undefined;
 }

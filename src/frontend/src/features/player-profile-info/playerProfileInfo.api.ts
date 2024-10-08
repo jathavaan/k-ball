@@ -1,14 +1,14 @@
 import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
 
-export const getPlayerProfileInfos = ({
+export const getPlayerProfileInfo = ({
   queryKey,
 }: {
   queryKey: [string, number];
-}): Promise<PlayerProfileInfoProps[]> => {
+}): Promise<PlayerProfileInfoProps | undefined> => {
   const [, playerId] = queryKey;
   return new Promise((resolve) => {
     setTimeout(() => {
-      const playerProfileInfos: PlayerProfileInfoProps[] = [
+      const playerProfileInfo: PlayerProfileInfoProps[] = [
         {
           playerId: 2890,
           name: "Jo Hyeon-Woo",
@@ -130,8 +130,8 @@ export const getPlayerProfileInfos = ({
           place: "Daejeon, Korea Republic",
         },
       ];
-      const player = playerProfileInfos.find((p) => p.playerId === playerId);
-      resolve(player ? [player] : []);
+      const player = playerProfileInfo.find((p) => p.playerId === playerId);
+      resolve(player ? player : undefined);
     }, 1000);
   });
 };

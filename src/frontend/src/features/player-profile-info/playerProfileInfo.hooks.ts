@@ -1,20 +1,22 @@
 import { AppDispatch } from "../../store.ts";
 import { useDispatch } from "react-redux";
-import { setPlayerProfileInfos } from "./playerProfileInfo.slice.ts";
+import { setPlayerProfileInfo } from "./playerProfileInfo.slice.ts";
 import { useEffect } from "react";
 import { usePlayerProfileInfo } from "./playerProfileInfo.query.ts";
 
 export const usePlayerProfileInfoCard = (playerId: number) => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-    data: playerProfileInfos,
+    data: playerProfileInfo,
     isLoading,
     isError,
   } = usePlayerProfileInfo(playerId);
 
   useEffect(() => {
-    dispatch(setPlayerProfileInfos(playerProfileInfos ?? []));
-  }, [dispatch, playerProfileInfos]);
+    if (playerProfileInfo) {
+      dispatch(setPlayerProfileInfo(playerProfileInfo));
+    }
+  }, [dispatch, playerProfileInfo]);
 
-  return { playerProfileInfos, isLoading, isError };
+  return { playerProfileInfo, isLoading, isError };
 };

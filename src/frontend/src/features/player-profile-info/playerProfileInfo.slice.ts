@@ -5,21 +5,21 @@ import {
 } from "./playerProfileInfo.types.ts";
 
 const initialState: PlayerProfileInfoState = {
-  playerProfileInfos: [],
+  playerProfileInfo: undefined,
 };
 
 const playerProfileInfoSlice = createSlice({
   name: "playerProfileInfos",
   initialState,
   reducers: {
-    setPlayerProfileInfos: (
+    setPlayerProfileInfo: (
       state,
-      action: PayloadAction<PlayerProfileInfoProps[]>,
+      action: PayloadAction<PlayerProfileInfoProps>,
     ) => {
-      state.playerProfileInfos = action.payload;
+      state.playerProfileInfo = action.payload;
     },
   },
 });
 
-export const { setPlayerProfileInfos } = playerProfileInfoSlice.actions;
+export const { setPlayerProfileInfo } = playerProfileInfoSlice.actions;
 export const playerProfileInfoReducer = playerProfileInfoSlice.reducer;
