@@ -1,19 +1,14 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { TableBody, TableCell, TableRow, Paper, TableContainer } from "@mui/material";
 import { PlayerStatsProps, PlayerStatsTableProps } from "./playerStatsTable.types";
+import { StyledPlayerStatsTable, StyledTableHead } from "./playerStatsTable.style";
 
 export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
-  const { playerStatsTable } = props; // Hent ut playerStatsTable fra props
+  const { playerStatsTable } = props; 
 
   return (
     <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
+      <StyledPlayerStatsTable>
+        <StyledTableHead>
           <TableRow>
             <TableCell>Season</TableCell>
             <TableCell align="right">Goals</TableCell>
@@ -22,7 +17,7 @@ export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
             <TableCell align="right">Yellow Cards</TableCell>
             <TableCell align="right">Red Cards</TableCell>
           </TableRow>
-        </TableHead>
+        </StyledTableHead>
         <TableBody>
           {playerStatsTable.map((row: PlayerStatsProps) => (
             <TableRow key={row.season}>
@@ -37,7 +32,7 @@ export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </StyledPlayerStatsTable>
     </TableContainer>
   );
 };

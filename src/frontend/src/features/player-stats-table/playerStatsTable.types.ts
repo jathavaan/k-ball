@@ -1,3 +1,5 @@
+import { TableProps } from "@mui/material";
+
 export interface PlayerStatsProps {
     playerId: number;
     season: number;
@@ -8,7 +10,7 @@ export interface PlayerStatsProps {
     redCards: number;
   }
   
-  export interface PlayerStatsTableProps {
+  export interface PlayerStatsTableProps extends TableProps{
     playerStatsTable: PlayerStatsProps[];
   }
   
