@@ -9,8 +9,8 @@ export const StyledPlayerInfoCard = styled(Card)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   borderRadius: "8px",
-  transition: "box-shadow 0.2s ease-in-out", 
+  transition: "box-shadow 0.2s ease-in-out",
   "&:hover": {
-    boxShadow: "0px 8px 15px rgba(0,0,0,0.2)"
+    boxShadow: "0px 8px 15px rgba(0,0,0,0.2)",
   },
 }));

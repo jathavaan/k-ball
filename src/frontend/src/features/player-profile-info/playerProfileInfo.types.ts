@@ -13,7 +13,9 @@ export interface PlayerProfileInfoBase extends Player {
   teamLogo: string;
 }
 
-export interface PlayerProfileInfoProps extends PlayerProfileInfoBase, CardProps {}
+export interface PlayerProfileInfoProps
+  extends PlayerProfileInfoBase,
+    CardProps {}
 
 export interface PlayerProfileInfoState {
   playerProfileInfos: PlayerProfileInfoBase[];
