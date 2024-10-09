@@ -1,21 +1,66 @@
-import { Table, styled } from "@mui/material";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  styled,
+} from "@mui/material";
 
 export const StyledPlayerStatsTable = styled(Table)(({ theme }) => ({
   backgroundColor: theme.palette.primary.light,
   color: theme.palette.primary.contrastText,
-  padding: "0.5rem",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "transform 0.05s ease-in-out, box-shadow 0.05s ease-in-out",
-  "&:hover": {
-    transform: "scale(1.03)",
-    boxShadow: "0px 5px 10px rgba(0,0,0,0.19), 0px 2px 2px rgba(0,0,0,0.13)",
+  width: "100%",
+  borderCollapse: "collapse",
+  borderRadius: "8px",
+  overflow: "hidden",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.75rem",
+  },
+}));
+export const StyledTableHead = styled(TableHead)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.dark,
+  color: theme.palette.primary.contrastText,
+  "& .MuiTableCell-head": {
+    fontWeight: "bold",
+    fontSize: "1rem",
+    padding: "12px",
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.85rem",
+      padding: "8px",
+    },
   },
 }));
 
-export const StyledTableHead = styled("thead")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.dark,
+export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
+  fontSize: "0.875rem",
+  padding: "10px",
+  borderBottom: `1px solid ${theme.palette.divider}`,
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.75rem",
+    padding: "6px",
+  },
+}));
+
+export const StyledTableBody = styled(TableBody)(({ theme }) => ({
+  "& .MuiTableRow-root": {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    "&:hover": {
+      backgroundColor: theme.palette.action.selected,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.75rem",
+    },
+  },
+}));
+
+export const StyledTableRow = styled(TableRow)(() => ({
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
 }));

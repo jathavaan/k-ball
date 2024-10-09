@@ -10,7 +10,12 @@ export const StyledPlayerInfoCard = styled(Card)(({ theme }) => ({
   justifyContent: "space-between",
   borderRadius: "8px",
   transition: "box-shadow 0.2s ease-in-out",
-  "&:hover": {
-    boxShadow: "0px 8px 15px rgba(0,0,0,0.2)",
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    padding: "1rem",
+    alignItems: "flex-start",
+  },
+  [theme.breakpoints.down("xs")]: {
+    padding: "0.5rem",
   },
 }));

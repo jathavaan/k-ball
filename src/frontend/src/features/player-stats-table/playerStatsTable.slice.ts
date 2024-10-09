@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PlayerStatsProps, PlayerStatsTableState } from "./playerStatsTable.types";
+import {
+  PlayerStatsProps,
+  PlayerStatsTableState,
+} from "./playerStatsTable.types";
 
 const initialState: PlayerStatsTableState = {
   playerStatsTable: [],
@@ -13,7 +16,7 @@ const playerStatsTableSlice = createSlice({
       state,
       action: PayloadAction<{ playerStatsTable: PlayerStatsProps[] }>,
     ) => {
-      state.playerStatsTable = action.payload.playerStatsTable
+      state.playerStatsTable = action.payload.playerStatsTable;
     },
   },
 });

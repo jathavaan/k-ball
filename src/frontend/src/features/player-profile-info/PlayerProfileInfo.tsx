@@ -8,8 +8,12 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
   return (
     <StyledPlayerInfoCard data-testid="player-profile-info">
       <Grid container spacing={2} padding="16px">
-        {/* Venstre kolonne med bilde og navn */}
-        <Grid size={{ xs: 12, md: 4 }} display="flex" flexDirection="column" alignItems="center">
+        <Grid
+          size={{ xs: 12, md: 4 }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
           <ImageContainer
             src={props.imageUrl}
             alt={`Portrait of ${props.name}`}
@@ -24,7 +28,10 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
               textAlign: "center",
             }}
           />
-          <Typography variant="body1" sx={{ textAlign: "center", marginBottom: "8px" }}>
+          <Typography
+            variant="body1"
+            sx={{ textAlign: "center", marginBottom: "8px" }}
+          >
             {props.team}
           </Typography>
           <img
@@ -34,7 +41,6 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
           />
         </Grid>
 
-        {/* Høyre kolonne med detaljer */}
         <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
           <Grid size={{ xs: 6 }}>
             <CardContentText title="Position" text={props.position} />
@@ -43,7 +49,7 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
             <CardContentText title="Age" text={props.age.toString()} />
           </Grid>
           <Grid size={{ xs: 6 }} display="flex">
-            <CardContentText title="Nationality" text={props.nationality} /> 
+            <CardContentText title="Nationality" text={props.nationality} />
             <img
               src={props.flag}
               alt={`Flag of ${props.nationality}`}
@@ -51,7 +57,7 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
             />
           </Grid>
           <Grid size={{ xs: 6 }}>
-          <CardContentText title="Height" text={`${props.height} cm`} />
+            <CardContentText title="Height" text={`${props.height} cm`} />
           </Grid>
           <Grid size={{ xs: 6 }}>
             <CardContentText title="Place" text={props.place} />
