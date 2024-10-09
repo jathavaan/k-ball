@@ -59,8 +59,7 @@ describe("PlayerProfileInfo", () => {
   it("should render the player's birth date", () => {
     expect(screen.getByText(mockProps.birthDate)).toBeInTheDocument();
   });
-
-  // Snapshot test
+  
   it("should match the snapshot", () => {
     const { asFragment } = render(<PlayerProfileInfo {...mockProps} />);
     expect(asFragment()).toMatchSnapshot();

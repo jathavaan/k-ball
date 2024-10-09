@@ -28,7 +28,6 @@ export const getPlayerStatsTable = ({
           yellowCards: 2,
           redCards: 1,
         },
-        // Legg til flere sesonger hvis ønskelig
       ],
     });
   });
