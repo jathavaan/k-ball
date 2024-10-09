@@ -1,12 +1,6 @@
-import {
-  PlayerProfileInfo,
-  usePlayerProfileInfoCard,
-} from "../features/player-profile-info";
+import { PlayerProfileInfo, usePlayerProfileInfoCard } from "../features/player-profile-info";
 import { LinearProgressBar, ErrorAlert } from "../features/ui";
-import {
-  PlayerStatsTable,
-  usePlayerStatsTableData,
-} from "../features/player-stats-table";
+import { PlayerStatsTable, usePlayerStatsTableData } from "../features/player-stats-table";
 
 export const PlayerProfile = () => {
   const playerId = 2898;
