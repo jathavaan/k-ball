@@ -1,0 +1,133 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlayerStatsTable > should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-7bw5dg-MuiPaper-root-MuiTableContainer-root"
+    style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+  >
+    <table
+      class="MuiTable-root css-1epz3hc-MuiTable-root"
+    >
+      <thead
+        class="MuiTableHead-root css-1d25bxf-MuiTableHead-root"
+      >
+        <tr
+          class="MuiTableRow-root MuiTableRow-head css-11toj2m-MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-mued5w-MuiTableCell-root"
+            scope="col"
+          >
+            Season
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeMedium css-inusw5-MuiTableCell-root"
+            scope="col"
+          >
+            Goals
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeMedium css-inusw5-MuiTableCell-root"
+            scope="col"
+          >
+            Assists
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeMedium css-inusw5-MuiTableCell-root"
+            scope="col"
+          >
+            Appearances
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeMedium css-inusw5-MuiTableCell-root"
+            scope="col"
+          >
+            Yellow Cards
+          </th>
+          <th
+            class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight MuiTableCell-sizeMedium css-inusw5-MuiTableCell-root"
+            scope="col"
+          >
+            Red Cards
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="MuiTableBody-root css-7suuog-MuiTableBody-root"
+      >
+        <tr
+          class="MuiTableRow-root css-11toj2m-MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ooqwz0-MuiTableCell-root"
+            scope="row"
+          >
+            2021
+          </th>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            3
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            2
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            10
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            1
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            0
+          </td>
+        </tr>
+        <tr
+          class="MuiTableRow-root css-11toj2m-MuiTableRow-root"
+        >
+          <th
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1ooqwz0-MuiTableCell-root"
+            scope="row"
+          >
+            2020
+          </th>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            5
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            4
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            15
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            2
+          </td>
+          <td
+            class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium css-1og3x6h-MuiTableCell-root"
+          >
+            0
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

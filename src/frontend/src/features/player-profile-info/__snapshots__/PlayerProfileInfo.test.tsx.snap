@@ -1,0 +1,149 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlayerProfileInfo > should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-easxwc-MuiPaper-root-MuiCard-root"
+    data-testid="player-profile-info"
+    style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+  >
+    <div
+      class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-1u2edmo-MuiGrid2-root"
+    >
+      <div
+        class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-4 css-2hee6h-MuiGrid2-root"
+      >
+        <img
+          alt="Portrait of Kim Young-Gwon"
+          class="css-1sws5au"
+          height="100px"
+          src="https://media.api-sports.io/football/players/2898.png"
+          width="100px"
+        />
+        <h4
+          class="MuiTypography-root MuiTypography-h4 css-keckwm-MuiTypography-root"
+        >
+          Kim Young-Gwon
+        </h4>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-13bwjjd-MuiTypography-root"
+        >
+          Ulsan Hyundai FC
+        </p>
+        <img
+          alt="Logo of Ulsan Hyundai FC"
+          src="https://media.api-sports.io/football/teams/2767.png"
+          style="width: 40px; height: 40px;"
+        />
+      </div>
+      <div
+        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-8 MuiGrid2-spacing-xs-2 css-15yyq9p-MuiGrid2-root"
+      >
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="Defender"
+            title="Position"
+          >
+            <b>
+              Position:
+            </b>
+             Defender
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="34"
+            title="Age"
+          >
+            <b>
+              Age:
+            </b>
+             34
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ok3axh-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="Korea Republic"
+            title="Nationality"
+          >
+            <b>
+              Nationality:
+            </b>
+             Korea Republic
+          </p>
+          <img
+            alt="Flag of Korea Republic"
+            src="https://media.api-sports.io/flags/kr.svg"
+            style="width: 20px; height: 20px; margin-left: 8px;"
+          />
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="186 cm"
+            title="Height"
+          >
+            <b>
+              Height:
+            </b>
+             186 cm
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="Jeonju, Korea Republic"
+            title="Place"
+          >
+            <b>
+              Place:
+            </b>
+             Jeonju, Korea Republic
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="1990-02-27"
+            title="Birth Date"
+          >
+            <b>
+              Birth Date:
+            </b>
+             1990-02-27
+          </p>
+        </div>
+        <div
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            text="74 kg"
+            title="Weight"
+          >
+            <b>
+              Weight:
+            </b>
+             74 kg
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
