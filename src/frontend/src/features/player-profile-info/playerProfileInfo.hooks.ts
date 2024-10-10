@@ -18,5 +18,5 @@ export const usePlayerProfileInfoCard = (playerId: number) => {
     }
   }, [dispatch, playerProfileInfo]);
 
-  return { playerProfileInfo, isLoading, isError };
+  return { isLoading, isError };
 };

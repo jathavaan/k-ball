@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
   return (
     <StyledPlayerInfoCard data-testid="player-profile-info">
-      <Grid container spacing={2} padding="16px">
+      <Grid container spacing={2} padding="1rem">
         <Grid
           size={{ xs: 12, md: 4 }}
           display="flex"
@@ -17,8 +17,6 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
           <ImageContainer
             src={props.imageUrl}
             alt={`Portrait of ${props.name}`}
-            width={"100px"}
-            height={"100px"}
           />
           <CardHeader
             headerText={props.name}
@@ -30,14 +28,14 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
           />
           <Typography
             variant="body1"
-            sx={{ textAlign: "center", marginBottom: "8px" }}
+            sx={{ textAlign: "center", marginBottom: "0.5rem" }}
           >
             {props.team}
           </Typography>
           <img
             src={props.teamLogo}
             alt={`Logo of ${props.team}`}
-            style={{ width: "40px", height: "40px" }}
+            style={{ width: "2.5rem", height: "2.5rem" }}
           />
         </Grid>
 
@@ -53,7 +51,11 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
             <img
               src={props.flag}
               alt={`Flag of ${props.nationality}`}
-              style={{ width: "20px", height: "20px", marginLeft: "8px" }}
+              style={{
+                width: "1.25rem",
+                height: "1.25rem",
+                marginLeft: "0.5rem",
+              }}
             />
           </Grid>
           <Grid size={{ xs: 6 }}>

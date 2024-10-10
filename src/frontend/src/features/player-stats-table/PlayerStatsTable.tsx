@@ -18,8 +18,8 @@ export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
     <TableContainer
       component={Paper}
       sx={(theme) => ({
-        borderRadius: "8px",
-        marginTop: "16px",
+        borderRadius: "0.5rem",
+        marginTop: "1rem",
         overflowX: "auto",
         [theme.breakpoints.down("sm")]: {
           width: "100%",

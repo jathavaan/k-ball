@@ -18,5 +18,5 @@ export const usePlayerStatsTableData = (playerId: number) => {
     }
   }, [dispatch, playerStatsTable]);
 
-  return { playerStatsTable, isLoading, isError };
+  return { isLoading, isError };
 };

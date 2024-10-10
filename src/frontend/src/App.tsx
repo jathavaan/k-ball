@@ -9,8 +9,11 @@ function App() {
       <Router>
         <Container>
           <Routes>
-            <Route path="/project2" element={<PlayerDashboard />} />
-            <Route path="/project2/:playerId" element={<PlayerProfile />} />
+            <Route path="/project2/players" element={<PlayerDashboard />} />
+            <Route
+              path="/project2/players/:playerId"
+              element={<PlayerProfile />}
+            />
           </Routes>
         </Container>
       </Router>
