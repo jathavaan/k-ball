@@ -20,7 +20,15 @@ The root directory contains the following folders:
 
 ### Backend
 
-- In progress
+The backend is built using Node.js and GraphQL with a PostgreSQL database. The database is created in a code-first
+approach using TypeORM. In the backend is structured according to Clean Architecture with
+command-query-responsibility-segregation (CQRS). The backend is split into the following layers:
+
+- `domain` which contains the entities and value objects of the application.
+- `application` which contains the use cases of the application. Contracts for services are also defined here.
+- `infrastructure` which contains the implementation of the interfaces defined in the application layer, as well as the
+  connection to the database.
+- `presentation` which contains the GraphQL schema and resolvers.
 
 ### Frontend
 
@@ -32,11 +40,31 @@ smaller components that make up the pages. In the directory `feature/ui` there a
 system and have no business logic attached to them.
 
 ## Installation
-There are three main parts to the installation process: setting up the database, setting up the backend and setting up the frontend.
+
+There are three main parts to the installation process: setting up the database, setting up the backend and setting up
+the frontend.
 
 ### Database
+
+> **Note:** The database setup is for a local database. When the database is up and running on the NTNU server, the
+> installation is not needed.
+
+Install the latest PostgreSQL version from the [official website](https://www.postgresql.org/download/). Ensure that the
+default port is set to `5432` when setting up PostgresSQL. You may now create a database locally named `k-ball-db` which
+will have the `postgres`as the owner, username and password.
+
 ### Backend
+
+To set up the backend, navigate to the `src/backend` directory and run the following commands:
+
+```powershell
+npm i
+```
+
+
+
 ### Frontend
+
 From the root directory, navigate to the `src/frontend` directory and run the following commands:
 
 ```powershell
@@ -46,7 +74,14 @@ npm i
 This will install all the necessary dependencies for the frontend.
 
 ## Usage
-To start the frontend, navigate to the `src/frontend` directory and run the following command:
+Navigate to `src/backend` and run the following command to start the backend server:
+
+```powershell
+npm run dev
+```
+
+The command above will create the database tables and start the backend server
+on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to the `src/frontend` directory and run the following command:
 
 ```powershell
 npm start
