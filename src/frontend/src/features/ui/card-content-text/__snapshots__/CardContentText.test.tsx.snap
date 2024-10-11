@@ -14,3 +14,18 @@ exports[`CardContentText > Should match CardContentText snapshot 1`] = `
   </p>
 </DocumentFragment>
 `;
+
+exports[`CardContentText > Should match CardContentText snapshot 1`] = `
+<DocumentFragment>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+    text="Test Text"
+    title="Test Title"
+  >
+    <b>
+      Test Title:
+    </b>
+     Test Text
+  </p>
+</DocumentFragment>
+`;
