@@ -19,7 +19,7 @@ describe("PlayerCard", () => {
     render(
       <MemoryRouter>
         <PlayerCard {...mockPlayerCardProps} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
   });
 
@@ -36,18 +36,22 @@ describe("PlayerCard", () => {
   });
 
   it("Should render the player nationality", () => {
-    expect(screen.getByText(mockPlayerCardProps.nationality)).toBeInTheDocument();
+    expect(
+      screen.getByText(mockPlayerCardProps.nationality),
+    ).toBeInTheDocument();
   });
 
   it("Should render player age", () => {
-    expect(screen.getByText(mockPlayerCardProps.age.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(mockPlayerCardProps.age.toString()),
+    ).toBeInTheDocument();
   });
 
   it("Should match PlayerCard snapshot", () => {
     const { asFragment } = render(
       <MemoryRouter>
         <PlayerCard {...mockPlayerCardProps} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
