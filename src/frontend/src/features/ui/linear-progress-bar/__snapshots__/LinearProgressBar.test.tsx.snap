@@ -1,5 +1,22 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`LinearProgressBar > Should match LinearProgressBar snapshot 1`] = `
+<DocumentFragment>
+  <span
+    class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate css-a9j3vj-MuiLinearProgress-root"
+    data-testid="linear-progress-bar"
+    role="progressbar"
+  >
+    <span
+      class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-eg0r9f-MuiLinearProgress-bar1"
+    />
+    <span
+      class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-1yf7653-MuiLinearProgress-bar2"
+    />
+  </span>
+</DocumentFragment>
+`;
+
 exports[`Tests for LinearProgressBar > Should match LinearProgressBar snapshot 1`] = `
 <DocumentFragment>
   <span
