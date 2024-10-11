@@ -8,10 +8,11 @@ import {
   usePlayerStatsTableData,
 } from "../features/player-stats-table";
 import { useSelector } from "react-redux";
-import { RootState } from "../store"; // Adjust the import path according to your project structure
+import { RootState } from "../store";
+import { useParams } from "react-router-dom";
 
 export const PlayerProfile = () => {
-  const playerId = 2898;
+  const { playerId } = useParams<{ playerId: string }>();
   const { isLoading, isError } = usePlayerProfileInfoCard(
     Number(playerId),
   );

@@ -2,10 +2,14 @@
 import { CardContentText, CardHeader, ImageContainer } from "../ui";
 import Grid from "@mui/material/Grid2";
 import { PlayerCardProps } from "./playerCard.types.ts";
+import { CardActionArea } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 export const PlayerCard = (props: PlayerCardProps) => {
+  console.log("PlayerCard", props);
   return (
     <StyledPlayerCard data-testid="player-card">
+      <CardActionArea component={RouterLink} to={`${props.playerId}`}>
       <Grid
         container
         spacing={2}
@@ -45,6 +49,7 @@ export const PlayerCard = (props: PlayerCardProps) => {
           </Grid>
         </Grid>
       </Grid>
+      </CardActionArea>
     </StyledPlayerCard>
   );
 };
