@@ -10,7 +10,7 @@ function App() {
     <>
       <Router>
         <Navbar />
-      <Container style={{ marginTop: "115px" }}>
+        <Container style={{ marginTop: "115px" }}>
           <Routes>
             <Route path="/project2" element={<TemporaryHomepage />} />
             <Route path="/project2/players" element={<PlayerDashboard />} />

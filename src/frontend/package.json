@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && VITE_CJS_TRACE=true vite build",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "npx prettier --write .",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
