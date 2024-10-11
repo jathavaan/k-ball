@@ -93,7 +93,7 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Snapshot tests for PlayerCard > Should match PlayerCard snapshot 1`] = `
+exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-e6mcx0-MuiPaper-root-MuiCard-root"

@@ -31,7 +31,7 @@ exports[`ErrorAlert > Should match ErrorAlert snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Tests for ErrorAlert > Should match ErrorAlert snapshot 1`] = `
+exports[`ErrorAlert > Should match ErrorAlert snapshot 1`] = `
 <DocumentFragment>
   <div
     class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorError MuiAlert-filledError MuiAlert-filled css-psg8n3-MuiPaper-root-MuiAlert-root"
