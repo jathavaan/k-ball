@@ -28,6 +28,7 @@ export const TemporaryHomepage = () => {
       const tiltY = -(mousePosition.x - (rect.left + rect.width / 2)) / 25;
 
       buttonRef.current.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      buttonRef.current.style.boxShadow = `${tiltY}px ${-tiltX}px 15px rgba(0, 0, 0, 0.25)`;
     }
   }, [mousePosition]);
   return (
@@ -42,13 +43,13 @@ export const TemporaryHomepage = () => {
         <Grid>
           <CardHeader
             sx={{
-              fontSize: "3rem",
+              fontSize: { xs: "2rem", sm: "3rem" },
             }}
             headerText="Welcome to K-Ball"
           />
           <CardHeader
             sx={{
-              fontSize: "1.5rem",
+              fontSize: { xs: "1rem", sm: "1.5rem" },
               color: "#b86a6b",
             }}
             headerText="Your K-League Player Hub"
@@ -57,7 +58,7 @@ export const TemporaryHomepage = () => {
         <Grid>
           <CardHeader
             sx={{
-              fontSize: "1rem",
+              fontSize: { xs: "0.5rem", sm: "1rem" },
             }}
             headerText="Explore the players of Korea's top football league with K-Ball. Get an overview of all K-League players, view detailed stats, and rate their performance. Join the community in shaping how players are ranked based on skill and game impact. Whether you're a fan or a football enthusiast, K-Ball offers a unique, interactive way to follow the K-League."
           />
@@ -71,6 +72,7 @@ export const TemporaryHomepage = () => {
               backgroundColor: "#b86a6b",
               textTransform: "none",
               transition: "transform 0.2s",
+              fontSize: { xs: "0.5rem", sm: "1rem" },
               "&:hover": {
                 transform: "scale(1.03)",
                 backgroundColor: "#953c3d",
