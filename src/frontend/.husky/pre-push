@@ -1,0 +1,8 @@
+﻿cd src/frontend
+npx vitest run --passWithNoTests
+
+# If tests fail, block the push
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Push has been blocked."
+  exit 1
+fi
