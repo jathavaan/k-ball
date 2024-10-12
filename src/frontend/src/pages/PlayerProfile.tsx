@@ -13,14 +13,12 @@ import { useParams } from "react-router-dom";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();
-  const { isLoading, isError } = usePlayerProfileInfoCard(
-    Number(playerId),
+  const { isLoading, isError } = usePlayerProfileInfoCard(Number(playerId));
+  const playerProfileInfo = useSelector(
+    (state: RootState) => state.playerProfileInfoReducer.playerProfileInfo,
   );
-  const playerProfileInfo = useSelector((state: RootState) => state.playerProfileInfoReducer.playerProfileInfo);
-  const {
-    isLoading: isStatsLoading,
-    isError: isStatsError,
-  } = usePlayerStatsTableData(Number(playerId)) || { playerStatsTable: [] };
+  const { isLoading: isStatsLoading, isError: isStatsError } =
+    usePlayerStatsTableData(Number(playerId)) || { playerStatsTable: [] };
   const playerStatsTable = useSelector(
     (state: RootState) => state.playerStatsTableReducer.playerStatsTable,
   );
@@ -37,9 +35,7 @@ export const PlayerProfile = () => {
         />
       ) : (
         <>
-          {playerProfileInfo && (
-            <PlayerProfileInfo {...playerProfileInfo} />
-          )}
+          {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
           <PlayerStatsTable playerStatsTable={playerStats} />
         </>
       )}

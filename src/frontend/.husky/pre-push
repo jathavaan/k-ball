@@ -1,4 +1,4 @@
-﻿cd src/frontend
+cd src/frontend
 npx vitest run --passWithNoTests
 
 # If tests fail, block the push
