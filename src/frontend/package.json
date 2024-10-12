@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && VITE_CJS_TRACE=true vite build",
     "test": "vitest",
     "test:e2e": "start-server-and-test dev http://localhost:5173/project2 'cypress run --quiet'",
     "test:ui": "vitest --ui",

@@ -28,7 +28,15 @@ The root directory contains the following folders:
 
 ### Backend
 
-- In progress
+The backend is built using Node.js and GraphQL with a PostgreSQL database. The database is created in a code-first
+approach using TypeORM. In the backend is structured according to Clean Architecture with
+command-query-responsibility-segregation (CQRS). The backend is split into the following layers:
+
+- `domain` which contains the entities and value objects of the application.
+- `application` which contains the use cases of the application. Contracts for services are also defined here.
+- `infrastructure` which contains the implementation of the interfaces defined in the application layer, as well as the
+  connection to the database.
+- `presentation` which contains the GraphQL schema and resolvers.
 
 ### Frontend
 
@@ -46,7 +54,22 @@ the frontend.
 
 ### Database
 
+> **Note:** The database setup is for a local database. When the database is up and running on the NTNU server, the
+> installation is not needed.
+
+Install the latest PostgreSQL version from the [official website](https://www.postgresql.org/download/). Ensure that the
+default port is set to `5432` when setting up PostgresSQL. You may now create a database locally named `k-ball-db` which
+will have the `postgres`as the owner, username and password.
+
 ### Backend
+
+To set up the backend, navigate to the `src/backend` directory and run the following commands:
+
+```powershell
+npm i
+```
+
+
 
 ### Frontend
 
@@ -59,8 +82,14 @@ npm i
 This will install all the necessary dependencies for the frontend.
 
 ## Usage
+Navigate to `src/backend` and run the following command to start the backend server:
 
-To start the frontend, navigate to the `src/frontend` directory and run the following command:
+```powershell
+npm run dev
+```
+
+The command above will create the database tables and start the backend server
+on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to the `src/frontend` directory and run the following command:
 
 ```powershell
 npm start
@@ -77,3 +106,19 @@ or to view the tests in the Vitest UI, run the following command:
 ```powershell
 npm run test:ui
 ```
+
+To run the Cypress End-to-End (E2E) tests, use the following commands:
+
+To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E tests interactively.
+
+```powershell
+npm run cypress:open
+```
+
+To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress UI.
+
+```powershell
+npm run cypress:run
+```
+
+Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the frontend to be live.

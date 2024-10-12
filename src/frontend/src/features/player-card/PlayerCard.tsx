@@ -6,7 +6,6 @@ import { CardActionArea } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 export const PlayerCard = (props: PlayerCardProps) => {
-  console.log("PlayerCard", props);
   return (
     <StyledPlayerCard data-testid="player-card">
       <CardActionArea component={RouterLink} to={`${props.playerId}`}>
