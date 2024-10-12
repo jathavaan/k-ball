@@ -9,7 +9,15 @@ based on the 2022 season.
 ## Technologies
 
 The website is built using React, Node.js, GraphQL and PostgreSQL. The website is hosted on the NTNU server and requires
-a NTNU VPN connection to access.
+a NTNU VPN connection to access. Husky is used for pre-commit and pre-push hooks, and Vitest and Cypress are used for
+testing.
+
+## Husky
+
+The following have been set up for pre-commit and pre-push hooks (in the `frontend` folder):
+
+- `pre-commit`: Formatting with Prettier
+- `pre-push`: Running tests with Vitest and Cypress
 
 ## Architecture
 
@@ -32,11 +40,16 @@ smaller components that make up the pages. In the directory `feature/ui` there a
 system and have no business logic attached to them.
 
 ## Installation
-There are three main parts to the installation process: setting up the database, setting up the backend and setting up the frontend.
+
+There are three main parts to the installation process: setting up the database, setting up the backend and setting up
+the frontend.
 
 ### Database
+
 ### Backend
+
 ### Frontend
+
 From the root directory, navigate to the `src/frontend` directory and run the following commands:
 
 ```powershell
@@ -46,6 +59,7 @@ npm i
 This will install all the necessary dependencies for the frontend.
 
 ## Usage
+
 To start the frontend, navigate to the `src/frontend` directory and run the following command:
 
 ```powershell
