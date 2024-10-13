@@ -112,13 +112,13 @@ To run the Cypress End-to-End (E2E) tests, use the following commands:
 To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E tests interactively.
 
 ```powershell
-npm run cypress:open
+npm run cy:open
 ```
 
 To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress UI.
 
 ```powershell
-npm run cypress:run
+npm run cy:run
 ```
 
 Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the frontend to be live.
