@@ -92,7 +92,7 @@ The command above will create the database tables and start the backend server
 on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to the `src/frontend` directory and run the following command:
 
 ```powershell
-npm start
+npm run dev
 ```
 
 and to run the tests for the frontend, run the following command:
