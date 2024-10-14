@@ -9,7 +9,15 @@ based on the 2022 season.
 ## Technologies
 
 The website is built using React, Node.js, GraphQL and PostgreSQL. The website is hosted on the NTNU server and requires
-a NTNU VPN connection to access.
+a NTNU VPN connection to access. Husky is used for pre-commit and pre-push hooks, and Vitest and Cypress are used for
+testing.
+
+## Husky
+
+The following have been set up for pre-commit and pre-push hooks (in the `frontend` folder):
+
+- `pre-commit`: Formatting with Prettier
+- `pre-push`: Running tests with Vitest and Cypress
 
 ## Architecture
 
@@ -104,13 +112,13 @@ To run the Cypress End-to-End (E2E) tests, use the following commands:
 To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E tests interactively.
 
 ```powershell
-npm run cypress:open
+npm run cy:open
 ```
 
 To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress UI.
 
 ```powershell
-npm run cypress:run
+npm run cy:run
 ```
 
 Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the frontend to be live.
