@@ -69,8 +69,6 @@ To set up the backend, navigate to the `src/backend` directory and run the follo
 npm i
 ```
 
-
-
 ### Frontend
 
 From the root directory, navigate to the `src/frontend` directory and run the following commands:
@@ -82,6 +80,7 @@ npm i
 This will install all the necessary dependencies for the frontend.
 
 ## Usage
+
 Navigate to `src/backend` and run the following command to start the backend server:
 
 ```powershell
@@ -89,7 +88,8 @@ npm run dev
 ```
 
 The command above will create the database tables and start the backend server
-on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to the `src/frontend` directory and run the following command:
+on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to
+the `src/frontend` directory and run the following command:
 
 ```powershell
 npm run dev
@@ -109,16 +109,24 @@ npm run test:ui
 
 To run the Cypress End-to-End (E2E) tests, use the following commands:
 
-To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E tests interactively.
+To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E
+tests interactively.
 
 ```powershell
 npm run cy:open
 ```
 
-To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress UI.
+To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress
+UI.
 
 ```powershell
 npm run cy:run
 ```
 
-Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the frontend to be live.
+Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the
+frontend to be live.
+
+## Further documentation
+
+The API have been documented using GraphQL Playground. To access the documentation, navigate
+to [`http://localhost:4000/docs`](http://localhost:4000/docs) and click on the `DOCS` tab in the top right corner.
