@@ -1,6 +1,7 @@
 ﻿import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
+import { Position } from "@domain/entities/position";
 
 @Entity()
 export class Player {
@@ -8,8 +9,6 @@ export class Player {
   id!: number;
   @Column({ type: "text" })
   fullName!: string;
-  @Column({ type: "text" })
-  position!: string;
   @Column({ type: "text" })
   imageUrl!: string;
   @Column({ type: "date" })
@@ -23,4 +22,6 @@ export class Player {
   birthPlace!: BirthPlace;
   @ManyToOne(() => Club, (club) => club.players)
   club!: Club;
+  @ManyToOne(() => Position, (position) => position.players)
+  position!: Position;
 }

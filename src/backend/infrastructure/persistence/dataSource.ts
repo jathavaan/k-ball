@@ -1,5 +1,12 @@
 ﻿import { DataSource } from "typeorm";
-import { BirthPlace, Club, Country, Player, User } from "@domain/entities";
+import {
+  BirthPlace,
+  Club,
+  Country,
+  Player,
+  Position,
+  User,
+} from "@domain/entities";
 
 export const KBallDbContext = new DataSource({
   type: "postgres",
@@ -10,7 +17,7 @@ export const KBallDbContext = new DataSource({
   database: "k-ball-db",
   synchronize: true,
   logging: ["error"],
-  entities: [User, BirthPlace, Club, Country, Player],
+  entities: [BirthPlace, Club, Country, Player, Position, User],
   migrations: ["migrations/*{.ts,.js}"],
   migrationsTableName: "__migration_history__",
 });

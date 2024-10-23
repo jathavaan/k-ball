@@ -1,14 +1,14 @@
 import {
   PlayerProfileInfo,
   usePlayerProfileInfoCard,
-} from "../features/player-profile-info";
-import { LinearProgressBar, ErrorAlert } from "../features/ui";
+} from "../../features/player-profile-info";
+import { ErrorAlert, LinearProgressBar } from "../../features/ui";
 import {
   PlayerStatsTable,
   usePlayerStatsTableData,
-} from "../features/player-stats-table";
+} from "../../features/player-stats-table";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 import { useParams } from "react-router-dom";
 
 export const PlayerProfile = () => {

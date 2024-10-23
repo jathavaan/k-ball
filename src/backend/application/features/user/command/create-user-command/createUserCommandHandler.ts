@@ -2,7 +2,7 @@
 import { Request } from "@application/common/request";
 import { CreateUserCommand } from "./createUserCommand";
 import { container } from "@infrastructure/services/inversify.config";
-import { UserRepositoryServiceBase } from "@application//contracts/userRepository.service";
+import { UserRepositoryServiceBase } from "@application//contracts/userRepository.service.base";
 
 export class CreateUserCommandHandler
   implements Request<CreateUserCommand, boolean>

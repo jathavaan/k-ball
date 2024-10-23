@@ -1,15 +1,13 @@
 ﻿import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Player } from "./player";
+import { Player } from "@domain/entities/player";
 
 @Entity()
-export class Club {
+export class Position {
   @PrimaryGeneratedColumn()
   id!: number;
   @Column({ type: "text" })
   name!: string;
-  @Column({ type: "text" })
-  logoUrl!: string;
 
-  @OneToMany(() => Player, (player) => player.club)
+  @OneToMany(() => Player, (player) => player.position)
   players!: Player[];
 }

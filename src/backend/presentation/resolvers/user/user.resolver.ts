@@ -3,15 +3,15 @@
   CreateUserCommandHandler,
 } from "@application/features/user/command";
 import {
-  GetAllUsersQuery,
-  GetAllUsersQueryHandler,
+  GetUsersQuery,
+  GetUsersQueryHandler,
   GetUserByIdQuery,
   GetUserByIdQueryHandler,
 } from "@application/features/user/query";
 
 const createUserCommandHandler = new CreateUserCommandHandler();
 const getUserByIdQueryHandler = new GetUserByIdQueryHandler();
-const getAllUsersQueryHandler = new GetAllUsersQueryHandler();
+const getAllUsersQueryHandler = new GetUsersQueryHandler();
 
 export const userResolver = {
   UserQuery: {
@@ -20,7 +20,7 @@ export const userResolver = {
       return await getUserByIdQueryHandler.handle(new GetUserByIdQuery(userId));
     },
     users: async () =>
-      await getAllUsersQueryHandler.handle(new GetAllUsersQuery()),
+      await getAllUsersQueryHandler.handle(new GetUsersQuery()),
   },
   UserMutation: {
     addUser: async (
