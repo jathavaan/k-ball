@@ -3,7 +3,7 @@ import { BirthPlace, Club, Country, Player, User } from "@domain/entities";
 
 export const KBallDbContext = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: "it2810-25.idi.ntnu.no",
   port: 5432,
   username: "postgres",
   password: "postgres",

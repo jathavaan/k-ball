@@ -8,7 +8,11 @@ KBallDbContext.initialize()
   .then(() => {
     console.log("Database connected");
   })
-  .catch((err) => console.error(err));
+  .catch((err) => {
+    console.error("Database connection failed");
+    console.log("Ensure that you are connected to the NTNU VPN");
+    console.error(err)}
+  );
 
 const app = express();
 
