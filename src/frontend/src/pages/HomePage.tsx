@@ -1,6 +1,6 @@
 import { Button } from "../features/ui/button/Button";
 import { ImageContainer } from "../features/ui/image-container/ImageContainer";
-import front3 from "../assets/front3.jpg";
+import Home from "../assets/Home.jpg";
 import { Text } from "../features/ui/text/Text"; // Adjust the import path as necessary
 import { Box } from "@mui/material";
 import ArrowDownwardIcon from "../features/ArrowDownwardIcon/ArrowDownwardIcon";
@@ -16,7 +16,7 @@ export const HomePage = () => {
         }}
       >
         <ImageContainer
-          src={front3}
+          src={Home}
           alt={"PageImage"}
           style={{
             width: "100vw",

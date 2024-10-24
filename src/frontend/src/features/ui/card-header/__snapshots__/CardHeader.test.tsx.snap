@@ -3,7 +3,7 @@
 exports[`CardHeader > Should match CardHeader snapshot 1`] = `
 <DocumentFragment>
   <h4
-    class="MuiTypography-root MuiTypography-h4 css-1gp0puz-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-h4 css-11sxamu-MuiTypography-root"
   >
     Test Header
   </h4>

@@ -1,0 +1,120 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Arrow > should match Navbar snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ArrowDown > should match Navbar snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ArrowDownwardIcon > should match ArrowDownwardIcon snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ArrowDownwardIcon > should match Navbar snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`Navbar > should match Navbar snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`should match ArrowDownwardIcon snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`should match Navbar snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+    data-testid="ExpandMoreIcon"
+    focusable="false"
+    style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 60px; cursor: pointer; z-index: 1000;"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+    />
+  </svg>
+</DocumentFragment>
+`;
