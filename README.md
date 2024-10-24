@@ -69,8 +69,6 @@ To set up the backend, navigate to the `src/backend` directory and run the follo
 npm i
 ```
 
-
-
 ### Frontend
 
 From the root directory, navigate to the `src/frontend` directory and run the following commands:
@@ -82,6 +80,7 @@ npm i
 This will install all the necessary dependencies for the frontend.
 
 ## Usage
+
 Navigate to `src/backend` and run the following command to start the backend server:
 
 ```powershell
@@ -89,7 +88,8 @@ npm run dev
 ```
 
 The command above will create the database tables and start the backend server
-on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to the `src/frontend` directory and run the following command:
+on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to
+the `src/frontend` directory and run the following command:
 
 ```powershell
 npm run dev
@@ -109,16 +109,100 @@ npm run test:ui
 
 To run the Cypress End-to-End (E2E) tests, use the following commands:
 
-To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E tests interactively.
+To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E
+tests interactively.
 
 ```powershell
 npm run cy:open
 ```
 
-To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress UI.
+To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress
+UI.
 
 ```powershell
 npm run cy:run
 ```
 
-Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the frontend to be live.
+Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the
+frontend to be live.
+
+## Further documentation
+
+The API have been documented using GraphQL Playground. To access the documentation, navigate
+to [`http://localhost:4000/docs`](http://localhost:4000/docs) and click on the `DOCS` tab in the top right corner.
+
+## Accessing the Database via Terminal
+
+To access the PostgreSQL database on the server for K-Ball, follow these steps:
+
+Connect to the Server:
+
+Ensure that you have VPN access to NTNU if you are connecting remotely. Once connected, use SSH to log in to the server:
+
+```powershell
+ssh username@it2810-25.idi.ntnu.no
+```
+
+Replace username with your actual username. You will be prompted to enter your password.
+
+Access the PostgreSQL Database:
+
+Once logged into the server, switch to the postgres user and access the PostgreSQL interface by running the following command:
+
+```powershell
+sudo -u postgres psql
+```
+
+You may be prompted to enter your password again.
+
+Switch to the Correct Database:
+
+Once in the PostgreSQL interface, list all databases to ensure k-ball-db is available:
+
+```sql
+\l
+```
+
+Then, connect to the k-ball-db database:
+
+```sql
+\c k-ball-db
+````
+
+You should see a message like this:
+
+```powershell
+You are now connected to database "k-ball-db" as user "postgres".
+```
+
+Query the Database:
+
+Once connected, you can run SQL queries. For example, to see all users:
+
+```sql
+SELECT * FROM public."user";
+````
+
+List Tables:
+
+If you want to list all tables in the current database:
+
+```sql
+\dt
+```
+
+Exit the Database:
+
+When finished, you can exit the PostgreSQL interface by typing:
+
+```powershell
+\q
+```
+
+Exit the Server:
+
+To disconnect from the server, type:
+
+```powershell
+exit
+```
