@@ -4,9 +4,9 @@ import { Player } from "./player";
 
 @Entity()
 export class PlayerReview {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "int" })
   userId!: number;
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "int" })
   playerId!: number;
   @Column({ type: "int" })
   rating!: number;

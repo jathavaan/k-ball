@@ -3,7 +3,7 @@ import { PlayerSeason } from "./playerSeason";
 
 @Entity()
 export class PlayerStats {
-  @PrimaryColumn() 
+  @PrimaryColumn({ type: "int" }) 
   playerSeasonId!: number;
   
   @OneToOne(() => PlayerSeason)  

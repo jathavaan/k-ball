@@ -4,9 +4,9 @@ import { Club } from "./club";
 
 @Entity()
 export class ClubSeason {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "int" }) 
   seasonId!: number;
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "int" })
   clubId!: number;
 
   @ManyToOne(() => Season, (season) => season.clubSeasons)
