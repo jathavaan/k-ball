@@ -14,6 +14,7 @@ export class BirthPlace {
   id!: number;
   @Column({ type: "text" })
   name!: string;
+  
   @ManyToOne(() => Country, (country) => country.birthPlaces)
   country!: Country;
   @OneToMany(() => Player, (player) => player.birthPlace)
