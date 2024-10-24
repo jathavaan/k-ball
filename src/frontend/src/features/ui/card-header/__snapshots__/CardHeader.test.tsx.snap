@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tests for CardHeader > Should match CardHeader snapshot 1`] = `
+exports[`CardHeader > Should match CardHeader snapshot 1`] = `
 <DocumentFragment>
   <h4
     class="MuiTypography-root MuiTypography-h4 css-1gp0puz-MuiTypography-root"
