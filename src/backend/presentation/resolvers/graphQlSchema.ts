@@ -11,6 +11,7 @@ import { userResolver } from "@presentation/resolvers/user/user.resolver";
 import { ClubType } from "@presentation/resolvers/club/club.typeDefinitions";
 import { clubResolver } from "@presentation/resolvers/club/club.resolver";
 import { countryResolver } from "@presentation/resolvers/country/country.resolver";
+import { CountryType } from "@presentation/resolvers/country/country.typeDefinitions";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -31,7 +32,7 @@ const QueryType = new GraphQLObjectType({
       resolve: clubResolver.ClubQuery.clubs,
     },
     countries: {
-      type: new GraphQLList(GraphQLString),
+      type: new GraphQLList(CountryType),
       resolve: countryResolver.CountryQuery.countries,
     },
   },
