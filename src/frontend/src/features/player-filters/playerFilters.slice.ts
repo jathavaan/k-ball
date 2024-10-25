@@ -1,16 +1,8 @@
-import {
-  ClubProps,
-  CountryProps,
-  PlayerFilterState,
-  PositionProps,
-} from "./playerFilters.types.ts";
+import { PlayerFilterState } from "./playerFilters.types.ts";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store.ts";
 
 const initialState: PlayerFilterState = {
-  clubs: [],
-  countries: [],
-  positionsIds: [],
   selectedClubIds: [-1],
   selectedCountryIds: [-1],
   selectedPositionIds: [-1],
@@ -20,15 +12,6 @@ export const playerFiltersSlice = createSlice({
   name: "playerFilters",
   initialState,
   reducers: {
-    setClubs: (state, action: PayloadAction<ClubProps[]>) => {
-      state.clubs = action.payload;
-    },
-    setCountries: (state, action: PayloadAction<CountryProps[]>) => {
-      state.countries = action.payload;
-    },
-    setPositions: (state, action: PayloadAction<PositionProps[]>) => {
-      state.positions = action.payload;
-    },
     setPositionFilters: (state, action: PayloadAction<number[]>) => {
       state.selectedPositionIds = action.payload;
     },
@@ -41,14 +24,8 @@ export const playerFiltersSlice = createSlice({
   },
 });
 
-export const {
-  setClubs,
-  setCountries,
-  setPositions,
-  setPositionFilters,
-  setCountryFilters,
-  setClubFilters,
-} = playerFiltersSlice.actions;
+export const { setPositionFilters, setCountryFilters, setClubFilters } =
+  playerFiltersSlice.actions;
 
 export const selectedClubIds = (state: RootState) =>
   state.playerFiltersReducer.selectedClubIds;

@@ -1,7 +1,4 @@
 export interface PlayerFilterState {
-  clubs: ClubProps[];
-  countries: CountryProps[];
-  positions: PositionProps[];
   selectedCountryIds: number[];
   selectedPositionIds: number[];
   selectedClubIds: number[];
