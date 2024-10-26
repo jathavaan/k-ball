@@ -2,8 +2,8 @@
 import "reflect-metadata";
 import { createHandler } from "graphql-http/lib/use/express";
 import expressPlayground from "graphql-playground-middleware-express";
-import { KBallDbContext } from "@infrastructure/persistence/dataSource";
-import { schema } from "@presentation/resolvers/graphQlSchema";
+import { KBallDbContext } from "../infrastructure/persistence/dataSource";
+import { schema } from "../presentation/resolvers/graphQlSchema";
 
 KBallDbContext.initialize()
   .then(() => {
