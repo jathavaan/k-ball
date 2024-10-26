@@ -3,7 +3,7 @@ import "reflect-metadata";
 import { createHandler } from "graphql-http/lib/use/express";
 import expressPlayground from "graphql-playground-middleware-express";
 import { KBallDbContext } from "../infrastructure/persistence/dataSource";
-import { schema } from "../presentation/resolvers/graphQlSchema";
+import { schema } from "./resolvers/graphQlSchema";
 
 KBallDbContext.initialize()
   .then(() => {
@@ -12,8 +12,8 @@ KBallDbContext.initialize()
   .catch((err) => {
     console.error("Database connection failed");
     console.log("Ensure that you are connected to the NTNU VPN");
-    console.error(err)}
-  );
+    console.error(err);
+  });
 
 const app = express();
 

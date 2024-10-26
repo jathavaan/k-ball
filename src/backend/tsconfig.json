@@ -11,19 +11,19 @@
     "outDir": "./dist",
     "rootDir": ".",
     "baseUrl": ".",
-    "paths": {
-      "@presentation/*": [
-        "presentation/*"
+    /*"paths": {
+      "@presentation*//*": [
+        "presentation*//*"
       ],
-      "@domain/*": [
-        "domain/*"
+      "@domain*//*": [
+        "domain*//*"
       ],
-      "@infrastructure/*": [
-        "infrastructure/*"
+      "@infrastructure*//*": [
+        "infrastructure*//*"
       ],
-      "@application/*": [
-        "application/*"
+      "@application*//*": [
+        "application*//*"
       ]
-    }
+    }*/
   }
 }

@@ -1,5 +1,5 @@
 ﻿import { DataSource } from "typeorm";
-import { BirthPlace, Club, Country, Player, User } from "@domain/entities";
+import { BirthPlace, Club, Country, Player, User } from "../../domain/entities";
 
 export const KBallDbContext = new DataSource({
   type: "postgres",

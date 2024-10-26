@@ -6,8 +6,8 @@
   GraphQLSchema,
   GraphQLString,
 } from "graphql/type";
-import { UserType } from "@presentation/resolvers/users/user.typeDefinitions";
-import { userResolver } from "@presentation/resolvers/users/user.resolver";
+import { UserType } from "./users/user.typeDefinitions";
+import { userResolver } from "./users/user.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",

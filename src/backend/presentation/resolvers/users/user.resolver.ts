@@ -1,13 +1,13 @@
 ﻿import {
-  CreateUserCommand,
-  CreateUserCommandHandler,
-} from "@application/features/user/command";
-import {
   GetAllUsersQuery,
   GetAllUsersQueryHandler,
   GetUserByIdQuery,
   GetUserByIdQueryHandler,
-} from "@application/features/user/query";
+} from "../../../application/features/user/query";
+import {
+  CreateUserCommand,
+  CreateUserCommandHandler,
+} from "../../../application/features/user/command";
 
 const createUserCommandHandler = new CreateUserCommandHandler();
 const getUserByIdQueryHandler = new GetUserByIdQueryHandler();
