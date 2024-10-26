@@ -206,3 +206,10 @@ To disconnect from the server, type:
 ```powershell
 exit
 ```
+
+## Starting the API on server
+Run the following command to start the API on the server after going into `src/backend`:
+
+```powershell
+npm run start
+```
