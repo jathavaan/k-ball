@@ -15,7 +15,10 @@ export class BirthPlace {
   @Column({ type: "text" })
   name!: string;
   
-  @ManyToOne(() => Country, (country) => country.birthPlaces)
+  @ManyToOne(() => Country, (country) => country.birthPlaces, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   country!: Country;
   @OneToMany(() => Player, (player) => player.birthPlace)
   players!: Player[];

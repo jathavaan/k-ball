@@ -6,7 +6,7 @@ export class PlayerStats {
   @PrimaryColumn({ type: "int" }) 
   playerSeasonId!: number;
   
-  @OneToOne(() => PlayerSeason)  
+  @OneToOne(() => PlayerSeason, { onDelete: "CASCADE", onUpdate: "CASCADE" })  
   @JoinColumn({ name: "playerSeasonId" }) 
   playerSeason!: PlayerSeason;
 

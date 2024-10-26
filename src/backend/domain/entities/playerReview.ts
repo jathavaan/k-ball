@@ -11,8 +11,14 @@ export class PlayerReview {
   @Column({ type: "int" })
   rating!: number;
 
-  @ManyToOne(() => User, (user) => user.playerReviews)
+  @ManyToOne(() => User, (user) => user.playerReviews, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   user!: User;
-  @ManyToOne(() => Player, (player) => player.playerReviews)
+  @ManyToOne(() => Player, (player) => player.playerReviews, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   player!: Player;
 }

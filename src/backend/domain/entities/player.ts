@@ -21,10 +21,16 @@ export class Player {
   @Column({ type: "float" })
   weight!: number;
 
-  @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players)
+  @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
   birthPlace!: BirthPlace;
-  @ManyToOne(() => Club, (club) => club.players)
-  club!: Club;
+  @ManyToOne(() => Club, (club) => club.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  currentClub!: Club;
   @OneToMany(() => PlayerReview, (playerReview) => playerReview.player)
   playerReviews!: PlayerReview[];
   @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)

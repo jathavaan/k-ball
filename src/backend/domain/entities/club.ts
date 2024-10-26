@@ -12,7 +12,7 @@ export class Club {
   @Column({ type: "text" })
   logoUrl!: string;
 
-  @OneToMany(() => Player, (player) => player.club)
+  @OneToMany(() => Player, (player) => player.currentClub)
   players!: Player[];
   @OneToMany(() => PlayerSeason , (playerSeason) => playerSeason.club)
   playerSeasons!: PlayerSeason[];
