@@ -1,4 +1,5 @@
-﻿import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+﻿import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { PlayerReview } from "./playerReview";
 
 @Entity()
 export class User {
@@ -12,4 +13,7 @@ export class User {
   email!: string;
   @Column({ type: "text" })
   password!: string;
+
+  @OneToMany(() => PlayerReview, (playerReview) => playerReview.user)
+  playerReviews!: PlayerReview[];
 }
