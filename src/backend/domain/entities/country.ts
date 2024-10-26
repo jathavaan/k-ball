@@ -8,7 +8,7 @@ export class Country {
   @Column({ type: "text" })
   name!: string;
   @Column({ type: "text" })
-  flag!: string;
+  flagUrl!: string;
 
   @OneToMany(() => BirthPlace, (birthPlace) => birthPlace.country)
   birthPlaces!: BirthPlace[];

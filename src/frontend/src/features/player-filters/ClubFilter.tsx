@@ -5,6 +5,7 @@ import { useClubSelection } from "./playerFilters.hooks.ts";
 export const ClubFilter = () => {
   const { data, isLoading, isError } = useClubs();
   const { clubIds, toggleSelection } = useClubSelection();
+  console.log(data);
   return (
     <Select
       value={clubIds}
@@ -20,17 +21,19 @@ export const ClubFilter = () => {
         >
           All clubs
         </MenuItem>,
-        ...(data || []).map((club) => (
-          <MenuItem
-            key={club.id}
-            value={club.id}
-            isChecked={clubIds.includes(club.id)}
-            endIcon={club.logoUrl}
-            onClick={() => toggleSelection(club.id)}
-          >
-            {club.name}
-          </MenuItem>
-        )),
+        ...(Array.isArray(data)
+          ? data.map((club) => (
+              <MenuItem
+                key={club.id}
+                value={club.id}
+                isChecked={clubIds.includes(club.id)}
+                endIcon={club.logoUrl}
+                onClick={() => toggleSelection(club.id)}
+              >
+                {club.name}
+              </MenuItem>
+            ))
+          : []),
       ]}
       description={
         !isError ? "Select clubs to filter by" : "Failed to load clubs"

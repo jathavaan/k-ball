@@ -21,16 +21,18 @@ export const PositionFilter = () => {
         >
           All positions
         </MenuItem>,
-        ...(data || []).map((position) => (
-          <MenuItem
-            key={position.id}
-            value={position.id}
-            isChecked={positionsIds.includes(position.id)}
-            onClick={() => toggleSelection(position.id)}
-          >
-            {position.name}
-          </MenuItem>
-        )),
+        ...(Array.isArray(data)
+          ? data.map((position) => (
+              <MenuItem
+                key={position.id}
+                value={position.id}
+                isChecked={positionsIds.includes(position.id)}
+                onClick={() => toggleSelection(position.id)}
+              >
+                {position.name}
+              </MenuItem>
+            ))
+          : []),
       ]}
     />
   );

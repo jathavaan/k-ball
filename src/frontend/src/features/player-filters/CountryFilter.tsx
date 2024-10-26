@@ -20,17 +20,19 @@ export const CountryFilter = () => {
         >
           All countries
         </MenuItem>,
-        ...(data || []).map((country) => (
-          <MenuItem
-            key={country.id}
-            value={country.id}
-            endIcon={country.flagUrl}
-            isChecked={countryIds.includes(country.id)}
-            onClick={() => toggleSelection(country.id)}
-          >
-            {country.name}
-          </MenuItem>
-        )),
+        ...(Array.isArray(data)
+          ? data.map((country) => (
+              <MenuItem
+                key={country.id}
+                value={country.id}
+                isChecked={countryIds.includes(country.id)}
+                endIcon={country.flagUrl}
+                onClick={() => toggleSelection(country.id)}
+              >
+                {country.name}
+              </MenuItem>
+            ))
+          : []),
       ]}
       description={
         !isError ? "Select countries to filter by" : "Failed to load countries"

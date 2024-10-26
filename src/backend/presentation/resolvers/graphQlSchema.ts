@@ -12,6 +12,8 @@ import { ClubType } from "@presentation/resolvers/club/club.typeDefinitions";
 import { clubResolver } from "@presentation/resolvers/club/club.resolver";
 import { countryResolver } from "@presentation/resolvers/country/country.resolver";
 import { CountryType } from "@presentation/resolvers/country/country.typeDefinitions";
+import { PositionType } from "@presentation/resolvers/position/position.typeDefinitions";
+import { positionResolver } from "@presentation/resolvers/position/position.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -34,6 +36,10 @@ const QueryType = new GraphQLObjectType({
     countries: {
       type: new GraphQLList(CountryType),
       resolve: countryResolver.CountryQuery.countries,
+    },
+    positions: {
+      type: new GraphQLList(PositionType),
+      resolve: positionResolver.PositionQuery.positions,
     },
   },
 });
