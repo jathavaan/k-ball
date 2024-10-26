@@ -1,6 +1,8 @@
-﻿import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+﻿import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
+import { PlayerReview } from "./playerReview";
+import { PlayerSeason } from "./playerSeason";
 
 @Entity()
 export class Player {
@@ -19,8 +21,18 @@ export class Player {
   @Column({ type: "float" })
   weight!: number;
 
-  @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players)
+  @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
   birthPlace!: BirthPlace;
-  @ManyToOne(() => Club, (club) => club.players)
-  club!: Club;
+  @ManyToOne(() => Club, (club) => club.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  currentClub!: Club;
+  @OneToMany(() => PlayerReview, (playerReview) => playerReview.player)
+  playerReviews!: PlayerReview[];
+  @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)
+  playerSeasons!: PlayerSeason[];
 }
