@@ -129,7 +129,7 @@ frontend to be live.
 ## Further documentation
 
 The API have been documented using GraphQL Playground. To access the documentation, navigate
-to [`http://localhost:4000/docs`](http://localhost:4000/docs) and click on the `DOCS` tab in the top right corner.
+to [`http://it2810-25.idi.ntnu.no:4000/docs`](http://localhost:4000/docs) and click on the `DOCS` tab in the top right corner.
 
 ## Accessing the Database via Terminal
 
@@ -205,4 +205,11 @@ To disconnect from the server, type:
 
 ```powershell
 exit
+```
+
+## Starting the API on server
+Run the following command to start the API on the server after going into `src/backend`:
+
+```powershell
+npm run start
 ```

@@ -1,8 +1,8 @@
-﻿import { GetAllUsersQuery } from "@application/features/user/query/get-all-users-query/getAllUsersQuery";
-import { UserVm } from "@application/view-models/userVm";
-import { Request } from "@application/common/request";
-import { container } from "@infrastructure/services/inversify.config";
-import { UserRepositoryServiceBase } from "@application/contracts/userRepository.service";
+﻿import { Request } from "../../../../common/request";
+import { GetAllUsersQuery } from "./getAllUsersQuery";
+import { UserVm } from "../../../../view-models/userVm";
+import { container } from "../../../../../infrastructure/services/inversify.config";
+import { UserRepositoryServiceBase } from "../../../../contracts/userRepository.service";
 
 export class GetAllUsersQueryHandler
   implements Request<GetAllUsersQuery, UserVm[]>
