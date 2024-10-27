@@ -1,7 +1,9 @@
 ﻿import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
-import { Position } from "@domain/entities/position";
+import { PlayerReview } from "./playerReview";
+import { PlayerSeason } from "./playerSeason";
+import { Position } from "./position";
 
 @Entity()
 export class Player {
@@ -9,6 +11,8 @@ export class Player {
   id!: number;
   @Column({ type: "text" })
   fullName!: string;
+  @Column({ type: "text" })
+  position!: string;
   @Column({ type: "text" })
   imageUrl!: string;
   @Column({ type: "date" })
@@ -18,10 +22,26 @@ export class Player {
   @Column({ type: "float" })
   weight!: number;
 
-  @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players)
+  @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
   birthPlace!: BirthPlace;
+  @ManyToOne(() => Club, (club) => club.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  currentClub!: Club;
+  @OneToMany(() => PlayerReview, (playerReview) => playerReview.player)
+  playerReviews!: PlayerReview[];
+  @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)
+  playerSeasons!: PlayerSeason[];
   @ManyToOne(() => Club, (club) => club.players)
   club!: Club;
-  @ManyToOne(() => Position, (position) => position.players)
+  @ManyToOne(() => Position, (position) => position.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
   position!: Position;
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 }

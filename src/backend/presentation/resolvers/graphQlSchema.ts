@@ -6,14 +6,14 @@
   GraphQLSchema,
   GraphQLString,
 } from "graphql/type";
-import { UserType } from "@presentation/resolvers/user/user.typeDefinitions";
-import { userResolver } from "@presentation/resolvers/user/user.resolver";
-import { ClubType } from "@presentation/resolvers/club/club.typeDefinitions";
-import { clubResolver } from "@presentation/resolvers/club/club.resolver";
-import { countryResolver } from "@presentation/resolvers/country/country.resolver";
-import { CountryType } from "@presentation/resolvers/country/country.typeDefinitions";
-import { PositionType } from "@presentation/resolvers/position/position.typeDefinitions";
-import { positionResolver } from "@presentation/resolvers/position/position.resolver";
+import { UserType } from "./user/user.typeDefinitions";
+import { userResolver } from "./user/user.resolver";
+import { ClubType } from "./club/club.typeDefinitions";
+import { clubResolver } from "./club/club.resolver";
+import { countryResolver } from "./country/country.resolver";
+import { CountryType } from "./country/country.typeDefinitions";
+import { PositionType } from "./position/position.typeDefinitions";
+import { positionResolver } from "./position/position.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",

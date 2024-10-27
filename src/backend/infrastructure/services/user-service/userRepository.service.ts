@@ -1,7 +1,7 @@
-﻿import { UserRepositoryServiceBase } from "@application/contracts/userRepository.service.base";
-import { User } from "@domain/entities";
 import { injectable } from "inversify";
-import { KBallDbContext } from "@infrastructure/persistence/dataSource";
+import { KBallDbContext } from "../../persistence/dataSource";
+import { User } from "../../../domain/entities";
+import { UserRepositoryServiceBase } from "../../../application/contracts/userRepository.service";
 
 @injectable()
 export class UserRepositoryService implements UserRepositoryServiceBase {
