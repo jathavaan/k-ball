@@ -1,4 +1,4 @@
-﻿import { Position } from "@domain/entities";
+﻿import { Position } from "../../domain/entities";
 
 export class PositionVm {
   id: number;

@@ -14,9 +14,8 @@ export class Club {
 
   @OneToMany(() => Player, (player) => player.currentClub)
   players!: Player[];
-  @OneToMany(() => PlayerSeason , (playerSeason) => playerSeason.club)
+  @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.club)
   playerSeasons!: PlayerSeason[];
   @OneToMany(() => ClubSeason, (clubSeason) => clubSeason.club)
   clubSeasons!: ClubSeason[];
-
 }

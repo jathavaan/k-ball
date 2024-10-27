@@ -1,8 +1,8 @@
 ﻿import { Container } from "inversify";
-import { CountryRepositoryService } from "@infrastructure/services/country-service/countryRepository.service";
-import { PositionRepositoryService } from "@infrastructure/services/position-service/positionRepository.service";
 import { UserRepositoryService } from "./user-service/userRepository.service";
 import { ClubRepositoryService } from "./club-service/clubRepository.service";
+import { CountryRepositoryService } from "./country-service/countryRepository.service";
+import { PositionRepositoryService } from "./position-service/positionRepository.service";
 import {
   ClubRepositoryServiceBase,
   CountryRepositoryServiceBase,

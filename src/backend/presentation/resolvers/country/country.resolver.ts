@@ -1,7 +1,7 @@
 ﻿import {
   GetCountriesQuery,
   GetCountriesQueryHandler,
-} from "@application/features/country/query";
+} from "../../../application/features/country/query";
 
 const getCountriesQueryHandler = new GetCountriesQueryHandler();
 

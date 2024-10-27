@@ -1,4 +1,4 @@
-﻿import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+﻿import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
 import { PlayerReview } from "./playerReview";
@@ -11,8 +11,6 @@ export class Player {
   id!: number;
   @Column({ type: "text" })
   fullName!: string;
-  @Column({ type: "text" })
-  position!: string;
   @Column({ type: "text" })
   imageUrl!: string;
   @Column({ type: "date" })
@@ -43,5 +41,4 @@ export class Player {
     onUpdate: "CASCADE",
   })
   position!: Position;
-import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 }

@@ -1,8 +1,8 @@
 ﻿import { Request } from "../../../../common/request";
-import { GetAllUsersQuery } from "./getAllUsersQuery";
-import { UserVm } from "../../../../view-models/userVm";
+import { UserVm } from "../../../../view-models";
 import { container } from "../../../../../infrastructure/services/inversify.config";
-import { UserRepositoryServiceBase } from "../../../../contracts/userRepository.service";
+import { GetUsersQuery } from "./getUsersQuery";
+import { UserRepositoryServiceBase } from "../../../../contracts";
 
 export class GetUsersQueryHandler implements Request<GetUsersQuery, UserVm[]> {
   userRepositoryService = container.get<UserRepositoryServiceBase>(

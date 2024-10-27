@@ -1,8 +1,8 @@
-﻿import { Request } from "@application/common/request";
-import { GetClubsQuery } from "@application/features/club/query/get-clubs-query/getClubsQuery";
-import { ClubVm } from "@application/view-models";
-import { ClubRepositoryServiceBase } from "@application/contracts/clubRepository.service.base";
-import { container } from "@infrastructure/services/inversify.config";
+﻿import { Request } from "../../../../common/request";
+import { GetClubsQuery } from "./getClubsQuery";
+import { ClubVm } from "../../../../view-models";
+import { container } from "../../../../../infrastructure/services/inversify.config";
+import { ClubRepositoryServiceBase } from "../../../../contracts";
 
 export class GetClubsQueryHandler implements Request<GetClubsQuery, ClubVm[]> {
   clubRepositoryService = container.get<ClubRepositoryServiceBase>(

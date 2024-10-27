@@ -1,8 +1,8 @@
-﻿import { Request } from "@application/common/request";
-import { CountryVm } from "@application/view-models";
-import { container } from "@infrastructure/services/inversify.config";
-import { CountryRepositoryServiceBase } from "@application/contracts/countryRepository.service.base";
-import { GetCountriesQuery } from "@application/features/country/query/get-countires-query/getCountriesQuery";
+﻿import { Request } from "../../../../common/request";
+import { GetCountriesQuery } from "./getCountriesQuery";
+import { CountryVm } from "../../../../view-models";
+import { container } from "../../../../../infrastructure/services/inversify.config";
+import { CountryRepositoryServiceBase } from "../../../../contracts";
 
 export class GetCountriesQueryHandler
   implements Request<GetCountriesQuery, CountryVm[]>

@@ -1,4 +1,4 @@
-﻿import { Club } from "@domain/entities";
+﻿import { Club } from "../../domain/entities";
 
 export class ClubVm {
   id: number;

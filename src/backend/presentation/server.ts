@@ -4,6 +4,7 @@ import { createHandler } from "graphql-http/lib/use/express";
 import expressPlayground from "graphql-playground-middleware-express";
 import { KBallDbContext } from "../infrastructure/persistence/dataSource";
 import { schema } from "./resolvers/graphQlSchema";
+import cors from "cors";
 
 KBallDbContext.initialize()
   .then(() => {

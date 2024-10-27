@@ -1,5 +1,5 @@
 ﻿import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Player } from "@domain/entities/player";
+import { Player } from "./player";
 
 @Entity()
 export class Position {

@@ -1,7 +1,7 @@
-﻿import { PositionRepositoryServiceBase } from "@application/contracts/positionRepository.service.base";
-import { Position } from "@domain/entities";
-import { KBallDbContext } from "@infrastructure/persistence/dataSource";
-import { injectable } from "inversify";
+﻿import { injectable } from "inversify";
+import { PositionRepositoryServiceBase } from "../../../application/contracts";
+import { KBallDbContext } from "../../persistence/dataSource";
+import { Position } from "../../../domain/entities";
 
 @injectable()
 export class PositionRepositoryService

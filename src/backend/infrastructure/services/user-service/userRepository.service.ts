@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { User } from "../../../domain/entities";
-import { UserRepositoryServiceBase } from "../../../application/contracts/userRepository.service";
+import { UserRepositoryServiceBase } from "../../../application/contracts";
 
 @injectable()
 export class UserRepositoryService implements UserRepositoryServiceBase {

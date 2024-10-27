@@ -1,7 +1,7 @@
 ﻿import {
   GetClubsQuery,
   GetClubsQueryHandler,
-} from "@application/features/club/query";
+} from "../../../application/features/club/query";
 
 const getClubsQueryHandler = new GetClubsQueryHandler();
 

@@ -8,9 +8,9 @@ import {
   PlayerReview,
   PlayerSeason,
   PlayerStats,
+  Position,
   Season,
   User,
-    Position
 } from "../../domain/entities";
 
 export const KBallDbContext = new DataSource({

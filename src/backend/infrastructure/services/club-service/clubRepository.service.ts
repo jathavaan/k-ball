@@ -1,7 +1,7 @@
 ﻿import { injectable } from "inversify";
-import { ClubRepositoryServiceBase } from "@application/contracts/clubRepository.service.base";
-import { Club } from "@domain/entities";
-import { KBallDbContext } from "@infrastructure/persistence/dataSource";
+import { ClubRepositoryServiceBase } from "../../../application/contracts";
+import { KBallDbContext } from "../../persistence/dataSource";
+import { Club } from "../../../domain/entities";
 
 @injectable()
 export class ClubRepositoryService implements ClubRepositoryServiceBase {

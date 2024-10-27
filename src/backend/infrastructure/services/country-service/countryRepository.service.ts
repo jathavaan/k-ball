@@ -1,7 +1,7 @@
-﻿import { CountryRepositoryServiceBase } from "@application/contracts/countryRepository.service.base";
-import { Country } from "@domain/entities";
-import { KBallDbContext } from "@infrastructure/persistence/dataSource";
-import { injectable } from "inversify";
+﻿import { injectable } from "inversify";
+import { CountryRepositoryServiceBase } from "../../../application/contracts";
+import { KBallDbContext } from "../../persistence/dataSource";
+import { Country } from "../../../domain/entities";
 
 @injectable()
 export class CountryRepositoryService implements CountryRepositoryServiceBase {
