@@ -1,12 +1,7 @@
 import { Container } from "@mui/material";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navbar } from "./features/navbar/Navbar.tsx";
-import {
-  HomePage,
-  PlayerDashboard,
-  PlayerProfile,
-  TemporaryHomepage,
-} from "./pages";
+import { HomePage, PlayerDashboard, PlayerProfile } from "./pages";
 
 function App() {
   return (
