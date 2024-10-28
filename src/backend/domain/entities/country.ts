@@ -6,9 +6,10 @@ export class Country {
   @PrimaryGeneratedColumn()
   id!: number;
   @Column({ type: "text" })
-  countryName!: string;
+  name!: string;
   @Column({ type: "text" })
-  countryFlag!: string;
+  flagUrl!: string;
+  
   @OneToMany(() => BirthPlace, (birthPlace) => birthPlace.country)
   birthPlaces!: BirthPlace[];
 }

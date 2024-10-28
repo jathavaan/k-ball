@@ -6,7 +6,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/project2",
   build: {
-    sourcemap: true,
+    sourcemap: false,
   },
   plugins: [react()],
   server: {
