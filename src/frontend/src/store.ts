@@ -2,12 +2,14 @@
 import { playerCardReducer } from "./features/player-card";
 import { playerProfileInfoReducer } from "./features/player-profile-info";
 import { playerStatsTableReducer } from "./features/player-stats-table";
+import { searchbarReducer } from "./features/searchbar/searchbar.slice";
 
 export const store = configureStore({
   reducer: {
     playerCardReducer,
     playerProfileInfoReducer,
     playerStatsTableReducer,
+    searchbarReducer,
   },
 });
 
