@@ -3,7 +3,7 @@
 exports[`CardContentText > Should match CardContentText snapshot 1`] = `
 <DocumentFragment>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+    class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
     text="Test Text"
     title="Test Title"
   >
