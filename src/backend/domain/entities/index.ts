@@ -8,4 +8,4 @@ export * from "./playerReview";
 export * from "./clubSeason";
 export * from "./playerSeason";
 export * from "./playerStats";
-
+export * from "./position";
