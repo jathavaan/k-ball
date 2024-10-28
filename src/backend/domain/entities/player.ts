@@ -3,6 +3,7 @@ import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
 import { PlayerReview } from "./playerReview";
 import { PlayerSeason } from "./playerSeason";
+import { Position } from "./position";
 
 @Entity()
 export class Player {
@@ -10,8 +11,6 @@ export class Player {
   id!: number;
   @Column({ type: "text" })
   fullName!: string;
-  @Column({ type: "text" })
-  position!: string;
   @Column({ type: "text" })
   imageUrl!: string;
   @Column({ type: "date" })
@@ -35,4 +34,11 @@ export class Player {
   playerReviews!: PlayerReview[];
   @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)
   playerSeasons!: PlayerSeason[];
+  @ManyToOne(() => Club, (club) => club.players)
+  club!: Club;
+  @ManyToOne(() => Position, (position) => position.players, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  position!: Position;
 }

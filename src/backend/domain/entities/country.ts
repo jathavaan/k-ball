@@ -9,7 +9,7 @@ export class Country {
   name!: string;
   @Column({ type: "text" })
   flagUrl!: string;
-  
+
   @OneToMany(() => BirthPlace, (birthPlace) => birthPlace.country)
   birthPlaces!: BirthPlace[];
 }

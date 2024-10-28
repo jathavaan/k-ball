@@ -4,6 +4,7 @@ import { createHandler } from "graphql-http/lib/use/express";
 import expressPlayground from "graphql-playground-middleware-express";
 import { KBallDbContext } from "../infrastructure/persistence/dataSource";
 import { schema } from "./resolvers/graphQlSchema";
+import cors from "cors";
 
 KBallDbContext.initialize()
   .then(() => {
@@ -17,6 +18,8 @@ KBallDbContext.initialize()
 
 const app = express();
 
+app.use(cors({ origin: "*" }));
+
 app.all(
   "/graphql",
   createHandler({
@@ -26,5 +29,8 @@ app.all(
 
 app.get("/docs", expressPlayground({ endpoint: "/graphql" }));
 
-app.listen(4000);
-console.log("Running a GraphQL API server at http://localhost:4000/docs");
+app.listen(4000, () => {
+  console.log(
+    "Running a GraphQL API server. View the docs at http://localhost:4000/docs",
+  );
+});

@@ -6,8 +6,14 @@
   GraphQLSchema,
   GraphQLString,
 } from "graphql/type";
-import { UserType } from "./users/user.typeDefinitions";
-import { userResolver } from "./users/user.resolver";
+import { UserType } from "./user/user.typeDefinitions";
+import { userResolver } from "./user/user.resolver";
+import { ClubType } from "./club/club.typeDefinitions";
+import { clubResolver } from "./club/club.resolver";
+import { countryResolver } from "./country/country.resolver";
+import { CountryType } from "./country/country.typeDefinitions";
+import { PositionType } from "./position/position.typeDefinitions";
+import { positionResolver } from "./position/position.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -22,6 +28,18 @@ const QueryType = new GraphQLObjectType({
     users: {
       type: new GraphQLList(UserType),
       resolve: userResolver.UserQuery.users,
+    },
+    clubs: {
+      type: new GraphQLList(ClubType),
+      resolve: clubResolver.ClubQuery.clubs,
+    },
+    countries: {
+      type: new GraphQLList(CountryType),
+      resolve: countryResolver.CountryQuery.countries,
+    },
+    positions: {
+      type: new GraphQLList(PositionType),
+      resolve: positionResolver.PositionQuery.positions,
     },
   },
 });
