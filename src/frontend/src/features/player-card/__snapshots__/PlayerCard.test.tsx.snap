@@ -3,20 +3,20 @@
 exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-e6mcx0-MuiPaper-root-MuiCard-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1mrjmtq-MuiPaper-root-MuiCard-root"
     data-testid="player-card"
     style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
   >
     <a
-      class="MuiButtonBase-root MuiCardActionArea-root css-1oitmrd-MuiButtonBase-root-MuiCardActionArea-root"
+      class="MuiButtonBase-root MuiCardActionArea-root css-coyn9m-MuiButtonBase-root-MuiCardActionArea-root"
       href="/2890"
       tabindex="0"
     >
       <div
-        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-1qw9nqc-MuiGrid2-root"
+        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-1v895mz-MuiGrid2-root"
       >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-5 css-1tcukf-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-5 css-cuba54-MuiGrid2-root"
         >
           <img
             alt="Portrait of Jo Hyeon-Woo"
@@ -25,22 +25,22 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
           />
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-7 css-hvt765-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-7 css-19bhlqm-MuiGrid2-root"
         >
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1j0u08r-MuiGrid2-root"
           >
             <h4
-              class="MuiTypography-root MuiTypography-h4 css-1gp0puz-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-h4 css-11sxamu-MuiTypography-root"
             >
               Jo Hyeon-Woo
             </h4>
           </div>
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1j0u08r-MuiGrid2-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
               text="Ulsan Hyundai FC"
               title="Team"
             >
@@ -51,10 +51,10 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
             </p>
           </div>
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1j0u08r-MuiGrid2-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
               text="Goalkeeper"
               title="Pos."
             >
@@ -65,10 +65,10 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
             </p>
           </div>
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1j0u08r-MuiGrid2-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
               text="Korea Republic"
               title="Nat."
             >
@@ -79,10 +79,10 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
             </p>
           </div>
           <div
-            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1isr79v-MuiGrid2-root"
+            class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-1j0u08r-MuiGrid2-root"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
               text="33"
               title="Age"
             >
@@ -95,7 +95,7 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
         </div>
       </div>
       <span
-        class="MuiCardActionArea-focusHighlight css-1v2exvi-MuiCardActionArea-focusHighlight"
+        class="MuiCardActionArea-focusHighlight css-1h5un5t-MuiCardActionArea-focusHighlight"
       />
     </a>
   </div>
