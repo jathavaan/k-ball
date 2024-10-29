@@ -12,7 +12,7 @@ import {
   setSortOrder,
 } from "./playerSorting.slice.ts";
 
-export default function PlayerSorting() {
+export const PlayerSorting = () => {
   /* const [sortBy, setSortBy] = React.useState("name");
   const [sortOrder, setSortOrder] = React.useState("asc");
 
@@ -83,14 +83,14 @@ export default function PlayerSorting() {
       </StyledSortSelect>
     </StyledSortContainer>
   );
-}
+};
 
 {
   /* return (
     <StyledSortContainer>
       <StyledSortSelect
         value={`${sortBy}_${sortOrder}`}
-        onChange={handleSortChange}
+        onChange={() => handleSortChange}
         displayEmpty
         inputProps={{ "aria-label": "Sort by" }}
       >
