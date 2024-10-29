@@ -41,28 +41,28 @@ export const StyledSearchInput = styled(TextField)(({ theme }) => ({
   },
 }));
 export const StyledClearButton = styled("button")(({ theme }) => ({
-    position: "absolute",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    right: "50px", // Plasserer Clear-ikonet til venstre for input-feltet
-    top: "50%", // Vertikal sentrering
-    transform: "translateY(-50%)", // Justerer for å midtstille ikonet
-    background: "none",
-    border: "none",
-    fontSize: "18px",
-    cursor: "pointer",
-    color: "#888",
-    height: "100%",
-    width: "40px",
-    transition: "color 0.3s ease",
-    "&:hover": {
-      color: theme.palette.primary.light,
-    },
-    "&:active": {
-      color: theme.palette.primary.contrastText,
-    },
-  }));
+  position: "absolute",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  right: "50px", // Plasserer Clear-ikonet til venstre for input-feltet
+  top: "50%", // Vertikal sentrering
+  transform: "translateY(-50%)", // Justerer for å midtstille ikonet
+  background: "none",
+  border: "none",
+  fontSize: "18px",
+  cursor: "pointer",
+  color: "#888",
+  height: "100%",
+  width: "40px",
+  transition: "color 0.3s ease",
+  "&:hover": {
+    color: theme.palette.primary.light,
+  },
+  "&:active": {
+    color: theme.palette.primary.contrastText,
+  },
+}));
 
 export const StyledSearchButton = styled("button")(({ theme }) => ({
   position: "absolute",
