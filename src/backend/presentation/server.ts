@@ -5,10 +5,14 @@ import expressPlayground from "graphql-playground-middleware-express";
 import { KBallDbContext } from "../infrastructure/persistence/dataSource";
 import { schema } from "./resolvers/graphQlSchema";
 import cors from "cors";
+import { config } from "../config";
 
+// Initialize the database connection
 KBallDbContext.initialize()
   .then(() => {
-    console.log("Database connected");
+    console.log(
+      `Connected to ${config.DB_NAME} at ${config.DB_HOST}:${config.DB_PORT}`,
+    );
   })
   .catch((err) => {
     console.error("Database connection failed");
@@ -16,10 +20,9 @@ KBallDbContext.initialize()
     console.error(err);
   });
 
+// Create an express server and add the GraphQL endpoints
 const app = express();
-
 app.use(cors({ origin: "*" }));
-
 app.all(
   "/graphql",
   createHandler({
@@ -28,7 +31,6 @@ app.all(
 );
 
 app.get("/docs", expressPlayground({ endpoint: "/graphql" }));
-
 app.listen(4000, () => {
   console.log(
     "Running a GraphQL API server. View the docs at http://localhost:4000/docs",

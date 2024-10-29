@@ -12,14 +12,15 @@ import {
   Season,
   User,
 } from "../../domain/entities";
+import { config } from "../../config";
 
 export const KBallDbContext = new DataSource({
   type: "postgres",
-  host: "it2810-25.idi.ntnu.no",
-  port: 5432,
-  username: "postgres",
-  password: "postgres",
-  database: "k-ball-db",
+  host: config.DB_HOST,
+  port: config.DB_PORT,
+  username: config.DB_USERNAME,
+  password: config.DB_PASSWORD,
+  database: config.DB_NAME,
   synchronize: true,
   logging: ["error"],
   entities: [
