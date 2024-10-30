@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
 interface SearchbarState {
   search: string;
@@ -19,4 +20,8 @@ const searchbarSlice = createSlice({
 });
 
 export const { setSearch } = searchbarSlice.actions;
+
+export const selectSearchQuery = (state: RootState) =>
+  state.searchbarReducer.search;
+
 export const searchbarReducer = searchbarSlice.reducer;

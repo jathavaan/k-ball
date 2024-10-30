@@ -14,15 +14,13 @@ import { RootState } from "../../store.ts";
 export const SearchBar = () => {
   const query = useSelector(
     (state: RootState) => state.searchbarReducer.search,
-  ); // Retrieve the search term from Redux state
-  const [localQuery, setLocalQuery] = useState(query); // Local search term until the user submits
-  const { triggerSearch, searchPlayers } = useSearch(); // Get the search trigger and the API call logic
+  );
+  const [localQuery, setLocalQuery] = useState(query); // Search is local until the user submits search
+  const { triggerSearch } = useSearch();
 
-  // This function will handle the search when triggered
   const handleSearch = () => {
     if (localQuery) {
-      triggerSearch(localQuery); // Update the Redux state
-      searchPlayers(localQuery); // Trigger the API call only when search happens
+      triggerSearch(localQuery);
     }
   };
 
