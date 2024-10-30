@@ -1,7 +1,7 @@
-import { GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLObjectType, GraphQLInt, GraphQLString } from "graphql";
 
-export const playerDashboardType = new GraphQLObjectType({
-    name: "PlayerDashboard",
+export const PlayerType = new GraphQLObjectType({
+    name: "Player",
     fields: {
         id: { type: GraphQLString },
         fullName: { type: GraphQLString },
@@ -9,7 +9,14 @@ export const playerDashboardType = new GraphQLObjectType({
         imageUrl: { type: GraphQLString },
         position: { type: GraphQLString },
         nationality: { type: GraphQLString },
-        age: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        clubLogo: { type: GraphQLString },
+        flagUrl: { type: GraphQLString },
+        birthDate: { type: GraphQLString },
+        height: { type: GraphQLInt },
+        weight: { type: GraphQLInt },
+        birthPlace: { type: GraphQLString },
+        
     }
 });
 

@@ -14,6 +14,8 @@ import { countryResolver } from "./country/country.resolver";
 import { CountryType } from "./country/country.typeDefinitions";
 import { PositionType } from "./position/position.typeDefinitions";
 import { positionResolver } from "./position/position.resolver";
+import { PlayerType } from "./players/player.typeDefinitions";
+import { playerResolver } from "./players/player.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -41,7 +43,14 @@ const QueryType = new GraphQLObjectType({
       type: new GraphQLList(PositionType),
       resolve: positionResolver.PositionQuery.positions,
     },
-  },
+    players: {
+      type: new GraphQLList(PlayerType),
+      args: {
+        playerId: { type: GraphQLInt },
+      },
+      resolve: playerResolver.PlayerQuery.players,
+    },
+  }
 });
 
 const MutationType = new GraphQLObjectType({

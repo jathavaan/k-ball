@@ -34,8 +34,6 @@ export class Player {
   playerReviews!: PlayerReview[];
   @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)
   playerSeasons!: PlayerSeason[];
-  @ManyToOne(() => Club, (club) => club.players)
-  club!: Club;
   @ManyToOne(() => Position, (position) => position.players, {
     onDelete: "SET NULL",
     onUpdate: "CASCADE",
