@@ -3,15 +3,15 @@
 exports[`PlayerProfileInfo > should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-easxwc-MuiPaper-root-MuiCard-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1b5bqtm-MuiPaper-root-MuiCard-root"
     data-testid="player-profile-info"
     style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
   >
     <div
-      class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-e7iq0l-MuiGrid2-root"
+      class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-11fq522-MuiGrid2-root"
     >
       <div
-        class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-4 css-2hee6h-MuiGrid2-root"
+        class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-4 css-1bvnjma-MuiGrid2-root"
       >
         <img
           alt="Portrait of Kim Young-Gwon"
@@ -19,12 +19,12 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           src="https://media.api-sports.io/football/players/2898.png"
         />
         <h4
-          class="MuiTypography-root MuiTypography-h4 css-keckwm-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h4 css-q3gesp-MuiTypography-root"
         >
           Kim Young-Gwon
         </h4>
         <p
-          class="MuiTypography-root MuiTypography-body1 css-8mhjqc-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1jcjesy-MuiTypography-root"
         >
           Ulsan Hyundai FC
         </p>
@@ -35,13 +35,13 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
         />
       </div>
       <div
-        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-8 MuiGrid2-spacing-xs-2 css-15yyq9p-MuiGrid2-root"
+        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-8 MuiGrid2-spacing-xs-2 css-1r50rh8-MuiGrid2-root"
       >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="Defender"
             title="Position"
           >
@@ -52,10 +52,10 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           </p>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="34"
             title="Age"
           >
@@ -66,10 +66,10 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           </p>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ok3axh-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-skmjaf-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="Korea Republic"
             title="Nationality"
           >
@@ -85,10 +85,10 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           />
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="186 cm"
             title="Height"
           >
@@ -99,10 +99,10 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           </p>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="Jeonju, Korea Republic"
             title="Place"
           >
@@ -113,10 +113,10 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           </p>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="1990-02-27"
             title="Birth Date"
           >
@@ -127,10 +127,10 @@ exports[`PlayerProfileInfo > should match the snapshot 1`] = `
           </p>
         </div>
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-1lpfx56-MuiGrid2-root"
+          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-x09oxf-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
             text="74 kg"
             title="Weight"
           >

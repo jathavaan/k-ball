@@ -1,8 +1,8 @@
 ﻿import { CreateUserCommand } from "./createUserCommand";
 import { Request } from "../../../../common/request";
 import { container } from "../../../../../infrastructure/services/inversify.config";
-import { UserRepositoryServiceBase } from "../../../../contracts/userRepository.service";
 import { User } from "../../../../../domain/entities";
+import { UserRepositoryServiceBase } from "../../../../contracts";
 
 export class CreateUserCommandHandler
   implements Request<CreateUserCommand, boolean>

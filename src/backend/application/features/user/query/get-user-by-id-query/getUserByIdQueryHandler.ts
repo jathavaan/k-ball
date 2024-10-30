@@ -1,8 +1,8 @@
 ﻿import { Request } from "../../../../common/request";
 import { GetUserByIdQuery } from "./getUserByIdQuery";
-import { UserVm } from "../../../../view-models/userVm";
+import { UserVm } from "../../../../view-models";
 import { container } from "../../../../../infrastructure/services/inversify.config";
-import { UserRepositoryServiceBase } from "../../../../contracts/userRepository.service";
+import { UserRepositoryServiceBase } from "../../../../contracts";
 
 export class GetUserByIdQueryHandler
   implements Request<GetUserByIdQuery, UserVm | null>

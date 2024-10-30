@@ -4,3 +4,7 @@
   team: string;
   imageUrl: string;
 }
+
+export interface ApolloResult<T> {
+  data: T;
+}

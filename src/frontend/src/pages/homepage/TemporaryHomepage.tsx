@@ -1,4 +1,4 @@
-﻿import { CardHeader } from "../features/ui";
+﻿import { CardHeader } from "../../features/ui";
 import { Button, Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid2";
