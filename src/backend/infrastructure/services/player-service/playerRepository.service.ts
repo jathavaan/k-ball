@@ -37,12 +37,11 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     const totalPlayers = await this.dbContext.count(Player, {
       where: whereConditions,
-      relations: [
-        "currentClub",
-        "birthPlace",
-        "birthPlace.country",
-        "position",
-      ],
+      relations: {
+        currentClub: true,
+        birthPlace: { country: true },
+        position: true,
+      },
     });
 
     const sortField = filters.sortBy || "fullName";
@@ -50,12 +49,11 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     const playerCards = await this.dbContext.find(Player, {
       where: whereConditions,
-      relations: [
-        "currentClub",
-        "birthPlace",
-        "birthPlace.country",
-        "position",
-      ],
+      relations: {
+        currentClub: true,
+        birthPlace: { country: true },
+        position: true,
+      },
       skip: offset,
       take: limit,
       order: {
@@ -89,6 +87,14 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
   async getPlayerById(id: number) {
     const result = await this.dbContext.findOne(Player, {
+      where: {
+        id: id,
+      },
+      relations: {
+        currentClub: true,
+        birthPlace: { country: true },
+        position: true,
+      },
       select: {
         id: true,
         fullName: true,
@@ -115,15 +121,6 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
           },
         },
       },
-      where: {
-        id: id,
-      },
-      relations: [
-        "currentClub",
-        "birthPlace",
-        "birthPlace.country",
-        "position",
-      ],
     });
     return result;
   }

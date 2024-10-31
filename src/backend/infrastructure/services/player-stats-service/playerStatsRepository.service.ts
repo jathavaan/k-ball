@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { KBallDbContext } from "../../persistence/dataSource";
-import { PlayerStats } from "../../../domain/entities";
+import { Player, PlayerStats } from "../../../domain/entities";
 import { PlayerStatsRepositoryServiceBase } from "../../../application/contracts";
 
 @injectable()
@@ -12,12 +12,11 @@ export class PlayerStatsRepositoryService
   async getPlayerStatsByPlayerId(
     playerId: number,
   ): Promise<PlayerStats[] | null> {
-    const playerStats = await this.dbContext
-      .createQueryBuilder(PlayerStats, "playerStats")
-      .innerJoin("playerStats.playerSeason", "playerSeason")
-      .where("playerSeason.player = :playerId", { playerId })
-      .getMany();
+    const player = await this.dbContext.findOne(Player, {
+      where: { id: playerId },
+      relations: {playerSeasons: { playerStats: true }}, 
+    });
 
-    return playerStats;
+    return player?.playerSeasons?.flatMap((season) => season.playerStats) || null;
   }
 }
