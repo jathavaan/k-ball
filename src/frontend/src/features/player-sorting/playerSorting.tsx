@@ -1,4 +1,3 @@
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import {
   SortContainer,
   StyledToggleButtonGroup,
@@ -12,7 +11,7 @@ export const PlayerSorting = () => {
 
   return (
     <SortContainer>
-      <StyledSortLabel variant="subtitle1">Sort by:</StyledSortLabel>
+      <StyledSortLabel variant="subtitle1">Sort by name:</StyledSortLabel>
       <StyledToggleButtonGroup
         value={`${sortBy}_${sortOrder}`}
         exclusive
@@ -21,9 +20,7 @@ export const PlayerSorting = () => {
         <ToggleButton
           value="name_asc"
           selected={sortBy === "name" && sortOrder === "asc"}
-          onClick={() => {
-            toggleSort("name", "asc");
-          }}
+          onClick={() => toggleSort("name", "asc")}
           aria-label="sort by name ascending"
         >
           A - Z
@@ -31,22 +28,10 @@ export const PlayerSorting = () => {
         <ToggleButton
           value="name_desc"
           selected={sortBy === "name" && sortOrder === "desc"}
-          onClick={() => {
-            toggleSort("name", "desc");
-          }}
+          onClick={() => toggleSort("name", "desc")}
           aria-label="sort by name descending"
         >
           Z - A
-        </ToggleButton>
-        <ToggleButton
-          value="rating_asc"
-          selected={sortBy === "rating"}
-          onClick={() => {
-            toggleSort("rating", "asc");
-          }}
-          aria-label="sort by rating"
-        >
-          <StarBorderIcon />
         </ToggleButton>
       </StyledToggleButtonGroup>
     </SortContainer>
