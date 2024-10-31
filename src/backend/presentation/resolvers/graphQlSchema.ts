@@ -44,9 +44,22 @@ const QueryType = new GraphQLObjectType({
       resolve: positionResolver.PositionQuery.positions,
     },
     players: {
-      type: new GraphQLList(PlayerType),
+      type: new GraphQLObjectType({
+        name: "Players",
+        fields: {
+          players: { type: new GraphQLList(PlayerType) },
+          totalPages: { type: GraphQLInt },
+          currentPage: { type: GraphQLInt },
+        },
+      }),
       args: {
         playerId: { type: GraphQLInt },
+        page: { type: GraphQLInt },
+        limit: { type: GraphQLInt },
+        search: { type: GraphQLString },
+        clubIds: { type: new GraphQLList(GraphQLInt) },
+        countryIds: { type: new GraphQLList(GraphQLInt) },
+        positionIds: { type: new GraphQLList(GraphQLInt) },
       },
       resolve: playerResolver.PlayerQuery.players,
     },
