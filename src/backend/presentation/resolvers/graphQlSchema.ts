@@ -16,6 +16,8 @@ import { PositionType } from "./position/position.typeDefinitions";
 import { positionResolver } from "./position/position.resolver";
 import { PlayerType } from "./players/player.typeDefinitions";
 import { playerResolver } from "./players/player.resolver";
+import { PlayerStatsType } from "./player-stats/playerStats.typeDefinitions";
+import { playerStatsResolver } from "./player-stats/playerStats.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -63,7 +65,15 @@ const QueryType = new GraphQLObjectType({
       },
       resolve: playerResolver.PlayerQuery.players,
     },
+    playerStats: {
+      type: new GraphQLList(PlayerStatsType),
+      args: {
+        playerId: { type: GraphQLInt },
+      },
+      resolve: playerStatsResolver.PlayerStatsQuery.playerStats,
+    },
   }
+  
 });
 
 const MutationType = new GraphQLObjectType({
