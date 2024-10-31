@@ -16,6 +16,8 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
             clubIds?: number[]; 
             countryIds?: number[]; 
             positionIds?: number[]; 
+            sortBy?: string;
+            sortOrder?: string;
         }
     ): Promise<{playerCards: Player[], totalPlayers: number}> {
         const whereConditions: any = {};
@@ -38,11 +40,17 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
             relations: ["currentClub", "birthPlace", "birthPlace.country", "position"]
         });
 
+        const sortField = filters.sortBy || 'fullName';
+        const sortOrder = filters.sortOrder || 'DESC'; 
+
         const playerCards = await this.dbContext.find(Player, {
             where: whereConditions,
             relations: ["currentClub", "birthPlace", "birthPlace.country", "position"],
             skip: offset,
             take: limit,
+            order: {
+                [sortField]: sortOrder
+            },
             select: {
                 id: true,
                 fullName: true,

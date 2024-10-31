@@ -61,6 +61,8 @@ const QueryType = new GraphQLObjectType({
         clubIds: { type: new GraphQLList(GraphQLInt) },
         countryIds: { type: new GraphQLList(GraphQLInt) },
         positionIds: { type: new GraphQLList(GraphQLInt) },
+        sortBy: { type: GraphQLString },
+        sortOrder: { type: GraphQLString },
       },
       resolve: playerResolver.PlayerQuery.players,
     },

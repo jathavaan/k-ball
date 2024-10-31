@@ -13,10 +13,12 @@ export const playerResolver = {
                 clubIds?: number[]
                 countryIds?: number[]
                 positionIds?: number[]
+                sortBy?: string
+                sortOrder?: string
             }) => {
-            const {id, page = 1, limit = 30, search = "", clubIds = [], countryIds = [], positionIds = []} = args;
+            const {id, page = 1, limit = 30, search, clubIds, countryIds, positionIds, sortBy, sortOrder} = args;
             const offset = (page - 1) * limit;
-            const options = {limit, offset, filters: {search, clubIds, countryIds, positionIds}};
+            const options = {limit, offset, filters: {search, clubIds, countryIds, positionIds, sortBy, sortOrder}};
             return await getPlayersQueryHandler.handle(new GetPlayersQuery(options));
             },
         player: async (_: any, args: {id: number}) => {

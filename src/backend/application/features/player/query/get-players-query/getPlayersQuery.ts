@@ -8,6 +8,8 @@ export class GetPlayersQuery {
                 clubIds?: number[],
                 countryIds?: number[],
                 positionIds?: number[]
+                sortBy?: string,
+                sortOrder?: string
             }
         }
     ) {}
