@@ -1,4 +1,4 @@
-import { Player } from '../../domain/entities';
+import { Player } from "../../domain/entities";
 
 export class PlayerVm {
   id: number;
@@ -14,10 +14,10 @@ export class PlayerVm {
     this.fullName = player.fullName;
     this.currentClub = player.currentClub.name;
     this.imageUrl = player.imageUrl;
-    this.position = player.position.name
+    this.position = player.position.name;
     this.nationality = player.birthPlace.country.name;
-    this.age = new Date().getFullYear() - new Date(player.birthDate).getFullYear();
-
+    this.age =
+      new Date().getFullYear() - new Date(player.birthDate).getFullYear();
   }
 }
 

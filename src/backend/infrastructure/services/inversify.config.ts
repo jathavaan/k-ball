@@ -11,7 +11,7 @@ import {
   PositionRepositoryServiceBase,
   UserRepositoryServiceBase,
   PlayerRepositoryServiceBase,
-  PlayerStatsRepositoryServiceBase
+  PlayerStatsRepositoryServiceBase,
 } from "../../application/contracts";
 
 const container = new Container();

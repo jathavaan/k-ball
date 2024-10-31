@@ -5,16 +5,16 @@ import { container } from "../../../../../infrastructure/services/inversify.conf
 import { PlayerRepositoryServiceBase } from "../../../../contracts";
 
 export class GetPlayerByIdQueryHandler
-    implements Request<GetPlayerByIdQuery, PlayerVm[]>
-    {
-        playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-            "PlayerRepositoryServiceBase",
-        );
-        
-        async handle(request: GetPlayerByIdQuery): Promise<PlayerVm[]> {
-            const player = await this.playerRepositoryService.getPlayerById(request.id);
-            if (!player) return [];
-            const result = [new ExtendedPlayerVm(player)];
-            return result;
-        }
-    }
+  implements Request<GetPlayerByIdQuery, PlayerVm[]>
+{
+  playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
+    "PlayerRepositoryServiceBase",
+  );
+
+  async handle(request: GetPlayerByIdQuery): Promise<PlayerVm[]> {
+    const player = await this.playerRepositoryService.getPlayerById(request.id);
+    if (!player) return [];
+    const result = [new ExtendedPlayerVm(player)];
+    return result;
+  }
+}

@@ -80,8 +80,7 @@ const QueryType = new GraphQLObjectType({
       },
       resolve: playerStatsResolver.PlayerStatsQuery.playerStats,
     },
-  }
-  
+  },
 });
 
 const MutationType = new GraphQLObjectType({
