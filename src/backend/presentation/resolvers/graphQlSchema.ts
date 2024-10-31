@@ -49,13 +49,12 @@ const QueryType = new GraphQLObjectType({
       type: new GraphQLObjectType({
         name: "Players",
         fields: {
-          players: { type: new GraphQLList(PlayerType) },
+          playerCards: { type: new GraphQLList(PlayerType) },
           totalPages: { type: GraphQLInt },
           currentPage: { type: GraphQLInt },
         },
       }),
       args: {
-        playerId: { type: GraphQLInt },
         page: { type: GraphQLInt },
         limit: { type: GraphQLInt },
         search: { type: GraphQLString },
@@ -64,6 +63,13 @@ const QueryType = new GraphQLObjectType({
         positionIds: { type: new GraphQLList(GraphQLInt) },
       },
       resolve: playerResolver.PlayerQuery.players,
+    },
+    player: {
+      type: PlayerType,
+      args: {
+        id: { type: GraphQLInt },
+      },
+      resolve: playerResolver.PlayerQuery.player,
     },
     playerStats: {
       type: new GraphQLList(PlayerStatsType),

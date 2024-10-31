@@ -5,15 +5,15 @@ import { container } from "../../../../../infrastructure/services/inversify.conf
 import { PlayerRepositoryServiceBase } from "../../../../contracts";
 
 export class GetPlayersQueryHandler
-    implements Request<GetPlayersQuery, { players: PlayerVm[], totalPages: number, currentPage: number}>
+    implements Request<GetPlayersQuery, { playerCards: PlayerVm[], totalPages: number, currentPage: number}>
     {
         playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
             "PlayerRepositoryServiceBase",
         );
         
-        async handle(request: GetPlayersQuery): Promise<{ players: PlayerVm[], totalPages: number, currentPage: number}> {
+        async handle(request: GetPlayersQuery): Promise<{ playerCards: PlayerVm[], totalPages: number, currentPage: number}> {
             const { limit, offset, filters } = request.options;
-            const { players, totalPlayers } = await this.playerRepositoryService.getPlayers(
+            const { playerCards, totalPlayers } = await this.playerRepositoryService.getPlayers(
                 limit,
                 offset,
                 filters);
@@ -21,7 +21,7 @@ export class GetPlayersQueryHandler
             const totalPages = Math.ceil(totalPlayers / limit);
             const currentPage = Math.ceil(offset / limit) + 1;
             return {
-                players: players.map((player) => new PlayerVm(player)),
+                playerCards: playerCards.map((player) => new PlayerVm(player)),
                 totalPages: totalPages,
                 currentPage: currentPage
             };

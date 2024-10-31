@@ -14,7 +14,6 @@ export class PlayerStatsRepositoryService implements PlayerStatsRepositoryServic
             .where("playerSeason.player = :playerId", { playerId })
             .getMany();
         
-        //console.log(playerStats);
         return playerStats;
     }
 }

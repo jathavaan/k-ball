@@ -17,14 +17,9 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
             countryIds?: number[]; 
             positionIds?: number[]; 
         }
-    ): Promise<{players: Player[], totalPlayers: number}> {
+    ): Promise<{playerCards: Player[], totalPlayers: number}> {
         const whereConditions: any = {};
 
-        // Apply filters only if they are provided
-        if (filters.search && filters.search.trim() !== "") {
-            whereConditions.fullName = Like(`%${filters.search}%`);
-            
-        }
         if (filters.clubIds && filters.clubIds.length > 0) {
             whereConditions.currentClub = { id: In(filters.clubIds) };
         }
@@ -34,15 +29,16 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
         if (filters.positionIds && filters.positionIds.length > 0) {
             whereConditions.position = { id: In(filters.positionIds) };
         }
+        if (filters.search && filters.search.trim() !== "") {
+            whereConditions.fullName = Like(`%${filters.search}%`);
+        }
 
-        // Get the total count of players that match the filters
         const totalPlayers = await this.dbContext.count(Player, {
             where: whereConditions,
             relations: ["currentClub", "birthPlace", "birthPlace.country", "position"]
         });
 
-        // Get the paginated and filtered list of players
-        const players = await this.dbContext.find(Player, {
+        const playerCards = await this.dbContext.find(Player, {
             where: whereConditions,
             relations: ["currentClub", "birthPlace", "birthPlace.country", "position"],
             skip: offset,
@@ -70,11 +66,11 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
             },
         });
 
-        return { players, totalPlayers };
+        return { playerCards, totalPlayers };
     }
 
     async getPlayerById(id: number) {
-        return await this.dbContext.findOne(Player, {
+        const result = await this.dbContext.findOne(Player, {
             select: {
                 id: true,
                 fullName: true,
@@ -106,6 +102,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
             },
             relations: ["currentClub", "birthPlace", "birthPlace.country", "position"]
         });
+        return result;
     }
 
     async addPlayer(player: Player) {

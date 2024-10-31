@@ -14,6 +14,7 @@ export class GetPlayerByIdQueryHandler
         async handle(request: GetPlayerByIdQuery): Promise<PlayerVm[]> {
             const player = await this.playerRepositoryService.getPlayerById(request.id);
             if (!player) return [];
-            return [new ExtendedPlayerVm(player)];
+            const result = [new ExtendedPlayerVm(player)];
+            return result;
         }
     }

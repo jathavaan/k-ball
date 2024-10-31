@@ -8,7 +8,7 @@ export interface PlayerRepositoryServiceBase {
       search?: string, 
       clubIds?: number[], 
       countryIds?: number[], 
-      positionIds?: number[]}) => Promise<{players: Player[], totalPlayers: number}>;
+      positionIds?: number[]}) => Promise<{playerCards: Player[], totalPlayers: number}>;
   getPlayerById: (id: number) => Promise<Player | null>;
   addPlayer: (player: Player) => Promise<void>;
 }
