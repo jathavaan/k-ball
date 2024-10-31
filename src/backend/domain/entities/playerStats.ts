@@ -3,11 +3,11 @@ import { PlayerSeason } from "./playerSeason";
 
 @Entity()
 export class PlayerStats {
-  @PrimaryColumn({ type: "int" }) 
+  @PrimaryColumn({ type: "int" })
   playerSeasonId!: number;
-  
-  @OneToOne(() => PlayerSeason, { onDelete: "CASCADE", onUpdate: "CASCADE" })  
-  @JoinColumn({ name: "playerSeasonId" }) 
+
+  @OneToOne(() => PlayerSeason, { onDelete: "CASCADE", onUpdate: "CASCADE" })
+  @JoinColumn({ name: "playerSeasonId" })
   playerSeason!: PlayerSeason;
 
   @Column({ type: "int" })
