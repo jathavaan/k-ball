@@ -1,53 +1,54 @@
-import { MenuItem } from "@mui/material";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import {
-  StyledSortContainer,
-  StyledSortSelect,
+  SortContainer,
+  StyledToggleButtonGroup,
+  StyledSortLabel,
 } from "./playerSorting.style.ts";
 import { useSorting } from "./playerSorting.hooks.ts";
+import { ToggleButton } from "@mui/material";
 
 export const PlayerSorting = () => {
-  const { sortBy, sortOrder, updateSortBy, updateSortOrder } = useSorting();
+  const { sortBy, sortOrder, toggleSort } = useSorting();
 
   return (
-    <StyledSortContainer>
-      <StyledSortSelect value={`${sortBy}_${sortOrder}`} variant="standard">
-        <MenuItem
+    <SortContainer>
+      <StyledSortLabel variant="subtitle1">Sort by:</StyledSortLabel>
+      <StyledToggleButtonGroup
+        value={`${sortBy}_${sortOrder}`}
+        exclusive
+        aria-label="text alignment"
+      >
+        <ToggleButton
           value="name_asc"
+          selected={sortBy === "name" && sortOrder === "asc"}
           onClick={() => {
-            updateSortBy("name");
-            updateSortOrder("asc");
+            toggleSort("name", "asc");
           }}
+          aria-label="sort by name ascending"
         >
-          Name (A-Z)
-        </MenuItem>
-        <MenuItem
+          A - Z
+        </ToggleButton>
+        <ToggleButton
           value="name_desc"
+          selected={sortBy === "name" && sortOrder === "desc"}
           onClick={() => {
-            updateSortBy("name");
-            updateSortOrder("desc");
+            toggleSort("name", "desc");
           }}
+          aria-label="sort by name descending"
         >
-          Name (Z-A)
-        </MenuItem>
-        <MenuItem
+          Z - A
+        </ToggleButton>
+        <ToggleButton
           value="rating_asc"
+          selected={sortBy === "rating"}
           onClick={() => {
-            updateSortBy("rating");
-            updateSortOrder("asc");
+            toggleSort("rating", "asc");
           }}
+          aria-label="sort by rating"
         >
-          Rating (ASC)
-        </MenuItem>
-        <MenuItem
-          value="rating_desc"
-          onClick={() => {
-            updateSortBy("rating");
-            updateSortOrder("desc");
-          }}
-        >
-          Rating (DESC)
-        </MenuItem>
-      </StyledSortSelect>
-    </StyledSortContainer>
+          <StarBorderIcon />
+        </ToggleButton>
+      </StyledToggleButtonGroup>
+    </SortContainer>
   );
 };

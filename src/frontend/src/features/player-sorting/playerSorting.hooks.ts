@@ -11,13 +11,14 @@ export const useSorting = () => {
   const sortBy = useSelector(selectSortBy);
   const sortOrder = useSelector(selectSortOrder);
 
-  const updateSortBy = (value: "name" | "rating") => {
-    dispatch(setSortBy(value));
+  const toggleSort = (field: "name" | "rating", newOrder?: "asc" | "desc") => {
+    if (field === sortBy && newOrder === sortOrder) {
+      dispatch(setSortOrder(sortOrder === "asc" ? "desc" : "asc"));
+    } else {
+      dispatch(setSortOrder(newOrder || "asc"));
+    }
+    dispatch(setSortBy(field));
   };
 
-  const updateSortOrder = (value: "asc" | "desc") => {
-    dispatch(setSortOrder(value));
-  };
-
-  return { sortBy, sortOrder, updateSortBy, updateSortOrder };
+  return { sortBy, sortOrder, toggleSort };
 };
