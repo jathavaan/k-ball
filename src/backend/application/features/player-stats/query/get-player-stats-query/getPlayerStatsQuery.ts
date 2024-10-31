@@ -1,7 +1,7 @@
 export class GetPlayerStatsQuery {
-    playerId: number;
+  playerId: number;
 
-    constructor(id: number) {
-        this.playerId = id;
-    }
+  constructor(id: number) {
+    this.playerId = id;
+  }
 }
