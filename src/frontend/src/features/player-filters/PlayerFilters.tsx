@@ -3,7 +3,6 @@ import { ClubFilter } from "./ClubFilter";
 import Grid from "@mui/material/Grid2";
 import { CountryFilter } from "./CountryFilter.tsx";
 import { PositionFilter } from "./PositionFilter.tsx";
-import { usePlayerFilters } from "./playerFilters.hooks";
 import { theme } from "../../theme.ts";
 
 export const PlayerFilters = () => {

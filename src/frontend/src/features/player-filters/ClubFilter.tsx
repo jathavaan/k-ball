@@ -1,20 +1,11 @@
 import { MenuItem, Select } from "../ui";
 import { useClubs } from "./playerFilters.query.ts";
-import { usePlayerFilters } from "./playerFilters.hooks.ts";
-import { ClubProps } from "./playerFilters.types.ts";
+import { useClubSelection } from "./playerFilters.hooks.ts";
 
 export const ClubFilter = () => {
   const { data, isLoading, isError } = useClubs();
-  const { clubIds, updateTempFilters } = usePlayerFilters();
+  const { clubIds, toggleSelection } = useClubSelection();
 
-  const allClubIds = data ? data.map((country: ClubProps) => country.id) : [];
-
-  const toggleSelection = (id: number) => {
-    const newSelection = clubIds.includes(id)
-      ? clubIds.filter((val) => val !== id)
-      : [...clubIds, id];
-    updateTempFilters("club", newSelection, allClubIds); // Oppdaterer midlertidig state
-  };
   return (
     <Select
       value={clubIds}
