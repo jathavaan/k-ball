@@ -1,3 +1,4 @@
+import { PlayerResponse } from "../dtos";
 import { Player } from "../../domain/entities";
 
 export interface PlayerRepositoryServiceBase {
@@ -13,6 +14,10 @@ export interface PlayerRepositoryServiceBase {
       sortOrder?: string;
     },
   ) => Promise<{ playerCards: Player[]; totalPlayers: number }>;
-  getPlayerById: (id: number) => Promise<Player | null>;
-  addPlayer: (player: Player) => Promise<void>;
+
+  getPlayerById(playerId: number): Promise<Player | null>;
+
+  getPlayerByExternalId(externalId: number): Promise<Player | null>;
+
+  upsertPlayer(playerResponse: PlayerResponse): Promise<boolean | null>;
 }
