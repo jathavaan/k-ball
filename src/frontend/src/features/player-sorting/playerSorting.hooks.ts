@@ -20,7 +20,6 @@ export const useSorting = () => {
     } else {
       dispatch(setSortOrder(newOrder || "DESC"));
     }
-    dispatch(setSortBy(field));
   };
 
   return { sortBy, sortOrder, toggleSort };
