@@ -13,15 +13,21 @@ export const SortContainer = styled("div")(() => ({
 export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
   ({ theme }) => ({
     "& .MuiToggleButton-root": {
-      margin: theme.spacing(0.5),
+      margin: theme.spacing(0),
       padding: "10px 15px",
       color: "white",
-      "&:not(:first-of-type)": {
-        marginLeft: 0,
+      fontFamily: theme.typography.fontFamily,
+
+      "&.Mui-selected": {
+        backgroundColor: theme.palette.secondary.light,
+        color: theme.palette.primary.contrastText,
       },
-      "&.Mui-selected, &:hover": {
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.common.white,
+      "&:hover": {
+        backgroundColor: theme.palette.secondary.dark,
+        color: theme.palette.primary.contrastText,
+      },
+      "&:not(:last-of-type)": {
+        borderRight: `1px solid ${theme.palette.divider}`,
       },
     },
   }),
