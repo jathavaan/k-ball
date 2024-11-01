@@ -35,10 +35,6 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
     "PositionRepositoryServiceBase",
   );
 
-  async getPlayers(): Promise<Player[]> {
-    return await this.dbContext.find(Player);
-  }
-
   async getPlayerById(playerId: number): Promise<Player | null> {
     return await this.dbContext.findOne(Player, {
       where: {
