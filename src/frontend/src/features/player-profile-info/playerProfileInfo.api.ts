@@ -30,7 +30,6 @@ export const getPlayerProfileInfo = async ({
   const [, playerId] = queryKey;
 
   try {
-    // Use apiClient to query data from the backend
     const response = await apiClient.query({
       query: GET_PLAYER_PROFILE_INFO,
       variables: { playerId },
