@@ -1,5 +1,8 @@
 # K-Ball
 
+## URL
+(for NTNU server)[http://it2810-25.idi.ntnu.no/project2/]
+
 ## Description
 
 K-Ball is a website that shows player statistics for players in K-League. A user can log in and leave ratings on each
