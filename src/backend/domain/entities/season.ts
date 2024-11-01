@@ -9,7 +9,10 @@ export class Season {
   @Column({ type: "int" })
   year!: number;
 
-  @OneToMany(() => PlayerSeason, (playerSeason: PlayerSeason) => playerSeason.season)
+  @OneToMany(
+    () => PlayerSeason,
+    (playerSeason: PlayerSeason) => playerSeason.season,
+  )
   playerSeasons!: PlayerSeason[];
   @OneToMany(() => ClubSeason, (clubSeason: ClubSeason) => clubSeason.season)
   clubSeasons!: ClubSeason[];
