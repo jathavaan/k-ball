@@ -1,24 +1,35 @@
-﻿import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+﻿import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
 import { PlayerReview } from "./playerReview";
 import { PlayerSeason } from "./playerSeason";
 import { Position } from "./position";
+import { Country } from "./country";
 
 @Entity()
 export class Player {
-  @PrimaryColumn({ type: "int" })
+  @PrimaryGeneratedColumn()
   id!: number;
   @Column({ type: "text" })
-  fullName!: string;
+  firstName!: string;
+  @Column({ type: "text" })
+  lastName!: string;
   @Column({ type: "text" })
   imageUrl!: string;
   @Column({ type: "date" })
   birthDate!: Date;
-  @Column({ type: "float" })
-  height!: number;
-  @Column({ type: "float" })
-  weight!: number;
+  @Column({ type: "float", nullable: true })
+  height?: number;
+  @Column({ type: "float", nullable: true })
+  weight?: number;
+  @Column({ type: "integer" })
+  externalId!: number;
 
   @ManyToOne(() => BirthPlace, (birthPlace) => birthPlace.players, {
     onDelete: "SET NULL",
@@ -30,15 +41,16 @@ export class Player {
     onUpdate: "CASCADE",
   })
   currentClub!: Club;
+  @ManyToOne(() => Country, (country) => country.players)
+  country!: Country;
   @OneToMany(() => PlayerReview, (playerReview) => playerReview.player)
   playerReviews!: PlayerReview[];
   @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)
   playerSeasons!: PlayerSeason[];
-  @ManyToOne(() => Club, (club) => club.players)
-  club!: Club;
   @ManyToOne(() => Position, (position) => position.players, {
     onDelete: "SET NULL",
     onUpdate: "CASCADE",
+    eager: true,
   })
   position!: Position;
 }

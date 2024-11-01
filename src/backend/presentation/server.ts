@@ -6,18 +6,46 @@ import { KBallDbContext } from "../infrastructure/persistence/dataSource";
 import { schema } from "./resolvers/graphQlSchema";
 import cors from "cors";
 import { config } from "../config";
+import { container } from "../infrastructure/services/inversify.config";
+import { DatabaseImportServiceBase } from "../application/contracts";
+import { PlayerImportStateRepositoryServiceBase } from "../application/contracts/playerImportStateRepository.service.base";
 
 // Initialize the database connection
+const databaseImportService = container.get<DatabaseImportServiceBase>(
+  "DatabaseImportServiceBase",
+);
+
+const playerImportStateService =
+  container.get<PlayerImportStateRepositoryServiceBase>(
+    "PlayerImportStateRepositoryServiceBase",
+  );
+
 KBallDbContext.initialize()
   .then(() => {
     console.log(
       `Connected to ${config.DB_NAME} at ${config.DB_HOST}:${config.DB_PORT}`,
     );
   })
+  .then(async () => {
+    const lastImport = await playerImportStateService.getPlayerImportState();
+    if (lastImport) {
+      console.log("Data have already been imported. Skipping...");
+    } else {
+      const isDatabasePopulated =
+        await databaseImportService.populateDatabase();
+
+      if (!isDatabasePopulated) {
+        console.warn(
+          "Something went wrong with player import. Please perform a manual check of database",
+        );
+      }
+    }
+    console.log("Database state is OK. Application can now be used");
+  })
   .catch((err) => {
-    console.error("Database connection failed");
+    console.error(`\nError: ${err.message}`);
     console.log("Ensure that you are connected to the NTNU VPN");
-    console.error(err);
+    return process.exit(0);
   });
 
 // Create an express server and add the GraphQL endpoints

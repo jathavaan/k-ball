@@ -12,9 +12,9 @@ import { Player } from "./player";
 export class BirthPlace {
   @PrimaryGeneratedColumn()
   id!: number;
-  @Column({ type: "text" })
-  name!: string;
-  
+  @Column({ type: "text", nullable: true })
+  name?: string;
+
   @ManyToOne(() => Country, (country) => country.birthPlaces, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",

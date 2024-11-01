@@ -22,7 +22,7 @@ export const KBallDbContext = new DataSource({
   password: config.DB_PASSWORD,
   database: config.DB_NAME,
   synchronize: true,
-  logging: ["error"],
+  // logging: ["error"],
   entities: [
     User,
     BirthPlace,
