@@ -51,7 +51,7 @@ export interface PlayerResponse {
 export interface PlayerDto {
   id: number;
   name: string;
-  firstName: string;
+  firstname: string;
   lastname: string;
   birth: PlayerBirthPlaceDto;
   nationality: string;
