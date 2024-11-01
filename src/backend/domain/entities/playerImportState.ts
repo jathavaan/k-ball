@@ -4,7 +4,7 @@
 export class PlayerImportState {
   @PrimaryGeneratedColumn()
   id!: number;
-  @Column({ type: "datetime" })
+  @Column({ type: "date" })
   dateImported!: Date;
 
   constructor() {

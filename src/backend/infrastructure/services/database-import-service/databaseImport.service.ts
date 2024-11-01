@@ -53,7 +53,7 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
 
         if (!playerIsAddedSuccessfully) {
           console.error(
-            `Failed to add the following player ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID: ${playerResponse.player.id})`,
+            `Failed to add the following player ${playerResponse.player.name} ${playerResponse.player.lastname} (ID: ${playerResponse.player.id})`,
           );
           playerImportFailed = true;
         }

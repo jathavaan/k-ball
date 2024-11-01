@@ -4,6 +4,7 @@ export * from "./positionRepository.service.base";
 export * from "./userRepository.service.base";
 export * from "./footballApi.service.base";
 export * from "./databaseImport.service.base";
-export * from "./playerRepository.service.base";
 export * from "./birthPlaceRepository.service.base";
 export * from "./seasonRepository.service.base";
+export * from "./playerRepository.service.base";
+export * from "./playerStatsRepository.service.base";

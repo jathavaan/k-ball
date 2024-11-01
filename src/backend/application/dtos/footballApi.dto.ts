@@ -50,7 +50,8 @@ export interface PlayerResponse {
 
 export interface PlayerDto {
   id: number;
-  firstname: string;
+  fullName: string;
+  name: string;
   lastname: string;
   birth: PlayerBirthPlaceDto;
   nationality: string;

@@ -39,12 +39,15 @@ KBallDbContext.initialize()
           "Something went wrong with player import. Please perform a manual check of database",
         );
       }
+
+      await playerImportStateService.addPlayerImportState();
     }
   })
   .then(() => console.log("Database state is OK. Application can now be used"))
   .catch((err) => {
     console.error(`\nError: ${err.message}`);
     console.log("Ensure that you are connected to the NTNU VPN");
+    throw err;
     return process.exit(0);
   });
 

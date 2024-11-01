@@ -1,4 +1,4 @@
-﻿import {
+import {
   BirthPlaceRepositoryServiceBase,
   ClubRepositoryServiceBase,
   CountryRepositoryServiceBase,
@@ -11,16 +11,13 @@ import { KBallDbContext } from "../../persistence/dataSource";
 import { injectable } from "inversify";
 import { PlayerResponse, PlayerStatisticsDto } from "../../../application/dtos";
 import { container } from "../inversify.config";
+import { In, Like } from "typeorm";
 
 @injectable()
 export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
   dbContext = KBallDbContext.manager;
   clubRepositoryService = container.get<ClubRepositoryServiceBase>(
     "ClubRepositoryServiceBase",
-  );
-
-  seasonRepositoryService = container.get<SeasonRepositoryServiceBase>(
-    "SeasonRepositoryServiceBase",
   );
 
   birthPlaceRepositoryService = container.get<BirthPlaceRepositoryServiceBase>(
@@ -33,6 +30,10 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
   positionRepositoryService = container.get<PositionRepositoryServiceBase>(
     "PositionRepositoryServiceBase",
+  );
+
+  seasonRepositoryService = container.get<SeasonRepositoryServiceBase>(
+    "SeasonRepositoryServiceBase",
   );
 
   async getPlayerById(playerId: number): Promise<Player | null> {
@@ -72,7 +73,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     if (playerResponse.statistics.length > 1) {
       console.warn(
-        `Player statistics length is not 1. Was ${playerResponse.statistics.length} for ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID ${playerResponse.player.id})`,
+        `Player statistics length is not 1. Was ${playerResponse.statistics.length} for ${playerResponse.player.name} ${playerResponse.player.lastname} (ID ${playerResponse.player.id})`,
       );
     }
 
@@ -96,7 +97,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     if (playerClub === null) {
       console.warn(
-        `Something was wrong with the data from Football API. Club with ID ${playerStatisticsDto.team.id} was not found in the database. Skipping player ${playerDto.firstname} ${playerDto.lastname} (External ID ${playerDto.id})`,
+        `Something was wrong with the data from Football API. Club with ID ${playerStatisticsDto.team.id} was not found in the database. Skipping player ${playerDto.name} ${playerDto.lastname} (External ID ${playerDto.id})`,
       );
 
       return null;
@@ -112,7 +113,8 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
       player = new Player();
     }
 
-    player.firstName = playerDto.firstname;
+    player.fullName = playerDto.fullName;
+    player.firstName = playerDto.name;
     player.lastName = playerDto.lastname;
     player.imageUrl = playerDto.photo;
     player.birthDate = new Date(Date.parse(playerDto.birth.date));
@@ -153,5 +155,82 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     playerSeason.season = season!;
     return playerSeason;
+  }
+
+  async getPlayers(
+    limit: number,
+    offset: number,
+    filters: {
+      search?: string;
+      clubIds?: number[];
+      countryIds?: number[];
+      positionIds?: number[];
+      sortBy?: string;
+      sortOrder?: string;
+    },
+  ): Promise<{ playerCards: Player[]; totalPlayers: number }> {
+    const whereConditions: any = {};
+
+    if (filters.clubIds && filters.clubIds.length > 0) {
+      whereConditions.currentClub = { id: In(filters.clubIds) };
+    }
+    if (filters.countryIds && filters.countryIds.length > 0) {
+      whereConditions.birthPlace = { country: { id: In(filters.countryIds) } };
+    }
+    if (filters.positionIds && filters.positionIds.length > 0) {
+      whereConditions.position = { id: In(filters.positionIds) };
+    }
+    if (filters.search && filters.search.trim() !== "") {
+      whereConditions.fullName = Like(`%${filters.search}%`);
+    }
+
+    const totalPlayers = await this.dbContext.count(Player, {
+      where: whereConditions,
+      relations: {
+        currentClub: true,
+        birthPlace: { country: true },
+        position: true,
+      },
+    });
+
+    const sortField = filters.sortBy || "fullName";
+    const sortOrder = filters.sortOrder || "DESC";
+
+    const playerCards = await this.dbContext.find(Player, {
+      where: whereConditions,
+      relations: {
+        currentClub: true,
+        birthPlace: { country: true },
+        position: true,
+      },
+      skip: offset,
+      take: limit,
+      order: {
+        [sortField]: sortOrder,
+      },
+      select: {
+        id: true,
+        fullName: true,
+        position: {
+          id: true,
+          name: true,
+        },
+        imageUrl: true,
+        birthDate: true,
+        currentClub: {
+          id: true,
+          name: true,
+        },
+        birthPlace: {
+          id: true,
+          country: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    return { playerCards, totalPlayers };
   }
 }

@@ -1,4 +1,5 @@
 ﻿import { Container } from "inversify";
+import { PlayerStatsRepositoryService } from "./player-stats-service/playerStatsRepository.service";
 
 import {
   BirthPlaceRepositoryServiceBase,
@@ -7,6 +8,7 @@ import {
   DatabaseImportServiceBase,
   FootballApiServiceBase,
   PlayerRepositoryServiceBase,
+  PlayerStatsRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
   UserRepositoryServiceBase,
@@ -65,5 +67,9 @@ container
     "PlayerImportStateRepositoryServiceBase",
   )
   .to(PlayerImportStateRepositoryService);
+
+container
+  .bind<PlayerStatsRepositoryServiceBase>("PlayerStatsRepositoryServiceBase")
+  .to(PlayerStatsRepositoryService);
 
 export { container };

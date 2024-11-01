@@ -17,6 +17,8 @@ export class Player {
   @PrimaryGeneratedColumn()
   id!: number;
   @Column({ type: "text" })
+  fullName!: string;
+  @Column({ type: "text" })
   firstName!: string;
   @Column({ type: "text" })
   lastName!: string;

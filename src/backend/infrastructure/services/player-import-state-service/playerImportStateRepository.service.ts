@@ -12,10 +12,12 @@ export class PlayerImportStateRepositoryService
     await this.dbContext.save(PlayerImportState, new PlayerImportState());
   }
   async getPlayerImportState(): Promise<PlayerImportState | null> {
-    return await this.dbContext.findOne(PlayerImportState, {
+    const playerImports = await this.dbContext.find(PlayerImportState, {
       order: {
         dateImported: "DESC",
       },
     });
+
+    return playerImports.length > 0 ? playerImports[0] : null;
   }
 }

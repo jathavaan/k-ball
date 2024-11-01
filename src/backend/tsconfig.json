@@ -10,19 +10,19 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": ".",
-    "baseUrl": ".",
+    "baseUrl": "."
     /*"paths": {
-      "@presentation*//*": [
-        "presentation*//*"
+      "@presentation*/ /*": [
+        "presentation*/ /*"
       ],
-      "@domain*//*": [
-        "domain*//*"
+      "@domain*/ /*": [
+        "domain*/ /*"
       ],
-      "@infrastructure*//*": [
-        "infrastructure*//*"
+      "@infrastructure*/ /*": [
+        "infrastructure*/ /*"
       ],
-      "@application*//*": [
-        "application*//*"
+      "@application*/ /*": [
+        "application*/ /*"
       ]
     }*/
   }

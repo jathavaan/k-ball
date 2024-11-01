@@ -1,5 +1,5 @@
 ﻿import { injectable } from "inversify";
-import { SeasonRepositoryServiceBase } from "../../../application/contracts/seasonRepository.service.base";
+import { SeasonRepositoryServiceBase } from "../../../application/contracts";
 import { Season } from "domain/entities";
 import { KBallDbContext } from "../../persistence/dataSource";
 
