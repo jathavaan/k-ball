@@ -6,8 +6,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
       const playerCards: PlayerCardProps[] = [
         {
           playerId: 2890,
-          name: "Jo Hyeon-Woo",
-          team: "Ulsan Hyundai FC",
+          fullName: "Jo Hyeon-Woo",
+          club: "Ulsan Hyundai FC",
           imageUrl: "https://media.api-sports.io/football/players/2890.png",
           position: "Goalkeeper",
           nationality: "Korea Republic",
@@ -15,8 +15,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 2898,
-          name: "Kim Young-Gwon",
-          team: "Ulsan Hyundai FC",
+          fullName: "Kim Young-Gwon",
+          club: "Ulsan Hyundai FC",
           imageUrl: "https://media.api-sports.io/football/players/2898.png",
           position: "Defender",
           nationality: "Korea Republic",
@@ -24,8 +24,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 2905,
-          name: "Lee Chung-Yong",
-          team: "Ulsan Hyundai FC",
+          fullName: "Lee Chung-Yong",
+          club: "Ulsan Hyundai FC",
           imageUrl: "https://media.api-sports.io/football/players/2905.png",
           position: "Midfielder",
           nationality: "Korea Republic",
@@ -33,8 +33,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 33202,
-          name: "Jo Jin-Woo",
-          team: "Daegu FC",
+          fullName: "Jo Jin-Woo",
+          club: "Daegu FC",
           imageUrl: "https://media.api-sports.io/football/players/33202.png",
           position: "Defender",
           nationality: "Korea Republic",
@@ -42,8 +42,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 33937,
-          name: "Won Du-Jae",
-          team: "Ulsan Hyundai FC",
+          fullName: "Won Du-Jae",
+          club: "Ulsan Hyundai FC",
           imageUrl: "https://media.api-sports.io/football/players/33937.png",
           position: "Midfielder",
           nationality: "Korea Republic",
@@ -51,8 +51,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 34132,
-          name: "Um Won-Sang",
-          team: "Ulsan Hyundai FC",
+          fullName: "Um Won-Sang",
+          club: "Ulsan Hyundai FC",
           imageUrl: "https://media.api-sports.io/football/players/34132.png",
           position: "Attacker",
           nationality: "Korea Republic",
@@ -60,8 +60,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 34310,
-          name: "Park Soo-Il",
-          team: "Seongnam FC",
+          fullName: "Park Soo-Il",
+          club: "Seongnam FC",
           imageUrl: "https://media.api-sports.io/football/players/34310.png",
           position: "Defender",
           nationality: "Korea Republic",
@@ -69,8 +69,8 @@ export const getPlayerCards = (): Promise<PlayerCardProps[]> => {
         },
         {
           playerId: 34420,
-          name: "Lee Myung-Jae",
-          team: "Ulsan Hyundai FC",
+          fullName: "Lee Myung-Jae",
+          club: "Ulsan Hyundai FC",
           imageUrl: "https://media.api-sports.io/football/players/34420.png",
           position: "Defender",
           nationality: "Korea Republic",

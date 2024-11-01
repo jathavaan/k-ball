@@ -6,8 +6,8 @@ import "@testing-library/jest-dom";
 
 const mockPlayerCardProps: PlayerCardProps = {
   playerId: 2890,
-  name: "Jo Hyeon-Woo",
-  team: "Ulsan Hyundai FC",
+  fullName: "Jo Hyeon-Woo",
+  club: "Ulsan Hyundai FC",
   imageUrl: "https://media.api-sports.io/football/players/2890.png",
   position: "Goalkeeper",
   nationality: "Korea Republic",
@@ -24,11 +24,11 @@ describe("PlayerCard", () => {
   });
 
   it("Should render the player name", () => {
-    expect(screen.getByText(mockPlayerCardProps.name)).toBeInTheDocument();
+    expect(screen.getByText(mockPlayerCardProps.fullName)).toBeInTheDocument();
   });
 
   it("Should render the player team", () => {
-    expect(screen.getByText(mockPlayerCardProps.team)).toBeInTheDocument();
+    expect(screen.getByText(mockPlayerCardProps.club)).toBeInTheDocument();
   });
 
   it("Should render the player position", () => {

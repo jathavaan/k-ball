@@ -11,7 +11,6 @@ export const usePlayerProfileInfoCard = (playerId: number) => {
     isLoading,
     isError,
   } = usePlayerProfileInfo(playerId);
-
   useEffect(() => {
     if (playerProfileInfo) {
       dispatch(setPlayerProfileInfo(playerProfileInfo));
