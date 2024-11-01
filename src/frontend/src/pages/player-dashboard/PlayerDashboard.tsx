@@ -1,7 +1,7 @@
 ﻿import Grid from "@mui/material/Grid2";
 import { PlayerCardGrid } from "../../features/player-card";
 import { PlayerFilters } from "../../features/player-filters/PlayerFilters.tsx";
-import { PlayerSorting } from "../../features/player-sorting/playerSorting.tsx";
+import { PlayerSorting } from "../../features/player-sorting/PlayerSorting.tsx";
 import { SearchBar } from "../../features/searchbar/Searchbar.tsx";
 
 export const PlayerDashboard = () => {
