@@ -40,8 +40,8 @@ KBallDbContext.initialize()
         );
       }
     }
-    console.log("Database state is OK. Application can now be used");
   })
+  .then(() => console.log("Database state is OK. Application can now be used"))
   .catch((err) => {
     console.error(`\nError: ${err.message}`);
     console.log("Ensure that you are connected to the NTNU VPN");
