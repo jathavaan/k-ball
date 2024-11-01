@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   StyledContainer,
   StyledPaper,
@@ -9,6 +10,7 @@ import {
 } from "./loginForm.style.ts";
 
 export const Login = () => {
+  const navigate = useNavigate();
   return (
     <StyledContainer maxWidth="sm">
       <StyledPaper elevation={3}>
@@ -33,7 +35,8 @@ export const Login = () => {
           />
 
           <StyledButton
-            href="players"
+            //href="players"
+            onClick={() => navigate("/project2/players")}
             variant="contained"
             color="primary"
             fullWidth
@@ -41,7 +44,12 @@ export const Login = () => {
             Log In
           </StyledButton>
 
-          <StyledLink href="signup" variant="body2" underline="hover">
+          <StyledLink
+            //onClick={() => navigate("/project2/signup")}
+            href="/project2/signup"
+            variant="body2"
+            underline="hover"
+          >
             New user?
           </StyledLink>
         </StyledBox>
