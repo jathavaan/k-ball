@@ -17,7 +17,7 @@ const GET_PLAYER_PROFILE_INFO = gql`
       birthDate
       height
       weight
-      birthPlace
+      place: birthPlace
     }
   }
 `;

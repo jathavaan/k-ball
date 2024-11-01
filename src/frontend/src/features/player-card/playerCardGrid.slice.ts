@@ -21,23 +21,15 @@ const initialState: PlayerCardGridState = {
 const playerCardGridSlice = createSlice({
   name: "playerCardGrid",
   initialState,
-  //gir oss direkte kontroll over å oppdatere state når vi trenger
   reducers: {
-    //samme som i playercard.slice
-    //erstatter listen med data som sendes i action.payload
-    //bruk: laster inn på nytt, ny liste gjennom filter ol
     setPlayerCardsG: (state, action: PayloadAction<PlayerCardBase[]>) => {
       state.playerCards = action.payload;
     },
 
-    //legger til nye spillere nederst
-    //bruk til infinite scroll
     addPlayerCards: (state, action: PayloadAction<PlayerCardBase[]>) => {
       state.playerCards = [...state.playerCards, ...action.payload];
     },
 
-    //sett current page til verdien i action.payload
-    //vet ikke egentlig om vi trenger den. Brukes til å endre sidenummer manuelt
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
@@ -52,7 +44,6 @@ const playerCardGridSlice = createSlice({
       state.error = action.payload;
     },
 
-    //tilbakestilling av grid, ved refresh kanskje?
     resetGrid: (state) => {
       state.playerCards = [];
       state.currentPage = 1;
