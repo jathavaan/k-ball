@@ -45,7 +45,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
     });
 
     const sortField = filters.sortBy || "fullName";
-    const sortOrder = filters.sortOrder || "DESC";
+    const sortOrder = filters.sortOrder || "ASC";
 
     const playerCards = await this.dbContext.find(Player, {
       where: whereConditions,
