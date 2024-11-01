@@ -1,22 +1,23 @@
 import { styled, Typography } from "@mui/material";
 import { ToggleButtonGroup } from "@mui/lab";
 
-export const SortContainer = styled("div")(() => ({
+export const StyledSortContainer = styled("div")(() => ({
   display: "flex",
-  alignItems: "center",
+  flexDirection: "column",
+  alignItems: "left",
   justifyContent: "flex-start",
   width: "100%",
   maxWidth: "400px",
-  margin: "20px auto",
 }));
 
 export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
   ({ theme }) => ({
     "& .MuiToggleButton-root": {
       margin: theme.spacing(0),
-      padding: "10px 15px",
+      padding: "0.4rem 0.8rem",
       color: "white",
       fontFamily: theme.typography.fontFamily,
+      width: "100%",
 
       "&.Mui-selected": {
         backgroundColor: theme.palette.secondary.light,

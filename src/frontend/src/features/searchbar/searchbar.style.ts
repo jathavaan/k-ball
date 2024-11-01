@@ -5,7 +5,6 @@ export const StyledSearchContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   width: "100%",
-  maxWidth: "500px",
   margin: "0 auto 20px auto",
   padding: "0px",
   backgroundColor: "transparent",
@@ -13,7 +12,7 @@ export const StyledSearchContainer = styled("div")(({ theme }) => ({
 }));
 
 export const StyledSearchInput = styled(TextField)(({ theme }) => ({
-  padding: "10px 0",
+  padding: "15px 0",
   width: "100%",
   "& .MuiOutlinedInput-root": {
     backgroundColor: "transparent",
@@ -30,7 +29,6 @@ export const StyledSearchInput = styled(TextField)(({ theme }) => ({
   },
   "& .MuiInputBase-input": {
     padding: "5px",
-    fontSize: "16px",
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.primary.contrastText,
     caretColor: theme.palette.primary.contrastText,
