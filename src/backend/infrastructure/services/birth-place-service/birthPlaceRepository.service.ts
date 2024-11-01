@@ -33,7 +33,7 @@ export class BirthPlaceRepositoryService
     });
   }
 
-  async addAndOrGetBirthPlace(
+  async getBirthPlaceAddIfMissing(
     birthPlaceName: string,
     countryName: string,
   ): Promise<BirthPlace> {

@@ -6,7 +6,7 @@ export interface BirthPlaceRepositoryServiceBase {
     countryName: string,
   ): Promise<BirthPlace | null>;
 
-  addAndOrGetBirthPlace(
+  getBirthPlaceAddIfMissing(
     birthPlaceName: string,
     countryName: string,
   ): Promise<BirthPlace>;

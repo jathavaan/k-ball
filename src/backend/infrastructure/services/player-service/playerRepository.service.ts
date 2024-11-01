@@ -81,7 +81,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
     const playerStatisticsDto = playerResponse.statistics[0];
 
     const playerBirthPlace =
-      await this.birthPlaceRepositoryService.addAndOrGetBirthPlace(
+      await this.birthPlaceRepositoryService.getBirthPlaceAddIfMissing(
         playerDto.birth.place,
         playerDto.birth.country,
       );
