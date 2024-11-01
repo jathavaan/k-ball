@@ -4,6 +4,7 @@ import { playerProfileInfoReducer } from "./features/player-profile-info";
 import { playerStatsTableReducer } from "./features/player-stats-table";
 import { playerFiltersReducer } from "./features/player-filters";
 import { searchbarReducer } from "./features/searchbar/searchbar.slice";
+import { playerCardGridReducer } from "./features/player-card/playerCardGrid.slice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     playerStatsTableReducer,
     playerFiltersReducer,
     searchbarReducer,
+    playerCardGridReducer,
   },
 });
 

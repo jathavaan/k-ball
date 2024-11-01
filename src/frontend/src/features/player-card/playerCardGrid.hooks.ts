@@ -7,6 +7,7 @@ import {
   setCurrentPage,
   setTotalPages,
   setLoading,
+  resetGrid,
   setError,
   selectPlayerCards,
   selectCurrentPage,
@@ -32,5 +33,38 @@ export const usePlayerCardGrid = () => {
     dispatch(setTotalPages(totalPageCount));
     dispatch(setCurrentPage(1));
     dispatch(setLoading(false));
+  };
+
+  // for å legge til flere spillere, til infinite scroll
+  const loadMorePlayers = (newPlayers: PlayerCardBase[], newPage: number) => {
+    if (newPage <= totalPages) {
+      dispatch(setLoading(true));
+      dispatch(addPlayerCards(newPlayers));
+      dispatch(setCurrentPage(newPage));
+      dispatch(setLoading(false));
+    }
+  };
+
+  const loadGrid = () => {
+    dispatch(resetGrid());
+  };
+
+  /*  useEffect(() => {
+      const initialPlayers: PlayerCardBase[] = [
+        //hente fra API senere 
+      ]
+      const totalPageCount = 5; //eksempel
+      loadPlayers(initialPlayers, totalPageCount);
+    }, []); */
+
+  return {
+    playerCards,
+    currentPage,
+    totalPages,
+    loading,
+    error,
+    loadPlayers,
+    loadMorePlayers,
+    loadGrid,
   };
 };
