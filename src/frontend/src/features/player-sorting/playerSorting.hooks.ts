@@ -16,11 +16,15 @@ export const useSorting = () => {
     newOrder?: "ASC" | "DESC",
   ) => {
     if (field === sortBy && newOrder === sortOrder) {
+      return;
+    }
+    if (field === sortBy) {
       dispatch(setSortOrder(sortOrder === "ASC" ? "DESC" : "ASC"));
     } else {
+      // Hvis det er et nytt felt, setter det til "ASC" som standard
+      dispatch(setSortBy(field));
       dispatch(setSortOrder(newOrder || "ASC"));
     }
-    dispatch(setSortBy(field));
   };
 
   return { sortBy, sortOrder, toggleSort };
