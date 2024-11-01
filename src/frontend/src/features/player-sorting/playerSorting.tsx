@@ -1,17 +1,17 @@
 import {
-  SortContainer,
+  StyledSortContainer,
   StyledToggleButtonGroup,
-  StyledSortLabel,
 } from "./playerSorting.style.ts";
 import { useSorting } from "./playerSorting.hooks.ts";
 import { ToggleButton } from "@mui/material";
+import { StyledHelperText } from "../ui";
 
 export const PlayerSorting = () => {
   const { sortBy, sortOrder, toggleSort } = useSorting();
 
   return (
-    <SortContainer>
-      <StyledSortLabel variant="subtitle1">Sort by name:</StyledSortLabel>
+    <StyledSortContainer>
+      <StyledHelperText>Sort by name</StyledHelperText>
       <StyledToggleButtonGroup
         value={`${sortBy}_${sortOrder}`}
         exclusive
@@ -34,6 +34,6 @@ export const PlayerSorting = () => {
           Z - A
         </ToggleButton>
       </StyledToggleButtonGroup>
-    </SortContainer>
+    </StyledSortContainer>
   );
 };

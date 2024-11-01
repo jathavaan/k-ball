@@ -10,6 +10,7 @@ export class PlayerVm {
   age: number;
 
   constructor(player: Player) {
+    console.log(JSON.stringify(player, null, 2));
     this.id = player.id;
     this.fullName = player.fullName;
     this.currentClub = player.currentClub.name;
