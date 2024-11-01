@@ -27,15 +27,15 @@ export const PlayerCard = (props: PlayerCardProps) => {
           >
             <ImageContainer
               src={props.imageUrl}
-              alt={`Portrait of ${props.name}`}
+              alt={`Portrait of ${props.fullName}`}
             />
           </Grid>
           <Grid container size={{ xs: 7 }} rowSpacing={0}>
             <Grid size={{ xs: 12 }}>
-              <CardHeader headerText={props.name} />
+              <CardHeader headerText={props.fullName} />
             </Grid>
             <Grid size={{ xs: 12 }}>
-              <CardContentText title="Team" text={props.team} />
+              <CardContentText title="Team" text={props.club} />
             </Grid>
             <Grid size={{ xs: 12 }}>
               <CardContentText title="Pos." text={props.position} />

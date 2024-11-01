@@ -33,8 +33,8 @@ export const PlayerCardGrid = () => {
               position={playerCard.position}
               nationality={playerCard.nationality}
               age={playerCard.age}
-              name={playerCard.name}
-              team={playerCard.team}
+              fullName={playerCard.fullName}
+              club={playerCard.club}
               imageUrl={playerCard.imageUrl}
             />
           </Grid>

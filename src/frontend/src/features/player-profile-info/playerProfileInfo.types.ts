@@ -4,13 +4,13 @@ import { CardProps } from "@mui/material";
 export interface PlayerProfileInfoBase extends Player {
   position: string;
   nationality: string;
-  flag: string;
+  flagUrl: string;
   place: string;
   age: number;
   birthDate: string;
   height: number;
   weight: number;
-  teamLogo: string;
+  clubLogo: string;
 }
 
 export interface PlayerProfileInfoProps
