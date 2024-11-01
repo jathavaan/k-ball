@@ -43,4 +43,30 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
     await this.dbContext.save(Country, countries);
     return true;
   }
+
+  async getCountryAddIfMissing(
+    countryName: string,
+    flagUrl?: string,
+  ): Promise<Country> {
+    return await this.dbContext.transaction(
+      async (transactionalEntityManager) => {
+        const country = await transactionalEntityManager.findOne(Country, {
+          where: {
+            name: countryName,
+          },
+        });
+
+        if (country) {
+          return country;
+        }
+
+        const newCountry = new Country();
+        newCountry.name = countryName;
+        newCountry.flagUrl = flagUrl;
+
+        await transactionalEntityManager.save(Country, newCountry);
+        return newCountry;
+      },
+    );
+  }
 }

@@ -23,10 +23,10 @@ export class PlayerVm {
 
 export class ExtendedPlayerVm extends PlayerVm {
   clubLogo: string;
-  flagUrl: string;
+  flagUrl?: string;
   birthDate: Date;
-  height: number;
-  weight: number;
+  height?: number;
+  weight?: number;
   birthPlace: string;
 
   constructor(player: Player) {
@@ -36,6 +36,6 @@ export class ExtendedPlayerVm extends PlayerVm {
     this.birthDate = player.birthDate;
     this.height = player.height;
     this.weight = player.weight;
-    this.birthPlace = player.birthPlace.name;
+    this.birthPlace = player.birthPlace.name || "N/A";
   }
 }
