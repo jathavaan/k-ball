@@ -10,7 +10,7 @@ export const PlayerDashboard = () => {
       <Grid size={{ xs: 7, md: 8 }}>
         <SearchBar />
       </Grid>
-      <Grid size={{ xs: 5, md: 8 }}>
+      <Grid size={{ xs: 5, md: 4 }}>
         <PlayerSorting />
       </Grid>
       <Grid size={{ xs: 12 }}>
