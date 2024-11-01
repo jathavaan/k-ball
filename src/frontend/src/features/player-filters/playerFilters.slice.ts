@@ -6,34 +6,60 @@ const initialState: PlayerFilterState = {
   selectedClubIds: [-1],
   selectedCountryIds: [-1],
   selectedPositionIds: [-1],
+  tempClubIds: [-1],
+  tempCountryIds: [-1],
+  tempPositionIds: [-1],
 };
 
 export const playerFiltersSlice = createSlice({
   name: "playerFilters",
   initialState,
   reducers: {
-    setPositionFilters: (state, action: PayloadAction<number[]>) => {
-      state.selectedPositionIds = action.payload;
+    setTempPositionFilters: (state, action: PayloadAction<number[]>) => {
+      state.tempPositionIds = action.payload;
     },
-    setCountryFilters: (state, action: PayloadAction<number[]>) => {
-      state.selectedCountryIds = action.payload;
+    setTempCountryFilters: (state, action: PayloadAction<number[]>) => {
+      state.tempCountryIds = action.payload;
     },
-    setClubFilters: (state, action: PayloadAction<number[]>) => {
-      state.selectedClubIds = action.payload;
+    setTempClubFilters: (state, action: PayloadAction<number[]>) => {
+      state.tempClubIds = action.payload;
+    },
+    applyFilters: (state) => {
+      state.selectedClubIds = state.tempClubIds;
+      state.selectedCountryIds = state.tempCountryIds;
+      state.selectedPositionIds = state.tempPositionIds;
     },
   },
 });
 
-export const { setPositionFilters, setCountryFilters, setClubFilters } =
-  playerFiltersSlice.actions;
+export const {
+  setTempPositionFilters,
+  setTempCountryFilters,
+  setTempClubFilters,
+  applyFilters,
+} = playerFiltersSlice.actions;
 
-export const selectedClubIds = (state: RootState) =>
-  state.playerFiltersReducer.selectedClubIds;
-
-export const selectedCountryIds = (state: RootState) =>
-  state.playerFiltersReducer.selectedCountryIds;
-
-export const selectedPositions = (state: RootState) =>
-  state.playerFiltersReducer.selectedPositionIds;
-
+//for komponenter å hente siste valgene
+export const selectTempFilters = (state: RootState) => ({
+  clubIds: state.playerFiltersReducer.tempClubIds,
+  countryIds: state.playerFiltersReducer.tempCountryIds,
+  positionIds: state.playerFiltersReducer.tempPositionIds,
+});
+//til aktivering og deaktivering av knapp, returnerer en true/false
+//jason stringify for sammenligning av arrays-ene
+export const selectHasChanges = (state: RootState) => {
+  const {
+    tempClubIds,
+    tempCountryIds,
+    tempPositionIds,
+    selectedClubIds,
+    selectedCountryIds,
+    selectedPositionIds,
+  } = state.playerFiltersReducer;
+  return (
+    JSON.stringify(tempClubIds) !== JSON.stringify(selectedClubIds) ||
+    JSON.stringify(tempCountryIds) !== JSON.stringify(selectedCountryIds) ||
+    JSON.stringify(tempPositionIds) !== JSON.stringify(selectedPositionIds)
+  );
+};
 export const playerFiltersReducer = playerFiltersSlice.reducer;

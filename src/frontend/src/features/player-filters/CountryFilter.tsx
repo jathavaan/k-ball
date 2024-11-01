@@ -1,10 +1,18 @@
 import { useCountries } from "./playerFilters.query.ts";
 import { MenuItem, Select } from "../ui";
-import { useCountrySelection } from "./playerFilters.hooks.ts";
+import { usePlayerFilters } from "./playerFilters.hooks.ts";
 
 export const CountryFilter = () => {
   const { data, isLoading, isError } = useCountries();
-  const { countryIds, toggleSelection } = useCountrySelection();
+  const { countryIds, updateTempFilters } = usePlayerFilters();
+
+  const toggleSelection = (id: number) => {
+    const newSelection = countryIds.includes(id)
+      ? countryIds.filter((val) => val !== id)
+      : [...countryIds, id];
+    updateTempFilters("country", newSelection); // Oppdaterer midlertidig state
+  };
+
   return (
     <Select
       value={countryIds}
