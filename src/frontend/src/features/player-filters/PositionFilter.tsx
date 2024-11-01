@@ -1,16 +1,21 @@
 ﻿import { MenuItem, Select } from "../ui";
 import { usePositions } from "./playerFilters.query.ts";
 import { usePlayerFilters } from "./playerFilters.hooks.ts";
+import { PositionProps } from "./playerFilters.types.ts";
 
 export const PositionFilter = () => {
   const { data, isLoading, isError } = usePositions();
   const { positionIds, updateTempFilters } = usePlayerFilters();
 
+  const allPositionIds = data
+    ? data.map((country: PositionProps) => country.id)
+    : [];
+
   const toggleSelection = (id: number) => {
     const newSelection = positionIds.includes(id)
       ? positionIds.filter((val) => val !== id)
       : [...positionIds, id];
-    updateTempFilters("country", newSelection); // Oppdaterer midlertidig state
+    updateTempFilters("country", newSelection, allPositionIds); // Oppdaterer midlertidig state
   };
 
   return (
