@@ -13,12 +13,12 @@ export const useSorting = () => {
 
   const toggleSort = (
     field: "fullName" | "rating",
-    newOrder?: "ASC" | "DESC",
+    newOrder?: "DESC" | "ASC",
   ) => {
     if (field === sortBy && newOrder === sortOrder) {
-      dispatch(setSortOrder(sortOrder === "ASC" ? "DESC" : "ASC"));
+      dispatch(setSortOrder(sortOrder === "DESC" ? "ASC" : "DESC"));
     } else {
-      dispatch(setSortOrder(newOrder || "ASC"));
+      dispatch(setSortOrder(newOrder || "DESC"));
     }
     dispatch(setSortBy(field));
   };

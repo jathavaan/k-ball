@@ -3,12 +3,12 @@ import { RootState } from "../../store";
 
 interface SortState {
   sortBy: "fullName" | "rating";
-  sortOrder: "ASC" | "DESC";
+  sortOrder: "DESC" | "ASC";
 }
 
 const initialState: SortState = {
   sortBy: "fullName",
-  sortOrder: "DESC",
+  sortOrder: "ASC",
 };
 
 const playerSortingSlice = createSlice({
@@ -18,7 +18,7 @@ const playerSortingSlice = createSlice({
     setSortBy: (state, action: PayloadAction<"fullName" | "rating">) => {
       state.sortBy = action.payload;
     },
-    setSortOrder: (state, action: PayloadAction<"ASC" | "DESC">) => {
+    setSortOrder: (state, action: PayloadAction<"DESC" | "ASC">) => {
       state.sortOrder = action.payload;
     },
   },
