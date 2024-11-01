@@ -47,7 +47,6 @@ KBallDbContext.initialize()
   .catch((err) => {
     console.error(`\nError: ${err.message}`);
     console.log("Ensure that you are connected to the NTNU VPN");
-    throw err;
     return process.exit(0);
   });
 
