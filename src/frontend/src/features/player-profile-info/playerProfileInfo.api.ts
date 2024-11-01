@@ -2,32 +2,32 @@ import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
 import { apiClient } from "../../shared/api.client.ts";
 import { gql } from "@apollo/client";
 
-const GET_PLAYER_PROFILE_INFO = gql`
-  query GetPlayerProfileInfo($playerId: Int!) {
-    player(id: $playerId) {
-      id
-      fullName
-      currentClub
-      imageUrl
-      position
-      nationality
-      age
-      clubLogo
-      flagUrl
-      birthDate
-      height
-      weight
-      place: birthPlace
-    }
-  }
-`;
-
 export const getPlayerProfileInfo = async ({
   queryKey,
 }: {
   queryKey: [string, number];
 }): Promise<PlayerProfileInfoProps | undefined> => {
   const [, playerId] = queryKey;
+
+  const GET_PLAYER_PROFILE_INFO = gql`
+    query GetPlayerProfileInfo($playerId: Int!) {
+      player(id: $playerId) {
+        id
+        fullName
+        currentClub
+        imageUrl
+        position
+        nationality
+        age
+        clubLogo
+        flagUrl
+        birthDate
+        height
+        weight
+        place: birthPlace
+      }
+    }
+  `;
 
   try {
     const response = await apiClient.query({

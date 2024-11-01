@@ -25,7 +25,7 @@ export const PlayerCardGrid = () => {
   );
   const { isLoading, isError } = usePlayerCardGrid(
     1,
-    10,
+    100,
     searchQuery,
     selectedClubIds,
     selectedCountryIds,
