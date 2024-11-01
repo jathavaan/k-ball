@@ -9,6 +9,14 @@ export const PlayerCardGrid = () => {
   const searchQuery = useSelector(
     (state: RootState) => state.searchbarReducer.search,
   );
+  let { selectedClubIds, selectedCountryIds, selectedPositionIds } =
+    useSelector((state: RootState) => state.playerFiltersReducer);
+
+  [selectedClubIds, selectedCountryIds, selectedPositionIds] = [
+    selectedClubIds,
+    selectedCountryIds,
+    selectedPositionIds,
+  ].map((ids) => (ids.includes(-1) ? [] : ids));
   const sortBy = useSelector(
     (state: RootState) => state.playerSortingReducer.sortBy,
   );
@@ -19,9 +27,9 @@ export const PlayerCardGrid = () => {
     1,
     10,
     searchQuery,
-    [],
-    [],
-    [],
+    selectedClubIds,
+    selectedCountryIds,
+    selectedPositionIds,
     sortBy,
     sortOrder,
   );
