@@ -1,4 +1,4 @@
-﻿import { usePlayerCardGrid } from "./playerCard.hooks.ts";
+﻿import { usePlayerCardGrid } from "./playerCardGrid.hooks.ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store.ts";
 import Grid from "@mui/material/Grid2";
@@ -6,9 +6,27 @@ import { ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
 
 export const PlayerCardGrid = () => {
-  const { isLoading, isError } = usePlayerCardGrid();
+  const searchQuery = useSelector(
+    (state: RootState) => state.searchbarReducer.search,
+  );
+  const sortBy = useSelector(
+    (state: RootState) => state.playerSortingReducer.sortBy,
+  );
+  const sortOrder = useSelector(
+    (state: RootState) => state.playerSortingReducer.sortOrder,
+  );
+  const { isLoading, isError } = usePlayerCardGrid(
+    1,
+    10,
+    searchQuery,
+    [],
+    [],
+    [],
+    sortBy,
+    sortOrder,
+  );
   const playerCards = useSelector(
-    (state: RootState) => state.playerCardReducer.playerCards,
+    (state: RootState) => state.playerCardGridReducer.playerCards,
   );
   return (
     <Grid container spacing={4}>

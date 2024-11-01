@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
+import { usePlayerCards } from "./playerCardGrid.query";
 import {
   setPlayerCardsG,
   addPlayerCards,
@@ -17,14 +18,42 @@ import {
 } from "./playerCardGrid.slice";
 import { PlayerCardBase } from "./playerCard.types";
 
-export const usePlayerCardGrid = () => {
+export const usePlayerCardGrid = (
+  page: number,
+  limit: number,
+  search: string,
+  clubIds: number[],
+  countryIds: number[],
+  positionIds: number[],
+  sortBy: string,
+  sortOrder: string,
+) => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const { data, isError, isLoading } = usePlayerCards(
+    page,
+    limit,
+    search,
+    clubIds,
+    countryIds,
+    positionIds,
+    sortBy,
+    sortOrder,
+  );
 
   const playerCards = useSelector(selectPlayerCards);
   const currentPage = useSelector(selectCurrentPage);
   const totalPages = useSelector(selectTotalPages);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setPlayerCardsG(data.playerCards));
+      dispatch(setTotalPages(data.totalPages));
+      dispatch(setCurrentPage(page));
+    }
+  }, [data, dispatch, page]);
 
   //funksjon for å sette spillere -
   const loadPlayers = (players: PlayerCardBase[], totalPageCount: number) => {
@@ -61,8 +90,8 @@ export const usePlayerCardGrid = () => {
     playerCards,
     currentPage,
     totalPages,
-    loading,
-    error,
+    isError,
+    isLoading,
     loadPlayers,
     loadMorePlayers,
     loadGrid,
