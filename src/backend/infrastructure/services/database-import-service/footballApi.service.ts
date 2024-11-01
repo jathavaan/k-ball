@@ -61,8 +61,8 @@ export class FootballApiService implements FootballApiServiceBase {
     );
 
     const result = response.data;
-    // const totalPages = result.paging.total;
-    const totalPages: number = 8;
+    const totalPages = result.paging.total;
+    // const totalPages: number = 8;
     const playerResponses: PlayerResponse[] = [...result.response];
 
     console.log(`Fetching page ${currentPage}/${totalPages}`);
