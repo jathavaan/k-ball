@@ -1,6 +1,7 @@
-﻿import { PlayerCardGrid } from "../../features/player-card";
+﻿import Grid from "@mui/material/Grid2";
+import { PlayerCardGrid } from "../../features/player-card";
 import { PlayerFilters } from "../../features/player-filters/PlayerFilters.tsx";
-import Grid from "@mui/material/Grid2";
+import { PlayerSorting } from "../../features/player-sorting/PlayerSorting.tsx";
 import { SearchBar } from "../../features/searchbar/Searchbar.tsx";
 
 export const PlayerDashboard = () => {
@@ -8,9 +9,13 @@ export const PlayerDashboard = () => {
     <Grid container spacing={2}>
       <Grid size={{ xs: 12 }}>
         <SearchBar />
+      </Grid>
+      <Grid size={{ xs: 12 }}>
+        <PlayerSorting />
+      </Grid>
+      <Grid size={{ xs: 12 }}>
         <PlayerFilters />
       </Grid>
-
       <Grid size={{ xs: 12 }}>
         <PlayerCardGrid />
       </Grid>
