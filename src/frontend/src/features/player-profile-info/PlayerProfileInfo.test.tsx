@@ -6,13 +6,13 @@ import { PlayerProfileInfo } from "./PlayerProfileInfo";
 describe("PlayerProfileInfo", () => {
   const mockProps = {
     playerId: 2898,
-    name: "Kim Young-Gwon",
-    team: "Ulsan Hyundai FC",
-    teamLogo: "https://media.api-sports.io/football/teams/2767.png",
+    fullName: "Kim Young-Gwon",
+    club: "Ulsan Hyundai FC",
+    clubLogo: "https://media.api-sports.io/football/teams/2767.png",
     imageUrl: "https://media.api-sports.io/football/players/2898.png",
     position: "Defender",
     nationality: "Korea Republic",
-    flag: "https://media.api-sports.io/flags/kr.svg",
+    flagUrl: "https://media.api-sports.io/flags/kr.svg",
     age: 34,
     birthDate: "1990-02-27",
     height: 186,
@@ -25,7 +25,7 @@ describe("PlayerProfileInfo", () => {
   });
 
   it("should render the player's name", () => {
-    expect(screen.getByText(mockProps.name)).toBeInTheDocument();
+    expect(screen.getByText(mockProps.fullName)).toBeInTheDocument();
   });
 
   it("should render the player's age", () => {
@@ -37,7 +37,7 @@ describe("PlayerProfileInfo", () => {
   });
 
   it("should render the player's team", () => {
-    expect(screen.getByText(mockProps.team)).toBeInTheDocument();
+    expect(screen.getByText(mockProps.club)).toBeInTheDocument();
   });
 
   it("should render the player's nationality", () => {
