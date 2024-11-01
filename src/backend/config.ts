@@ -1,7 +1,7 @@
 ﻿export const config = {
   // DB config
-  DB_HOST: "it2810-25.idi.ntnu.no",
-  // DB_HOST: "localhost",
+  // DB_HOST: "it2810-25.idi.ntnu.no",
+  DB_HOST: "localhost",
   DB_PORT: 5432,
   DB_USERNAME: "postgres",
   DB_PASSWORD: "postgres",
@@ -9,7 +9,8 @@
 
   // API config
   API_FOOTBALL_BASE_URL: "https://v3.football.api-sports.io",
-  API_FOOTBALL_KEY: "d1e9c6711633d6c9373c9c9510f282f3",
+  // API_FOOTBALL_KEY: "d1e9c6711633d6c9373c9c9510f282f3",
+  API_FOOTBALL_KEY: "b1c3fce73a0303e762203c3421cf3254",
   API_FOOTBALL_K_LEAGUE_ID: 292,
 
   // Import config
