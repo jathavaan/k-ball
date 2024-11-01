@@ -74,7 +74,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     if (playerResponse.statistics.length > 1) {
       console.warn(
-        `Player statistics length is not 1. Was ${playerResponse.statistics.length} for ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID ${playerResponse.player.id})`,
+        `Player statistics length is not 1. Was ${playerResponse.statistics.length} for ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID ${playerResponse.player.id})`
       );
     }
 
@@ -98,7 +98,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     if (playerClub === null) {
       console.warn(
-        `Something was wrong with the data from Football API. Club with ID ${playerStatisticsDto.team.id} was not found in the database. Skipping player ${playerDto.firstname} ${playerDto.lastname} (External ID ${playerDto.id})`,
+        `Something was wrong with the data from Football API. Club with ID ${playerStatisticsDto.team.id} was not found in the database. Skipping player ${playerDto.firstname} ${playerDto.lastname} (External ID ${playerDto.id})`
       );
 
       return null;
@@ -231,7 +231,6 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
         },
       },
     });
-    console.log(JSON.stringify(playerCards, null, 2));
 
     return { playerCards, totalPlayers };
   }

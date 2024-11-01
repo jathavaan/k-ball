@@ -13,7 +13,6 @@ export class GetPlayerByIdQueryHandler
 
   async handle(request: GetPlayerByIdQuery): Promise<PlayerVm[]> {
     const player = await this.playerRepositoryService.getPlayerById(request.id);
-    console.log(JSON.stringify(player, null, 2));
     if (!player) return [];
     const result = [new ExtendedPlayerVm(player)];
     return result;
