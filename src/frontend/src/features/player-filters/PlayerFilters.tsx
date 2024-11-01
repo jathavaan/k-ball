@@ -4,9 +4,10 @@ import Grid from "@mui/material/Grid2";
 import { CountryFilter } from "./CountryFilter.tsx";
 import { PositionFilter } from "./PositionFilter.tsx";
 import { theme } from "../../theme.ts";
+import { useApplyFilters } from "./playerFilters.hooks.ts";
 
 export const PlayerFilters = () => {
-  const { hasChanges, applyFilterChanges } = usePlayerFilters();
+  const { hasChanges, applyFiltersChanges } = useApplyFilters();
 
   return (
     <Grid container spacing={2} alignItems="flex-end">
@@ -28,7 +29,7 @@ export const PlayerFilters = () => {
       <Grid size={{ xs: 6, md: 3 }} display="flex" justifyContent="flex-end">
         <Button
           variant="contained"
-          onClick={applyFilterChanges}
+          onClick={applyFiltersChanges}
           disabled={!hasChanges}
           sx={{
             textTransform: "none", // små bokstaver
