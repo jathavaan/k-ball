@@ -5,6 +5,7 @@ import { useClubSelection } from "./playerFilters.hooks.ts";
 export const ClubFilter = () => {
   const { data, isLoading, isError } = useClubs();
   const { clubIds, toggleSelection } = useClubSelection();
+
   return (
     <Select
       value={clubIds}

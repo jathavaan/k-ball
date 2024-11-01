@@ -5,6 +5,7 @@ import { useCountrySelection } from "./playerFilters.hooks.ts";
 export const CountryFilter = () => {
   const { data, isLoading, isError } = useCountries();
   const { countryIds, toggleSelection } = useCountrySelection();
+
   return (
     <Select
       value={countryIds}

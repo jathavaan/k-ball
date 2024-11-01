@@ -2,6 +2,9 @@ export interface PlayerFilterState {
   selectedCountryIds: number[];
   selectedPositionIds: number[];
   selectedClubIds: number[];
+  tempClubIds: number[];
+  tempCountryIds: number[];
+  tempPositionIds: number[];
 }
 
 export interface CountryProps {
