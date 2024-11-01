@@ -48,7 +48,7 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
           </Grid>
           <Grid size={{ xs: 6 }} display="flex">
             <CardContentText title="Nationality" text={props.nationality} />
-            <img
+            {/* <img
               src={props.flagUrl}
               alt={`Flag of ${props.nationality}`}
               style={{
@@ -56,7 +56,7 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
                 height: "1.25rem",
                 marginLeft: "0.5rem",
               }}
-            />
+            /> */}
           </Grid>
           <Grid size={{ xs: 6 }}>
             <CardContentText title="Height" text={`${props.height} cm`} />

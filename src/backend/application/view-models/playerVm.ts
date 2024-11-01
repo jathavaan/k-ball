@@ -14,8 +14,8 @@ export class PlayerVm {
     this.fullName = player.fullName;
     this.currentClub = player.currentClub.name;
     this.imageUrl = player.imageUrl;
-    this.position = player.position.name;
-    this.nationality = player.birthPlace.country.name;
+    this.position = player.position ? player.position.name : "N/A";
+    this.nationality = player.country?.name ? player.country.name : "N/A";
     this.age =
       new Date().getFullYear() - new Date(player.birthDate).getFullYear();
   }
@@ -32,10 +32,10 @@ export class ExtendedPlayerVm extends PlayerVm {
   constructor(player: Player) {
     super(player);
     this.clubLogo = player.currentClub.logoUrl;
-    this.flagUrl = player.birthPlace.country.flagUrl;
+    this.flagUrl = player.country.flagUrl ?? "#";
     this.birthDate = player.birthDate;
     this.height = player.height;
     this.weight = player.weight;
-    this.birthPlace = player.birthPlace.name || "N/A";
+    this.birthPlace = player.birthPlace.name ?? "N/A";
   }
 }

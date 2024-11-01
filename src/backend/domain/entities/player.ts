@@ -53,6 +53,7 @@ export class Player {
     onDelete: "SET NULL",
     onUpdate: "CASCADE",
     eager: true,
+    nullable: true,
   })
-  position!: Position;
+  position?: Position;
 }

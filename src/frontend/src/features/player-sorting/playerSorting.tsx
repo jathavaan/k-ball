@@ -18,18 +18,18 @@ export const PlayerSorting = () => {
         aria-label="text alignment"
       >
         <ToggleButton
-          value="fullName_DESC"
-          selected={sortBy === "fullName" && sortOrder === "DESC"}
-          onClick={() => toggleSort("fullName", "DESC")}
-          aria-label="sort by name descending"
-        >
-          A - Z
-        </ToggleButton>
-        <ToggleButton
           value="fullName_ASC"
           selected={sortBy === "fullName" && sortOrder === "ASC"}
           onClick={() => toggleSort("fullName", "ASC")}
           aria-label="sort by name ascending"
+        >
+          A - Z
+        </ToggleButton>
+        <ToggleButton
+          value="fullName_DESC"
+          selected={sortBy === "fullName" && sortOrder === "DESC"}
+          onClick={() => toggleSort("fullName", "DESC")}
+          aria-label="sort by name descending"
         >
           Z - A
         </ToggleButton>
