@@ -39,14 +39,12 @@ export const {
   applyFilters,
 } = playerFiltersSlice.actions;
 
-//for komponenter å hente siste valgene
 export const selectTempFilters = (state: RootState) => ({
   clubIds: state.playerFiltersReducer.tempClubIds,
   countryIds: state.playerFiltersReducer.tempCountryIds,
   positionIds: state.playerFiltersReducer.tempPositionIds,
 });
-//til aktivering og deaktivering av knapp, returnerer en true/false
-//jason stringify for sammenligning av arrays-ene
+
 export const selectHasChanges = (state: RootState) => {
   const {
     tempClubIds,

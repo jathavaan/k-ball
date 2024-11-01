@@ -32,7 +32,7 @@ export const PlayerFilters = () => {
           onClick={applyFiltersChanges}
           disabled={!hasChanges}
           sx={{
-            textTransform: "none", // små bokstaver
+            textTransform: "none",
             fontFamily: theme.typography.fontFamily,
             backgroundColor: theme.palette.secondary.main,
             color: theme.palette.secondary.contrastText,

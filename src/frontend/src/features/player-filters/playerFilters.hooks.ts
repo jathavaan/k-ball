@@ -25,7 +25,6 @@ export const useClubSelection = () => {
       updatedClubIds = [...clubIds.filter((id: number) => id !== -1), clubId];
     }
 
-    // Hvis listen er tom, eller hvis alle klubber er valgt, sett til [-1]
     if (updatedClubIds.length === 0) {
       updatedClubIds = [-1];
     }
