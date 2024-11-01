@@ -2,23 +2,23 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
 interface SortState {
-  sortBy: "name" | "rating";
-  sortOrder: "asc" | "desc";
+  sortBy: "fullName" | "rating";
+  sortOrder: "ASC" | "DESC";
 }
 
 const initialState: SortState = {
-  sortBy: "name",
-  sortOrder: "asc",
+  sortBy: "fullName",
+  sortOrder: "DESC",
 };
 
 const playerSortingSlice = createSlice({
   name: "playerSorting",
   initialState,
   reducers: {
-    setSortBy: (state, action: PayloadAction<"name" | "rating">) => {
+    setSortBy: (state, action: PayloadAction<"fullName" | "rating">) => {
       state.sortBy = action.payload;
     },
-    setSortOrder: (state, action: PayloadAction<"asc" | "desc">) => {
+    setSortOrder: (state, action: PayloadAction<"ASC" | "DESC">) => {
       state.sortOrder = action.payload;
     },
   },
