@@ -65,7 +65,7 @@ export class FootballApiService implements FootballApiServiceBase {
     const totalPages: number = 8;
     const playerResponses: PlayerResponse[] = [...result.response];
 
-    /*console.log(`Fetching page ${currentPage}/${totalPages}`);
+    console.log(`Fetching page ${currentPage}/${totalPages}`);
     while (currentPage < totalPages) {
       currentPage++;
       console.log(`Fetching page ${currentPage}/${totalPages} of player data`);
@@ -92,7 +92,7 @@ export class FootballApiService implements FootballApiServiceBase {
     await new Promise((f) => setTimeout(f, timeout));
     console.log(
       `-> Sleeping ${timeout} milliseconds to bypass rate-limit of football API`,
-    );*/
+    );
     result.response = playerResponses;
     return result;
   }
