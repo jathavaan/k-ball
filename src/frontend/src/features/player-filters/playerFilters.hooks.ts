@@ -1,4 +1,3 @@
-import { AppDispatch } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setTempClubFilters,

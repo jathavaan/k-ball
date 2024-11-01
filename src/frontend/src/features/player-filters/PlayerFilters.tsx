@@ -10,7 +10,7 @@ export const PlayerFilters = () => {
   const { hasChanges, applyFilterChanges } = usePlayerFilters();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} alignItems="flex-end">
       <Grid size={{ xs: 6, md: 3 }}>
         <FormControl fullWidth>
           <ClubFilter />
@@ -26,7 +26,7 @@ export const PlayerFilters = () => {
           <PositionFilter />
         </FormControl>
       </Grid>
-      <Grid size={12}>
+      <Grid size={{ xs: 6, md: 3 }} display="flex" justifyContent="flex-end">
         <Button
           variant="contained"
           onClick={applyFilterChanges}
