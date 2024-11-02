@@ -27,7 +27,7 @@ export const playerResolver = {
       const {
         id,
         page = 1,
-        limit = 30,
+        limit = 12,
         search,
         clubIds,
         countryIds,
