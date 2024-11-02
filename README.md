@@ -1,13 +1,13 @@
 # K-Ball
 
 ## URL
-(for NTNU server)[http://it2810-25.idi.ntnu.no/project2/]
+[for NTNU server](http://it2810-25.idi.ntnu.no/project2/)
 
 ## Description
 
-K-Ball is a website that shows player statistics for players in K-League. A user can log in and leave ratings on each
-player as well as see the player statistics. The data is based on [API-Football](https://www.api-football.com/) and is
-based on the 2022 season.
+K-Ball is a website that shows player statistics for players in the korean football league, K-League. A user can log in, 
+filter, sort, and search among players, leave ratings and view detailed player statistics by clicking on a specific player. 
+The data is based on [API-Football](https://www.api-football.com/).
 
 ## Technologies
 
