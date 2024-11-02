@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store";
 import { usePlayerCards } from "./playerCardGrid.query";
+import { useRef } from "react";
 import {
   setPlayerCardsG,
   addPlayerCards,
   setCurrentPage,
   setTotalPages,
-  resetGrid,
   selectPlayerCards,
   selectCurrentPage,
   selectTotalPages,
@@ -52,6 +52,25 @@ export const usePlayerCardGrid = (
       dispatch(setCurrentPage(page));
     }
   }, [data, dispatch, page]);
+
+  const prevFilters = useRef<string>("");
+
+  const currentFilters = JSON.stringify({
+    search,
+    clubIds,
+    countryIds,
+    positionIds,
+    sortBy,
+    sortOrder,
+  });
+
+  useEffect(() => {
+    if (prevFilters.current && prevFilters.current !== currentFilters) {
+      dispatch(setCurrentPage(1));
+    }
+
+    prevFilters.current = currentFilters;
+  }, [currentFilters, dispatch]);
 
   const loadMorePlayers = () => {
     dispatch(setCurrentPage(currentPage + 1));

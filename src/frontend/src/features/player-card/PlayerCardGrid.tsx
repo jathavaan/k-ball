@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid2";
 import { ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { current } from "@reduxjs/toolkit";
 
 export const PlayerCardGrid = () => {
   const searchQuery = useSelector(
@@ -47,6 +46,9 @@ export const PlayerCardGrid = () => {
   );
 
   const isInitialLoad = currentPage === 1 && isLoading;
+  const noResultsOnFirstPage =
+    currentPage === 1 && !isLoading && playerCards.length === 0;
+
   return (
     <InfiniteScroll
       dataLength={playerCards.length}
@@ -66,6 +68,14 @@ export const PlayerCardGrid = () => {
             <ErrorAlert
               message={
                 "Oops! Something went wrong while fetching the player data"
+              }
+            />
+          </Grid>
+        ) : noResultsOnFirstPage ? (
+          <Grid size={{ xs: 12 }}>
+            <ErrorAlert
+              message={
+                "No players match your search or filter criteria. Please try different filters."
               }
             />
           </Grid>

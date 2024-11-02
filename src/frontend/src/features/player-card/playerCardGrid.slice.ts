@@ -37,14 +37,6 @@ const playerCardGridSlice = createSlice({
     setTotalPages: (state, action: PayloadAction<number>) => {
       state.totalPages = action.payload;
     },
-
-    resetGrid: (state) => {
-      state.playerCards = [];
-      state.currentPage = 1;
-      state.totalPages = 1;
-      state.loading = false;
-      state.error = null;
-    },
   },
 });
 
@@ -53,7 +45,6 @@ export const {
   addPlayerCards,
   setCurrentPage,
   setTotalPages,
-  resetGrid,
 } = playerCardGridSlice.actions;
 
 export const selectPlayerCards = (state: RootState) =>
