@@ -11,9 +11,9 @@ interface PlayerCardGridState {
 }
 
 const initialState: PlayerCardGridState = {
-  playerCards: [], //blir det riktig med tom liste
+  playerCards: [],
   currentPage: 1,
-  totalPages: 1, //blir det riktig
+  totalPages: 1,
   loading: false,
   error: null,
 };
@@ -37,12 +37,6 @@ const playerCardGridSlice = createSlice({
     setTotalPages: (state, action: PayloadAction<number>) => {
       state.totalPages = action.payload;
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action: PayloadAction<string | null>) => {
-      state.error = action.payload;
-    },
 
     resetGrid: (state) => {
       state.playerCards = [];
@@ -59,8 +53,6 @@ export const {
   addPlayerCards,
   setCurrentPage,
   setTotalPages,
-  setLoading,
-  setError,
   resetGrid,
 } = playerCardGridSlice.actions;
 

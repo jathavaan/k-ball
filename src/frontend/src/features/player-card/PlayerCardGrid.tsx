@@ -4,6 +4,8 @@ import { RootState } from "../../store.ts";
 import Grid from "@mui/material/Grid2";
 import { ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { current } from "@reduxjs/toolkit";
 
 export const PlayerCardGrid = () => {
   const searchQuery = useSelector(
@@ -23,9 +25,16 @@ export const PlayerCardGrid = () => {
   const sortOrder = useSelector(
     (state: RootState) => state.playerSortingReducer.sortOrder,
   );
-  const { isLoading, isError } = usePlayerCardGrid(
-    1,
-    100,
+  const currentPage = useSelector(
+    (state: RootState) => state.playerCardGridReducer.currentPage,
+  );
+  const totalPages = useSelector(
+    (state: RootState) => state.playerCardGridReducer.totalPages,
+  );
+  console.log("Current Page: ", currentPage);
+  const { isLoading, isError, loadMorePlayers } = usePlayerCardGrid(
+    currentPage,
+    12,
     searchQuery,
     selectedClubIds,
     selectedCountryIds,
@@ -36,36 +45,47 @@ export const PlayerCardGrid = () => {
   const playerCards = useSelector(
     (state: RootState) => state.playerCardGridReducer.playerCards,
   );
+
+  const isInitialLoad = currentPage === 1 && isLoading;
   return (
-    <Grid container spacing={4}>
-      {isLoading ? (
-        <Grid size={{ xs: 12 }}>
-          <LinearProgressBar />
-        </Grid>
-      ) : isError ? (
-        <Grid size={{ xs: 12 }}>
-          <ErrorAlert
-            message={
-              "Oops! Something went wrong while fetching the player data"
-            }
-          />
-        </Grid>
-      ) : (
-        playerCards.map((playerCard) => (
-          <Grid key={playerCard.playerId} size={{ xs: 12, md: 6, lg: 4 }}>
-            <PlayerCard
-              key={playerCard.playerId}
-              playerId={playerCard.playerId}
-              position={playerCard.position}
-              nationality={playerCard.nationality}
-              age={playerCard.age}
-              fullName={playerCard.fullName}
-              club={playerCard.club}
-              imageUrl={playerCard.imageUrl}
+    <InfiniteScroll
+      dataLength={playerCards.length}
+      next={loadMorePlayers}
+      hasMore={currentPage < totalPages}
+      loader={<LinearProgressBar />}
+      scrollThreshold={1.0}
+      hasChildren={true}
+    >
+      <Grid container spacing={4}>
+        {isInitialLoad ? (
+          <Grid size={{ xs: 12 }}>
+            <LinearProgressBar />
+          </Grid>
+        ) : isError ? (
+          <Grid size={{ xs: 12 }}>
+            <ErrorAlert
+              message={
+                "Oops! Something went wrong while fetching the player data"
+              }
             />
           </Grid>
-        ))
-      )}
-    </Grid>
+        ) : (
+          playerCards.map((playerCard) => (
+            <Grid key={playerCard.playerId} size={{ xs: 12, md: 6, lg: 4 }}>
+              <PlayerCard
+                key={playerCard.playerId}
+                playerId={playerCard.playerId}
+                position={playerCard.position}
+                nationality={playerCard.nationality}
+                age={playerCard.age}
+                fullName={playerCard.fullName}
+                club={playerCard.club}
+                imageUrl={playerCard.imageUrl}
+              />
+            </Grid>
+          ))
+        )}
+      </Grid>
+    </InfiniteScroll>
   );
 };

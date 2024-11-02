@@ -1,22 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store";
+import { AppDispatch } from "../../store";
 import { usePlayerCards } from "./playerCardGrid.query";
 import {
   setPlayerCardsG,
   addPlayerCards,
   setCurrentPage,
   setTotalPages,
-  setLoading,
   resetGrid,
-  setError,
   selectPlayerCards,
   selectCurrentPage,
   selectTotalPages,
-  selectLoading,
-  selectError,
 } from "./playerCardGrid.slice";
-import { PlayerCardBase } from "./playerCard.types";
 
 export const usePlayerCardGrid = (
   page: number,
@@ -30,8 +25,10 @@ export const usePlayerCardGrid = (
 ) => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const currentPage = useSelector(selectCurrentPage);
+
   const { data, isError, isLoading } = usePlayerCards(
-    page,
+    currentPage,
     limit,
     search,
     clubIds,
@@ -42,49 +39,23 @@ export const usePlayerCardGrid = (
   );
 
   const playerCards = useSelector(selectPlayerCards);
-  const currentPage = useSelector(selectCurrentPage);
   const totalPages = useSelector(selectTotalPages);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
     if (data) {
-      dispatch(setPlayerCardsG(data.playerCards));
+      if (currentPage === 1) {
+        dispatch(setPlayerCardsG(data.playerCards));
+      } else {
+        dispatch(addPlayerCards(data.playerCards));
+      }
       dispatch(setTotalPages(data.totalPages));
       dispatch(setCurrentPage(page));
     }
   }, [data, dispatch, page]);
 
-  //funksjon for å sette spillere -
-  const loadPlayers = (players: PlayerCardBase[], totalPageCount: number) => {
-    dispatch(setLoading(true));
-    dispatch(setPlayerCardsG(players));
-    dispatch(setTotalPages(totalPageCount));
-    dispatch(setCurrentPage(1));
-    dispatch(setLoading(false));
+  const loadMorePlayers = () => {
+    dispatch(setCurrentPage(currentPage + 1));
   };
-
-  // for å legge til flere spillere, til infinite scroll
-  const loadMorePlayers = (newPlayers: PlayerCardBase[], newPage: number) => {
-    if (newPage <= totalPages) {
-      dispatch(setLoading(true));
-      dispatch(addPlayerCards(newPlayers));
-      dispatch(setCurrentPage(newPage));
-      dispatch(setLoading(false));
-    }
-  };
-
-  const loadGrid = () => {
-    dispatch(resetGrid());
-  };
-
-  /*  useEffect(() => {
-      const initialPlayers: PlayerCardBase[] = [
-        //hente fra API senere 
-      ]
-      const totalPageCount = 5; //eksempel
-      loadPlayers(initialPlayers, totalPageCount);
-    }, []); */
 
   return {
     playerCards,
@@ -92,8 +63,6 @@ export const usePlayerCardGrid = (
     totalPages,
     isError,
     isLoading,
-    loadPlayers,
     loadMorePlayers,
-    loadGrid,
   };
 };
