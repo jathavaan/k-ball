@@ -30,7 +30,6 @@ export const PlayerCardGrid = () => {
   const totalPages = useSelector(
     (state: RootState) => state.playerCardGridReducer.totalPages,
   );
-  console.log("Current Page: ", currentPage);
   const { isLoading, isError, loadMorePlayers } = usePlayerCardGrid(
     currentPage,
     12,
