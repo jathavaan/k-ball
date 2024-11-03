@@ -8,7 +8,6 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
   dbContext = KBallDbContext.manager;
 
   async getCountries() {
-    // Use a query builder to join the Player and Country tables and count players per country
     const countries = await this.dbContext.query(`
       SELECT 
           country.id AS id,
@@ -21,6 +20,8 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
           player ON player."countryId" = country.id
       GROUP BY 
           country.id, country.name, country."flagUrl"
+      HAVING 
+          COUNT(player.id) > 0
       ORDER BY 
           "playerCount" DESC;
     `);
