@@ -125,6 +125,5 @@ export const getCount = async ({
     },
   });
 
-  console.log("totalpages api", response.data.players.totalPlayers);
   return { totalPlayers: response.data.players.totalPlayers };
 };

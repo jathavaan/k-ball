@@ -4,14 +4,14 @@ import {
 } from "./playerSorting.style.ts";
 import { useSorting } from "./playerSorting.hooks.ts";
 import { ToggleButton } from "@mui/material";
-import { StyledHelperText } from "../ui";
+import { HelperText } from "../ui";
 
 export const PlayerSorting = () => {
   const { sortBy, sortOrder, toggleSort } = useSorting();
 
   return (
     <StyledSortContainer>
-      <StyledHelperText>Sort by name</StyledHelperText>
+      <HelperText description="Sort players by name" />
       <StyledToggleButtonGroup
         value={`${sortBy}_${sortOrder}`}
         exclusive

@@ -101,23 +101,18 @@ export const useFilteredCount = () => {
   [clubIds, countryIds, positionIds] = [clubIds, countryIds, positionIds].map(
     (ids) => (ids.includes(-1) ? [] : ids),
   );
-  console.log("clubIds", clubIds);
-  console.log("countryIds", countryIds);
-  console.log("positionIds", positionIds);
-  console.log("search", search);
 
   const { data, isLoading, isError } = useCount(
-    1, // Page number
-    10, // Limit
-    search, // Search term
+    1,
+    12,
+    search,
     clubIds,
     countryIds,
     positionIds,
-    "", // Sort by (can be updated based on needs)
-    "", // Sort order
+    "",
+    "",
   );
 
-  console.log("totalpage hooks", data);
   return { count: data?.totalPlayers ?? 0, isLoading, isError };
 };
 

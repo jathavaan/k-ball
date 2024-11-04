@@ -10,7 +10,6 @@ import { HelperText } from "../ui/helper-text/HelperText.tsx";
 export const PlayerFilters = () => {
   const { hasChanges, applyFiltersChanges } = useApplyFilters();
   const { count, isLoading } = useFilteredCount();
-  console.log(count, isLoading);
 
   return (
     <Grid container spacing={2} alignItems="flex-end">
