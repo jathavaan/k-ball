@@ -1,6 +1,7 @@
 import { PlayerFilterState } from "./playerFilters.types.ts";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store.ts";
+import { createSelector } from "reselect";
 
 const initialState: PlayerFilterState = {
   selectedClubIds: [-1],
@@ -39,11 +40,14 @@ export const {
   applyFilters,
 } = playerFiltersSlice.actions;
 
-export const selectTempFilters = (state: RootState) => ({
-  clubIds: state.playerFiltersReducer.tempClubIds,
-  countryIds: state.playerFiltersReducer.tempCountryIds,
-  positionIds: state.playerFiltersReducer.tempPositionIds,
-});
+export const selectTempFilters = createSelector(
+  (state: RootState) => state.playerFiltersReducer,
+  (playerFiltersReducer) => ({
+    clubIds: playerFiltersReducer.tempClubIds,
+    countryIds: playerFiltersReducer.tempCountryIds,
+    positionIds: playerFiltersReducer.tempPositionIds,
+  }),
+);
 
 export const selectHasChanges = (state: RootState) => {
   const {
