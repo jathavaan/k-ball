@@ -9,7 +9,7 @@ import {
   selectHasChanges,
 } from "./playerFilters.slice.ts";
 import { useCount } from "./playerFilters.query.ts";
-import { selectSearchQuery } from "../searchbar/searchbar.slice.ts";
+import { selectTempSearchQuery } from "../searchbar/searchbar.slice.ts";
 
 export const useClubSelection = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -96,7 +96,7 @@ export const useCountrySelection = () => {
 };
 
 export const useFilteredCount = () => {
-  const search = useSelector(selectSearchQuery);
+  const search = useSelector(selectTempSearchQuery);
   let { clubIds, countryIds, positionIds } = useSelector(selectTempFilters);
   [clubIds, countryIds, positionIds] = [clubIds, countryIds, positionIds].map(
     (ids) => (ids.includes(-1) ? [] : ids),
