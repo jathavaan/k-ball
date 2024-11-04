@@ -42,7 +42,7 @@ export const SearchBar = () => {
         onChange={(e) => setLocalQuery(e.target.value)} // Update the local state until the user presses search
         onKeyDown={handleKeyDown}
         variant="outlined"
-        placeholder="Search for players by name..."
+        placeholder="Search..."
       />
 
       {localQuery && (

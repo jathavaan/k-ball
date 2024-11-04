@@ -19,7 +19,7 @@ export const StyledPlayerStatsTable = styled(Table)(({ theme }) => ({
   },
 }));
 export const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.dark,
+  backgroundColor: theme.palette.secondary.light,
   color: theme.palette.primary.contrastText,
   "& .MuiTableCell-head": {
     fontWeight: "bold",

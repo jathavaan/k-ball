@@ -1,17 +1,17 @@
 import { AppDispatch } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectedClubIds,
-  selectedCountryIds,
-  selectedPositions,
-  setClubFilters,
-  setCountryFilters,
-  setPositionFilters,
+  setTempClubFilters,
+  setTempCountryFilters,
+  setTempPositionFilters,
+  applyFilters,
+  selectTempFilters,
+  selectHasChanges,
 } from "./playerFilters.slice.ts";
 
 export const useClubSelection = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const clubIds = useSelector(selectedClubIds);
+  const { clubIds } = useSelector(selectTempFilters);
 
   const toggleSelection = (clubId: number) => {
     const isSelected = clubIds.includes(clubId);
@@ -29,7 +29,7 @@ export const useClubSelection = () => {
       updatedClubIds = [-1];
     }
 
-    dispatch(setClubFilters(updatedClubIds));
+    dispatch(setTempClubFilters(updatedClubIds));
   };
 
   return { clubIds, toggleSelection };
@@ -37,19 +37,19 @@ export const useClubSelection = () => {
 
 export const usePositionSelection = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const positionsIds = useSelector(selectedPositions);
+  const { positionIds } = useSelector(selectTempFilters);
 
   const toggleSelection = (positionId: number) => {
-    const isSelected = positionsIds.includes(positionId);
+    const isSelected = positionIds.includes(positionId);
     let updatedPositions;
 
     if (isSelected) {
-      updatedPositions = positionsIds.filter((id: number) => id !== positionId);
+      updatedPositions = positionIds.filter((id: number) => id !== positionId);
     } else if (positionId === -1) {
       updatedPositions = [-1];
     } else {
       updatedPositions = [
-        ...positionsIds.filter((id: number) => id !== -1),
+        ...positionIds.filter((id: number) => id !== -1),
         positionId,
       ];
     }
@@ -58,15 +58,15 @@ export const usePositionSelection = () => {
       updatedPositions = [-1];
     }
 
-    dispatch(setPositionFilters(updatedPositions));
+    dispatch(setTempPositionFilters(updatedPositions));
   };
 
-  return { positionsIds, toggleSelection };
+  return { positionIds, toggleSelection };
 };
 
 export const useCountrySelection = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const countryIds = useSelector(selectedCountryIds);
+  const { countryIds } = useSelector(selectTempFilters);
 
   const toggleSelection = (countryId: number) => {
     const isSelected = countryIds.includes(countryId);
@@ -83,12 +83,26 @@ export const useCountrySelection = () => {
       ];
     }
 
+    // Hvis listen er tom, eller hvis alle land er valgt, sett til [-1]
     if (updatedCountryIds.length === 0) {
       updatedCountryIds = [-1];
     }
 
-    dispatch(setCountryFilters(updatedCountryIds));
+    dispatch(setTempCountryFilters(updatedCountryIds));
   };
 
   return { countryIds, toggleSelection };
+};
+
+export const useApplyFilters = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const hasChanges = useSelector(selectHasChanges);
+
+  const applyFiltersChanges = () => {
+    if (hasChanges) {
+      dispatch(applyFilters());
+    }
+  };
+
+  return { hasChanges, applyFiltersChanges };
 };

@@ -10,7 +10,11 @@ export class Club {
   @Column({ type: "text" })
   name!: string;
   @Column({ type: "text" })
+  code!: string;
+  @Column({ type: "text" })
   logoUrl!: string;
+  @Column({ type: "integer" })
+  externalId!: number;
 
   @OneToMany(() => Player, (player) => player.currentClub)
   players!: Player[];

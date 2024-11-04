@@ -2,6 +2,7 @@
 import { ClubRepositoryServiceBase } from "../../../application/contracts";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { Club } from "../../../domain/entities";
+import { ClubDto } from "../../../application/dtos";
 
 @injectable()
 export class ClubRepositoryService implements ClubRepositoryServiceBase {
@@ -19,8 +20,9 @@ export class ClubRepositoryService implements ClubRepositoryServiceBase {
     });
   }
 
-  async addClubs(clubs: Club[]) {
+  async addClubs(clubs: ClubDto[]) {
     if (clubs.length === 0) {
+      console.error("Clubs to add was not provided");
       return false;
     }
 
@@ -37,10 +39,29 @@ export class ClubRepositoryService implements ClubRepositoryServiceBase {
     );
 
     if (clubs.length === 0) {
+      console.warn("No new clubs to add");
       return false;
     }
 
-    await this.dbContext.save(Club, clubs);
+    const clubsToAdd = clubs.map((clubDto) => {
+      const club = new Club();
+      club.name = clubDto.name;
+      club.code = clubDto.code;
+      club.logoUrl = clubDto.logo;
+      club.externalId = clubDto.id;
+      return club;
+    });
+
+    await this.dbContext.save(Club, clubsToAdd);
+    console.log(`Added ${clubsToAdd.length} clubs`);
     return true;
+  }
+
+  async getClubByExternalId(externalId: number) {
+    return await this.dbContext.findOne(Club, {
+      where: {
+        externalId: externalId,
+      },
+    });
   }
 }

@@ -4,7 +4,7 @@ import { Club } from "./club";
 
 @Entity()
 export class ClubSeason {
-  @PrimaryColumn({ type: "int" }) 
+  @PrimaryColumn({ type: "int" })
   seasonId!: number;
   @PrimaryColumn({ type: "int" })
   clubId!: number;

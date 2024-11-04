@@ -6,7 +6,8 @@
     "dev": "npx tsx ./presentation/server.ts",
     "build": "npx tsc",
     "test": "npm run test",
-    "start": "pm2 start dist/presentation/server.js --name k-ball-api"
+    "start": "pm2 start dist/presentation/server.js --name k-ball-api",
+    "format": "npx prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "@graphql-tools/schema": "^10.0.6",
     "@graphql-tools/utils": "^10.5.4",
     "@types/node": "^22.7.4",
+    "axios": "^1.7.7",
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "graphql": "^16.9.0",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "prettier": "^3.3.3",
     "tsx": "^4.19.1"
   }
 }

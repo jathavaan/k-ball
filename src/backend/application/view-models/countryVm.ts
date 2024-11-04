@@ -8,6 +8,6 @@ export class CountryVm {
   constructor(country: Country) {
     this.id = country.id;
     this.name = country.name;
-    this.flagUrl = country.flagUrl;
+    this.flagUrl = country.flagUrl!;
   }
 }

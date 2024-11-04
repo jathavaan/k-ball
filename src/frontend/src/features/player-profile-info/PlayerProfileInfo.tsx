@@ -16,10 +16,10 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
         >
           <ImageContainer
             src={props.imageUrl}
-            alt={`Portrait of ${props.name}`}
+            alt={`Portrait of ${props.fullName}`}
           />
           <CardHeader
-            headerText={props.name}
+            headerText={props.fullName}
             sx={{
               fontWeight: "bold",
               fontSize: "1.5rem",
@@ -30,11 +30,11 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
             variant="body1"
             sx={{ textAlign: "center", marginBottom: "0.5rem" }}
           >
-            {props.team}
+            {props.club}
           </Typography>
           <img
-            src={props.teamLogo}
-            alt={`Logo of ${props.team}`}
+            src={props.clubLogo}
+            alt={`Logo of ${props.club}`}
             style={{ width: "2.5rem", height: "2.5rem" }}
           />
         </Grid>
@@ -48,15 +48,15 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
           </Grid>
           <Grid size={{ xs: 6 }} display="flex">
             <CardContentText title="Nationality" text={props.nationality} />
-            <img
-              src={props.flag}
+            {/* <img
+              src={props.flagUrl}
               alt={`Flag of ${props.nationality}`}
               style={{
                 width: "1.25rem",
                 height: "1.25rem",
                 marginLeft: "0.5rem",
               }}
-            />
+            /> */}
           </Grid>
           <Grid size={{ xs: 6 }}>
             <CardContentText title="Height" text={`${props.height} cm`} />
