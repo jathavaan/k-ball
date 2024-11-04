@@ -10,6 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useParams } from "react-router-dom";
+import { PlayerRating } from "../../features/player-rating/PlayerRating";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();
@@ -37,6 +38,7 @@ export const PlayerProfile = () => {
         <>
           {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
           <PlayerStatsTable playerStatsTable={playerStats} />
+          <PlayerRating />
         </>
       )}
     </>
