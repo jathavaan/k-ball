@@ -57,3 +57,74 @@ export const getClubs = async (): Promise<ClubProps[]> => {
 
   return response.data.clubs;
 };
+
+const GET_COUNT = gql`
+  query GetCount(
+    $page: Int!
+    $limit: Int!
+    $search: String
+    $clubIds: [Int!]
+    $countryIds: [Int!]
+    $positionIds: [Int!]
+    $sortBy: String
+    $sortOrder: String
+  ) {
+    players(
+      page: $page
+      limit: $limit
+      search: $search
+      clubIds: $clubIds
+      countryIds: $countryIds
+      positionIds: $positionIds
+      sortBy: $sortBy
+      sortOrder: $sortOrder
+    ) {
+      totalPlayers
+    }
+  }
+`;
+
+export const getCount = async ({
+  queryKey,
+}: {
+  queryKey: [
+    string,
+    number,
+    number,
+    string,
+    number[],
+    number[],
+    number[],
+    string,
+    string,
+  ];
+}): Promise<{ totalPlayers: number }> => {
+  const [
+    _,
+    page,
+    limit,
+    search,
+    clubIds,
+    countryIds,
+    positionIds,
+    sortBy,
+    sortOrder,
+  ] = queryKey;
+
+  const response = await apiClient.query({
+    query: GET_COUNT,
+    variables: {
+      page,
+      limit,
+      search,
+      clubIds,
+      countryIds,
+      positionIds,
+      sortBy,
+      sortOrder,
+    },
+  });
+
+  console.log("totalpages api", response.data.players.totalPlayers);
+  return { totalPlayers: response.data.players.totalPlayers };
+};
