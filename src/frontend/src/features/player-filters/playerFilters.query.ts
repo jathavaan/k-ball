@@ -19,27 +19,13 @@ export const usePositions = () =>
   useQuery({ queryKey: ["positions"], queryFn: getPositions });
 
 export const useCount = (
-  page: number,
-  limit: number,
   search: string,
   clubIds: number[],
   countryIds: number[],
   positionIds: number[],
-  sortBy: string,
-  sortOrder: string,
 ) => {
   return useQuery({
-    queryKey: [
-      "count",
-      page,
-      limit,
-      search,
-      clubIds,
-      countryIds,
-      positionIds,
-      sortBy,
-      sortOrder,
-    ],
+    queryKey: ["count", search, clubIds, countryIds, positionIds],
     queryFn: getCount,
   });
 };

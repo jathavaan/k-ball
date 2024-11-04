@@ -60,24 +60,16 @@ export const getClubs = async (): Promise<ClubProps[]> => {
 
 const GET_COUNT = gql`
   query GetCount(
-    $page: Int!
-    $limit: Int!
     $search: String
     $clubIds: [Int!]
     $countryIds: [Int!]
     $positionIds: [Int!]
-    $sortBy: String
-    $sortOrder: String
   ) {
     players(
-      page: $page
-      limit: $limit
       search: $search
       clubIds: $clubIds
       countryIds: $countryIds
       positionIds: $positionIds
-      sortBy: $sortBy
-      sortOrder: $sortOrder
     ) {
       totalPlayers
     }
@@ -87,41 +79,17 @@ const GET_COUNT = gql`
 export const getCount = async ({
   queryKey,
 }: {
-  queryKey: [
-    string,
-    number,
-    number,
-    string,
-    number[],
-    number[],
-    number[],
-    string,
-    string,
-  ];
+  queryKey: [string, string, number[], number[], number[]];
 }): Promise<{ totalPlayers: number }> => {
-  const [
-    _,
-    page,
-    limit,
-    search,
-    clubIds,
-    countryIds,
-    positionIds,
-    sortBy,
-    sortOrder,
-  ] = queryKey;
+  const [_, search, clubIds, countryIds, positionIds] = queryKey;
 
   const response = await apiClient.query({
     query: GET_COUNT,
     variables: {
-      page,
-      limit,
       search,
       clubIds,
       countryIds,
       positionIds,
-      sortBy,
-      sortOrder,
     },
   });
 

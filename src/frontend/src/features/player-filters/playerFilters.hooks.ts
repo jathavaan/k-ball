@@ -103,14 +103,10 @@ export const useFilteredCount = () => {
   );
 
   const { data, isLoading, isError } = useCount(
-    1,
-    12,
     search,
     clubIds,
     countryIds,
     positionIds,
-    "",
-    "",
   );
 
   return { count: data?.totalPlayers ?? 0, isLoading, isError };
