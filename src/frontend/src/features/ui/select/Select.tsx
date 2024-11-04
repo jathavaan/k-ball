@@ -1,17 +1,17 @@
 ﻿import { MenuItemProps, SelectProps } from "./select.types.ts";
 import {
   StyledCheckBox,
-  StyledHelperText,
   StyledMenuItem,
   StyledSelect,
 } from "./select.style.ts";
+import { HelperText } from "../helper-text/HelperText.tsx";
 import { ImageContainer } from "../image-container/ImageContainer.tsx";
 import { Box } from "@mui/material";
 
 export const Select = ({ children, description, ...props }: SelectProps) => {
   return (
     <>
-      <StyledHelperText>{description}</StyledHelperText>
+      <HelperText description={description} />
       <StyledSelect {...props} disableUnderline>
         {children}
       </StyledSelect>

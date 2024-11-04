@@ -8,15 +8,21 @@ export class GetPlayersQueryHandler
   implements
     Request<
       GetPlayersQuery,
-      { playerCards: PlayerVm[]; totalPages: number; currentPage: number }
+      {
+        playerCards: PlayerVm[];
+        totalPlayers: number;
+        totalPages: number;
+        currentPage: number;
+      }
     >
 {
   playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase",
+    "PlayerRepositoryServiceBase"
   );
 
   async handle(request: GetPlayersQuery): Promise<{
     playerCards: PlayerVm[];
+    totalPlayers: number;
     totalPages: number;
     currentPage: number;
   }> {
@@ -28,6 +34,7 @@ export class GetPlayersQueryHandler
     const currentPage = Math.ceil(offset / limit) + 1;
     return {
       playerCards: playerCards.map((player) => new PlayerVm(player)),
+      totalPlayers: totalPlayers,
       totalPages: totalPages,
       currentPage: currentPage,
     };

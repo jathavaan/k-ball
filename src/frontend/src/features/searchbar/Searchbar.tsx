@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   StyledSearchContainer,
   StyledSearchInput,
@@ -9,14 +9,15 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useSearch } from "./searchbar.hooks.ts";
-import { RootState } from "../../store.ts";
+import { selectSearchQuery, setTempSearch } from "./searchbar.slice.ts";
+import { AppDispatch } from "../../store.ts";
 
 export const SearchBar = () => {
-  const query = useSelector(
-    (state: RootState) => state.searchbarReducer.search,
-  );
-  const [localQuery, setLocalQuery] = useState(query); // Search is local until the user submits search
+  const dispatch = useDispatch<AppDispatch>();
+  const searchQuery = useSelector(selectSearchQuery);
+  const [localQuery, setLocalQuery] = useState(searchQuery); // Search is local until the user submits search
   const { triggerSearch } = useSearch();
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
   const handleSearch = () => {
     if (localQuery) {
@@ -26,7 +27,9 @@ export const SearchBar = () => {
 
   const handleClear = () => {
     setLocalQuery("");
+    dispatch(setTempSearch(""));
     triggerSearch("");
+    setHasUserInteracted(false);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -35,17 +38,32 @@ export const SearchBar = () => {
     }
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalQuery(event.target.value);
+    setHasUserInteracted(true);
+  };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      dispatch(setTempSearch(localQuery));
+    }, 1000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [localQuery, dispatch]);
+
   return (
     <StyledSearchContainer>
       <StyledSearchInput
         value={localQuery}
-        onChange={(e) => setLocalQuery(e.target.value)} // Update the local state until the user presses search
+        onChange={handleChange}
         onKeyDown={handleKeyDown}
         variant="outlined"
         placeholder="Search..."
       />
 
-      {localQuery && (
+      {hasUserInteracted && searchQuery !== "" && (
         <StyledClearButton aria-label="clear" onClick={handleClear}>
           <ClearIcon />
         </StyledClearButton>

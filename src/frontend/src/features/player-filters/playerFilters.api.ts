@@ -57,3 +57,41 @@ export const getClubs = async (): Promise<ClubProps[]> => {
 
   return response.data.clubs;
 };
+
+const GET_COUNT = gql`
+  query GetCount(
+    $search: String
+    $clubIds: [Int!]
+    $countryIds: [Int!]
+    $positionIds: [Int!]
+  ) {
+    players(
+      search: $search
+      clubIds: $clubIds
+      countryIds: $countryIds
+      positionIds: $positionIds
+    ) {
+      totalPlayers
+    }
+  }
+`;
+
+export const getCount = async ({
+  queryKey,
+}: {
+  queryKey: [string, string, number[], number[], number[]];
+}): Promise<{ totalPlayers: number }> => {
+  const [_, search, clubIds, countryIds, positionIds] = queryKey;
+
+  const response = await apiClient.query({
+    query: GET_COUNT,
+    variables: {
+      search,
+      clubIds,
+      countryIds,
+      positionIds,
+    },
+  });
+
+  return { totalPlayers: response.data.players.totalPlayers };
+};

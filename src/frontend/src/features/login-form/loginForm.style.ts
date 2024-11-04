@@ -13,7 +13,6 @@ export const StyledContainer = styled(Container)({
   display: "flex",
   justifyContent: "center",
   alignItems: "flex-start",
-  height: "100vh",
   paddingTop: "5rem",
 });
 
