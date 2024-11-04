@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import {
-  StyledContainer,
-  StyledPaper,
   StyledBox,
-  StyledButton,
-  StyledTextField,
+  StyledContainer,
   StyledLink,
+  StyledPaper,
   StyledTypography,
-} from "./loginForm.style.ts";
+} from "./auth.style.ts";
+import { Button, TextField } from "../ui";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -19,14 +18,14 @@ export const Login = () => {
             Welcome! Log in to see players
           </StyledTypography>
 
-          <StyledTextField
+          <TextField
             label="Email"
             placeholder="Enter your email address"
             variant="outlined"
             fullWidth
           />
 
-          <StyledTextField
+          <TextField
             label="Password"
             placeholder="Enter your password"
             variant="outlined"
@@ -34,14 +33,11 @@ export const Login = () => {
             type="password"
           />
 
-          <StyledButton
-            onClick={() => navigate("/project2/players")}
-            variant="contained"
-            color="primary"
+          <Button
+            text="Log in"
             fullWidth
-          >
-            Log In
-          </StyledButton>
+            onClick={() => navigate("/project2/players")}
+          />
 
           <StyledLink
             onClick={() => navigate("/project2/signup")}

@@ -33,6 +33,14 @@ const QueryType = new GraphQLObjectType({
       type: new GraphQLList(UserType),
       resolve: userResolver.UserQuery.users,
     },
+    auth: {
+      type: GraphQLInt,
+      resolve: userResolver.UserQuery.auth,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+    },
     clubs: {
       type: new GraphQLList(ClubType),
       resolve: clubResolver.ClubQuery.clubs,
@@ -86,9 +94,9 @@ const QueryType = new GraphQLObjectType({
 const MutationType = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    addUser: {
+    register: {
       type: GraphQLBoolean,
-      resolve: userResolver.UserMutation.addUser,
+      resolve: userResolver.UserMutation.register,
       args: {
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },

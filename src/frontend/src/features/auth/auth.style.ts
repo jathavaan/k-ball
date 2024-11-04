@@ -1,19 +1,10 @@
 import { styled } from "@mui/material/styles";
-import {
-  Container,
-  Paper,
-  Box,
-  Button,
-  TextField,
-  Typography,
-  Link,
-} from "@mui/material";
+import { Box, Button, Container, Link, Paper, Typography } from "@mui/material";
 
 export const StyledContainer = styled(Container)({
   display: "flex",
   justifyContent: "center",
   alignItems: "flex-start",
-  height: "100vh",
   paddingTop: "5rem",
 });
 
@@ -33,10 +24,6 @@ export const StyledBox = styled(Box)({
 export const StyledButton = styled(Button)({
   marginTop: "1rem",
   marginBottom: "1rem",
-});
-
-export const StyledTextField = styled(TextField)({
-  margin: "8px 0",
 });
 
 export const StyledLink = styled(Link)(({ theme }) => ({

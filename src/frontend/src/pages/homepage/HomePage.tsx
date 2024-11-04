@@ -57,7 +57,7 @@ export const HomePage = () => {
           <Button
             onClick={() => navigate("/project2/login")}
             text="Log in"
-            sx={{ mt: 2, width: "auto" }}
+            sx={{ mt: 2, width: "auto", borderRadius: "50px" }}
           />
         </Box>
       </div>
