@@ -60,11 +60,11 @@ export const SearchBar = () => {
         placeholder="Search..."
       />
 
-      {localQuery && (
+      {
         <StyledClearButton aria-label="clear" onClick={handleClear}>
           <ClearIcon />
         </StyledClearButton>
-      )}
+      }
       <StyledSearchButton aria-label="search" onClick={handleSearch}>
         <SearchIcon />
       </StyledSearchButton>
