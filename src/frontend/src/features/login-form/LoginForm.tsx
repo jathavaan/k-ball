@@ -20,7 +20,7 @@ export const Login = () => {
           </StyledTypography>
 
           <StyledTextField
-            label="Username"
+            label="Email"
             placeholder="Enter your email address"
             variant="outlined"
             fullWidth
@@ -35,7 +35,6 @@ export const Login = () => {
           />
 
           <StyledButton
-            //href="players"
             onClick={() => navigate("/project2/players")}
             variant="contained"
             color="primary"
@@ -45,8 +44,7 @@ export const Login = () => {
           </StyledButton>
 
           <StyledLink
-            //onClick={() => navigate("/project2/signup")}
-            href="/project2/signup"
+            onClick={() => navigate("/project2/signup")}
             variant="body2"
             underline="hover"
           >

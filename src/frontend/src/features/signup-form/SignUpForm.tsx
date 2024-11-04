@@ -20,8 +20,15 @@ export const SignUpForm = () => {
           </StyledTypography>
 
           <StyledTextField
-            label="Username"
-            placeholder="Choose a username"
+            label="First Name"
+            placeholder="Enter your first name"
+            variant="outlined"
+            fullWidth
+          />
+
+          <StyledTextField
+            label="Last Name"
+            placeholder="Enter your last name"
             variant="outlined"
             fullWidth
           />
@@ -39,7 +46,7 @@ export const SignUpForm = () => {
             placeholder="Create a password"
             variant="outlined"
             fullWidth
-            type="password" //spesifisere hva - type er prop til textfield fra mui
+            type="password"
           />
 
           <StyledButton
@@ -52,8 +59,8 @@ export const SignUpForm = () => {
           </StyledButton>
 
           <StyledLink
-            //onClick={() => navigate("/project2/login")}
-            href="/project2/login"
+            onClick={() => navigate("/project2/login")}
+            //href="/project2/login"
             variant="body2"
             underline="hover"
           >

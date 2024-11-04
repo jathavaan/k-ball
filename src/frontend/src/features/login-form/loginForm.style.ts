@@ -42,6 +42,7 @@ export const StyledTextField = styled(TextField)({
 export const StyledLink = styled(Link)(({ theme }) => ({
   marginTop: "1rem",
   fontFamily: theme.typography.fontFamily,
+  cursor: "pointer",
 }));
 
 export const StyledTypography = styled(Typography)(({ theme }) => ({
