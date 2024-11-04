@@ -17,6 +17,7 @@ export const SearchBar = () => {
   const searchQuery = useSelector(selectSearchQuery);
   const [localQuery, setLocalQuery] = useState(searchQuery); // Search is local until the user submits search
   const { triggerSearch } = useSearch();
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
   const handleSearch = () => {
     if (localQuery) {
@@ -28,6 +29,7 @@ export const SearchBar = () => {
     setLocalQuery("");
     dispatch(setTempSearch(""));
     triggerSearch("");
+    setHasUserInteracted(false);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -38,6 +40,7 @@ export const SearchBar = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalQuery(event.target.value);
+    setHasUserInteracted(true);
   };
 
   useEffect(() => {
@@ -60,11 +63,11 @@ export const SearchBar = () => {
         placeholder="Search..."
       />
 
-      {
+      {hasUserInteracted && searchQuery !== "" && (
         <StyledClearButton aria-label="clear" onClick={handleClear}>
           <ClearIcon />
         </StyledClearButton>
-      }
+      )}
       <StyledSearchButton aria-label="search" onClick={handleSearch}>
         <SearchIcon />
       </StyledSearchButton>
