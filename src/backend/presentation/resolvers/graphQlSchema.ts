@@ -58,6 +58,7 @@ const QueryType = new GraphQLObjectType({
         name: "Players",
         fields: {
           playerCards: { type: new GraphQLList(PlayerType) },
+          totalPlayers: { type: GraphQLInt },
           totalPages: { type: GraphQLInt },
           currentPage: { type: GraphQLInt },
         },

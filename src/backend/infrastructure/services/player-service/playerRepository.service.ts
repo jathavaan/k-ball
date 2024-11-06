@@ -176,7 +176,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
       whereConditions.currentClub = { id: In(filters.clubIds) };
     }
     if (filters.countryIds && filters.countryIds.length > 0) {
-      whereConditions.birthPlace = { country: { id: In(filters.countryIds) } };
+      whereConditions.country = { id: In(filters.countryIds) };
     }
     if (filters.positionIds && filters.positionIds.length > 0) {
       whereConditions.position = { id: In(filters.positionIds) };
@@ -189,7 +189,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
       where: whereConditions,
       relations: {
         currentClub: true,
-        birthPlace: { country: true },
+        country: true,
         position: true,
       },
     });
@@ -201,7 +201,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
       where: whereConditions,
       relations: {
         currentClub: true,
-        birthPlace: { country: true },
+        country: true,
         position: true,
       },
       skip: offset,
@@ -222,12 +222,9 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
           id: true,
           name: true,
         },
-        birthPlace: {
+        country: {
           id: true,
-          country: {
-            id: true,
-            name: true,
-          },
+          name: true,
         },
       },
     });

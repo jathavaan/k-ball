@@ -1,14 +1,31 @@
 ﻿import { injectable } from "inversify";
 import { CountryRepositoryServiceBase } from "../../../application/contracts";
 import { KBallDbContext } from "../../persistence/dataSource";
-import { Country } from "../../../domain/entities";
+import { Country, Player } from "../../../domain/entities";
 
 @injectable()
 export class CountryRepositoryService implements CountryRepositoryServiceBase {
   dbContext = KBallDbContext.manager;
 
   async getCountries() {
-    return await this.dbContext.find(Country);
+    const countries = await this.dbContext.query(`
+      SELECT 
+          country.id AS id,
+          country.name AS name,
+          country."flagUrl" AS "flagUrl",
+          COUNT(player.id) AS "playerCount"
+      FROM 
+          country
+      LEFT JOIN 
+          player ON player."countryId" = country.id
+      GROUP BY 
+          country.id, country.name, country."flagUrl"
+      HAVING 
+          COUNT(player.id) > 0
+      ORDER BY 
+          "playerCount" DESC;
+    `);
+    return countries;
   }
 
   async getCountryByName(name: string) {
@@ -32,8 +49,8 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
       (country) =>
         !existingCountries.some(
           (existingCountry) =>
-            existingCountry.name.toLowerCase() === country.name.toLowerCase(),
-        ),
+            existingCountry.name.toLowerCase() === country.name.toLowerCase()
+        )
     );
 
     if (countries.length === 0) {
@@ -46,7 +63,7 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
 
   async getCountryAddIfMissing(
     countryName: string,
-    flagUrl?: string,
+    flagUrl?: string
   ): Promise<Country> {
     return await this.dbContext.transaction(
       async (transactionalEntityManager) => {
@@ -66,7 +83,7 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
 
         await transactionalEntityManager.save(Country, newCountry);
         return newCountry;
-      },
+      }
     );
   }
 }
