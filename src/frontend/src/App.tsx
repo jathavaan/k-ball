@@ -27,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/project2" element={<HomePage />} />
             <Route path="/project2/login" element={<LoginPage />} />
-            <Route path="/project2/signup" element={<SignUp />} />
+            <Route path="/project2/register" element={<SignUp />} />
             <Route
               path="/project2/players"
               element={<ProtectedRoute element={<PlayerDashboard />} />}
