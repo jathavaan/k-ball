@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectSortBy,
   selectSortOrder,
-  setSortBy,
   setSortOrder,
 } from "./playerSorting.slice";
 
