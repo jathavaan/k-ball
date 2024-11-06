@@ -8,8 +8,26 @@ import {
   StyledTableRow,
 } from "./playerRating.style.ts";
 import { Button } from "../ui/button/Button.tsx";
+import { usePlayerRating } from "./playerRating.hooks.ts";
+import { CategoryRatings } from "./playerRating.slice.ts";
 
-export const PlayerRating: React.FC = () => {
+interface PlayerRatingProps {
+  playerId: string;
+  userId: string;
+}
+export const PlayerRating: React.FC<PlayerRatingProps> = ({
+  playerId,
+  userId,
+}) => {
+  const {
+    playerRatings,
+    isEditing,
+    handleEdit,
+    handleSaveChanges,
+    temporaryRating,
+    handleRatingChange,
+  } = usePlayerRating(playerId, userId);
+
   return (
     <TableContainer
       sx={(theme) => ({
@@ -39,13 +57,30 @@ export const PlayerRating: React.FC = () => {
                 <StyledTableCell>
                   <StyledRating
                     name={`overall-${category.toLowerCase()}`}
-                    readOnly={category === "Average"}
+                    value={playerRatings.overall?.[category] || 0}
+                    readOnly
                   />
                 </StyledTableCell>
                 <StyledTableCell>
                   <StyledRating
                     name={`your-${category.toLowerCase()}`}
-                    readOnly={category === "average"}
+                    value={
+                      isEditing
+                        ? temporaryRating?.[category as keyof CategoryRatings]
+                        : playerRatings.usePlayerRating?.[category] || 0
+                    }
+                    readOnly
+                    onChange={(
+                      _,
+                      newValue, //fjernet event
+                    ) =>
+                      isEditing &&
+                      newValue !== null &&
+                      handleRatingChange(
+                        category as keyof CategoryRatings,
+                        newValue,
+                      )
+                    }
                   />
                 </StyledTableCell>
               </StyledTableRow>
@@ -53,7 +88,15 @@ export const PlayerRating: React.FC = () => {
           )}
         </TableBody>
       </StyledPlayerRatingTable>
-      <Button text="Edit your rating" sx={{ mt: 2 }}></Button>
+      {isEditing ? (
+        <Button
+          onClick={handleSaveChanges}
+          text="Save changes"
+          sx={{ mt: 2 }}
+        />
+      ) : (
+        <Button onClick={handleEdit} text="Edit your rating" sx={{ mt: 2 }} />
+      )}
     </TableContainer>
   );
 };
