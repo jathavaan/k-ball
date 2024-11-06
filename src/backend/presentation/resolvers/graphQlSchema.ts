@@ -6,7 +6,11 @@
   GraphQLSchema,
   GraphQLString,
 } from "graphql/type";
-import { UserType } from "./user/user.typeDefinitions";
+import {
+  UserAuthType,
+  UserRegisterType,
+  UserType,
+} from "./user/user.typeDefinitions";
 import { userResolver } from "./user/user.resolver";
 import { ClubType } from "./club/club.typeDefinitions";
 import { clubResolver } from "./club/club.resolver";
@@ -34,7 +38,7 @@ const QueryType = new GraphQLObjectType({
       resolve: userResolver.UserQuery.users,
     },
     auth: {
-      type: GraphQLInt,
+      type: UserAuthType,
       resolve: userResolver.UserQuery.auth,
       args: {
         email: { type: GraphQLString },
@@ -96,7 +100,7 @@ const MutationType = new GraphQLObjectType({
   name: "Mutation",
   fields: {
     register: {
-      type: GraphQLBoolean,
+      type: UserRegisterType,
       resolve: userResolver.UserMutation.register,
       args: {
         firstName: { type: GraphQLString },

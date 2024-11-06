@@ -2,9 +2,10 @@
 import { playerProfileInfoReducer } from "./features/player-profile-info";
 import { playerStatsTableReducer } from "./features/player-stats-table";
 import { playerFiltersReducer } from "./features/player-filters";
-import { searchbarReducer } from "./features/searchbar/searchbar.slice";
-import { playerCardGridReducer } from "./features/player-card/playerCardGrid.slice";
-import { playerSortingReducer } from "./features/player-sorting/playerSorting.slice";
+import { searchbarReducer } from "./features/searchbar";
+import { playerCardGridReducer } from "./features/player-card";
+import { playerSortingReducer } from "./features/player-sorting";
+import { loginFormReducer, registerFormReducer } from "./features/auth";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,8 @@ export const store = configureStore({
     searchbarReducer,
     playerCardGridReducer,
     playerSortingReducer,
+    loginFormReducer,
+    registerFormReducer,
   },
 });
 

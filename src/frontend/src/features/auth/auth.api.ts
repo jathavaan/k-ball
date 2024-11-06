@@ -1,4 +1,9 @@
-﻿import { LoginProps, RegisterProps } from "./auth.types.ts";
+﻿import {
+  LoginProps,
+  LoginResponse,
+  RegisterProps,
+  RegisterResponse,
+} from "./auth.types.ts";
 import { gql } from "@apollo/client";
 import { apiClient } from "../../shared/api.client.ts";
 
@@ -15,12 +20,14 @@ export const registerUser = async (props: RegisterProps): Promise<boolean> => {
         lastName: $lastName
         email: $email
         password: $password
-      )
+      ) {
+        isUserRegistered
+      }
     }
   `;
 
   try {
-    const response = await apiClient.mutate<{ addUser: boolean }>({
+    const response = await apiClient.mutate<RegisterResponse>({
       mutation: REGISTER_USER,
       variables: {
         firstName: props.firstName,
@@ -30,7 +37,7 @@ export const registerUser = async (props: RegisterProps): Promise<boolean> => {
       },
     });
 
-    const result = response.data?.addUser;
+    const result = response.data?.register.isUserRegistered;
     if (result === undefined) {
       throw new Error("Failed to create a user. Response was undefined");
     }
@@ -47,12 +54,14 @@ export const authenticateUser = async (
 ): Promise<number | null> => {
   const USER_AUTHENTICATION = gql`
     query auth($email: String!, $password: String!) {
-      loginUser(email: $email, password: $password)
+      auth(email: $email, password: $password) {
+        userId
+      }
     }
   `;
 
   try {
-    const response = await apiClient.query<number>({
+    const response = await apiClient.query<LoginResponse>({
       query: USER_AUTHENTICATION,
       variables: {
         email: props.email,
@@ -60,9 +69,10 @@ export const authenticateUser = async (
       },
     });
 
-    return response.data;
+    return response.data.auth.userId;
   } catch (error) {
     console.error("Something went wrong while logging in");
+    console.error(error);
     throw error;
   }
 };

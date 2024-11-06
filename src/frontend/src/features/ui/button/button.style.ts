@@ -1,4 +1,4 @@
-import { styled, Button } from "@mui/material";
+import { Button, styled } from "@mui/material";
 
 export const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
@@ -9,5 +9,9 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: "none",
   "&:hover": {
     backgroundColor: theme.palette.secondary.light,
+  },
+  "&.Mui-disabled": {
+    backgroundColor: "#d3d3d3",
+    color: "white",
   },
 }));

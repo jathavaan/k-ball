@@ -1,5 +1,5 @@
-import { Login } from "../../features/auth";
+import { LoginForm } from "../../features/auth";
 
 export const LoginPage = () => {
-  return <Login />;
+  return <LoginForm />;
 };

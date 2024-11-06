@@ -1,129 +1,230 @@
 import { useNavigate } from "react-router-dom";
 import {
-  StyledBox,
   StyledContainer,
   StyledLink,
   StyledPaper,
   StyledTypography,
 } from "./auth.style";
+import { Button, ErrorAlert, SuccessAlert, TextField } from "../ui";
+import { useRegister, useRegisterForm } from "./auth.hooks.ts";
+import Grid from "@mui/material/Grid2";
 import {
-  Button,
-  ErrorAlert,
-  LinearProgressBar,
-  SuccessAlert,
-  TextField,
-} from "../ui";
-import { useState } from "react";
-import { RegisterProps } from "./auth.types.ts";
-import { useRegister } from "./auth.hooks.ts";
+  registerEmailSelector,
+  registerFirstNameSelector,
+  registerLastNameSelector,
+  registerPasswordSelector,
+} from "./auth.slice.ts";
+import { useSelector } from "react-redux";
 
 export const SignUpForm = () => {
   const navigate = useNavigate();
 
-  const [registerFormData, setRegisterFormData] = useState<RegisterProps>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    isSubmitted: false,
-  });
+  const firstName = useSelector(registerFirstNameSelector);
+  const lastName = useSelector(registerLastNameSelector);
+  const email = useSelector(registerEmailSelector);
+  const password = useSelector(registerPasswordSelector);
 
-  const { handleRegister, data, error, isLoading } =
-    useRegister(registerFormData);
+  const { onRegisterClick, data, error, isPending } = useRegister();
+  const {
+    handleFirstNameChange,
+    handlePasswordChange,
+    handleEmailChange,
+    handleLastNameChange,
+  } = useRegisterForm();
 
   return (
     <StyledContainer maxWidth="sm">
       <StyledPaper elevation={3}>
-        <StyledBox>
-          <StyledTypography variant="h5" gutterBottom>
-            Create your account
-          </StyledTypography>
-
-          {registerFormData.isSubmitted && isLoading ? (
-            <LinearProgressBar />
-          ) : null}
-          {registerFormData.isSubmitted && error ? (
-            <ErrorAlert message="Oops! Something went wrong" />
-          ) : null}
-          {registerFormData.isSubmitted && data !== undefined && data ? (
-            <SuccessAlert message="Registration successful" />
-          ) : (
-            <ErrorAlert message="An account with this email have already been registered" />
-          )}
-
-          <TextField
-            label="First name"
-            placeholder="Enter your first name"
-            variant="outlined"
-            onChange={(e) =>
-              setRegisterFormData({
-                ...registerFormData,
-                firstName: e.target.value,
-                isSubmitted: false,
-              })
-            }
-            fullWidth
-          />
-
-          <TextField
-            label="Last name"
-            placeholder="Enter your last name"
-            variant="outlined"
-            onChange={(e) =>
-              setRegisterFormData({
-                ...registerFormData,
-                lastName: e.target.value,
-                isSubmitted: false,
-              })
-            }
-            fullWidth
-          />
-
-          <TextField
-            label="E-mail"
-            placeholder="Enter your email address"
-            variant="outlined"
-            onChange={(e) =>
-              setRegisterFormData({
-                ...registerFormData,
-                email: e.target.value,
-                isSubmitted: false,
-              })
-            }
-            fullWidth
-            type="email"
-          />
-
-          <TextField
-            label="Password"
-            placeholder="Create a password"
-            variant="outlined"
-            onChange={(e) =>
-              setRegisterFormData({
-                ...registerFormData,
-                password: e.target.value,
-                isSubmitted: false,
-              })
-            }
-            fullWidth
-            type="password"
-          />
-          <Button
-            onClick={async () => {
-              setRegisterFormData({ ...registerFormData, isSubmitted: true });
-              await handleRegister();
+        <Grid container spacing={2}>
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            fullWidth
-            text="Sign Up"
-          />
-          <StyledLink
-            variant="body2"
-            underline="hover"
-            onClick={() => navigate("/project2/login")}
           >
-            Go back to login
-          </StyledLink>
-        </StyledBox>
+            <StyledTypography variant="h5" gutterBottom>
+              Create your account
+            </StyledTypography>
+          </Grid>
+
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              label="First name"
+              placeholder="Enter your first name"
+              variant="outlined"
+              fullWidth
+              value={firstName.value}
+              error={firstName.error.isError}
+              helperText={firstName.error.message}
+              onChange={(e) => handleFirstNameChange(e.target.value)}
+            />
+          </Grid>
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              label="Last name"
+              placeholder="Enter your last name"
+              variant="outlined"
+              fullWidth
+              value={lastName.value}
+              error={lastName.error.isError}
+              helperText={lastName.error.message}
+              onChange={(e) => handleLastNameChange(e.target.value)}
+            />
+          </Grid>
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              label="E-mail"
+              placeholder="Enter your email address"
+              variant="outlined"
+              type="email"
+              fullWidth
+              value={email.value}
+              error={email.error.isError}
+              helperText={email.error.message}
+              onChange={(e) => handleEmailChange(e.target.value)}
+            />
+          </Grid>
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              label="Password"
+              placeholder="Create a password"
+              variant="outlined"
+              fullWidth
+              type="password"
+              value={password.value}
+              error={password.error.isError}
+              helperText={password.error.message}
+              onChange={(e) => handlePasswordChange(e.target.value)}
+            />
+          </Grid>
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              text="Sign up"
+              disabled={
+                firstName.error.isError ||
+                lastName.error.isError ||
+                email.error.isError ||
+                password.error.isError ||
+                !firstName.value ||
+                !lastName.value ||
+                !email.value ||
+                !password.value ||
+                isPending
+              }
+              fullWidth
+              onClick={() => onRegisterClick()}
+            />
+          </Grid>
+          {error ? (
+            <Grid
+              size={{ xs: 12 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <ErrorAlert
+                message={`Oops! Something went wrong`}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              />
+            </Grid>
+          ) : null}
+          {typeof data === "boolean" && !data ? (
+            <Grid
+              size={{ xs: 12 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <ErrorAlert
+                message={`There is already an account with this email address`}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              />
+            </Grid>
+          ) : typeof data === "boolean" && data ? (
+            <Grid
+              size={{ xs: 12 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <SuccessAlert
+                message={`Successfully registered user`}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              />
+            </Grid>
+          ) : null}
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <StyledLink
+              variant="body2"
+              underline="hover"
+              onClick={() => navigate("/project2/login")}
+            >
+              Go back to login
+            </StyledLink>
+          </Grid>
+        </Grid>
       </StyledPaper>
     </StyledContainer>
   );

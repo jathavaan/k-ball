@@ -25,9 +25,11 @@ export const userResolver = {
     users: async () => await getUsersQueryHandler.handle(new GetUsersQuery()),
     auth: async (_: any, args: { email: string; password: string }) => {
       const { email, password } = args;
-      return await checkUserCredentialsQueryHandler.handle(
+      const userId = await checkUserCredentialsQueryHandler.handle(
         new CheckUserCredentialsQuery(email, password),
       );
+
+      return { userId };
     },
   },
   UserMutation: {
@@ -41,9 +43,11 @@ export const userResolver = {
       },
     ) => {
       const { firstName, lastName, email, password } = args;
-      return await createUserCommandHandler.handle(
+      const isUserRegistered = await createUserCommandHandler.handle(
         new CreateUserCommand(firstName, lastName, email, password),
       );
+
+      return { isUserRegistered };
     },
   },
 };

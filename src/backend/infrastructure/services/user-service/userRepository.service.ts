@@ -24,12 +24,6 @@ export class UserRepositoryService implements UserRepositoryServiceBase {
 
   async getUserByEmail(email: string) {
     return await this.dbContext.findOne(User, {
-      select: {
-        id: true,
-        email: true,
-        firstName: true,
-        lastName: true,
-      },
       where: {
         email: email,
       },
