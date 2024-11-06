@@ -55,7 +55,7 @@ export const HomePage = () => {
             sx={{ color: "#CC6469", fontSize: "2rem", textAlign: "center" }}
           />
           <Button
-            onClick={() => navigate("/project2/players")}
+            onClick={() => navigate("/project2/login")}
             text="Log in"
             sx={{ mt: 2, width: "auto" }}
           />

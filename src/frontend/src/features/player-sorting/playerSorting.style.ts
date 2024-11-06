@@ -1,5 +1,4 @@
-import { styled, Typography } from "@mui/material";
-import { ToggleButtonGroup } from "@mui/lab";
+import { styled, Typography, ToggleButtonGroup } from "@mui/material";
 
 export const StyledSortContainer = styled("div")(() => ({
   display: "flex",

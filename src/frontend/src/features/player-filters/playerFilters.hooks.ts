@@ -8,6 +8,8 @@ import {
   selectTempFilters,
   selectHasChanges,
 } from "./playerFilters.slice.ts";
+import { useCount } from "./playerFilters.query.ts";
+import { selectTempSearchQuery } from "../searchbar/searchbar.slice.ts";
 
 export const useClubSelection = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -83,7 +85,6 @@ export const useCountrySelection = () => {
       ];
     }
 
-    // Hvis listen er tom, eller hvis alle land er valgt, sett til [-1]
     if (updatedCountryIds.length === 0) {
       updatedCountryIds = [-1];
     }
@@ -92,6 +93,23 @@ export const useCountrySelection = () => {
   };
 
   return { countryIds, toggleSelection };
+};
+
+export const useFilteredCount = () => {
+  const search = useSelector(selectTempSearchQuery);
+  let { clubIds, countryIds, positionIds } = useSelector(selectTempFilters);
+  [clubIds, countryIds, positionIds] = [clubIds, countryIds, positionIds].map(
+    (ids) => (ids.includes(-1) ? [] : ids),
+  );
+
+  const { data, isLoading, isError } = useCount(
+    search,
+    clubIds,
+    countryIds,
+    positionIds,
+  );
+
+  return { count: data?.totalPlayers ?? 0, isLoading, isError };
 };
 
 export const useApplyFilters = () => {

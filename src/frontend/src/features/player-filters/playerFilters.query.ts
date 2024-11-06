@@ -1,5 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getClubs, getCountries, getPositions } from "./playerFilters.api.ts";
+import {
+  getClubs,
+  getCountries,
+  getPositions,
+  getCount,
+} from "./playerFilters.api.ts";
 
 export const useCountries = () =>
   useQuery({
@@ -12,3 +17,15 @@ export const useClubs = () =>
 
 export const usePositions = () =>
   useQuery({ queryKey: ["positions"], queryFn: getPositions });
+
+export const useCount = (
+  search: string,
+  clubIds: number[],
+  countryIds: number[],
+  positionIds: number[],
+) => {
+  return useQuery({
+    queryKey: ["count", search, clubIds, countryIds, positionIds],
+    queryFn: getCount,
+  });
+};

@@ -1,10 +1,4 @@
-﻿import {
-  Checkbox,
-  FormHelperText,
-  MenuItem,
-  Select,
-  styled,
-} from "@mui/material";
+﻿import { Checkbox, MenuItem, Select, styled } from "@mui/material";
 
 export const StyledSelect = styled(Select)(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
@@ -27,12 +21,6 @@ export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
     backgroundColor: theme.palette.primary.contrastText,
     color: theme.palette.primary.main,
   },
-}));
-
-export const StyledHelperText = styled(FormHelperText)(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
-  fontSize: "1.0rem",
-  margin: "0rem",
 }));
 
 export const StyledCheckBox = styled(Checkbox)(({ theme }) => ({

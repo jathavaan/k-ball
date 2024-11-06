@@ -9,7 +9,11 @@ export class ClubRepositoryService implements ClubRepositoryServiceBase {
   dbContext = KBallDbContext.manager;
 
   async getClubs() {
-    return await this.dbContext.find(Club);
+    return await this.dbContext.find(Club, {
+      order: {
+        name: "ASC",
+      },
+    });
   }
 
   async getClubByName(name: string) {
@@ -34,8 +38,8 @@ export class ClubRepositoryService implements ClubRepositoryServiceBase {
       (club) =>
         !existingClubs.some(
           (existingClub) =>
-            existingClub.name.toLowerCase() === club.name.toLowerCase(),
-        ),
+            existingClub.name.toLowerCase() === club.name.toLowerCase()
+        )
     );
 
     if (clubs.length === 0) {
