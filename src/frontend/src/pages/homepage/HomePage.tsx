@@ -7,6 +7,7 @@ import {
 import Home from "../../assets/home.jpg";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { isUserLoggedIn } from "../../features/auth/auth.hooks.ts";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -54,11 +55,19 @@ export const HomePage = () => {
             text="Welcome to the Korean football league"
             sx={{ color: "#CC6469", fontSize: "2rem", textAlign: "center" }}
           />
-          <Button
-            onClick={() => navigate("/project2/login")}
-            text="Log in"
-            sx={{ mt: 2, width: "auto" }}
-          />
+          {!isUserLoggedIn() ? (
+            <Button
+              onClick={() => navigate("/project2/login")}
+              text="Log in"
+              sx={{ mt: 2, width: "auto", borderRadius: "50px" }}
+            />
+          ) : (
+            <Button
+              onClick={() => navigate("/project2/players")}
+              text="See players"
+              sx={{ mt: 2, width: "auto", borderRadius: "50px" }}
+            />
+          )}
         </Box>
       </div>
     </>
