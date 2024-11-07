@@ -1,4 +1,4 @@
-import { Card, styled } from "@mui/material";
+import { Breadcrumbs, Card, Chip, styled } from "@mui/material";
 
 export const StyledPlayerInfoCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.primary.light,
@@ -19,3 +19,15 @@ export const StyledPlayerInfoCard = styled(Card)(({ theme }) => ({
     padding: "0.5rem",
   },
 }));
+
+export const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
+  color: theme.palette.secondary.main,
+})) as typeof Breadcrumbs;
+
+export const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
+  backgroundColor: theme.palette.secondary.main,
+  color: theme.palette.secondary.contrastText,
+  "&:hover": {
+    backgroundColor: theme.palette.secondary.light,
+  },
+})) as typeof Chip;
