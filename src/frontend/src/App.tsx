@@ -35,7 +35,6 @@ function App() {
             <Route
               path="/project2/players/:playerId"
               element={<ProtectedRoute element={<PlayerProfile />} />}
-              // element={<PlayerProfile />}
             />
           </Routes>
         </Container>
