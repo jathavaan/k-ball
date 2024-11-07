@@ -8,4 +8,6 @@ export * from "./arrow-downward-icon/ArrowDownwardIcon";
 export * from "./button/Button";
 export * from "./text/Text";
 export * from "./button/Button";
+export * from "./text-field/TextField";
+export * from "./success-alert/SuccessAlert";
 export * from "./helper-text/HelperText";

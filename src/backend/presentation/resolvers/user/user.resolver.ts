@@ -1,4 +1,6 @@
 ﻿import {
+  CheckUserCredentialsQuery,
+  CheckUserCredentialsQueryHandler,
   GetUserByIdQuery,
   GetUserByIdQueryHandler,
   GetUsersQuery,
@@ -12,6 +14,7 @@ import {
 const createUserCommandHandler = new CreateUserCommandHandler();
 const getUserByIdQueryHandler = new GetUserByIdQueryHandler();
 const getUsersQueryHandler = new GetUsersQueryHandler();
+const checkUserCredentialsQueryHandler = new CheckUserCredentialsQueryHandler();
 
 export const userResolver = {
   UserQuery: {
@@ -20,9 +23,17 @@ export const userResolver = {
       return await getUserByIdQueryHandler.handle(new GetUserByIdQuery(userId));
     },
     users: async () => await getUsersQueryHandler.handle(new GetUsersQuery()),
+    auth: async (_: any, args: { email: string; password: string }) => {
+      const { email, password } = args;
+      const userId = await checkUserCredentialsQueryHandler.handle(
+        new CheckUserCredentialsQuery(email, password),
+      );
+
+      return { userId };
+    },
   },
   UserMutation: {
-    addUser: async (
+    register: async (
       _: any,
       args: {
         firstName: string;
@@ -32,9 +43,11 @@ export const userResolver = {
       },
     ) => {
       const { firstName, lastName, email, password } = args;
-      return await createUserCommandHandler.handle(
+      const isUserRegistered = await createUserCommandHandler.handle(
         new CreateUserCommand(firstName, lastName, email, password),
       );
+
+      return { isUserRegistered };
     },
   },
 };

@@ -4,10 +4,19 @@ import { Navbar } from "./features/navbar/Navbar.tsx";
 import {
   HomePage,
   LoginPage,
-  SignUp,
   PlayerDashboard,
   PlayerProfile,
+  SignUp,
 } from "./pages";
+import { isUserLoggedIn } from "./features/auth/auth.hooks.ts";
+import { ReactElement } from "react";
+
+type ProtectedRouteProps = {
+  element: ReactElement;
+};
+const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
+  return isUserLoggedIn() ? element : <LoginPage />;
+};
 
 function App() {
   return (
@@ -18,11 +27,15 @@ function App() {
           <Routes>
             <Route path="/project2" element={<HomePage />} />
             <Route path="/project2/login" element={<LoginPage />} />
-            <Route path="/project2/signup" element={<SignUp />} />
-            <Route path="/project2/players" element={<PlayerDashboard />} />
+            <Route path="/project2/register" element={<SignUp />} />
+            <Route
+              path="/project2/players"
+              element={<ProtectedRoute element={<PlayerDashboard />} />}
+            />
             <Route
               path="/project2/players/:playerId"
-              element={<PlayerProfile />}
+              element={<ProtectedRoute element={<PlayerProfile />} />}
+              // element={<PlayerProfile />}
             />
           </Routes>
         </Container>
