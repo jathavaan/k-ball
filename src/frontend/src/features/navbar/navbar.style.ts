@@ -13,6 +13,9 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
 export const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
   padding: "0.3rem",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
 }));
 
 export const LogoButton = styled(Button)(() => ({
