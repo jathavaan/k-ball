@@ -33,7 +33,7 @@ export const PlayerFilters = () => {
           description={
             isLoading
               ? "Counting players..."
-              : `Current filters give ${count} players`
+              : `${count} players match the current filters`
           }
         />
         <Button
