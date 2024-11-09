@@ -8,9 +8,12 @@ import {
   addPlayerCards,
   setCurrentPage,
   setTotalPages,
+  addLoadedPages,
+  clearLoadedPages,
   selectPlayerCards,
   selectCurrentPage,
   selectTotalPages,
+  selectLoadedPages,
 } from "./playerCardGrid.slice";
 
 export const usePlayerCardGrid = (
@@ -40,18 +43,21 @@ export const usePlayerCardGrid = (
 
   const playerCards = useSelector(selectPlayerCards);
   const totalPages = useSelector(selectTotalPages);
+  const loadedPages = useSelector(selectLoadedPages);
 
   useEffect(() => {
     if (data) {
       if (currentPage === 1) {
         dispatch(setPlayerCardsGrid(data.playerCards));
-      } else {
+      } else if (!loadedPages.includes(currentPage)) {
         dispatch(addPlayerCards(data.playerCards));
       }
       dispatch(setTotalPages(data.totalPages));
       dispatch(setCurrentPage(page));
+
+      dispatch(addLoadedPages(currentPage));
     }
-  }, [data, dispatch, page]);
+  }, [data, dispatch, currentPage, page]);
 
   const prevFilters = useRef<string>("");
 
@@ -66,6 +72,7 @@ export const usePlayerCardGrid = (
 
   useEffect(() => {
     if (prevFilters.current && prevFilters.current !== currentFilters) {
+      dispatch(clearLoadedPages());
       dispatch(setCurrentPage(1));
     }
 
