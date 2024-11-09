@@ -39,8 +39,14 @@ export const SearchBar = () => {
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalQuery(event.target.value);
+    const newQuery = event.target.value;
+    setLocalQuery(newQuery);
     setHasUserInteracted(true);
+
+    if (hasUserInteracted && newQuery === "") {
+      dispatch(setTempSearch(""));
+      triggerSearch("");
+    }
   };
 
   useEffect(() => {
