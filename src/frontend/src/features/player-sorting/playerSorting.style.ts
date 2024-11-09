@@ -17,10 +17,12 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
       color: "white",
       fontFamily: theme.typography.fontFamily,
       width: "100%",
-
       "&.Mui-selected": {
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.primary.contrastText,
+        "&:hover": {
+          backgroundColor: theme.palette.secondary.dark,
+        },
       },
       "&:hover": {
         backgroundColor: theme.palette.secondary.dark,
@@ -32,6 +34,7 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
     },
   }),
 );
+
 styled(Typography)(({ theme }) => ({
   color: "white",
   marginRight: theme.spacing(2),
