@@ -18,13 +18,13 @@ const playerSortingSlice = createSlice({
     setSortOrder: (state, action: PayloadAction<"DESC" | "ASC">) => {
       state.sortOrder = action.payload;
     },
-    setSelectedSortOrder: (state, action) => {
+    setSelectedSortValue: (state, action) => {
       state.selectedSortValue = action.payload;
     },
   },
 });
 
-export const { setSortBy, setSortOrder, setSelectedSortOrder } =
+export const { setSortBy, setSortOrder, setSelectedSortValue } =
   playerSortingSlice.actions;
 
 export const selectSortBy = (state: RootState) =>

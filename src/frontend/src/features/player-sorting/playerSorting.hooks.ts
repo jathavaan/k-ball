@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectSortBy,
   selectSortOrder,
-  setSelectedSortOrder,
+  setSelectedSortValue,
   setSortOrder,
 } from "./playerSorting.slice";
 import { AppDispatch } from "../../store.ts";
@@ -22,7 +22,7 @@ export const useSorting = () => {
       dispatch(setSortOrder(newOrder || "DESC"));
     }
 
-    dispatch(setSelectedSortOrder(`${field}_${sortOrder}`));
+    dispatch(setSelectedSortValue(`${field}_${sortOrder}`));
   };
 
   return { sortBy, sortOrder, toggleSort };
