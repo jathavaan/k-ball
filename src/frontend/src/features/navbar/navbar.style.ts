@@ -1,4 +1,5 @@
 import { AppBar, Button, styled, Toolbar } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
@@ -13,6 +14,9 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
 export const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
   padding: "0.3rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 }));
 
 export const LogoButton = styled(Button)(() => ({
@@ -26,3 +30,7 @@ export const LogoButton = styled(Button)(() => ({
 export const LogoImage = styled("img")({
   height: "60px",
 });
+
+export const StyledLogoutIcon = styled(LogoutIcon)(({ theme }) => ({
+  color: theme.palette.primary.main,
+}));

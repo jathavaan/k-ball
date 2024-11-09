@@ -1,5 +1,10 @@
 import { Container } from "@mui/material";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { Navbar } from "./features/navbar/Navbar.tsx";
 import {
   HomePage,
@@ -14,8 +19,13 @@ import { ReactElement } from "react";
 type ProtectedRouteProps = {
   element: ReactElement;
 };
+
 const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
-  return isUserLoggedIn() ? element : <LoginPage />;
+  if (isUserLoggedIn()) {
+    return element;
+  } else {
+    return <Navigate to="/project2/login" />;
+  }
 };
 
 function App() {
@@ -29,7 +39,7 @@ function App() {
             <Route path="/project2/login" element={<LoginPage />} />
             <Route path="/project2/register" element={<SignUp />} />
             <Route
-              path="/project2/players"
+              path="/project2/players/"
               element={<ProtectedRoute element={<PlayerDashboard />} />}
             />
             <Route
