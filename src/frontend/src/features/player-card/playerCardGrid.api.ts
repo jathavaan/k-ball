@@ -26,7 +26,7 @@ const GET_PLAYER_CARDS = gql`
       playerCards {
         playerId: id
         fullName
-        club: currentClub
+        currentClub
         imageUrl
         position
         nationality
