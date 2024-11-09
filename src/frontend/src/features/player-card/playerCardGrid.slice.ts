@@ -22,7 +22,7 @@ const playerCardGridSlice = createSlice({
   name: "playerCardGrid",
   initialState,
   reducers: {
-    setPlayerCardsG: (state, action: PayloadAction<PlayerCardBase[]>) => {
+    setPlayerCardsGrid: (state, action: PayloadAction<PlayerCardBase[]>) => {
       state.playerCards = action.payload;
     },
 
@@ -41,7 +41,7 @@ const playerCardGridSlice = createSlice({
 });
 
 export const {
-  setPlayerCardsG,
+  setPlayerCardsGrid,
   addPlayerCards,
   setCurrentPage,
   setTotalPages,

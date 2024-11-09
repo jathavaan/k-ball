@@ -4,7 +4,7 @@ import { AppDispatch } from "../../store";
 import { usePlayerCards } from "./playerCardGrid.query";
 import { useRef } from "react";
 import {
-  setPlayerCardsG,
+  setPlayerCardsGrid,
   addPlayerCards,
   setCurrentPage,
   setTotalPages,
@@ -44,7 +44,7 @@ export const usePlayerCardGrid = (
   useEffect(() => {
     if (data) {
       if (currentPage === 1) {
-        dispatch(setPlayerCardsG(data.playerCards));
+        dispatch(setPlayerCardsGrid(data.playerCards));
       } else {
         dispatch(addPlayerCards(data.playerCards));
       }
