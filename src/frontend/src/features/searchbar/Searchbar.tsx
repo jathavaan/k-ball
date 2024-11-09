@@ -43,7 +43,7 @@ export const SearchBar = () => {
     setLocalQuery(newQuery);
     setHasUserInteracted(true);
 
-    if (hasUserInteracted && newQuery === "") {
+    if (newQuery === "" && searchQuery) {
       dispatch(setTempSearch(""));
       triggerSearch("");
     }
@@ -69,7 +69,7 @@ export const SearchBar = () => {
         placeholder="Search..."
       />
 
-      {hasUserInteracted && searchQuery !== "" && (
+      {hasUserInteracted && searchQuery && (
         <StyledClearButton aria-label="clear" onClick={handleClear}>
           <ClearIcon />
         </StyledClearButton>
