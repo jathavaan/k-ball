@@ -19,7 +19,6 @@ export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
       component={Paper}
       sx={(theme) => ({
         borderRadius: "0.5rem",
-        marginTop: "1rem",
         overflowX: "auto",
         [theme.breakpoints.down("sm")]: {
           width: "100%",

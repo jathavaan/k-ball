@@ -1,3 +1,4 @@
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import {
   PlayerProfileInfo,
   usePlayerProfileInfoCard,
@@ -9,7 +10,12 @@ import {
 } from "../../features/player-stats-table";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  StyledBreadcrumb,
+  StyledBreadcrumbs,
+} from "../../features/player-profile-info/playerProfileInfo.style.ts";
+import Grid from "@mui/material/Grid2";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();
@@ -23,22 +29,53 @@ export const PlayerProfile = () => {
     (state: RootState) => state.playerStatsTableReducer.playerStatsTable,
   );
   const playerStats = playerStatsTable || [];
+  const navigate = useNavigate();
   return (
-    <>
+    <Grid container spacing={2}>
       {isLoading || isStatsLoading ? (
-        <LinearProgressBar />
+        <Grid size={{ xs: 12 }}>
+          <LinearProgressBar />
+        </Grid>
       ) : isError || isStatsError ? (
-        <ErrorAlert
-          message={
-            "Oops! Something went wrong while fetching the player data or stats"
-          }
-        />
+        <Grid size={{ xs: 12 }}>
+          <ErrorAlert
+            message={
+              "Oops! Something went wrong while fetching the player data or stats"
+            }
+          />
+        </Grid>
       ) : (
         <>
-          {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
-          <PlayerStatsTable playerStatsTable={playerStats} />
+          <Grid size={{ xs: 12 }}>
+            <StyledBreadcrumbs separator={<NavigateNextIcon />}>
+              <StyledBreadcrumb
+                label="Players"
+                onClick={() => navigate("/project2/players")}
+              />
+              <StyledBreadcrumb
+                icon={
+                  playerProfileInfo ? (
+                    <img
+                      src={playerProfileInfo.clubLogo}
+                      alt={`Logo of ${playerProfileInfo.currentClub}`}
+                      style={{ width: "1rem", height: "1rem" }}
+                    />
+                  ) : undefined
+                }
+                label={playerProfileInfo?.fullName ?? ""}
+              />
+            </StyledBreadcrumbs>
+          </Grid>
+          <Grid size={{ xs: 12, md: 4 }}>
+            {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
+          </Grid>
+          <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
+            <Grid size={{ xs: 12 }}>
+              <PlayerStatsTable playerStatsTable={playerStats} />
+            </Grid>
+          </Grid>
         </>
       )}
-    </>
+    </Grid>
   );
 };

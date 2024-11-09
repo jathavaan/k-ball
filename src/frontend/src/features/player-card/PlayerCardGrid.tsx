@@ -2,13 +2,11 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store.ts";
 import Grid from "@mui/material/Grid2";
-import { ErrorAlert, LinearProgressBar } from "../ui";
+import { Button, ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {
-  selectSortBy,
-  selectSortOrder,
-} from "../player-sorting/playerSorting.slice.ts";
+import { useEffect, useState } from "react";
+import { selectSortBy, selectSortOrder } from "../player-sorting";
 import {
   selectCurrentPage,
   selectTotalPages,
@@ -47,13 +45,40 @@ export const PlayerCardGrid = () => {
   const noResultsOnFirstPage =
     currentPage === 1 && !isLoading && playerCards.length === 0;
 
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+  const handleScrollToTop = () => {
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <InfiniteScroll
       dataLength={playerCards.length}
       next={loadMorePlayers}
       hasMore={currentPage < totalPages}
-      loader={<LinearProgressBar />}
-      scrollThreshold={0.9}
+      loader={
+        <Grid size={{ xs: 12 }}>
+          <LinearProgressBar
+            sx={{
+              marginTop: "1rem",
+            }}
+          />
+        </Grid>
+      }
+      scrollThreshold={0.8}
       hasChildren={true}
     >
       <Grid
@@ -91,12 +116,35 @@ export const PlayerCardGrid = () => {
                 nationality={playerCard.nationality}
                 age={playerCard.age}
                 fullName={playerCard.fullName}
-                club={playerCard.club}
+                currentClub={playerCard.currentClub}
                 imageUrl={playerCard.imageUrl}
               />
             </Grid>
           ))
         )}
+        {showScrollToTop ? (
+          <Grid
+            size={{ xs: 12 }}
+            sx={{
+              position: "fixed",
+              bottom: 16,
+              left: 0,
+              right: 0,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 1000,
+            }}
+          >
+            <Button
+              text="To the top"
+              sx={{
+                borderRadius: "100rem",
+              }}
+              onClick={() => handleScrollToTop()}
+            />
+          </Grid>
+        ) : null}
       </Grid>
     </InfiniteScroll>
   );

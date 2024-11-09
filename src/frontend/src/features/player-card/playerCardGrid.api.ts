@@ -57,6 +57,8 @@ export const getPlayerCards = async ({
   | undefined
 > => {
   const [
+    // THe line is required for Tanstack Query
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _,
     page,
     limit,

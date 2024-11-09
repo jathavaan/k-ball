@@ -1,2 +1,2 @@
-export * from "./playerSorting.tsx";
+export * from "./PlayerSorting.tsx";
 export * from "./playerSorting.slice.ts";

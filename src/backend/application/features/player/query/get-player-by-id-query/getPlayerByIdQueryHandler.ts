@@ -8,7 +8,7 @@ export class GetPlayerByIdQueryHandler
   implements Request<GetPlayerByIdQuery, PlayerVm[]>
 {
   playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase"
+    "PlayerRepositoryServiceBase",
   );
 
   async handle(request: GetPlayerByIdQuery): Promise<PlayerVm[]> {
