@@ -52,14 +52,27 @@ export const PlayerProfile = () => {
                 label="Players"
                 onClick={() => navigate("/project2/players")}
               />
-              <StyledBreadcrumb label={playerProfileInfo?.fullName ?? ""} />
+              <StyledBreadcrumb
+                icon={
+                  playerProfileInfo ? (
+                    <img
+                      src={playerProfileInfo.clubLogo}
+                      alt={`Logo of ${playerProfileInfo.currentClub}`}
+                      style={{ width: "1rem", height: "1rem" }}
+                    />
+                  ) : undefined
+                }
+                label={playerProfileInfo?.fullName ?? ""}
+              />
             </StyledBreadcrumbs>
           </Grid>
-          <Grid size={{ xs: 12 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
           </Grid>
-          <Grid size={{ xs: 12 }}>
-            <PlayerStatsTable playerStatsTable={playerStats} />
+          <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
+            <Grid size={{ xs: 12 }}>
+              <PlayerStatsTable playerStatsTable={playerStats} />
+            </Grid>
           </Grid>
         </>
       )}

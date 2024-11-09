@@ -117,7 +117,7 @@ export const PlayerCardGrid = () => {
                 nationality={playerCard.nationality}
                 age={playerCard.age}
                 fullName={playerCard.fullName}
-                club={playerCard.club}
+                currentClub={playerCard.club}
                 imageUrl={playerCard.imageUrl}
               />
             </Grid>

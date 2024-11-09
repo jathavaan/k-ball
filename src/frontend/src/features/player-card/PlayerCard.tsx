@@ -40,7 +40,7 @@ export const PlayerCard = (props: PlayerCardProps) => {
             <Grid size={{ xs: 12 }}>
               <CardContentText
                 title="Team"
-                text={props.club}
+                text={props.currentClub}
                 sx={{ fontSize: "0.85rem" }}
               />
             </Grid>
