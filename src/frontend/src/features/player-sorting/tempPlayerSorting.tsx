@@ -6,7 +6,7 @@ import { useSorting } from "./playerSorting.hooks.ts";
 import { ToggleButton } from "@mui/material";
 import { HelperText } from "../ui";
 
-export const PlayerSorting = () => {
+export const TempPlayerSorting = () => {
   const { sortBy, sortOrder, toggleSort } = useSorting();
 
   return (
