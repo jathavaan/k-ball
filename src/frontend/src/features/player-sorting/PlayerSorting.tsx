@@ -5,13 +5,9 @@ import {
 import { useSorting } from "./playerSorting.hooks.ts";
 import { ToggleButton } from "@mui/material";
 import { HelperText } from "../ui";
-import { useSelector } from "react-redux";
-import { selectSelectedSortValue } from "./playerSorting.slice.ts";
 
 export const PlayerSorting = () => {
-  const { sortBy, sortOrder, toggleSort } = useSorting();
-  const selectedSortValue = useSelector(selectSelectedSortValue);
-
+  const { sortBy, sortOrder, setSort } = useSorting();
   return (
     <StyledSortContainer>
       <HelperText description="Sort players by name" />
@@ -23,8 +19,8 @@ export const PlayerSorting = () => {
         <ToggleButton
           key="fullName_ASC"
           value="fullName_ASC"
-          selected={"fullName_ASC" === selectedSortValue}
-          onClick={() => toggleSort("fullName", "ASC")}
+          selected={sortBy === "fullName" && sortOrder === "ASC"}
+          onClick={() => setSort("fullName", "ASC")}
           aria-label="Sort by name ascending"
         >
           A - Z
@@ -32,8 +28,8 @@ export const PlayerSorting = () => {
         <ToggleButton
           key="fullName_DESC"
           value="fullName_DESC"
-          selected={"fullName_DESC" === selectedSortValue}
-          onClick={() => toggleSort("fullName", "DESC")}
+          selected={sortBy === "fullName" && sortOrder === "DESC"}
+          onClick={() => setSort("fullName", "DESC")}
           aria-label="Sort by name descending"
         >
           Z - A
