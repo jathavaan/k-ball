@@ -6,16 +6,12 @@ interface PlayerCardGridState {
   playerCards: PlayerCardBase[];
   currentPage: number;
   totalPages: number;
-  loading: boolean;
-  error: string | null;
 }
 
 const initialState: PlayerCardGridState = {
   playerCards: [],
   currentPage: 1,
   totalPages: 1,
-  loading: false,
-  error: null,
 };
 
 const playerCardGridSlice = createSlice({
@@ -53,9 +49,5 @@ export const selectCurrentPage = (state: RootState) =>
   state.playerCardGridReducer.currentPage;
 export const selectTotalPages = (state: RootState) =>
   state.playerCardGridReducer.totalPages;
-export const selectLoading = (state: RootState) =>
-  state.playerCardGridReducer.loading;
-export const selectError = (state: RootState) =>
-  state.playerCardGridReducer.error;
 
 export const playerCardGridReducer = playerCardGridSlice.reducer;
