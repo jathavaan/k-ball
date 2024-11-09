@@ -5,6 +5,15 @@ import Grid from "@mui/material/Grid2";
 import { ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  selectSortBy,
+  selectSortOrder,
+} from "../player-sorting/playerSorting.slice.ts";
+import {
+  selectCurrentPage,
+  selectTotalPages,
+  selectPlayerCards,
+} from "./playerCardGrid.slice.ts";
 
 export const PlayerCardGrid = () => {
   const searchQuery = useSelector(
@@ -18,21 +27,13 @@ export const PlayerCardGrid = () => {
     selectedCountryIds,
     selectedPositionIds,
   ].map((ids) => (ids.includes(-1) ? [] : ids));
-  const sortBy = useSelector(
-    (state: RootState) => state.playerSortingReducer.sortBy,
-  );
-  const sortOrder = useSelector(
-    (state: RootState) => state.playerSortingReducer.sortOrder,
-  );
-  const currentPage = useSelector(
-    (state: RootState) => state.playerCardGridReducer.currentPage,
-  );
-  const totalPages = useSelector(
-    (state: RootState) => state.playerCardGridReducer.totalPages,
-  );
+  const sortBy = useSelector(selectSortBy);
+  const sortOrder = useSelector(selectSortOrder);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
   const { isLoading, isError, loadMorePlayers } = usePlayerCardGrid(
     currentPage,
-    12,
+    24,
     searchQuery,
     selectedClubIds,
     selectedCountryIds,
@@ -40,9 +41,7 @@ export const PlayerCardGrid = () => {
     sortBy,
     sortOrder,
   );
-  const playerCards = useSelector(
-    (state: RootState) => state.playerCardGridReducer.playerCards,
-  );
+  const playerCards = useSelector(selectPlayerCards);
 
   const isInitialLoad = currentPage === 1 && isLoading;
   const noResultsOnFirstPage =
@@ -54,10 +53,14 @@ export const PlayerCardGrid = () => {
       next={loadMorePlayers}
       hasMore={currentPage < totalPages}
       loader={<LinearProgressBar />}
-      scrollThreshold={1.0}
+      scrollThreshold={0.9}
       hasChildren={true}
     >
-      <Grid container spacing={4}>
+      <Grid
+        container
+        spacing={4}
+        sx={{ overflowX: "hidden", overflowY: "hidden" }}
+      >
         {isInitialLoad ? (
           <Grid size={{ xs: 12 }}>
             <LinearProgressBar />
