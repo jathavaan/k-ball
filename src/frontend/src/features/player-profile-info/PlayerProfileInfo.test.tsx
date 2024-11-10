@@ -1,13 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { PlayerProfileInfo } from "./PlayerProfileInfo";
+import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
 
 describe("PlayerProfileInfo", () => {
-  const mockProps = {
+  const mockProps: PlayerProfileInfoProps = {
     playerId: 2898,
     fullName: "Kim Young-Gwon",
-    club: "Ulsan Hyundai FC",
+    currentClub: "Ulsan Hyundai FC",
     clubLogo: "https://media.api-sports.io/football/teams/2767.png",
     imageUrl: "https://media.api-sports.io/football/players/2898.png",
     position: "Defender",
@@ -37,7 +38,7 @@ describe("PlayerProfileInfo", () => {
   });
 
   it("should render the player's team", () => {
-    expect(screen.getByText(mockProps.club)).toBeInTheDocument();
+    expect(screen.getByText(mockProps.currentClub)).toBeInTheDocument();
   });
 
   it("should render the player's nationality", () => {

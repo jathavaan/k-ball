@@ -39,8 +39,14 @@ export const SearchBar = () => {
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalQuery(event.target.value);
+    const newQuery = event.target.value;
+    setLocalQuery(newQuery);
     setHasUserInteracted(true);
+
+    if (newQuery === "" && searchQuery) {
+      dispatch(setTempSearch(""));
+      triggerSearch("");
+    }
   };
 
   useEffect(() => {
@@ -63,7 +69,7 @@ export const SearchBar = () => {
         placeholder="Search..."
       />
 
-      {hasUserInteracted && searchQuery !== "" && (
+      {hasUserInteracted && searchQuery && (
         <StyledClearButton aria-label="clear" onClick={handleClear}>
           <ClearIcon />
         </StyledClearButton>

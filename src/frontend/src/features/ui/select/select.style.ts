@@ -18,7 +18,7 @@ export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   "&:hover": {
-    backgroundColor: theme.palette.primary.contrastText,
+    backgroundColor: "#e7e7e9",
     color: theme.palette.primary.main,
   },
 }));
