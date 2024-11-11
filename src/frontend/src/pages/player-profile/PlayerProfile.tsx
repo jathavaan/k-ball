@@ -69,13 +69,13 @@ export const PlayerProfile = () => {
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
             {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
+            {playerId && <PlayerRating playerId={playerId} />}
           </Grid>
           <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
             <Grid size={{ xs: 12 }}>
               <PlayerStatsTable playerStatsTable={playerStats} />
             </Grid>
           </Grid>
-          <PlayerRating playerId={""} userId={""} />
         </>
       )}
     </Grid>

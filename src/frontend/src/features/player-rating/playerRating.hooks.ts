@@ -10,6 +10,7 @@ import {
   fetchUserRating,
   saveUserRating,
 } from "./playerRating.api";
+import { getLoggedInUser } from "../auth/auth.hooks";
 
 const calculateAverageRatings = (ratings: Array<CategoryRatings>) => {
   const totalRatings = ratings.length;
@@ -17,23 +18,24 @@ const calculateAverageRatings = (ratings: Array<CategoryRatings>) => {
     (acc, rating) => {
       acc.attack += rating.attack;
       acc.defence += rating.defence;
-      acc.passes += rating.passes;
+      acc.passing += rating.passing;
       acc.intelligence += rating.intelligence;
       return acc;
     },
-    { attack: 0, defence: 0, passes: 0, intelligence: 0 },
+    { attack: 0, defence: 0, passing: 0, intelligence: 0 },
   );
 
   return {
     attack: summedRatings.attack / totalRatings,
     defence: summedRatings.defence / totalRatings,
-    passes: summedRatings.passes / totalRatings,
+    passing: summedRatings.passing / totalRatings,
     intelligence: summedRatings.intelligence / totalRatings,
   };
 };
 
-export const usePlayerRating = (playerId: string, userId: string) => {
+export const usePlayerRating = (playerId: string) => {
   const dispatch = useDispatch();
+  const userId = getLoggedInUser(); // Hent innlogget bruker-ID
   const playerRatings = useSelector(
     (state: any) => state.playerRating.ratingsByPlayer[playerId] || {},
   );
@@ -46,6 +48,8 @@ export const usePlayerRating = (playerId: string, userId: string) => {
     useState<CategoryRatings | null>(null); // Midlertidig rating under redigering
 
   useEffect(() => {
+    if (!userId) return; // Avslutt hvis ingen bruker er innlogget
+
     const fetchRatings = async () => {
       const allRatings = await fetchOverallRating(playerId);
       const overallAverage = calculateAverageRatings(allRatings);
@@ -67,7 +71,7 @@ export const usePlayerRating = (playerId: string, userId: string) => {
       playerRatings.userRating || {
         attack: 0,
         defence: 0,
-        passes: 0,
+        passing: 0,
         intelligence: 0,
       },
     );
@@ -75,7 +79,7 @@ export const usePlayerRating = (playerId: string, userId: string) => {
 
   const handleSaveChanges = async () => {
     //Lagrer endringene ved å bruke saveUserRating, oppdaterer overall rating, og setter isEditing tilbake til false.
-    if (temporaryRating) {
+    if (temporaryRating && userId) {
       await saveUserRating(playerId, userId, temporaryRating);
       dispatch(setUserRating({ playerId, userRating: temporaryRating }));
 
@@ -83,7 +87,7 @@ export const usePlayerRating = (playerId: string, userId: string) => {
         playerRatings.overall || {
           attack: 0,
           defence: 0,
-          passes: 0,
+          passing: 0,
           intelligence: 0,
         },
         temporaryRating,

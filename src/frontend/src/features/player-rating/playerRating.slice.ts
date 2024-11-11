@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface CategoryRatings {
   attack: number;
   defence: number;
-  passes: number;
+  passing: number;
   intelligence: number;
 }
 
@@ -42,7 +42,7 @@ const playerRatingSlice = createSlice({
       const { playerId, userRating } = action.payload;
       if (!state.ratingsByPlayer[playerId]) {
         state.ratingsByPlayer[playerId] = {
-          overall: { attack: 0, defence: 0, passes: 0, intelligence: 0 },
+          overall: { attack: 0, defence: 0, passing: 0, intelligence: 0 },
           userRating,
         };
       } else {

@@ -13,12 +13,9 @@ import { CategoryRatings } from "./playerRating.slice.ts";
 
 interface PlayerRatingProps {
   playerId: string;
-  userId: string;
 }
-export const PlayerRating: React.FC<PlayerRatingProps> = ({
-  playerId,
-  userId,
-}) => {
+
+export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
   const {
     playerRatings,
     isEditing,
@@ -26,7 +23,7 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({
     handleSaveChanges,
     temporaryRating,
     handleRatingChange,
-  } = usePlayerRating(playerId, userId);
+  } = usePlayerRating(playerId);
 
   return (
     <TableContainer
@@ -48,7 +45,7 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({
           </StyledTableRow>
         </StyledTableHead>
         <TableBody>
-          {["Attack", "Defence", "Passes", "Intelligence", "Average"].map(
+          {["Attack", "Defence", "Passing", "Intelligence", "Average"].map(
             (category, index) => (
               <StyledTableRow key={index}>
                 <StyledTableCell>
