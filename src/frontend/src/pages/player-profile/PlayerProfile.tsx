@@ -38,7 +38,7 @@ export const PlayerProfile = () => {
         <>
           {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
           <PlayerStatsTable playerStatsTable={playerStats} />
-          <PlayerRating />
+          <PlayerRating playerId={""} userId={""} />
         </>
       )}
     </>
