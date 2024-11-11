@@ -1,50 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-export interface UserInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import { authenticateUser } from "../../auth/auth.api"; // Updated import path
 
 export const useAuth = () => {
-  // Set isLoggedIn to true by default to simulate a logged-in state
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Set to true for now
-  const [userInfo, setUserInfo] = useState<UserInfo | null>({
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-  }); // Set a default user info for testing purposes
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Mock function to fetch user data (no actual fetch for now)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetchUserInfo();
+    }
+  }, []);
+
   const fetchUserInfo = async () => {
     setLoading(true);
-    // Simulate a loading delay
-    setTimeout(() => {
-      // For now, assume that fetching was successful and no error handling
-      setUserInfo({
-        firstName: "John",
-        lastName: "Doe",
-        email: "john.doe@example.com",
-      });
-      setIsLoggedIn(true); // Set as logged in
-      setLoading(false);
-    }, 1000); // Simulate a 1 second delay
-  };
-
-  // Mock login function
-  const login = () => {
-    setIsLoggedIn(true);
-    navigate("/login"); // Adjust path if needed
-  };
-
-  // Mock logout function
-  const logout = () => {
-    setIsLoggedIn(false);
-    setUserInfo(null);
-    window.location.href = "http://localhost:5173/project2"; // Redirect to specified URL on logout
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("No token found");
+      const response = await authenticateUser(token);
+      if (response) {
+        setUserInfo({
+          firstName: response.firstName,
+          lastName: response.lastName,
+          email: response.email,
+        });
+        setIsLoggedIn(true);
+      } else {
+        throw new Error("Failed to fetch user info");
+      }
+    } catch (error) {
+      console.error("Failed to fetch user info", error);
+      setIsLoggedIn(false);
+      setUserInfo(null);
+    }
+    setLoading(false);
   };
 
   return {
@@ -52,7 +44,5 @@ export const useAuth = () => {
     userInfo,
     loading,
     fetchUserInfo,
-    login,
-    logout,
   };
 };

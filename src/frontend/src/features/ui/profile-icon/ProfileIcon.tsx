@@ -1,57 +1,42 @@
-// ProfileIcon.tsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Avatar,
-  Menu,
-  MenuItem,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
-import { useAuth } from "./profileIcon.hooks"; // Import the custom hook
+import { Avatar, Menu, MenuItem, IconButton, Typography } from "@mui/material";
+import { logOutUser } from "../../auth/auth.hooks";
 
 const ProfileIcon = () => {
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const { isLoggedIn, userInfo, loading, fetchUserInfo, login, logout } =
-    useAuth(); // Destructure from hook
-  const [openDialog, setOpenDialog] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [showProfileDetails, setShowProfileDetails] = useState(false);
   const navigate = useNavigate();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const userInfo = {
+    // Mock user data, replace with real data as necessary
+    username: "JohnDoe",
+    email: "johndoe@example.com",
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+    setShowProfileDetails(false); // Reset the toggle on close
   };
 
-  const handleProfileClick = () => {
-    setOpenDialog(true);
-    handleClose();
-    fetchUserInfo(); // Fetch user info when the dialog opens
+  const toggleProfileDetails = () => {
+    setShowProfileDetails(!showProfileDetails); // Toggle the display of user details
   };
 
-  const handleRatingsClick = () => {
-    navigate("/ratings");
-    handleClose();
-  };
-
-  const handleDialogClose = () => {
-    setOpenDialog(false);
+  const handleLogoutClick = () => {
+    logOutUser(); // Calls the imported logout function to remove the token
+    navigate("/project2"); // Redirect to the homepage after logging out
+    handleClose(); // Ensure the menu is closed after the action
   };
 
   return (
     <div>
       <IconButton onClick={handleClick} size="large">
-        <Avatar
-          alt="Profile"
-          src={isLoggedIn ? "/path/to/profile-image.jpg" : undefined}
-        />
+        <Avatar alt="Profile" src="/path/to/profile-image.jpg" />
       </IconButton>
 
       <Menu
@@ -67,42 +52,20 @@ const ProfileIcon = () => {
           horizontal: "right",
         }}
       >
-        {isLoggedIn ? (
-          <>
-            <MenuItem onClick={handleProfileClick}>My Profile</MenuItem>
-            <MenuItem onClick={handleRatingsClick}>My Ratings</MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem>
-          </>
-        ) : (
-          <MenuItem onClick={login}>Log In</MenuItem>
-        )}
-      </Menu>
-
-      {/* Dialog for showing user info */}
-      <Dialog open={openDialog} onClose={handleDialogClose}>
-        <DialogTitle>User Information</DialogTitle>
-        <DialogContent>
-          {loading ? (
-            <CircularProgress />
-          ) : userInfo ? (
-            <div>
-              <Typography variant="body1">
-                <strong>First Name:</strong> {userInfo.firstName}
-              </Typography>
-              <Typography variant="body1">
-                <strong>Last Name:</strong> {userInfo.lastName}
-              </Typography>
-              <Typography variant="body1">
-                <strong>Email:</strong> {userInfo.email}
-              </Typography>
-            </div>
-          ) : (
-            <Typography variant="body2" color="error">
-              Failed to load user information.
+        <MenuItem onClick={toggleProfileDetails}>My Profile</MenuItem>
+        {showProfileDetails && (
+          <div style={{ padding: "8px 16px" }}>
+            <Typography variant="body2" color="textSecondary">
+              <strong>Username:</strong> {userInfo.username}
             </Typography>
-          )}
-        </DialogContent>
-      </Dialog>
+            <Typography variant="body2" color="textSecondary">
+              <strong>Email:</strong> {userInfo.email}
+            </Typography>
+          </div>
+        )}
+        <MenuItem onClick={() => navigate("/ratings")}>My Ratings</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+      </Menu>
     </div>
   );
 };
