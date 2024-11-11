@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { User } from "./user";
 import { Player } from "./player";
 
@@ -9,7 +9,13 @@ export class PlayerReview {
   @PrimaryColumn({ type: "int" })
   playerId!: number;
   @Column({ type: "int" })
-  rating!: number;
+  attack!: number;
+  @Column({ type: "int" })
+  defence!: number;
+  @Column({ type: "int" })
+  passing!: number;
+  @Column({ type: "int" })
+  intelligence!: number;
 
   @ManyToOne(() => User, (user) => user.playerReviews, {
     onDelete: "CASCADE",
