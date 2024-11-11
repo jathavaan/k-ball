@@ -1,10 +1,6 @@
 ﻿export interface Player {
   playerId: number;
   fullName: string;
-  club: string;
+  currentClub: string;
   imageUrl: string;
-}
-
-export interface ApolloResult<T> {
-  data: T;
 }

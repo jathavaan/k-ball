@@ -1,54 +1,56 @@
 import { StyledPlayerInfoCard } from "./playerProfileInfo.style.ts";
-import { CardContentText, CardHeader, ImageContainer } from "../ui";
+import { CardHeader, CardInfoText, ImageContainer } from "../ui";
 import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
 import Grid from "@mui/material/Grid2";
-import { Typography } from "@mui/material";
 
 export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
   return (
     <StyledPlayerInfoCard data-testid="player-profile-info">
-      <Grid container spacing={2} padding="1rem">
+      <Grid container spacing={2}>
         <Grid
-          size={{ xs: 12, md: 4 }}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
+          size={{ xs: 12 }}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <ImageContainer
             src={props.imageUrl}
             alt={`Portrait of ${props.fullName}`}
           />
+        </Grid>
+        <Grid size={{ xs: 12 }}>
           <CardHeader
             headerText={props.fullName}
             sx={{
-              fontWeight: "bold",
-              fontSize: "1.5rem",
-              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           />
-          <Typography
-            variant="body1"
-            sx={{ textAlign: "center", marginBottom: "0.5rem" }}
-          >
-            {props.club}
-          </Typography>
-          <img
-            src={props.clubLogo}
-            alt={`Logo of ${props.club}`}
-            style={{ width: "2.5rem", height: "2.5rem" }}
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Current club"}
+            contentText={props.currentClub}
           />
         </Grid>
-
-        <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
-          <Grid size={{ xs: 6 }}>
-            <CardContentText title="Position" text={props.position} />
-          </Grid>
-          <Grid size={{ xs: 6 }}>
-            <CardContentText title="Age" text={props.age.toString()} />
-          </Grid>
-          <Grid size={{ xs: 6 }} display="flex">
-            <CardContentText title="Nationality" text={props.nationality} />
-            {/* <img
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText titleText={"Position"} contentText={props.position} />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Age"}
+            contentText={`${props.age.toString()} years`}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Nationality"}
+            contentText={props.nationality}
+          />
+          {/* <img
               src={props.flagUrl}
               alt={`Flag of ${props.nationality}`}
               style={{
@@ -57,19 +59,27 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
                 marginLeft: "0.5rem",
               }}
             /> */}
-          </Grid>
-          <Grid size={{ xs: 6 }}>
-            <CardContentText title="Height" text={`${props.height} cm`} />
-          </Grid>
-          <Grid size={{ xs: 6 }}>
-            <CardContentText title="Place" text={props.place} />
-          </Grid>
-          <Grid size={{ xs: 6 }}>
-            <CardContentText title="Birth Date" text={props.birthDate} />
-          </Grid>
-          <Grid size={{ xs: 6 }}>
-            <CardContentText title="Weight" text={`${props.weight} kg`} />
-          </Grid>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Height"}
+            contentText={props.height ? `${props.height} cm` : "N/A"}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText titleText={"Birth place"} contentText={props.place} />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Date of birth"}
+            contentText={props.birthDate}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Weight"}
+            contentText={props.weight ? `${props.weight} kg` : "N/A"}
+          />
         </Grid>
       </Grid>
     </StyledPlayerInfoCard>

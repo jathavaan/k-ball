@@ -19,7 +19,7 @@ export const StyledPlayerStatsTable = styled(Table)(({ theme }) => ({
   },
 }));
 export const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.light,
+  backgroundColor: theme.palette.secondary.main,
   color: theme.palette.primary.contrastText,
   "& .MuiTableCell-head": {
     fontWeight: "bold",
@@ -51,7 +51,7 @@ export const StyledTableBody = styled(TableBody)(({ theme }) => ({
       backgroundColor: theme.palette.action.hover,
     },
     "&:hover": {
-      backgroundColor: theme.palette.action.selected,
+      backgroundColor: theme.palette.secondary.light,
     },
     [theme.breakpoints.down("sm")]: {
       fontSize: "0.75rem",

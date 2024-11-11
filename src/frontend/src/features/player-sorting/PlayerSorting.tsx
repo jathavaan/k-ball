@@ -7,29 +7,30 @@ import { ToggleButton } from "@mui/material";
 import { HelperText } from "../ui";
 
 export const PlayerSorting = () => {
-  const { sortBy, sortOrder, toggleSort } = useSorting();
-
+  const { sortBy, sortOrder, setSort } = useSorting();
   return (
     <StyledSortContainer>
       <HelperText description="Sort players by name" />
       <StyledToggleButtonGroup
         value={`${sortBy}_${sortOrder}`}
         exclusive
-        aria-label="text alignment"
+        aria-label="Sort filter"
       >
         <ToggleButton
+          key="fullName_ASC"
           value="fullName_ASC"
           selected={sortBy === "fullName" && sortOrder === "ASC"}
-          onClick={() => toggleSort("fullName", "ASC")}
-          aria-label="sort by name ascending"
+          onClick={() => setSort("fullName", "ASC")}
+          aria-label="Sort by name ascending"
         >
           A - Z
         </ToggleButton>
         <ToggleButton
+          key="fullName_DESC"
           value="fullName_DESC"
           selected={sortBy === "fullName" && sortOrder === "DESC"}
-          onClick={() => toggleSort("fullName", "DESC")}
-          aria-label="sort by name descending"
+          onClick={() => setSort("fullName", "DESC")}
+          aria-label="Sort by name descending"
         >
           Z - A
         </ToggleButton>
