@@ -1,5 +1,4 @@
 ﻿import { Container } from "inversify";
-import { PlayerStatsRepositoryService } from "./player-stats-service/playerStatsRepository.service";
 
 import {
   BirthPlaceRepositoryServiceBase,
@@ -7,6 +6,7 @@ import {
   CountryRepositoryServiceBase,
   DatabaseImportServiceBase,
   FootballApiServiceBase,
+  PlayerImportStateRepositoryServiceBase,
   PlayerRepositoryServiceBase,
   PlayerStatsRepositoryServiceBase,
   PositionRepositoryServiceBase,
@@ -22,8 +22,8 @@ import { UserRepositoryService } from "./user-service/userRepository.service";
 import { ClubRepositoryService } from "./club-service/clubRepository.service";
 import { CountryRepositoryService } from "./country-service/countryRepository.service";
 import { PositionRepositoryService } from "./position-service/positionRepository.service";
-import { PlayerImportStateRepositoryServiceBase } from "../../application/contracts/playerImportStateRepository.service.base";
-import { PlayerImportStateRepositoryService } from "./player-import-state-service/playerImportStateRepository.service";
+import { PlayerImportStateRepositoryService } from "./database-import-service/playerImportStateRepository.service";
+import { PlayerStatsRepositoryService } from "./player-service/playerStatsRepository.service";
 
 const container = new Container();
 container

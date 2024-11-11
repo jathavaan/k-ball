@@ -1,4 +1,4 @@
-﻿import { BirthPlace } from "../../domain/entities";
+﻿import { BirthPlace } from "../../../domain/entities";
 
 export interface BirthPlaceRepositoryServiceBase {
   getBirthPlaceByNameAndCountry(

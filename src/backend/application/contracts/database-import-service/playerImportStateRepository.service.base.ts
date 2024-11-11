@@ -1,4 +1,4 @@
-﻿import { PlayerImportState } from "../../domain/entities";
+﻿import { PlayerImportState } from "../../../domain/entities";
 
 export interface PlayerImportStateRepositoryServiceBase {
   addPlayerImportState(): Promise<void>;

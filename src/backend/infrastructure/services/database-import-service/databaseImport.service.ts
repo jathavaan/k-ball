@@ -7,8 +7,11 @@
 import { injectable } from "inversify";
 import { container } from "../inversify.config";
 import { config } from "../../../config";
-import { ClubDto, PlayerResponse } from "../../../application/dtos";
 import { KBallDbContext } from "../../persistence/dataSource";
+import {
+  ClubDto,
+  PlayerResponse,
+} from "../../../application/contracts/database-import-service/footballApi.dto";
 
 @injectable()
 export class DatabaseImportService implements DatabaseImportServiceBase {

@@ -1,4 +1,4 @@
-﻿import { Season } from "../../domain/entities";
+﻿import { Season } from "../../../domain/entities";
 
 export interface SeasonRepositoryServiceBase {
   insertSeason: (seasonYear: number) => Promise<Season>;
