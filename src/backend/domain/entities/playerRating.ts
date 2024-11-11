@@ -3,7 +3,7 @@ import { User } from "./user";
 import { Player } from "./player";
 
 @Entity()
-export class PlayerReview {
+export class PlayerRating {
   @PrimaryColumn({ type: "int" })
   userId!: number;
   @PrimaryColumn({ type: "int" })

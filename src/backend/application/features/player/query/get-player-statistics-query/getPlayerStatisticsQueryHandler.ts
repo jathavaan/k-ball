@@ -2,13 +2,13 @@ import { Request } from "../../../../common/request";
 import { GetPlayerStatisticsQuery } from "./getPlayerStatisticsQuery";
 import { PlayerStatsVm } from "../../../../view-models";
 import { container } from "../../../../../infrastructure/services/inversify.config";
-import { PlayerStatsRepositoryServiceBase } from "../../../../contracts";
+import { PlayerStatisticsRepositoryServiceBase } from "../../../../contracts";
 
 export class GetPlayerStatisticsQueryHandler
   implements Request<GetPlayerStatisticsQuery, PlayerStatsVm[] | null>
 {
   playerStatsRepositoryService =
-    container.get<PlayerStatsRepositoryServiceBase>(
+    container.get<PlayerStatisticsRepositoryServiceBase>(
       "PlayerStatsRepositoryServiceBase",
     );
 

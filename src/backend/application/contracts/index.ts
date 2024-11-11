@@ -7,5 +7,6 @@ export * from "./database-import-service/databaseImport.service.base";
 export * from "./birth-place-service/birthPlaceRepository.service.base";
 export * from "./season-service/seasonRepository.service.base";
 export * from "./player-service/playerRepository.service.base";
-export * from "./player-service/playerStatsRepository.service.base";
+export * from "./player-service/playerRating.dto";
+export * from "./player-service/playerStatisticsRepository.service.base";
 export * from "./database-import-service/playerImportStateRepository.service.base";

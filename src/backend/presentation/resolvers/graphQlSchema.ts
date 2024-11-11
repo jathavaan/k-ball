@@ -14,7 +14,10 @@ import { countryResolver } from "./country/country.resolver";
 import { CountryType } from "./country/country.typeDefinitions";
 import { PositionType } from "./position/position.typeDefinitions";
 import { positionResolver } from "./position/position.resolver";
-import { PlayerType } from "./players/player.typeDefinitions";
+import {
+  PlayerType,
+  UpsertPlayerRatingType,
+} from "./players/player.typeDefinitions";
 import { playerResolver } from "./players/player.resolver";
 import { PlayerStatsType } from "./player-stats/playerStats.typeDefinitions";
 import { playerStatsResolver } from "./player-stats/playerStats.resolver";
@@ -95,6 +98,18 @@ const MutationType = new GraphQLObjectType({
         email: { type: GraphQLString },
         password: { type: GraphQLString },
       },
+    },
+    upsertPlayerRating: {
+      type: UpsertPlayerRatingType,
+      args: {
+        playerId: { type: GraphQLInt },
+        userId: { type: GraphQLInt },
+        attack: { type: GraphQLInt },
+        defence: { type: GraphQLInt },
+        passing: { type: GraphQLInt },
+        intelligence: { type: GraphQLInt },
+      },
+      resolve: playerResolver.PlayerMutation.upsertPlayerRating,
     },
   },
 });

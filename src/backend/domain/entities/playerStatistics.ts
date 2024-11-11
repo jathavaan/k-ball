@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
 import { PlayerSeason } from "./playerSeason";
 
 @Entity()
-export class PlayerStats {
+export class PlayerStatistics {
   @PrimaryColumn({ type: "int" })
   playerSeasonId!: number;
 

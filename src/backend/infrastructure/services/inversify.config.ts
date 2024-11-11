@@ -8,7 +8,7 @@ import {
   FootballApiServiceBase,
   PlayerImportStateRepositoryServiceBase,
   PlayerRepositoryServiceBase,
-  PlayerStatsRepositoryServiceBase,
+  PlayerStatisticsRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
   UserRepositoryServiceBase,
@@ -23,7 +23,9 @@ import { ClubRepositoryService } from "./club-service/clubRepository.service";
 import { CountryRepositoryService } from "./country-service/countryRepository.service";
 import { PositionRepositoryService } from "./position-service/positionRepository.service";
 import { PlayerImportStateRepositoryService } from "./database-import-service/playerImportStateRepository.service";
-import { PlayerStatsRepositoryService } from "./player-service/playerStatsRepository.service";
+import { PlayerStatisticsRepositoryService } from "./player-service/playerStatisticsRepository.service";
+import { PlayerRatingRepositoryServiceBase } from "../../application/contracts/player-service/playerRatingRepository.service.base";
+import { PlayerRatingRepositoryService } from "./player-service/playerRatingRepository.service";
 
 const container = new Container();
 container
@@ -69,7 +71,13 @@ container
   .to(PlayerImportStateRepositoryService);
 
 container
-  .bind<PlayerStatsRepositoryServiceBase>("PlayerStatsRepositoryServiceBase")
-  .to(PlayerStatsRepositoryService);
+  .bind<PlayerStatisticsRepositoryServiceBase>(
+    "PlayerStatsRepositoryServiceBase",
+  )
+  .to(PlayerStatisticsRepositoryService);
+
+container
+  .bind<PlayerRatingRepositoryServiceBase>("PlayerRatingRepositoryServiceBase")
+  .to(PlayerRatingRepositoryService);
 
 export { container };
