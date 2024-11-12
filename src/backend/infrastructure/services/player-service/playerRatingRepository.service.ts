@@ -40,6 +40,11 @@ export class PlayerRatingRepositoryService
   async getAveragePlayerRating(playerId: number) {
     const playerRatings = await this.getAllPlayerRatings(playerId);
     const numberOfRatings = playerRatings.length;
+
+    if (numberOfRatings === 0) {
+      return null;
+    }
+
     const averageAttack =
       playerRatings.reduce(
         (sum, playerRating) => sum + playerRating.attack,

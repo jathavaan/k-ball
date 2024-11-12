@@ -7,7 +7,7 @@ export interface PlayerRatingRepositoryServiceBase {
     userId: number,
   ) => Promise<PlayerRating | null>;
   getAllPlayerRatings: (playerId: number) => Promise<PlayerRatingDto[]>;
-  getAveragePlayerRating: (playerId: number) => Promise<PlayerRatingDto>;
+  getAveragePlayerRating: (playerId: number) => Promise<PlayerRatingDto | null>;
   getUsersPlayerRating: (userId: number) => Promise<PlayerRatingDto[]>;
   upsertPlayerRating: (playerRating: PlayerRating) => Promise<boolean>;
 }

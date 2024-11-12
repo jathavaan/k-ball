@@ -1,6 +1,10 @@
 import {
+  GetAveragePlayerRatingQuery,
+  GetAveragePlayerRatingQueryHandler,
   GetPlayerByIdQuery,
   GetPlayerByIdQueryHandler,
+  GetPlayerRatingGivenByUserQuery,
+  GetPlayerRatingGivenByUserQueryHandler,
   GetPlayersQuery,
   GetPlayersQueryHandler,
 } from "../../../application/features/player/query";
@@ -11,6 +15,10 @@ import {
 
 const getPlayersQueryHandler = new GetPlayersQueryHandler();
 const getPlayerByIdQueryHandler = new GetPlayerByIdQueryHandler();
+const getPlayerRatingGivenByUserQueryHandler =
+  new GetPlayerRatingGivenByUserQueryHandler();
+const getAveragePlayerRatingQueryHandler =
+  new GetAveragePlayerRatingQueryHandler();
 const upsertPlayerRatingCommandHandler = new UpsertPlayerRatingCommandHandler();
 
 export const playerResolver = {
@@ -62,9 +70,24 @@ export const playerResolver = {
       );
       return playerData[0];
     },
+    playerRating: async (
+      _: any,
+      args: { playerId: number; userId?: number },
+    ) => {
+      const { playerId, userId } = args;
+      if (userId) {
+        return await getPlayerRatingGivenByUserQueryHandler.handle(
+          new GetPlayerRatingGivenByUserQuery(userId, playerId),
+        );
+      } else {
+        return await getAveragePlayerRatingQueryHandler.handle(
+          new GetAveragePlayerRatingQuery(playerId),
+        );
+      }
+    },
   },
   PlayerMutation: {
-    upsertPlayerRating: async (
+    playerRating: async (
       _: any,
       args: {
         playerId: number;

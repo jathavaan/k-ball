@@ -15,6 +15,7 @@ import { CountryType } from "./country/country.typeDefinitions";
 import { PositionType } from "./position/position.typeDefinitions";
 import { positionResolver } from "./position/position.resolver";
 import {
+  PlayerRatingType,
   PlayerType,
   UpsertPlayerRatingType,
 } from "./players/player.typeDefinitions";
@@ -83,6 +84,14 @@ const QueryType = new GraphQLObjectType({
       },
       resolve: playerStatsResolver.PlayerStatsQuery.playerStats,
     },
+    playerRating: {
+      type: PlayerRatingType,
+      args: {
+        playerId: { type: GraphQLInt },
+        userId: { type: GraphQLInt, defaultValue: null },
+      },
+      resolve: playerResolver.PlayerQuery.playerRating,
+    },
   },
 });
 
@@ -99,7 +108,7 @@ const MutationType = new GraphQLObjectType({
         password: { type: GraphQLString },
       },
     },
-    upsertPlayerRating: {
+    playerRating: {
       type: UpsertPlayerRatingType,
       args: {
         playerId: { type: GraphQLInt },
@@ -109,7 +118,7 @@ const MutationType = new GraphQLObjectType({
         passing: { type: GraphQLInt },
         intelligence: { type: GraphQLInt },
       },
-      resolve: playerResolver.PlayerMutation.upsertPlayerRating,
+      resolve: playerResolver.PlayerMutation.playerRating,
     },
   },
 });
