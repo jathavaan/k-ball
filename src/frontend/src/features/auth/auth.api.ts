@@ -69,10 +69,47 @@ export const authenticateUser = async (
       },
     });
 
-    return response.data.auth.userId;
+    return Number(response.data.auth.userId);
   } catch (error) {
     console.error("Something went wrong while logging in");
     console.error(error);
+    throw error;
+  }
+};
+
+// Continuing from your existing auth.api.ts file...
+
+import { UserInfoResponse } from "./auth.types.ts";
+
+export const fetchUserInfo = async (
+  userId: number,
+): Promise<UserInfoResponse["user"]> => {
+  const GET_USER_INFO = gql`
+    query GetUser($userId: Int!) {
+      user(userId: $userId) {
+        firstName
+        lastName
+        email
+      }
+    }
+  `;
+
+  try {
+    const response = await apiClient.query<UserInfoResponse>({
+      query: GET_USER_INFO,
+      variables: { userId },
+    });
+
+    if (!response.data.user) {
+      throw new Error("User not found");
+    }
+
+    return response.data.user;
+  } catch (error) {
+    console.error(
+      "Something went wrong while fetching user information:",
+      error,
+    );
     throw error;
   }
 };

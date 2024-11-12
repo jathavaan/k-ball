@@ -5,7 +5,7 @@
 
 export interface LoginResponse {
   auth: {
-    userId: number;
+    userId: Number;
   };
 }
 
@@ -14,6 +14,16 @@ export interface RegisterProps {
   lastName: string;
   email: string;
   password: string;
+}
+
+export interface UserInfoProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface UserInfoResponse {
+  user: UserInfoProps;
 }
 
 export interface RegisterResponse {

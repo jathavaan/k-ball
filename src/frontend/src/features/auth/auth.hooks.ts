@@ -1,4 +1,8 @@
-﻿import { useAuthenticateUser, useRegisterUser } from "./auth.query.ts";
+﻿import {
+  useAuthenticateUser,
+  useRegisterUser,
+  useUserInfo,
+} from "./auth.query.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store.ts";
 import {
@@ -182,4 +186,9 @@ export const isUserLoggedIn = () => {
 
 export const logOutUser = () => {
   localStorage.removeItem("token");
+};
+
+export const useLoggedInUserInfo = () => {
+  const userId = parseInt(localStorage.getItem("userId") || "0");
+  return useUserInfo(userId);
 };
