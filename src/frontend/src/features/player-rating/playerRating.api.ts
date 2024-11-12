@@ -1,30 +1,84 @@
-// playerRating.api.ts
+import { apiClient } from "../../shared/api.client.ts";
+import { gql } from "@apollo/client";
+import { Rating, SaveRatingResponse } from "./playerRating.types.ts";
 
-// Mock API-funksjon som henter alle ratings for en spesifikk spiller
-export const fetchOverallRating = async (playerId: string) => {
-  const ratings = [
-    { attack: 4, defence: 3, passing: 5, intelligence: 4 },
-    { attack: 3, defence: 4, passing: 3, intelligence: 5 },
-    { attack: 5, defence: 5, passing: 4, intelligence: 4 },
-  ];
-  return ratings;
+// GraphQL-spørringer
+const GET_OVERALL_RATING = gql`
+  query GetOverallRating($playerId: Int!) {
+    playerRating(playerId: $playerId) {
+      attack
+      defence
+      passing
+      intelligence
+    }
+  }
+`;
+
+const GET_USER_RATING = gql`
+  query GetUserRating($playerId: Int!, $userId: Int!) {
+    playerRating(playerId: $playerId, userId: $userId) {
+      attack
+      defence
+      passing
+      intelligence
+    }
+  }
+`;
+
+const UPSERT_USER_RATING = gql`
+  mutation UpsertUserRating(
+    $playerId: Int!
+    $userId: Int!
+    $attack: Int!
+    $defence: Int!
+    $passing: Int!
+    $intelligence: Int!
+  ) {
+    playerRating(
+      playerId: $playerId
+      userId: $userId
+      attack: $attack
+      defence: $defence
+      passing: $passing
+      intelligence: $intelligence
+    ) {
+      isUpsertSuccessful
+    }
+  }
+`;
+
+//API-funksjoner som bruker gql queries
+export const fetchOverallRating = async (playerId: number): Promise<Rating> => {
+  const response = await apiClient.query({
+    query: GET_OVERALL_RATING,
+    variables: { playerId },
+  });
+  return response.data.playerRating;
 };
 
-// Mock API-funksjon som henter brukerens rating for en spesifikk spiller
-export const fetchUserRating = async (playerId: string, userId: number) => {
-  // Simulert brukerens rating (null hvis brukeren ikke har vurdert spilleren)
-  return { attack: 4, defence: 3, passing: 5, intelligence: 4 };
-};
-
-// Mock API-funksjon for å lagre brukerens rating for en spesifikk spiller
-export const saveUserRating = async (
-  playerId: string,
+export const fetchUserRating = async (
+  playerId: number,
   userId: number,
-  userRating: any,
-) => {
-  console.log(
-    `Saving user rating for player ${playerId}, user ${userId}:`,
-    userRating,
-  );
-  return userRating;
+): Promise<Rating> => {
+  const response = await apiClient.query({
+    query: GET_USER_RATING,
+    variables: { playerId, userId },
+  });
+  return response.data.playerRating;
+};
+
+export const saveUserRating = async (
+  playerId: number,
+  userId: number,
+  userRating: Rating,
+): Promise<SaveRatingResponse> => {
+  const response = await apiClient.mutate({
+    mutation: UPSERT_USER_RATING,
+    variables: {
+      playerId,
+      userId,
+      ...userRating,
+    },
+  });
+  return response.data.playerRating;
 };

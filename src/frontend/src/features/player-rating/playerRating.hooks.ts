@@ -6,13 +6,15 @@ import {
   CategoryRatings,
 } from "./playerRating.slice";
 import {
-  fetchOverallRating,
-  fetchUserRating,
-  saveUserRating,
-} from "./playerRating.api";
-import { getLoggedInUser } from "../auth/auth.hooks";
+  useOverallRating,
+  useUserRating,
+  useSaveUserRating,
+} from "./playerRating.query";
 
-const calculateAverageRatings = (ratings: Array<CategoryRatings>) => {
+import { getLoggedInUser } from "../auth/auth.hooks";
+import { Rating } from "./playerRating.types";
+
+const calculateAverageRatings = (ratings: Array<Rating>) => {
   const totalRatings = ratings.length;
   const summedRatings = ratings.reduce(
     (acc, rating) => {
@@ -33,7 +35,7 @@ const calculateAverageRatings = (ratings: Array<CategoryRatings>) => {
   };
 };
 
-export const usePlayerRating = (playerId: string) => {
+export const usePlayerRating = (playerId: number) => {
   const dispatch = useDispatch();
   const userId = getLoggedInUser(); // Hent innlogget bruker-ID
   const playerRatings = useSelector(
@@ -46,6 +48,10 @@ export const usePlayerRating = (playerId: string) => {
 
   const [temporaryRating, setTemporaryRating] =
     useState<CategoryRatings | null>(null); // Midlertidig rating under redigering
+
+  const { data: overallRatingData } = useOverallRating(playerId);
+  const { data: userRatingData } = useUserRating(playerId, userId || 0); // Bruker userId med fallback til 0 hvis userId ikke er tilgjengelig
+  const { mutate: saveUserRating } = useSaveUserRating();
 
   useEffect(() => {
     if (!userId) return; // Avslutt hvis ingen bruker er innlogget
