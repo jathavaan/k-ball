@@ -5,7 +5,7 @@ import { CountryFilter } from "./CountryFilter.tsx";
 import { PositionFilter } from "./PositionFilter.tsx";
 import { useApplyFilters, useFilteredCount } from "./playerFilters.hooks.ts";
 import { Button } from "../ui";
-import { HelperText } from "../ui/helper-text/HelperText.tsx";
+import { HelperText } from "../ui";
 
 export const PlayerFilters = () => {
   const { hasChanges, applyFiltersChanges } = useApplyFilters();
@@ -45,7 +45,11 @@ export const PlayerFilters = () => {
             borderRadius: "0.4rem",
             width: "100%",
           }}
-          text={count > 0 ? "Apply filters" : "Change filters to view results"}
+          text={
+            count && count > 0
+              ? "Apply filters"
+              : "Change filters to view results"
+          }
         />
       </Grid>
     </Grid>

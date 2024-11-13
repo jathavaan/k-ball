@@ -13,11 +13,10 @@ import {
   selectTotalPages,
 } from "./playerCardGrid.slice.ts";
 import { Slide } from "@mui/material";
+import { selectSearchQuery } from "../searchbar";
 
 export const PlayerCardGrid = () => {
-  const searchQuery = useSelector(
-    (state: RootState) => state.searchbarReducer.search,
-  );
+  const searchQuery = useSelector(selectSearchQuery);
   let { selectedClubIds, selectedCountryIds, selectedPositionIds } =
     useSelector((state: RootState) => state.playerFiltersReducer);
 
@@ -45,25 +44,6 @@ export const PlayerCardGrid = () => {
   const isInitialLoad = currentPage === 1 && isLoading;
   const noResultsOnFirstPage =
     currentPage === 1 && !isLoading && playerCards.length === 0;
-
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const handleScroll = () => {
-    if (window.scrollY > 200) {
-      setShowScrollToTop(true);
-    } else {
-      setShowScrollToTop(false);
-    }
-  };
-  const handleScrollToTop = () => {
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <InfiniteScroll

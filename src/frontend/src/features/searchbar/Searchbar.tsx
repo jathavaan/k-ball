@@ -1,12 +1,14 @@
 import {
-  StyledClearButton,
-  StyledSearchButton,
-  StyledSearchContainer,
-  StyledSearchInput,
+  StyledClearIcon,
+  StyledGrid,
+  StyledIconButton,
+  StyledSearchIcon,
+  StyledSearchOffIcon,
+  StyledSearchTextInput,
 } from "./searchbar.style";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useSearch } from "./searchbar.hooks.ts";
+import Grid from "@mui/material/Grid2";
+import { HelperErrorText } from "../ui";
 
 export const SearchBar = () => {
   const {
@@ -20,25 +22,64 @@ export const SearchBar = () => {
   } = useSearch();
 
   return (
-    <StyledSearchContainer>
-      <StyledSearchInput
-        value={localSearchQuery}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        variant="outlined"
-        placeholder="Search for name..."
-      />
-
-      {searchQuery && (
-        <StyledClearButton aria-label="clear" onClick={handleClear}>
-          <ClearIcon />
-        </StyledClearButton>
-      )}
-      {searchQuery && searchResultCount > 0 && (
-        <StyledSearchButton aria-label="search" onClick={handleSearch}>
-          <SearchIcon />
-        </StyledSearchButton>
-      )}
-    </StyledSearchContainer>
+    <StyledGrid
+      container
+      spacing={0}
+      sx={{
+        display: "flex",
+        padding: 0,
+        height: "100%",
+        alignItems: "flex-end",
+      }}
+    >
+      <Grid
+        size={{ xs: 8, md: 10 }}
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent:
+            searchQuery && searchResultCount === 0
+              ? "space-between"
+              : "flex-end",
+        }}
+      >
+        {searchQuery &&
+        searchResultCount !== undefined &&
+        searchResultCount === 0 ? (
+          <HelperErrorText description="No results" />
+        ) : null}
+        <StyledSearchTextInput
+          value={localSearchQuery}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Search for name..."
+          fullWidth
+        />
+      </Grid>
+      <Grid size={{ xs: 2, md: 1 }}>
+        {localSearchQuery ? (
+          <StyledIconButton aria-label="clear" onClick={handleClear}>
+            <StyledClearIcon aria-label="clear" />
+          </StyledIconButton>
+        ) : null}
+      </Grid>
+      <Grid size={{ xs: 2, md: 1 }}>
+        {searchQuery && searchResultCount !== undefined ? (
+          <StyledIconButton
+            aria-label="search"
+            disableTouchRipple
+            disabled={searchResultCount === 0}
+            onClick={handleSearch}
+          >
+            {searchResultCount > 0 ? (
+              <StyledSearchIcon aria-label="search" />
+            ) : (
+              <StyledSearchOffIcon aria-label="disabled search" />
+            )}
+          </StyledIconButton>
+        ) : null}
+      </Grid>
+    </StyledGrid>
   );
 };

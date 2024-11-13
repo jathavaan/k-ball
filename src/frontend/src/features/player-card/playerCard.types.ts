@@ -9,6 +9,10 @@ export interface PlayerCardBase extends Player {
 
 export interface PlayerCardProps extends PlayerCardBase, CardProps {}
 
-export interface PlayerCardState {
+export interface PlayerCardGridState {
   playerCards: PlayerCardBase[];
+  currentPage: number;
+  totalPages: number;
+  loadedPages: number[];
+  showScrollToTopButton: boolean;
 }

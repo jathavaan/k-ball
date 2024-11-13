@@ -18,7 +18,10 @@ const searchbarSlice = createSlice({
     setLocalSearchQuery: (state, action: PayloadAction<string>) => {
       state.localSearchQuery = action.payload;
     },
-    setSearchResultCount: (state, action: PayloadAction<number>) => {
+    setSearchResultCount: (
+      state,
+      action: PayloadAction<number | undefined>,
+    ) => {
       state.searchResultCount = action.payload;
     },
   },

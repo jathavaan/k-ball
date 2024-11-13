@@ -117,7 +117,7 @@ export const useFilteredCount = () => {
   );
 
   useEffect(() => {
-    dispatch(setSearchResultCount(data?.totalPlayers ?? 0));
+    dispatch(setSearchResultCount(data?.totalPlayers));
   }, [data?.totalPlayers, dispatch]);
 
   return { count, isLoading, isError };

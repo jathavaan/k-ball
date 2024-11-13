@@ -1,10 +1,10 @@
-import { styled, Typography, ToggleButtonGroup } from "@mui/material";
+import { styled, ToggleButtonGroup } from "@mui/material";
 
 export const StyledSortContainer = styled("div")(() => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "left",
-  justifyContent: "flex-start",
+  justifyContent: "flex-end",
   width: "100%",
   maxWidth: "400px",
 }));
@@ -34,8 +34,3 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
     },
   }),
 );
-
-styled(Typography)(({ theme }) => ({
-  color: "white",
-  marginRight: theme.spacing(2),
-}));
