@@ -1,34 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-
-interface SearchbarState {
-  search: string;
-  tempSearch: string;
-}
+import { SearchbarState } from "./searchbar.types.ts";
 
 const initialState: SearchbarState = {
-  search: "",
-  tempSearch: "",
+  searchQuery: "",
+  localSearchQuery: "",
+  searchResultCount: 0,
 };
 
 const searchbarSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setSearch: (state, action: PayloadAction<string>) => {
-      state.search = action.payload;
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+      state.searchQuery = action.payload;
     },
-    setTempSearch: (state, action: PayloadAction<string>) => {
-      state.tempSearch = action.payload;
+    setLocalSearchQuery: (state, action: PayloadAction<string>) => {
+      state.localSearchQuery = action.payload;
+    },
+    setSearchResultCount: (state, action: PayloadAction<number>) => {
+      state.searchResultCount = action.payload;
     },
   },
 });
 
-export const { setSearch, setTempSearch } = searchbarSlice.actions;
+export const { setSearchQuery, setLocalSearchQuery, setSearchResultCount } =
+  searchbarSlice.actions;
 
 export const selectSearchQuery = (state: RootState) =>
-  state.searchbarReducer.search;
-export const selectTempSearchQuery = (state: RootState) =>
-  state.searchbarReducer.tempSearch;
+  state.searchbarReducer.searchQuery;
+export const selectLocalSearchQuery = (state: RootState) =>
+  state.searchbarReducer.localSearchQuery;
+export const selectSearchResultCount = (state: RootState) =>
+  state.searchbarReducer.searchResultCount;
 
 export const searchbarReducer = searchbarSlice.reducer;

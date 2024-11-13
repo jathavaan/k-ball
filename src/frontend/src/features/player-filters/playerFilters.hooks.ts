@@ -1,15 +1,20 @@
 import { AppDispatch } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  applyFilters,
+  selectHasChanges,
+  selectTempFilters,
   setTempClubFilters,
   setTempCountryFilters,
   setTempPositionFilters,
-  applyFilters,
-  selectTempFilters,
-  selectHasChanges,
 } from "./playerFilters.slice.ts";
 import { useCount } from "./playerFilters.query.ts";
-import { selectTempSearchQuery } from "../searchbar/searchbar.slice.ts";
+import {
+  selectSearchQuery,
+  selectSearchResultCount,
+  setSearchResultCount,
+} from "../searchbar";
+import { useEffect } from "react";
 
 export const useClubSelection = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -96,7 +101,9 @@ export const useCountrySelection = () => {
 };
 
 export const useFilteredCount = () => {
-  const search = useSelector(selectTempSearchQuery);
+  const dispatch = useDispatch<AppDispatch>();
+  const count = useSelector(selectSearchResultCount);
+  const search = useSelector(selectSearchQuery);
   let { clubIds, countryIds, positionIds } = useSelector(selectTempFilters);
   [clubIds, countryIds, positionIds] = [clubIds, countryIds, positionIds].map(
     (ids) => (ids.includes(-1) ? [] : ids),
@@ -109,7 +116,11 @@ export const useFilteredCount = () => {
     positionIds,
   );
 
-  return { count: data?.totalPlayers ?? 0, isLoading, isError };
+  useEffect(() => {
+    dispatch(setSearchResultCount(data?.totalPlayers ?? 0));
+  }, [data?.totalPlayers, dispatch]);
+
+  return { count, isLoading, isError };
 };
 
 export const useApplyFilters = () => {
