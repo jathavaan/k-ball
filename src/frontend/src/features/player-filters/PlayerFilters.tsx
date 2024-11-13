@@ -10,6 +10,7 @@ import { HelperText } from "../ui/helper-text/HelperText.tsx";
 export const PlayerFilters = () => {
   const { hasChanges, applyFiltersChanges } = useApplyFilters();
   const { count, isLoading } = useFilteredCount();
+  const isFilterButtonDisabled = !hasChanges || count === 0 || isLoading;
 
   return (
     <Grid container spacing={2} alignItems="flex-end">
@@ -39,12 +40,12 @@ export const PlayerFilters = () => {
         <Button
           variant="contained"
           onClick={applyFiltersChanges}
-          disabled={!hasChanges}
+          disabled={isFilterButtonDisabled}
           sx={{
             borderRadius: "0.4rem",
             width: "100%",
           }}
-          text="Apply filters"
+          text={count > 0 ? "Apply filters" : "Change filters to view results"}
         />
       </Grid>
     </Grid>
