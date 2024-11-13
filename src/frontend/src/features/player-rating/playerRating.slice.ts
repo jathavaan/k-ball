@@ -1,20 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface CategoryRatings {
-  attack: number;
-  defence: number;
-  passing: number;
-  intelligence: number;
-}
-
-interface PlayerRatingState {
-  ratingsByPlayer: {
-    [playerId: string]: {
-      overall: CategoryRatings;
-      userRating?: CategoryRatings; // Brukerens rating for spilleren, hvis den finnes
-    };
-  };
-}
+import { Rating, PlayerRatingState } from "./playerRating.types.ts";
 
 const initialState: PlayerRatingState = {
   ratingsByPlayer: {},
@@ -26,7 +11,7 @@ const playerRatingSlice = createSlice({
   reducers: {
     setOverallRating: (
       state,
-      action: PayloadAction<{ playerId: string; overall: CategoryRatings }>,
+      action: PayloadAction<{ playerId: number; overall: Rating }>,
     ) => {
       const { playerId, overall } = action.payload;
       if (!state.ratingsByPlayer[playerId]) {
@@ -37,7 +22,7 @@ const playerRatingSlice = createSlice({
     },
     setUserRating: (
       state,
-      action: PayloadAction<{ playerId: string; userRating: CategoryRatings }>,
+      action: PayloadAction<{ playerId: number; userRating: Rating }>,
     ) => {
       const { playerId, userRating } = action.payload;
       if (!state.ratingsByPlayer[playerId]) {
@@ -52,16 +37,15 @@ const playerRatingSlice = createSlice({
     updateUserRatingCategory: (
       state,
       action: PayloadAction<{
-        playerId: string;
+        playerId: number;
         category: string;
         value: number;
       }>,
     ) => {
       const { playerId, category, value } = action.payload;
       if (state.ratingsByPlayer[playerId]?.userRating) {
-        state.ratingsByPlayer[playerId].userRating![
-          category as keyof CategoryRatings
-        ] = value;
+        state.ratingsByPlayer[playerId].userRating![category as keyof Rating] =
+          value;
       }
     },
   },
@@ -69,4 +53,4 @@ const playerRatingSlice = createSlice({
 
 export const { setOverallRating, setUserRating, updateUserRatingCategory } =
   playerRatingSlice.actions;
-export default playerRatingSlice.reducer;
+export const playerRatingReducer = playerRatingSlice.reducer;

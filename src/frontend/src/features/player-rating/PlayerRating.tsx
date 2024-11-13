@@ -9,11 +9,7 @@ import {
 } from "./playerRating.style.ts";
 import { Button } from "../ui/button/Button.tsx";
 import { usePlayerRating } from "./playerRating.hooks.ts";
-import { CategoryRatings } from "./playerRating.slice.ts";
-
-interface PlayerRatingProps {
-  playerId: string;
-}
+import { Rating, PlayerRatingProps } from "./playerRating.types.ts";
 
 export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
   const {
@@ -54,7 +50,9 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
                 <StyledTableCell>
                   <StyledRating
                     name={`overall-${category.toLowerCase()}`}
-                    value={playerRatings.overall?.[category] || 0}
+                    value={
+                      playerRatings.overall?.[category as keyof Rating] || 0
+                    }
                     readOnly
                   />
                 </StyledTableCell>
@@ -63,8 +61,10 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
                     name={`your-${category.toLowerCase()}`}
                     value={
                       isEditing
-                        ? temporaryRating?.[category as keyof CategoryRatings]
-                        : playerRatings.usePlayerRating?.[category] || 0
+                        ? temporaryRating?.[category as keyof Rating]
+                        : playerRatings.userRating?.[
+                            category as keyof Rating
+                          ] || 0
                     }
                     readOnly
                     onChange={(
@@ -73,10 +73,7 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
                     ) =>
                       isEditing &&
                       newValue !== null &&
-                      handleRatingChange(
-                        category as keyof CategoryRatings,
-                        newValue,
-                      )
+                      handleRatingChange(category as keyof Rating, newValue)
                     }
                   />
                 </StyledTableCell>

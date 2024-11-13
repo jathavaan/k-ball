@@ -5,7 +5,19 @@ export interface Rating {
   intelligence: number;
 }
 
-// for respons fra `saveUserRating`-mutasjonen
 export interface SaveRatingResponse {
   isUpsertSuccessful: boolean;
+}
+
+export interface PlayerRatingState {
+  ratingsByPlayer: {
+    [playerId: number]: {
+      overall: Rating;
+      userRating?: Rating; // Brukerens rating for spilleren, hvis den finnes
+    };
+  };
+}
+
+export interface PlayerRatingProps {
+  playerId: number;
 }

@@ -1,18 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  setOverallRating,
-  setUserRating,
-  CategoryRatings,
-} from "./playerRating.slice";
+import { setOverallRating, setUserRating } from "./playerRating.slice";
 import {
   useOverallRating,
   useUserRating,
   useSaveUserRating,
 } from "./playerRating.query";
-
 import { getLoggedInUser } from "../auth/auth.hooks";
 import { Rating } from "./playerRating.types";
+import { RootState } from "../../store.ts";
 
 const calculateAverageRatings = (ratings: Array<Rating>) => {
   const totalRatings = ratings.length;
@@ -37,38 +33,35 @@ const calculateAverageRatings = (ratings: Array<Rating>) => {
 
 export const usePlayerRating = (playerId: number) => {
   const dispatch = useDispatch();
-  const userId = getLoggedInUser(); // Hent innlogget bruker-ID
+  const userId = getLoggedInUser() || 0; // Hent innlogget bruker-ID
   const playerRatings = useSelector(
-    (state: any) => state.playerRating.ratingsByPlayer[playerId] || {},
+    (state: RootState) =>
+      state.playerRatingReducer.ratingsByPlayer[playerId] || {},
   );
 
   //state som holder styr på om vi er i edit modus, settes til true når bruker trykker edit
+  const [isEditing, setIsEditing] = useState(false);
 
-  const [isEditing, setIsEditing] = useState(false); // Ny state for redigeringsmodus
-
-  const [temporaryRating, setTemporaryRating] =
-    useState<CategoryRatings | null>(null); // Midlertidig rating under redigering
+  const [temporaryRating, setTemporaryRating] = useState<Rating>({
+    attack: 0,
+    defence: 0,
+    passing: 0,
+    intelligence: 0,
+  });
 
   const { data: overallRatingData } = useOverallRating(playerId);
-  const { data: userRatingData } = useUserRating(playerId, userId || 0); // Bruker userId med fallback til 0 hvis userId ikke er tilgjengelig
+  const { data: userRatingData } = useUserRating(playerId, userId || 0);
   const { mutate: saveUserRating } = useSaveUserRating();
 
+  //overvåker endring i overallRatingData og userRatingdat
   useEffect(() => {
-    if (!userId) return; // Avslutt hvis ingen bruker er innlogget
-
-    const fetchRatings = async () => {
-      const allRatings = await fetchOverallRating(playerId);
-      const overallAverage = calculateAverageRatings(allRatings);
-      dispatch(setOverallRating({ playerId, overall: overallAverage }));
-
-      const userRating = await fetchUserRating(playerId, userId);
-      if (userRating) {
-        dispatch(setUserRating({ playerId, userRating }));
-      }
-    };
-
-    fetchRatings();
-  }, [dispatch, playerId, userId]);
+    if (overallRatingData) {
+      dispatch(setOverallRating({ playerId, overall: overallRatingData }));
+    }
+    if (userRatingData) {
+      dispatch(setUserRating({ playerId, userRating: userRatingData }));
+    }
+  }, [dispatch, playerId, overallRatingData, userRatingData]);
 
   const handleEdit = () => {
     //Setter isEditing til true og initialiserer temporaryRating basert på gjeldende bruker-rating.
@@ -82,33 +75,39 @@ export const usePlayerRating = (playerId: number) => {
       },
     );
   };
+  //Lagrer endringene ved å bruke saveUserRating, oppdaterer overall rating, og setter isEditing tilbake til false.
 
-  const handleSaveChanges = async () => {
-    //Lagrer endringene ved å bruke saveUserRating, oppdaterer overall rating, og setter isEditing tilbake til false.
+  const handleSaveChanges = () => {
     if (temporaryRating && userId) {
-      await saveUserRating(playerId, userId, temporaryRating);
-      dispatch(setUserRating({ playerId, userRating: temporaryRating }));
-
-      const updatedRatings = [
-        playerRatings.overall || {
-          attack: 0,
-          defence: 0,
-          passing: 0,
-          intelligence: 0,
+      saveUserRating(
+        {
+          playerId,
+          userId,
+          userRating: temporaryRating,
         },
-        temporaryRating,
-      ];
-      const newOverall = calculateAverageRatings(updatedRatings);
-      dispatch(setOverallRating({ playerId, overall: newOverall }));
+        {
+          onSuccess: () => {
+            dispatch(setUserRating({ playerId, userRating: temporaryRating }));
+            // Oppdaterer overall rating med de nye verdiene
+            const updatedRatings = [
+              playerRatings.overall || {
+                attack: 0,
+                defence: 0,
+                passing: 0,
+                intelligence: 0,
+              },
+              temporaryRating,
+            ];
+            const newOverall = calculateAverageRatings(updatedRatings);
+            dispatch(setOverallRating({ playerId, overall: newOverall }));
+          },
+        },
+      );
     }
     setIsEditing(false);
   };
 
-  const handleRatingChange = (
-    //Oppdaterer temporaryRating for en spesifikk kategori.
-    category: keyof CategoryRatings,
-    value: number,
-  ) => {
+  const handleRatingChange = (category: keyof Rating, value: number) => {
     if (temporaryRating) {
       setTemporaryRating({ ...temporaryRating, [category]: value });
     }
