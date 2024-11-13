@@ -9,9 +9,10 @@ import { useEffect, useState } from "react";
 import { selectSortBy, selectSortOrder } from "../player-sorting";
 import {
   selectCurrentPage,
-  selectTotalPages,
   selectPlayerCards,
+  selectTotalPages,
 } from "./playerCardGrid.slice.ts";
+import { Slide } from "@mui/material";
 
 export const PlayerCardGrid = () => {
   const searchQuery = useSelector(
@@ -69,6 +70,9 @@ export const PlayerCardGrid = () => {
       dataLength={playerCards.length}
       next={loadMorePlayers}
       hasMore={currentPage < totalPages}
+      style={{
+        marginBottom: "3.5rem",
+      }}
       loader={
         <Grid size={{ xs: 12 }}>
           <LinearProgressBar
@@ -84,7 +88,10 @@ export const PlayerCardGrid = () => {
       <Grid
         container
         spacing={4}
-        sx={{ overflowX: "hidden", overflowY: "hidden" }}
+        sx={{
+          overflowX: "hidden",
+          overflowY: "hidden",
+        }}
       >
         {isInitialLoad ? (
           <Grid size={{ xs: 12 }}>
@@ -122,7 +129,13 @@ export const PlayerCardGrid = () => {
             </Grid>
           ))
         )}
-        {showScrollToTop ? (
+
+        <Slide
+          in={showScrollToTop}
+          direction="up"
+          timeout={{ enter: 100, exit: 300 }}
+          unmountOnExit
+        >
           <Grid
             size={{ xs: 12 }}
             sx={{
@@ -137,14 +150,14 @@ export const PlayerCardGrid = () => {
             }}
           >
             <Button
-              text="To the top"
+              text="Scroll to the top"
               sx={{
                 borderRadius: "100rem",
               }}
               onClick={() => handleScrollToTop()}
             />
           </Grid>
-        ) : null}
+        </Slide>
       </Grid>
     </InfiniteScroll>
   );

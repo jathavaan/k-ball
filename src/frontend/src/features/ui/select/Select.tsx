@@ -12,7 +12,15 @@ export const Select = ({ children, description, ...props }: SelectProps) => {
   return (
     <>
       <HelperText description={description} />
-      <StyledSelect {...props} disableUnderline>
+      <StyledSelect
+        {...props}
+        disableUnderline
+        MenuProps={{
+          PaperProps: {
+            style: { maxHeight: "27rem" },
+          },
+        }}
+      >
         {children}
       </StyledSelect>
     </>
