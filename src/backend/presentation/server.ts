@@ -61,8 +61,8 @@ app.all(
 );
 
 app.get("/docs", expressPlayground({ endpoint: "/graphql" }));
-app.listen(4000, () => {
+app.listen(3001, () => {
   console.log(
-    "Running a GraphQL API server. View the docs at http://localhost:4000/docs",
+    "Running a GraphQL API server. View the docs at http://localhost:3001/docs",
   );
 });
