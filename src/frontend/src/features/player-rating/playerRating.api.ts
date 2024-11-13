@@ -72,6 +72,8 @@ export const saveUserRating = async (
   userId: number,
   userRating: Rating,
 ): Promise<SaveRatingResponse> => {
+  console.log("Sending rating to backend:", userRating);
+
   const response = await apiClient.mutate({
     mutation: UPSERT_USER_RATING,
     variables: {
@@ -80,5 +82,7 @@ export const saveUserRating = async (
       ...userRating,
     },
   });
+  console.log("Received response from backend:", response.data);
+
   return response.data.playerRating;
 };

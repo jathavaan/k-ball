@@ -21,6 +21,8 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
     handleRatingChange,
   } = usePlayerRating(playerId);
 
+  const ratingCategories = ["Attack", "Defence", "Passing", "Intelligence"];
+
   return (
     <TableContainer
       sx={(theme) => ({
@@ -41,45 +43,77 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
           </StyledTableRow>
         </StyledTableHead>
         <TableBody>
-          {["Attack", "Defence", "Passing", "Intelligence", "Average"].map(
-            (category, index) => (
-              <StyledTableRow key={index}>
-                <StyledTableCell>
-                  <Typography variant="body1">{category}</Typography>
-                </StyledTableCell>
-                <StyledTableCell>
-                  <StyledRating
-                    name={`overall-${category.toLowerCase()}`}
-                    value={
-                      playerRatings.overall?.[category as keyof Rating] || 0
-                    }
-                    readOnly
-                  />
-                </StyledTableCell>
-                <StyledTableCell>
-                  <StyledRating
-                    name={`your-${category.toLowerCase()}`}
-                    value={
-                      isEditing
-                        ? temporaryRating?.[category as keyof Rating]
-                        : playerRatings.userRating?.[
-                            category as keyof Rating
-                          ] || 0
-                    }
-                    readOnly
-                    onChange={(
-                      _,
-                      newValue, //fjernet event
-                    ) =>
-                      isEditing &&
-                      newValue !== null &&
-                      handleRatingChange(category as keyof Rating, newValue)
-                    }
-                  />
-                </StyledTableCell>
-              </StyledTableRow>
-            ),
-          )}
+          {ratingCategories.map((category, index) => (
+            <StyledTableRow key={index}>
+              <StyledTableCell>
+                <Typography variant="body1">{category}</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <StyledRating
+                  name={`overall-${category.toLowerCase()}`}
+                  value={playerRatings.overall?.[category as keyof Rating] || 0}
+                  readOnly
+                />
+              </StyledTableCell>
+              <StyledTableCell>
+                <StyledRating
+                  name={`your-${category.toLowerCase()}`}
+                  value={
+                    isEditing
+                      ? temporaryRating?.[category as keyof Rating]
+                      : playerRatings.userRating?.[category as keyof Rating] ||
+                        0
+                  }
+                  readOnly={!isEditing}
+                  onChange={(_, newValue) =>
+                    isEditing &&
+                    newValue !== null &&
+                    handleRatingChange(category as keyof Rating, newValue)
+                  }
+                />
+              </StyledTableCell>
+            </StyledTableRow>
+          ))}
+          <StyledTableRow>
+            <StyledTableCell>
+              <Typography variant="body1">Average</Typography>
+            </StyledTableCell>
+            <StyledTableCell>
+              <StyledRating
+                name="overall-average"
+                value={
+                  (playerRatings.overall &&
+                    Object.values(playerRatings.overall).reduce(
+                      (a, b) => a + b,
+                      0,
+                    ) / ratingCategories.length) ||
+                  0
+                }
+                readOnly
+              />
+            </StyledTableCell>
+            <StyledTableCell>
+              <StyledRating
+                name="your-average"
+                value={
+                  isEditing
+                    ? (temporaryRating &&
+                        Object.values(temporaryRating).reduce(
+                          (a, b) => a + b,
+                          0,
+                        ) / ratingCategories.length) ||
+                      0
+                    : (playerRatings.userRating &&
+                        Object.values(playerRatings.userRating).reduce(
+                          (a, b) => a + b,
+                          0,
+                        ) / ratingCategories.length) ||
+                      0
+                }
+                readOnly
+              />
+            </StyledTableCell>
+          </StyledTableRow>
         </TableBody>
       </StyledPlayerRatingTable>
       {isEditing ? (

@@ -79,6 +79,13 @@ export const usePlayerRating = (playerId: number) => {
 
   const handleSaveChanges = () => {
     if (temporaryRating && userId) {
+      console.log(
+        "Saving rating for user:",
+        userId,
+        "with rating:",
+        temporaryRating,
+      );
+
       saveUserRating(
         {
           playerId,
@@ -87,6 +94,8 @@ export const usePlayerRating = (playerId: number) => {
         },
         {
           onSuccess: () => {
+            console.log("Rating saved successfully for user:", userId);
+
             dispatch(setUserRating({ playerId, userRating: temporaryRating }));
             // Oppdaterer overall rating med de nye verdiene
             const updatedRatings = [
@@ -100,6 +109,9 @@ export const usePlayerRating = (playerId: number) => {
             ];
             const newOverall = calculateAverageRatings(updatedRatings);
             dispatch(setOverallRating({ playerId, overall: newOverall }));
+          },
+          onError: (error) => {
+            console.error("Failed to save rating:", error);
           },
         },
       );
