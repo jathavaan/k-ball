@@ -1,4 +1,4 @@
-export class GetPlayerStatsQuery {
+export class GetPlayerStatisticsQuery {
   playerId: number;
 
   constructor(id: number) {

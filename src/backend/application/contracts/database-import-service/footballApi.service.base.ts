@@ -2,7 +2,7 @@
   FootballApiClubsResponse,
   FootballApiLeagueResponse,
   FootballApiPlayersResponse,
-} from "../dtos";
+} from "./footballApi.dto";
 
 export interface FootballApiServiceBase {
   getLeague: () => Promise<FootballApiLeagueResponse>;

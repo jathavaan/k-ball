@@ -1,5 +1,5 @@
-import { PlayerResponse } from "../dtos";
-import { Player } from "../../domain/entities";
+import { Player } from "../../../domain/entities";
+import { PlayerResponse } from "../database-import-service/footballApi.dto";
 
 export interface PlayerRepositoryServiceBase {
   getPlayers: (

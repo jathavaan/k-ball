@@ -1,5 +1,5 @@
-﻿import { Club } from "../../domain/entities";
-import { ClubDto } from "../dtos";
+﻿import { Club } from "../../../domain/entities";
+import { ClubDto } from "../database-import-service/footballApi.dto";
 
 export interface ClubRepositoryServiceBase {
   getClubs: () => Promise<Club[]>;
