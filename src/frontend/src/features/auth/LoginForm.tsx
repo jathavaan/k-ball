@@ -16,10 +16,17 @@ export const LoginForm = () => {
   const email = useSelector(loginEmailSelector);
   const password = useSelector(loginPasswordSelector);
   const { handleEmailChange, handlePasswordChange } = useLoginForm();
-  const { onLoginClick, data, error, isPending } = useLogin();
+  const {
+    onLoginClick,
+    handleKeyDown,
+    isLoginButtonDisabled,
+    data,
+    error,
+    isPending,
+  } = useLogin();
 
   return (
-    <StyledContainer maxWidth="sm">
+    <StyledContainer maxWidth="sm" onKeyDown={(e) => handleKeyDown(e)}>
       <StyledPaper elevation={3}>
         <Grid
           container
@@ -96,13 +103,8 @@ export const LoginForm = () => {
           >
             <Button
               text="Log in"
-              disabled={
-                email.error.isError ||
-                password.error.isError ||
-                isPending ||
-                !email.value ||
-                !password.value
-              }
+              disabled={isLoginButtonDisabled}
+              isLoading={isPending}
               fullWidth
               onClick={() => onLoginClick()}
             />

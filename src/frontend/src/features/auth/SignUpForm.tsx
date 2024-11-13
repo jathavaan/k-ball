@@ -24,7 +24,14 @@ export const SignUpForm = () => {
   const email = useSelector(registerEmailSelector);
   const password = useSelector(registerPasswordSelector);
 
-  const { onRegisterClick, data, error, isPending } = useRegister();
+  const {
+    onRegisterClick,
+    handleKeyDown,
+    isRegisterButtonDisabled,
+    data,
+    error,
+    isPending,
+  } = useRegister();
   const {
     handleFirstNameChange,
     handlePasswordChange,
@@ -33,7 +40,7 @@ export const SignUpForm = () => {
   } = useRegisterForm();
 
   return (
-    <StyledContainer maxWidth="sm">
+    <StyledContainer maxWidth="sm" onKeyDown={(e) => handleKeyDown(e)}>
       <StyledPaper elevation={3}>
         <Grid container spacing={2}>
           <Grid
@@ -137,17 +144,8 @@ export const SignUpForm = () => {
           >
             <Button
               text="Sign up"
-              disabled={
-                firstName.error.isError ||
-                lastName.error.isError ||
-                email.error.isError ||
-                password.error.isError ||
-                !firstName.value ||
-                !lastName.value ||
-                !email.value ||
-                !password.value ||
-                isPending
-              }
+              disabled={isRegisterButtonDisabled}
+              isLoading={isPending}
               fullWidth
               onClick={() => onRegisterClick()}
             />

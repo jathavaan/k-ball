@@ -6,6 +6,6 @@ export const StyledContentText = styled(Typography)(() => ({
 }));
 
 export const StyledTitleText = styled(Typography)(() => ({
-  fontSize: "0.7rem",
-  fontWeight: 200,
+  fontSize: "0.8rem",
+  fontWeight: 100,
 }));

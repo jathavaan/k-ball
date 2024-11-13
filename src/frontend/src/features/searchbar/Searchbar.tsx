@@ -66,7 +66,7 @@ export const SearchBar = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         variant="outlined"
-        placeholder="Search..."
+        placeholder="Search for name..."
       />
 
       {hasUserInteracted && searchQuery && (
