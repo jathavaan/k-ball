@@ -41,29 +41,8 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <CardInfoText
-            titleText={"Age"}
-            contentText={`${props.age.toString()} years`}
-          />
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <CardInfoText
             titleText={"Nationality"}
             contentText={props.nationality}
-          />
-          {/* <img
-              src={props.flagUrl}
-              alt={`Flag of ${props.nationality}`}
-              style={{
-                width: "1.25rem",
-                height: "1.25rem",
-                marginLeft: "0.5rem",
-              }}
-            /> */}
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <CardInfoText
-            titleText={"Height"}
-            contentText={props.height ? `${props.height} cm` : "N/A"}
           />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
@@ -73,6 +52,18 @@ export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {
           <CardInfoText
             titleText={"Date of birth"}
             contentText={props.birthDate}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Age"}
+            contentText={`${props.age.toString()} years`}
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <CardInfoText
+            titleText={"Height"}
+            contentText={props.height ? `${props.height} cm` : "N/A"}
           />
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>

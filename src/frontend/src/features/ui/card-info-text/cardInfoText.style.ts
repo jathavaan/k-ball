@@ -1,11 +1,11 @@
 ﻿import { styled, Typography } from "@mui/material";
 
 export const StyledContentText = styled(Typography)(() => ({
-  size: "1.4rem",
-  fontWeight: 800,
+  fontSize: "0.9rem",
+  fontWeight: 700,
 }));
 
 export const StyledTitleText = styled(Typography)(() => ({
-  size: "1rem",
-  fontWeight: 300,
+  fontSize: "0.7rem",
+  fontWeight: 200,
 }));
