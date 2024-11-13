@@ -189,6 +189,6 @@ export const logOutUser = () => {
 };
 
 export const useLoggedInUserInfo = () => {
-  const userId = parseInt(localStorage.getItem("userId") || "0");
-  return useUserInfo(userId);
+  const userId = getLoggedInUser();
+  return useUserInfo(userId ?? 0);
 };
