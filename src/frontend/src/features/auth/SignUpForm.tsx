@@ -219,7 +219,10 @@ export const SignUpForm = () => {
             <StyledLink
               variant="body2"
               underline="hover"
-              onClick={() => navigate("/project2/login")}
+              onClick={() => {
+                navigate("/project2/login", { replace: true });
+                window.location.reload();
+              }}
             >
               Go back to login
             </StyledLink>

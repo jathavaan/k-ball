@@ -3,12 +3,12 @@ import { authenticateUser, registerUser } from "./auth.api.ts";
 
 export const useRegisterUser = () =>
   useMutation({
-    mutationKey: ["registerUser"],
     mutationFn: registerUser,
+    gcTime: 0,
   });
 
 export const useAuthenticateUser = () =>
   useMutation({
-    mutationKey: ["authenticateUser"],
     mutationFn: authenticateUser,
+    gcTime: 0,
   });
