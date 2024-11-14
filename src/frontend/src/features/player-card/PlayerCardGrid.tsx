@@ -19,6 +19,12 @@ import { selectSearchQuery } from "../searchbar";
 
 export const PlayerCardGrid = () => {
   const searchQuery = useSelector(selectSearchQuery);
+  const sortBy = useSelector(selectSortBy);
+  const sortOrder = useSelector(selectSortOrder);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
+  const playerCards = useSelector(selectPlayerCards);
+
   let { selectedClubIds, selectedCountryIds, selectedPositionIds } =
     useSelector((state: RootState) => state.playerFiltersReducer);
 
@@ -27,10 +33,8 @@ export const PlayerCardGrid = () => {
     selectedCountryIds,
     selectedPositionIds,
   ].map((ids) => (ids.includes(-1) ? [] : ids));
-  const sortBy = useSelector(selectSortBy);
-  const sortOrder = useSelector(selectSortOrder);
-  const currentPage = useSelector(selectCurrentPage);
-  const totalPages = useSelector(selectTotalPages);
+
+  const { showScrollToTopButton, handleScrollToTop } = useScrollToTopButton();
   const { isLoading, isError, loadMorePlayers } = usePlayerCardGrid(
     currentPage,
     24,
@@ -42,12 +46,9 @@ export const PlayerCardGrid = () => {
     sortOrder,
   );
 
-  const playerCards = useSelector(selectPlayerCards);
   const isInitialLoad = currentPage === 1 && isLoading;
   const noResultsOnFirstPage =
     currentPage === 1 && !isLoading && playerCards.length === 0;
-
-  const { showScrollToTopButton, handleScrollToTop } = useScrollToTopButton();
 
   return (
     <InfiniteScroll
