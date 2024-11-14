@@ -184,6 +184,7 @@ export const SignUpForm = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  width: "100%",
                 }}
               />
             </Grid>
@@ -202,6 +203,7 @@ export const SignUpForm = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  width: "100%",
                 }}
               />
             </Grid>

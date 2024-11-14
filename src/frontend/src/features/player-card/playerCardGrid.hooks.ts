@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store";
 import { usePlayerCards } from "./playerCardGrid.query";
@@ -57,7 +57,7 @@ export const usePlayerCardGrid = (
 
       dispatch(addLoadedPages(currentPage));
     }
-  }, [data, dispatch, currentPage, page]);
+  }, [data, dispatch, currentPage, page, loadedPages]);
 
   const prevFilters = useRef<string>("");
 
@@ -96,13 +96,14 @@ export const usePlayerCardGrid = (
 export const useScrollToTopButton = () => {
   const dispatch = useDispatch<AppDispatch>();
   const showScrollToTopButton = useSelector(selectShowScrollToTopButton);
-  const handleScroll = () => {
+
+  const handleScroll = useCallback(() => {
     if (window.scrollY > 200) {
       dispatch(setShowScrollToTopButton(true));
     } else {
       dispatch(setShowScrollToTopButton(false));
     }
-  };
+  }, [dispatch]);
 
   const handleScrollToTop = () => {
     document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
@@ -115,5 +116,5 @@ export const useScrollToTopButton = () => {
     };
   }, [handleScroll]);
 
-  return { showScrollToTop: showScrollToTopButton, handleScrollToTop };
+  return { showScrollToTopButton, handleScrollToTop };
 };

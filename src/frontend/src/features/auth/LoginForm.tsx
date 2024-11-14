@@ -113,11 +113,7 @@ export const LoginForm = () => {
           {error ? (
             <ErrorAlert
               message="Something went wrong while logging in"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              sx={{ width: "100%" }}
             />
           ) : null}
 
@@ -131,11 +127,12 @@ export const LoginForm = () => {
               }}
             >
               <ErrorAlert
-                message="Incorrect email or password"
+                message={"Incorrect username and password"}
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  width: "100%",
                 }}
               />
             </Grid>

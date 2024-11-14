@@ -49,12 +49,12 @@ export const useSearch = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       dispatch(setSearchQuery(localSearchQuery));
-    }, 250);
+    }, 750);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [localSearchQuery, dispatch]);
+  }, [localSearchQuery, dispatch, searchResultCount, searchQuery]);
 
   return {
     localSearchQuery,

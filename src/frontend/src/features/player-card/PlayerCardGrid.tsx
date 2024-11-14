@@ -1,11 +1,13 @@
-﻿import { usePlayerCardGrid } from "./playerCardGrid.hooks.ts";
+﻿import {
+  usePlayerCardGrid,
+  useScrollToTopButton,
+} from "./playerCardGrid.hooks.ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store.ts";
 import Grid from "@mui/material/Grid2";
 import { Button, ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useEffect, useState } from "react";
 import { selectSortBy, selectSortOrder } from "../player-sorting";
 import {
   selectCurrentPage,
@@ -39,11 +41,13 @@ export const PlayerCardGrid = () => {
     sortBy,
     sortOrder,
   );
-  const playerCards = useSelector(selectPlayerCards);
 
+  const playerCards = useSelector(selectPlayerCards);
   const isInitialLoad = currentPage === 1 && isLoading;
   const noResultsOnFirstPage =
     currentPage === 1 && !isLoading && playerCards.length === 0;
+
+  const { showScrollToTopButton, handleScrollToTop } = useScrollToTopButton();
 
   return (
     <InfiniteScroll
@@ -88,14 +92,12 @@ export const PlayerCardGrid = () => {
         ) : noResultsOnFirstPage ? (
           <Grid size={{ xs: 12 }}>
             <ErrorAlert
-              message={
-                "No players match your search or filter criteria. Please try different filters."
-              }
+              message={"No players match your search or filter criteria"}
             />
           </Grid>
         ) : (
           playerCards.map((playerCard) => (
-            <Grid key={playerCard.playerId} size={{ xs: 12, md: 6, lg: 4 }}>
+            <Grid key={playerCard.playerId} size={{ xs: 12, sm: 6, lg: 4 }}>
               <PlayerCard
                 key={playerCard.playerId}
                 playerId={playerCard.playerId}
@@ -111,7 +113,7 @@ export const PlayerCardGrid = () => {
         )}
 
         <Slide
-          in={showScrollToTop}
+          in={showScrollToTopButton}
           direction="up"
           timeout={{ enter: 100, exit: 300 }}
           unmountOnExit
