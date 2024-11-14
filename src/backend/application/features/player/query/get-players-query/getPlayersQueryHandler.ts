@@ -1,4 +1,5 @@
-import { Request } from "../../../../common/request";
+// TODO: Add validator for this but consult with @mbergst first
+import { Request } from "../../../../common";
 import { GetPlayersQuery } from "./getPlayersQuery";
 import { PlayerVm } from "../../../../view-models";
 import { container } from "../../../../../infrastructure/services/inversify.config";
@@ -17,7 +18,7 @@ export class GetPlayersQueryHandler
     >
 {
   playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase"
+    "PlayerRepositoryServiceBase",
   );
 
   async handle(request: GetPlayersQuery): Promise<{

@@ -1,17 +1,20 @@
 ﻿import { CreateUserCommand } from "./createUserCommand";
-import { Request } from "../../../../common/request";
+import { Request } from "../../../../common";
 import { container } from "../../../../../infrastructure/services/inversify.config";
 import { User } from "../../../../../domain/entities";
 import { UserRepositoryServiceBase } from "../../../../contracts";
+import { CreateUserCommandValidator } from "./createUserCommandValidator";
 
 export class CreateUserCommandHandler
   implements Request<CreateUserCommand, boolean>
 {
+  validator = new CreateUserCommandValidator();
   userRepositoryService = container.get<UserRepositoryServiceBase>(
     "UserRepositoryServiceBase",
   );
 
   async handle(request: CreateUserCommand): Promise<boolean> {
+    this.validator.validate(request);
     const user = new User();
     user.firstName = request.firstName;
     user.lastName = request.lastName;
