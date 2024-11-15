@@ -59,9 +59,10 @@ export const usePlayerRating = (playerId: number) => {
       dispatch(setOverallRating({ playerId, overall: overallRatingData }));
     }
     if (userRatingData) {
+      console.log("UserRatingData:\n\n", userRatingData);
       dispatch(setUserRating({ playerId, userRating: userRatingData }));
     }
-  }, [dispatch, playerId, overallRatingData, userRatingData]);
+  }, [dispatch, playerId, overallRatingData, userRatingData, playerRatings]);
 
   const handleEdit = () => {
     //Setter isEditing til true og initialiserer temporaryRating basert på gjeldende bruker-rating.
@@ -96,6 +97,7 @@ export const usePlayerRating = (playerId: number) => {
           onSuccess: () => {
             console.log("Rating saved successfully for user:", userId);
 
+            console.log("Dispatching setUserRating with:", temporaryRating);
             dispatch(setUserRating({ playerId, userRating: temporaryRating }));
             // Oppdaterer overall rating med de nye verdiene
             const updatedRatings = [
@@ -108,6 +110,7 @@ export const usePlayerRating = (playerId: number) => {
               temporaryRating,
             ];
             const newOverall = calculateAverageRatings(updatedRatings);
+            console.log("Dispatching setOverallRating with: ", newOverall);
             dispatch(setOverallRating({ playerId, overall: newOverall }));
           },
           onError: (error) => {
@@ -121,7 +124,12 @@ export const usePlayerRating = (playerId: number) => {
 
   const handleRatingChange = (category: keyof Rating, value: number) => {
     if (temporaryRating) {
-      setTemporaryRating({ ...temporaryRating, [category]: value });
+      console.log("Category:", category);
+      console.log("Value", value);
+      setTemporaryRating({
+        ...temporaryRating,
+        [category]: value,
+      });
     }
   };
 

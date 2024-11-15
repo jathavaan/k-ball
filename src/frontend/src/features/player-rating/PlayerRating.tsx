@@ -60,15 +60,21 @@ export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
                   name={`your-${category.toLowerCase()}`}
                   value={
                     isEditing
-                      ? temporaryRating?.[category as keyof Rating]
-                      : playerRatings.userRating?.[category as keyof Rating] ||
-                        0
+                      ? temporaryRating?.[
+                          category.toLowerCase() as keyof Rating
+                        ]
+                      : playerRatings.userRating?.[
+                          category.toLowerCase() as keyof Rating
+                        ] || 0
                   }
                   readOnly={!isEditing}
                   onChange={(_, newValue) =>
                     isEditing &&
                     newValue !== null &&
-                    handleRatingChange(category as keyof Rating, newValue)
+                    handleRatingChange(
+                      category.toLowerCase() as keyof Rating,
+                      newValue,
+                    )
                   }
                 />
               </StyledTableCell>
