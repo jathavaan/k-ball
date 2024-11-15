@@ -1,4 +1,3 @@
-// profileIcon.style.ts
 import { styled } from "@mui/material";
 
 export const ProfileAvatar = styled("img")`

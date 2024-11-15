@@ -14,7 +14,7 @@ import { useLoggedInUserInfo } from "../../auth/auth.hooks";
 const ProfileIcon = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [showMenu, setShowMenu] = useState(false);
-  const [showUserInfo, setShowUserInfo] = useState(false); // State to control the user info display
+  const [showUserInfo, setShowUserInfo] = useState(false);
   const navigate = useNavigate();
   const { data: userInfo, isLoading, error } = useLoggedInUserInfo();
 
@@ -42,7 +42,7 @@ const ProfileIcon = () => {
   return (
     <div>
       <IconButton onClick={handleClick} size="large">
-        <Avatar /> {/* Consider adding user-specific Avatar if applicable */}
+        <Avatar />
       </IconButton>
 
       <Menu

@@ -1,6 +1,6 @@
 import { useLoggedInUserInfo } from "../../auth/auth.hooks";
 import { StyledHelloUser } from "./helloUser.style";
-import { Text } from "../text/Text"; // Ensure the import path matches where your Text component is located
+import { Text } from "../text/Text";
 
 const HelloUser = () => {
   const { data: userInfo, isLoading, error } = useLoggedInUserInfo();
