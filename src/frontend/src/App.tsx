@@ -12,6 +12,7 @@ import {
   PlayerDashboard,
   PlayerProfile,
   SignUp,
+  RatingsPage,
 } from "./pages";
 import { isUserLoggedIn } from "./features/auth/auth.hooks.ts";
 import { ReactElement } from "react";
@@ -38,6 +39,7 @@ function App() {
             <Route path="/project2" element={<HomePage />} />
             <Route path="/project2/login" element={<LoginPage />} />
             <Route path="/project2/register" element={<SignUp />} />
+            <Route path="/project2/ratings" element={<RatingsPage />} />
             <Route
               path="/project2/players/"
               element={<ProtectedRoute element={<PlayerDashboard />} />}

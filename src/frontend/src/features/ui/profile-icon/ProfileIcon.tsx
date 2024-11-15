@@ -76,7 +76,9 @@ const ProfileIcon = () => {
             )}
           </div>
         )}
-        <MenuItem onClick={() => navigate("/ratings")}>My Ratings</MenuItem>
+        <MenuItem onClick={() => navigate("/project2/ratings")}>
+          My Ratings
+        </MenuItem>
         <MenuItem onClick={handleLogoutClick}>Log Out</MenuItem>
       </Menu>
     </div>
