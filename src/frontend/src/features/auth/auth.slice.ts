@@ -86,6 +86,15 @@ const loginFormSlice = createSlice({
       state.password.error.message = undefined;
       state.password.error.isError = false;
     },
+    clearLoginForm: (state) => {
+      state.email.value = "";
+      state.email.error.isError = false;
+      state.email.error.message = undefined;
+
+      state.password.value = "";
+      state.password.error.isError = false;
+      state.password.error.message = undefined;
+    },
   },
 });
 
@@ -157,6 +166,23 @@ const registerFormSlice = createSlice({
       state.password.error.message = undefined;
       state.password.error.isError = false;
     },
+    clearRegisterForm: (state) => {
+      state.firstName.value = "";
+      state.firstName.error.isError = false;
+      state.firstName.error.message = undefined;
+
+      state.lastName.value = "";
+      state.lastName.error.isError = false;
+      state.lastName.error.message = undefined;
+
+      state.email.value = "";
+      state.email.error.isError = false;
+      state.email.error.message = undefined;
+
+      state.password.value = "";
+      state.password.error.isError = false;
+      state.password.error.message = undefined;
+    },
   },
 });
 
@@ -167,6 +193,7 @@ export const {
   setLoginPassword,
   setLoginPasswordError,
   resetLoginPasswordError,
+  clearLoginForm,
 } = loginFormSlice.actions;
 
 export const {
@@ -182,6 +209,7 @@ export const {
   setRegisterPassword,
   setRegisterPasswordError,
   resetRegisterPasswordError,
+  clearRegisterForm,
 } = registerFormSlice.actions;
 
 export const loginFormReducer = loginFormSlice.reducer;

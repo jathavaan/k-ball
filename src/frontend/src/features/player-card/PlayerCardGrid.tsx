@@ -1,22 +1,30 @@
-﻿import { usePlayerCardGrid } from "./playerCardGrid.hooks.ts";
+﻿import {
+  usePlayerCardGrid,
+  useScrollToTopButton,
+} from "./playerCardGrid.hooks.ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store.ts";
 import Grid from "@mui/material/Grid2";
 import { Button, ErrorAlert, LinearProgressBar } from "../ui";
 import { PlayerCard } from "./PlayerCard.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useEffect, useState } from "react";
 import { selectSortBy, selectSortOrder } from "../player-sorting";
 import {
   selectCurrentPage,
-  selectTotalPages,
   selectPlayerCards,
+  selectTotalPages,
 } from "./playerCardGrid.slice.ts";
+import { Slide } from "@mui/material";
+import { selectSearchQuery } from "../searchbar";
 
 export const PlayerCardGrid = () => {
-  const searchQuery = useSelector(
-    (state: RootState) => state.searchbarReducer.search,
-  );
+  const searchQuery = useSelector(selectSearchQuery);
+  const sortBy = useSelector(selectSortBy);
+  const sortOrder = useSelector(selectSortOrder);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
+  const playerCards = useSelector(selectPlayerCards);
+
   let { selectedClubIds, selectedCountryIds, selectedPositionIds } =
     useSelector((state: RootState) => state.playerFiltersReducer);
 
@@ -25,10 +33,8 @@ export const PlayerCardGrid = () => {
     selectedCountryIds,
     selectedPositionIds,
   ].map((ids) => (ids.includes(-1) ? [] : ids));
-  const sortBy = useSelector(selectSortBy);
-  const sortOrder = useSelector(selectSortOrder);
-  const currentPage = useSelector(selectCurrentPage);
-  const totalPages = useSelector(selectTotalPages);
+
+  const { showScrollToTopButton, handleScrollToTop } = useScrollToTopButton();
   const { isLoading, isError, loadMorePlayers } = usePlayerCardGrid(
     currentPage,
     24,
@@ -39,36 +45,19 @@ export const PlayerCardGrid = () => {
     sortBy,
     sortOrder,
   );
-  const playerCards = useSelector(selectPlayerCards);
 
   const isInitialLoad = currentPage === 1 && isLoading;
   const noResultsOnFirstPage =
     currentPage === 1 && !isLoading && playerCards.length === 0;
-
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const handleScroll = () => {
-    if (window.scrollY > 200) {
-      setShowScrollToTop(true);
-    } else {
-      setShowScrollToTop(false);
-    }
-  };
-  const handleScrollToTop = () => {
-    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <InfiniteScroll
       dataLength={playerCards.length}
       next={loadMorePlayers}
       hasMore={currentPage < totalPages}
+      style={{
+        marginBottom: "3.5rem",
+      }}
       loader={
         <Grid size={{ xs: 12 }}>
           <LinearProgressBar
@@ -84,7 +73,10 @@ export const PlayerCardGrid = () => {
       <Grid
         container
         spacing={4}
-        sx={{ overflowX: "hidden", overflowY: "hidden" }}
+        sx={{
+          overflowX: "hidden",
+          overflowY: "hidden",
+        }}
       >
         {isInitialLoad ? (
           <Grid size={{ xs: 12 }}>
@@ -101,14 +93,12 @@ export const PlayerCardGrid = () => {
         ) : noResultsOnFirstPage ? (
           <Grid size={{ xs: 12 }}>
             <ErrorAlert
-              message={
-                "No players match your search or filter criteria. Please try different filters."
-              }
+              message={"No players match your search or filter criteria"}
             />
           </Grid>
         ) : (
           playerCards.map((playerCard) => (
-            <Grid key={playerCard.playerId} size={{ xs: 12, md: 6, lg: 4 }}>
+            <Grid key={playerCard.playerId} size={{ xs: 12, sm: 6, lg: 4 }}>
               <PlayerCard
                 key={playerCard.playerId}
                 playerId={playerCard.playerId}
@@ -122,7 +112,13 @@ export const PlayerCardGrid = () => {
             </Grid>
           ))
         )}
-        {showScrollToTop ? (
+
+        <Slide
+          in={showScrollToTopButton}
+          direction="up"
+          timeout={{ enter: 100, exit: 300 }}
+          unmountOnExit
+        >
           <Grid
             size={{ xs: 12 }}
             sx={{
@@ -137,14 +133,14 @@ export const PlayerCardGrid = () => {
             }}
           >
             <Button
-              text="To the top"
+              text="Scroll to the top"
               sx={{
                 borderRadius: "100rem",
               }}
               onClick={() => handleScrollToTop()}
             />
           </Grid>
-        ) : null}
+        </Slide>
       </Grid>
     </InfiniteScroll>
   );

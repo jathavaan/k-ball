@@ -11,4 +11,5 @@ export * from "./button/Button";
 export * from "./text-field/TextField";
 export * from "./success-alert/SuccessAlert";
 export * from "./helper-text/HelperText";
+export * from "./helper-error-text/HelperErrorText";
 export * from "./card-info-text/CardInfoText";

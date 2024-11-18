@@ -1,19 +1,20 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store";
 import { usePlayerCards } from "./playerCardGrid.query";
-import { useRef } from "react";
 import {
-  setPlayerCardsGrid,
-  addPlayerCards,
-  setCurrentPage,
-  setTotalPages,
   addLoadedPages,
+  addPlayerCards,
   clearLoadedPages,
-  selectPlayerCards,
   selectCurrentPage,
-  selectTotalPages,
   selectLoadedPages,
+  selectPlayerCards,
+  selectShowScrollToTopButton,
+  selectTotalPages,
+  setCurrentPage,
+  setPlayerCardsGrid,
+  setShowScrollToTopButton,
+  setTotalPages,
 } from "./playerCardGrid.slice";
 
 export const usePlayerCardGrid = (
@@ -27,7 +28,6 @@ export const usePlayerCardGrid = (
   sortOrder: string,
 ) => {
   const dispatch = useDispatch<AppDispatch>();
-
   const currentPage = useSelector(selectCurrentPage);
 
   const { data, isError, isLoading } = usePlayerCards(
@@ -57,7 +57,7 @@ export const usePlayerCardGrid = (
 
       dispatch(addLoadedPages(currentPage));
     }
-  }, [data, dispatch, currentPage, page]);
+  }, [data, dispatch, currentPage, page, loadedPages]);
 
   const prevFilters = useRef<string>("");
 
@@ -91,4 +91,30 @@ export const usePlayerCardGrid = (
     isLoading,
     loadMorePlayers,
   };
+};
+
+export const useScrollToTopButton = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const showScrollToTopButton = useSelector(selectShowScrollToTopButton);
+
+  const handleScroll = useCallback(() => {
+    if (window.scrollY > 200) {
+      dispatch(setShowScrollToTopButton(true));
+    } else {
+      dispatch(setShowScrollToTopButton(false));
+    }
+  }, [dispatch]);
+
+  const handleScrollToTop = () => {
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+  return { showScrollToTopButton, handleScrollToTop };
 };
