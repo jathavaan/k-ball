@@ -7,6 +7,10 @@ import { schema } from "./resolvers/graphQlSchema";
 import cors from "cors";
 import { config } from "../config";
 import { container } from "../infrastructure/services/inversify.config";
+import { DatabaseImportServiceBase } from "../application/contracts";
+import { PlayerImportStateRepositoryServiceBase } from "../application/contracts/playerImportStateRepository.service.base";
+import { errorHandlingMiddleware } from "../application/middleware/errorHandling.middleware";
+import { loggingMiddleware } from "../application/middleware/logging.middleware";
 import {
   DatabaseImportServiceBase,
   PlayerImportStateRepositoryServiceBase,
@@ -55,16 +59,18 @@ KBallDbContext.initialize()
 // Create an express server and add the GraphQL endpoints
 const app = express();
 app.use(cors({ origin: "*" }));
+app.use((req, res, next) => loggingMiddleware(req, res, next));
 app.all(
   "/graphql",
   createHandler({
     schema: schema,
+    formatError: (err) => errorHandlingMiddleware(err),
   }),
 );
 
 app.get("/docs", expressPlayground({ endpoint: "/graphql" }));
-app.listen(4000, () => {
+app.listen(3001, () => {
   console.log(
-    "Running a GraphQL API server. View the docs at http://localhost:4000/docs",
+    "Running a GraphQL API server. View the docs at http://localhost:3001/docs",
   );
 });

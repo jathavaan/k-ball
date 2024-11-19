@@ -1,19 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { PlayerCardBase } from "./playerCard.types";
-
-interface PlayerCardGridState {
-  playerCards: PlayerCardBase[];
-  currentPage: number;
-  totalPages: number;
-  loadedPages: number[];
-}
+import { PlayerCardBase, PlayerCardGridState } from "./playerCard.types";
 
 const initialState: PlayerCardGridState = {
   playerCards: [],
   currentPage: 1,
   totalPages: 1,
   loadedPages: [1],
+  showScrollToTopButton: false,
 };
 
 const playerCardGridSlice = createSlice({
@@ -41,9 +35,11 @@ const playerCardGridSlice = createSlice({
         state.loadedPages.push(action.payload);
       }
     },
-
     clearLoadedPages: (state) => {
       state.loadedPages = [1];
+    },
+    setShowScrollToTopButton: (state, action: PayloadAction<boolean>) => {
+      state.showScrollToTopButton = action.payload;
     },
   },
 });
@@ -55,6 +51,7 @@ export const {
   setTotalPages,
   addLoadedPages,
   clearLoadedPages,
+  setShowScrollToTopButton,
 } = playerCardGridSlice.actions;
 
 export const selectPlayerCards = (state: RootState) =>
@@ -65,5 +62,7 @@ export const selectTotalPages = (state: RootState) =>
   state.playerCardGridReducer.totalPages;
 export const selectLoadedPages = (state: RootState) =>
   state.playerCardGridReducer.loadedPages;
+export const selectShowScrollToTopButton = (state: RootState) =>
+  state.playerCardGridReducer.showScrollToTopButton;
 
 export const playerCardGridReducer = playerCardGridSlice.reducer;

@@ -10,7 +10,7 @@ export const PlayerSorting = () => {
   const { sortBy, sortOrder, setSort } = useSorting();
   return (
     <StyledSortContainer>
-      <HelperText description="Sort players by name" />
+      <HelperText description="Sort by name" />
       <StyledToggleButtonGroup
         value={`${sortBy}_${sortOrder}`}
         exclusive

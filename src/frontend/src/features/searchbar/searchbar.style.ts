@@ -1,22 +1,15 @@
-import { styled, TextField } from "@mui/material";
+import { IconButton, styled, TextField } from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
+import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 
-export const StyledSearchContainer = styled("div")(({ theme }) => ({
-  position: "relative",
-  display: "flex",
-  alignItems: "center",
-  width: "100%",
-  margin: "0 auto 20px auto",
-  padding: "0px",
-  backgroundColor: "transparent",
-  borderBottom: `2px solid ${theme.palette.primary.contrastText}`,
-}));
-
-export const StyledSearchInput = styled(TextField)(({ theme }) => ({
-  padding: "15px 0",
-  width: "100%",
+export const StyledSearchTextInput = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
+    borderRadius: 0,
     backgroundColor: "transparent",
-    padding: "0",
+    height: "100%",
+    padding: "0.4rem 0rem",
     "& fieldset": {
       border: "none",
     },
@@ -28,7 +21,7 @@ export const StyledSearchInput = styled(TextField)(({ theme }) => ({
     },
   },
   "& .MuiInputBase-input": {
-    padding: "5px",
+    padding: "0",
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.primary.contrastText,
     caretColor: theme.palette.primary.contrastText,
@@ -38,50 +31,35 @@ export const StyledSearchInput = styled(TextField)(({ theme }) => ({
     },
   },
 }));
-export const StyledClearButton = styled("button")(({ theme }) => ({
-  position: "absolute",
+
+export const StyledGrid = styled(Grid)(({ theme }) => ({
+  borderBottom: `0.1rem solid ${theme.palette.text.disabled}`,
+})) as typeof Grid;
+
+export const StyledIconButton = styled(IconButton)(() => ({
   display: "flex",
-  justifyContent: "center",
+  flexDirection: "row",
   alignItems: "center",
-  right: "50px",
-  top: "50%",
-  transform: "translateY(-50%)",
-  background: "none",
-  border: "none",
-  fontSize: "18px",
-  cursor: "pointer",
-  color: "#888",
+  justifyContent: "center",
   height: "100%",
-  width: "40px",
-  transition: "color 0.3s ease",
+  width: "100%",
+})) as typeof IconButton;
+
+export const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
+  color: theme.palette.text.disabled,
+  transition: "0.1s ease-in-out",
   "&:hover": {
-    color: theme.palette.primary.light,
-  },
-  "&:active": {
     color: theme.palette.primary.contrastText,
   },
 }));
+export const StyledSearchOffIcon = styled(SearchOffIcon)(({ theme }) => ({
+  color: theme.palette.error.main,
+}));
 
-export const StyledSearchButton = styled("button")(({ theme }) => ({
-  position: "absolute",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  right: "10px",
-  top: "50%",
-  transform: "translateY(-50%)",
-  background: "none",
-  border: "none",
-  fontSize: "18px",
-  cursor: "pointer",
-  color: "#888",
-  height: "100%",
-  width: "40px",
-  transition: "color 0.3s ease",
+export const StyledClearIcon = styled(ClearIcon)(({ theme }) => ({
+  color: theme.palette.text.disabled,
+  transition: "0.1s ease-in-out",
   "&:hover": {
-    color: theme.palette.primary.light,
-  },
-  "&:active": {
     color: theme.palette.primary.contrastText,
   },
 }));

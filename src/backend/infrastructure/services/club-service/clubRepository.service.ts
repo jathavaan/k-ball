@@ -38,8 +38,8 @@ export class ClubRepositoryService implements ClubRepositoryServiceBase {
       (club) =>
         !existingClubs.some(
           (existingClub) =>
-            existingClub.name.toLowerCase() === club.name.toLowerCase()
-        )
+            existingClub.name.toLowerCase() === club.name.toLowerCase(),
+        ),
     );
 
     if (clubs.length === 0) {

@@ -24,7 +24,14 @@ export const SignUpForm = () => {
   const email = useSelector(registerEmailSelector);
   const password = useSelector(registerPasswordSelector);
 
-  const { onRegisterClick, data, error, isPending } = useRegister();
+  const {
+    onRegisterClick,
+    handleKeyDown,
+    isRegisterButtonDisabled,
+    data,
+    error,
+    isPending,
+  } = useRegister();
   const {
     handleFirstNameChange,
     handlePasswordChange,
@@ -33,7 +40,7 @@ export const SignUpForm = () => {
   } = useRegisterForm();
 
   return (
-    <StyledContainer maxWidth="sm">
+    <StyledContainer maxWidth="sm" onKeyDown={(e) => handleKeyDown(e)}>
       <StyledPaper elevation={3}>
         <Grid container spacing={2}>
           <Grid
@@ -137,17 +144,8 @@ export const SignUpForm = () => {
           >
             <Button
               text="Sign up"
-              disabled={
-                firstName.error.isError ||
-                lastName.error.isError ||
-                email.error.isError ||
-                password.error.isError ||
-                !firstName.value ||
-                !lastName.value ||
-                !email.value ||
-                !password.value ||
-                isPending
-              }
+              disabled={isRegisterButtonDisabled}
+              isLoading={isPending}
               fullWidth
               onClick={() => onRegisterClick()}
             />
@@ -186,6 +184,7 @@ export const SignUpForm = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  width: "100%",
                 }}
               />
             </Grid>
@@ -204,6 +203,7 @@ export const SignUpForm = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  width: "100%",
                 }}
               />
             </Grid>
@@ -219,7 +219,10 @@ export const SignUpForm = () => {
             <StyledLink
               variant="body2"
               underline="hover"
-              onClick={() => navigate("/project2/login")}
+              onClick={() => {
+                navigate("/project2/login", { replace: true });
+                window.location.reload();
+              }}
             >
               Go back to login
             </StyledLink>

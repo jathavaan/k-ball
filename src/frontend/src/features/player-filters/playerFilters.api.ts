@@ -80,7 +80,9 @@ export const getCount = async ({
   queryKey,
 }: {
   queryKey: [string, string, number[], number[], number[]];
-}): Promise<{ totalPlayers: number }> => {
+}): Promise<{ totalPlayers: number | undefined }> => {
+  // Ignored as it is needed for tanstack query
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, search, clubIds, countryIds, positionIds] = queryKey;
 
   const response = await apiClient.query({
