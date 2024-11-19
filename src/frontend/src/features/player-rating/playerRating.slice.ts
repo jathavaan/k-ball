@@ -50,6 +50,13 @@ const playerRatingSlice = createSlice({
     setOverallAverage: (state, action: PayloadAction<number | null>) => {
       state.overallAverage = action.payload;
     },
+    resetPlayerRating: (state) => {
+      state.attack = null;
+      state.defence = null;
+      state.passing = null;
+      state.intelligence = null;
+      state.isEditingPlayerRating = false;
+    },
     setIsEditingPlayerRating: (state, action: PayloadAction<boolean>) => {
       state.isEditingPlayerRating = action.payload;
     },
@@ -67,6 +74,7 @@ export const {
   setOverallPassing,
   setOverallIntelligence,
   setOverallAverage,
+  resetPlayerRating,
   setIsEditingPlayerRating,
 } = playerRatingSlice.actions;
 
