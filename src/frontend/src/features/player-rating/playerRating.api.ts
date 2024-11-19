@@ -9,6 +9,7 @@ const GET_OVERALL_RATING = gql`
       defence
       passing
       intelligence
+      average
     }
   }
 `;
@@ -20,6 +21,7 @@ const GET_USER_RATING = gql`
       defence
       passing
       intelligence
+      average
     }
   }
 `;

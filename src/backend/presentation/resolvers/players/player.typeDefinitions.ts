@@ -39,5 +39,6 @@ export const PlayerRatingType = new GraphQLObjectType({
     defence: { type: GraphQLFloat },
     passing: { type: GraphQLFloat },
     intelligence: { type: GraphQLFloat },
+    average: { type: GraphQLFloat },
   },
 });
