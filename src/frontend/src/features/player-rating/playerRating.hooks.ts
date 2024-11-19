@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
+  resetPlayerRating,
   selectAttack,
   selectDefence,
   selectIntelligence,
@@ -89,6 +90,7 @@ export const usePlayerRating = (playerId: number) => {
   }, [mutateOverallRating]);
 
   useEffect(() => {
+    dispatch(resetPlayerRating());
     if (!userRating) return;
     dispatch(setAttack(userRating.attack));
     dispatch(setDefence(userRating.defence));
