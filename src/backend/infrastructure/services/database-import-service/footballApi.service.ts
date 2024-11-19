@@ -1,13 +1,14 @@
 ﻿import { FootballApiServiceBase } from "../../../application/contracts";
+
+import axios from "axios";
+import { config } from "../../../config";
+import { injectable } from "inversify";
 import {
   FootballApiClubsResponse,
   FootballApiLeagueResponse,
   FootballApiPlayersResponse,
   PlayerResponse,
-} from "../../../application/dtos";
-import axios from "axios";
-import { config } from "../../../config";
-import { injectable } from "inversify";
+} from "../../../application/contracts/database-import-service/footballApi.dto";
 
 @injectable()
 export class FootballApiService implements FootballApiServiceBase {

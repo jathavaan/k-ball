@@ -1,4 +1,4 @@
-import { PlayerStats } from "domain/entities";
+import { PlayerStatistics } from "domain/entities";
 
 export class PlayerStatsVm {
   playerSeasonId: number;
@@ -8,7 +8,7 @@ export class PlayerStatsVm {
   yellowCards: number;
   redCards: number;
 
-  constructor(playerStats: PlayerStats) {
+  constructor(playerStats: PlayerStatistics) {
     this.playerSeasonId = playerStats.playerSeasonId;
     this.goals = playerStats.goals;
     this.assists = playerStats.assists;

@@ -7,10 +7,12 @@ import { schema } from "./resolvers/graphQlSchema";
 import cors from "cors";
 import { config } from "../config";
 import { container } from "../infrastructure/services/inversify.config";
-import { DatabaseImportServiceBase } from "../application/contracts";
-import { PlayerImportStateRepositoryServiceBase } from "../application/contracts/playerImportStateRepository.service.base";
 import { errorHandlingMiddleware } from "../application/middleware/errorHandling.middleware";
 import { loggingMiddleware } from "../application/middleware/logging.middleware";
+import {
+  DatabaseImportServiceBase,
+  PlayerImportStateRepositoryServiceBase,
+} from "../application/contracts"; // Initialize the database connection
 
 // Initialize the database connection
 const databaseImportService = container.get<DatabaseImportServiceBase>(

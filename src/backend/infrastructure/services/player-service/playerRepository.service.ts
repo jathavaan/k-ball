@@ -9,9 +9,12 @@ import {
 import { Player, PlayerSeason } from "../../../domain/entities";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { injectable } from "inversify";
-import { PlayerResponse, PlayerStatisticsDto } from "../../../application/dtos";
 import { container } from "../inversify.config";
 import { ILike, In } from "typeorm";
+import {
+  PlayerResponse,
+  PlayerStatisticsDto,
+} from "../../../application/contracts/database-import-service/footballApi.dto";
 
 @injectable()
 export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
