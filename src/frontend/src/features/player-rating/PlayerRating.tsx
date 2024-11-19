@@ -13,6 +13,7 @@ import {
 import { usePlayerRating, usePlayerRatingEdit } from "./playerRating.hooks.ts";
 import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
+import ClearIcon from "@mui/icons-material/Clear";
 import { PlayerRatingProps } from "./playerRating.types.ts";
 import { StyledRating } from "./playerRating.style.ts";
 import { useSelector } from "react-redux";
@@ -24,6 +25,7 @@ import {
   selectIsEditingPlayerRating,
   selectPassing,
 } from "./playerRating.slice.ts";
+import Grid from "@mui/material/Grid2";
 
 export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
   const attack = useSelector(selectAttack);
@@ -42,6 +44,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
     isSaveUserRatingPending,
     isSaveUserRatingError,
     handleSaveChanges,
+    onClearClick,
   } = usePlayerRating(playerId);
 
   const {
@@ -196,30 +199,45 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
           <TableRow>
             <TableCell colSpan={1}></TableCell>
             <TableCell colSpan={2}>
-              <Button
-                fullWidth
-                disabled={isSaveUserRatingPending}
-                endIcon={
-                  isSaveUserRatingPending && <CircularProgressBar size={25} />
-                }
-                startIcon={
-                  isEditingPlayerRating ? (
-                    <SaveIcon />
-                  ) : isSaveUserRatingPending ? null : (
-                    <EditIcon />
-                  )
-                }
-                onClick={
-                  isEditingPlayerRating ? handleSaveChanges : onEditClick
-                }
-                text={
-                  isEditingPlayerRating
-                    ? "Save changes"
-                    : isSaveUserRatingPending
-                      ? "Saving..."
-                      : "Edit rating"
-                }
-              />
+              <Grid container spacing={2}>
+                <Grid size={{ xs: isEditingPlayerRating ? 9 : 12 }}>
+                  <Button
+                    fullWidth
+                    disabled={isSaveUserRatingPending}
+                    endIcon={
+                      isSaveUserRatingPending && (
+                        <CircularProgressBar size={25} />
+                      )
+                    }
+                    startIcon={
+                      isEditingPlayerRating ? (
+                        <SaveIcon />
+                      ) : isSaveUserRatingPending ? null : (
+                        <EditIcon />
+                      )
+                    }
+                    onClick={
+                      isEditingPlayerRating ? handleSaveChanges : onEditClick
+                    }
+                    text={
+                      isEditingPlayerRating
+                        ? "Save changes"
+                        : isSaveUserRatingPending
+                          ? "Saving..."
+                          : "Edit rating"
+                    }
+                  />
+                </Grid>
+                {isEditingPlayerRating && (
+                  <Grid size={{ xs: 3 }}>
+                    <Button
+                      text="Clear"
+                      endIcon={<ClearIcon />}
+                      onClick={() => onClearClick()}
+                    />
+                  </Grid>
+                )}
+              </Grid>
             </TableCell>
           </TableRow>
         </TableFooter>
