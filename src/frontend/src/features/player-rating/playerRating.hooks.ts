@@ -85,6 +85,19 @@ export const usePlayerRating = (playerId: number) => {
     dispatch(setIsEditingPlayerRating(false));
   };
 
+  const onClearClick = () => {
+    if (!userRating) {
+      dispatch(resetPlayerRating());
+      return;
+    }
+    dispatch(setAttack(userRating.attack));
+    dispatch(setDefence(userRating.attack));
+    dispatch(setPassing(userRating.attack));
+    dispatch(setIntelligence(userRating.attack));
+    dispatch(setAverage(userRating.attack));
+    dispatch(setIsEditingPlayerRating(false));
+  };
+
   useEffect(() => {
     mutateOverallRating();
   }, [mutateOverallRating]);
@@ -107,6 +120,7 @@ export const usePlayerRating = (playerId: number) => {
     isSaveUserRatingPending,
     isSaveUserRatingError,
     handleSaveChanges,
+    onClearClick,
   };
 };
 
