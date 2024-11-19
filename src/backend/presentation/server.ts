@@ -10,7 +10,7 @@ import { container } from "../infrastructure/services/inversify.config";
 import { DatabaseImportServiceBase } from "../application/contracts";
 import { PlayerImportStateRepositoryServiceBase } from "../application/contracts/playerImportStateRepository.service.base";
 import { errorHandlingMiddleware } from "../application/middleware/errorHandling.middleware";
-import { GraphQLError } from "graphql/error";
+import { loggingMiddleware } from "../application/middleware/logging.middleware";
 
 // Initialize the database connection
 const databaseImportService = container.get<DatabaseImportServiceBase>(
@@ -55,37 +55,15 @@ KBallDbContext.initialize()
 // Create an express server and add the GraphQL endpoints
 const app = express();
 app.use(cors({ origin: "*" }));
-app.use((req, res, next) => {
-  console.log(
-    `IP: ${req.ip} | Request: ${req.method} ${req.url} received at ${new Date()} -- Responded with ${res.statusCode}`,
-  );
-  next();
-});
-
-app.use("/graphql", (req, res, next) =>
-  errorHandlingMiddleware(req, res, next),
-);
-
+app.use((req, res, next) => loggingMiddleware(req, res, next));
 app.all(
   "/graphql",
   createHandler({
     schema: schema,
-    formatError: (err) => {
-      if (err instanceof GraphQLError) {
-        return new GraphQLError(err.message, {
-          extensions: {
-            ...err.extensions,
-            statusCode: 400, // Custom status code for validation errors
-          },
-        });
-      } else {
-        return new GraphQLError("Internal server error", {
-          extensions: { statusCode: 500 },
-        });
-      }
-    },
+    formatError: (err) => errorHandlingMiddleware(err),
   }),
 );
+
 app.get("/docs", expressPlayground({ endpoint: "/graphql" }));
 app.listen(3001, () => {
   console.log(

@@ -49,8 +49,8 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
       (country) =>
         !existingCountries.some(
           (existingCountry) =>
-            existingCountry.name.toLowerCase() === country.name.toLowerCase()
-        )
+            existingCountry.name.toLowerCase() === country.name.toLowerCase(),
+        ),
     );
 
     if (countries.length === 0) {
@@ -63,7 +63,7 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
 
   async getCountryAddIfMissing(
     countryName: string,
-    flagUrl?: string
+    flagUrl?: string,
   ): Promise<Country> {
     return await this.dbContext.transaction(
       async (transactionalEntityManager) => {
@@ -83,7 +83,7 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
 
         await transactionalEntityManager.save(Country, newCountry);
         return newCountry;
-      }
+      },
     );
   }
 }

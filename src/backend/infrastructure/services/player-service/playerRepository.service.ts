@@ -17,23 +17,23 @@ import { ILike, In } from "typeorm";
 export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
   dbContext = KBallDbContext.manager;
   clubRepositoryService = container.get<ClubRepositoryServiceBase>(
-    "ClubRepositoryServiceBase"
+    "ClubRepositoryServiceBase",
   );
 
   birthPlaceRepositoryService = container.get<BirthPlaceRepositoryServiceBase>(
-    "BirthPlaceRepositoryServiceBase"
+    "BirthPlaceRepositoryServiceBase",
   );
 
   countryRepositoryService = container.get<CountryRepositoryServiceBase>(
-    "CountryRepositoryServiceBase"
+    "CountryRepositoryServiceBase",
   );
 
   positionRepositoryService = container.get<PositionRepositoryServiceBase>(
-    "PositionRepositoryServiceBase"
+    "PositionRepositoryServiceBase",
   );
 
   seasonRepositoryService = container.get<SeasonRepositoryServiceBase>(
-    "SeasonRepositoryServiceBase"
+    "SeasonRepositoryServiceBase",
   );
 
   async getPlayerById(playerId: number): Promise<Player | null> {
@@ -68,13 +68,13 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
   async upsertPlayer(playerResponse: PlayerResponse): Promise<boolean | null> {
     if (playerResponse.statistics.length === 0) {
       console.error(
-        "Player statistics length was 0. This is an error from the Football API"
+        "Player statistics length was 0. This is an error from the Football API",
       );
     }
 
     if (playerResponse.statistics.length > 1) {
       console.warn(
-        `Player statistics length is not 1. Was ${playerResponse.statistics.length} for ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID ${playerResponse.player.id})`
+        `Player statistics length is not 1. Was ${playerResponse.statistics.length} for ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID ${playerResponse.player.id})`,
       );
     }
 
@@ -84,21 +84,21 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
     const playerBirthPlace =
       await this.birthPlaceRepositoryService.getBirthPlaceAddIfMissing(
         playerDto.birth.place,
-        playerDto.birth.country
+        playerDto.birth.country,
       );
 
     const playerCountry =
       await this.countryRepositoryService.getCountryAddIfMissing(
-        playerDto.nationality
+        playerDto.nationality,
       );
 
     const playerClub = await this.clubRepositoryService.getClubByExternalId(
-      playerStatisticsDto.team.id
+      playerStatisticsDto.team.id,
     );
 
     if (playerClub === null) {
       console.warn(
-        `Something was wrong with the data from Football API. Club with ID ${playerStatisticsDto.team.id} was not found in the database. Skipping player ${playerDto.firstname} ${playerDto.lastname} (External ID ${playerDto.id})`
+        `Something was wrong with the data from Football API. Club with ID ${playerStatisticsDto.team.id} was not found in the database. Skipping player ${playerDto.firstname} ${playerDto.lastname} (External ID ${playerDto.id})`,
       );
 
       return null;
@@ -106,7 +106,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     const playerPosition =
       await this.positionRepositoryService.getPositionAddIfMissing(
-        playerStatisticsDto.games.position
+        playerStatisticsDto.games.position,
       );
 
     let player = await this.getPlayerByExternalId(playerDto.id);
@@ -138,19 +138,19 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
   private async createPlayerSeason(
     player: Player,
-    playerStatistics: PlayerStatisticsDto
+    playerStatistics: PlayerStatisticsDto,
   ): Promise<PlayerSeason> {
     const playerSeason = new PlayerSeason();
     playerSeason.player = player;
     playerSeason.club = player.currentClub;
 
     const season = await this.seasonRepositoryService.getSeason(
-      playerStatistics.league.season
+      playerStatistics.league.season,
     );
 
     if (season === null) {
       const season = await this.seasonRepositoryService.insertSeason(
-        playerStatistics.league.season
+        playerStatistics.league.season,
       );
     }
 
@@ -168,7 +168,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
       positionIds?: number[];
       sortBy?: string;
       sortOrder?: string;
-    }
+    },
   ): Promise<{ playerCards: Player[]; totalPlayers: number }> {
     const whereConditions: any = {};
 
