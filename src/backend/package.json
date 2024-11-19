@@ -7,6 +7,8 @@
     "build": "npx tsc",
     "test": "npm run test",
     "start": "pm2 start dist/presentation/server.js --name k-ball-api",
+    "stop": "pm2 stop k-ball-api",
+    "delete": "pm2 delete k-ball-api",
     "format": "npx prettier --write ."
   },
   "author": "",

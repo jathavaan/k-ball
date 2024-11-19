@@ -22,7 +22,7 @@ export const playerResolver = {
         positionIds?: number[];
         sortBy?: string;
         sortOrder?: string;
-      }
+      },
     ) => {
       const {
         id,
@@ -53,7 +53,7 @@ export const playerResolver = {
     player: async (_: any, args: { id: number }) => {
       const { id } = args;
       const playerData = await getPlayerByIdQueryHandler.handle(
-        new GetPlayerByIdQuery(id)
+        new GetPlayerByIdQuery(id),
       );
       return playerData[0];
     },

@@ -1,24 +1,18 @@
-﻿import { NextFunction, Request, Response } from "express";
-import { ValidationError } from "../common";
+﻿import { GraphQLError } from "graphql/error";
 
 export const errorHandlingMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+  err: Readonly<Error | GraphQLError>,
 ) => {
-  try {
-    try {
-      next();
-    } catch (err: any) {
-      throw err;
-    }
-  } catch (err: any) {
-    console.log(err.message);
-    if (err instanceof ValidationError) {
-      res.status(400).json({ message: err.message });
-    } else {
-      console.error(`Error: ${err.message}`);
-      res.status(500).json("Internal server error");
-    }
+  if (err instanceof GraphQLError) {
+    return new GraphQLError(err.message, {
+      extensions: {
+        ...err.extensions,
+        statusCode: 400, // Custom status code for validation errors
+      },
+    });
+  } else {
+    return new GraphQLError("Internal server error", {
+      extensions: { statusCode: 500 },
+    });
   }
 };
