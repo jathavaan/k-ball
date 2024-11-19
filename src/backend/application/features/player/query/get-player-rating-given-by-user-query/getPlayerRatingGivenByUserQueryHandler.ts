@@ -1,12 +1,14 @@
-﻿import { GetPlayerRatingGivenByUserQuery } from "./GetPlayerRatingGivenByUserQuery";
-import { PlayerRatingVm } from "../../../../view-models/playerRatingVm";
-import { Request } from "../../../../common/request";
+﻿import { PlayerRatingVm } from "../../../../view-models/playerRatingVm";
+import { Request } from "../../../../common";
 import { container } from "../../../../../infrastructure/services/inversify.config";
 import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
+import { GetPlayerRatingGivenByUserQueryValidator } from "./getPlayerRatingGivenByUserQueryValidator";
+import { GetPlayerRatingGivenByUserQuery } from "./getPlayerRatingGivenByUserQuery";
 
 export class GetPlayerRatingGivenByUserQueryHandler
   implements Request<GetPlayerRatingGivenByUserQuery, PlayerRatingVm | null>
 {
+  validator = new GetPlayerRatingGivenByUserQueryValidator();
   playerRatingRepositoryService =
     container.get<PlayerRatingRepositoryServiceBase>(
       "PlayerRatingRepositoryServiceBase",
@@ -15,6 +17,7 @@ export class GetPlayerRatingGivenByUserQueryHandler
   async handle(
     request: GetPlayerRatingGivenByUserQuery,
   ): Promise<PlayerRatingVm | null> {
+    this.validator.validate(request);
     const playerRating =
       await this.playerRatingRepositoryService.getPlayerRatingByUserId(
         request.playerId,

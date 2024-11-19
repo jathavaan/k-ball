@@ -2,7 +2,6 @@ import { apiClient } from "../../shared/api.client.ts";
 import { gql } from "@apollo/client";
 import { Rating, SaveRatingResponse } from "./playerRating.types.ts";
 
-// GraphQL-spørringer
 const GET_OVERALL_RATING = gql`
   query GetOverallRating($playerId: Int!) {
     playerRating(playerId: $playerId) {
@@ -47,16 +46,17 @@ const UPSERT_USER_RATING = gql`
   }
 `;
 
-//API-funksjoner som bruker gql queries
-export const fetchOverallRating = async (playerId: number): Promise<Rating> => {
+export const getOverallRating = async (playerId: number): Promise<Rating> => {
   const response = await apiClient.query({
     query: GET_OVERALL_RATING,
     variables: { playerId },
+    fetchPolicy: "no-cache",
   });
+
   return response.data.playerRating;
 };
 
-export const fetchUserRating = async (
+export const getUserRating = async (
   playerId: number,
   userId: number,
 ): Promise<Rating> => {
@@ -64,6 +64,7 @@ export const fetchUserRating = async (
     query: GET_USER_RATING,
     variables: { playerId, userId },
   });
+
   return response.data.playerRating;
 };
 
@@ -72,8 +73,6 @@ export const saveUserRating = async (
   userId: number,
   userRating: Rating,
 ): Promise<SaveRatingResponse> => {
-  console.log("Sending rating to backend:", userRating);
-
   const response = await apiClient.mutate({
     mutation: UPSERT_USER_RATING,
     variables: {
@@ -82,7 +81,6 @@ export const saveUserRating = async (
       ...userRating,
     },
   });
-  console.log("Received response from backend:", response.data);
 
   return response.data.playerRating;
 };

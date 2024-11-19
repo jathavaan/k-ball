@@ -1,136 +1,229 @@
-import React from "react";
-import { Typography, TableBody, TableContainer } from "@mui/material";
 import {
-  StyledPlayerRatingTable,
-  StyledRating,
-  StyledTableHead,
-  StyledTableCell,
-  StyledTableRow,
-} from "./playerRating.style.ts";
-import { Button } from "../ui/button/Button.tsx";
-import { usePlayerRating } from "./playerRating.hooks.ts";
-import { Rating, PlayerRatingProps } from "./playerRating.types.ts";
+  Button,
+  CircularProgressBar,
+  ErrorAlert,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableFooter,
+  TableHead,
+  TableRow,
+} from "../ui";
+import { usePlayerRating, usePlayerRatingEdit } from "./playerRating.hooks.ts";
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
+import { PlayerRatingProps } from "./playerRating.types.ts";
+import { StyledRating } from "./playerRating.style.ts";
+import { useSelector } from "react-redux";
+import {
+  selectAttack,
+  selectAverage,
+  selectDefence,
+  selectIntelligence,
+  selectIsEditingPlayerRating,
+  selectPassing,
+} from "./playerRating.slice.ts";
 
-export const PlayerRating: React.FC<PlayerRatingProps> = ({ playerId }) => {
+export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
+  const attack = useSelector(selectAttack);
+  const defence = useSelector(selectDefence);
+  const passing = useSelector(selectPassing);
+  const intelligence = useSelector(selectIntelligence);
+  const average = useSelector(selectAverage);
+  const isEditingPlayerRating = useSelector(selectIsEditingPlayerRating);
+
   const {
-    playerRatings,
-    isEditing,
-    handleEdit,
+    overallRating,
+    isOverallRatingPending,
+    isOverallRatingError,
+    isUserRatingLoading,
+    isUserRatingError,
+    isSaveUserRatingPending,
+    isSaveUserRatingError,
     handleSaveChanges,
-    temporaryRating,
-    handleRatingChange,
   } = usePlayerRating(playerId);
 
-  const ratingCategories = ["Attack", "Defence", "Passing", "Intelligence"];
+  const {
+    handleAttackChange,
+    handleDefenceChange,
+    handlePassingChange,
+    handleIntelligenceChange,
+    onEditClick,
+  } = usePlayerRatingEdit();
 
   return (
-    <TableContainer
-      sx={(theme) => ({
-        marginTop: "1rem",
-        overflowX: "auto",
-        [theme.breakpoints.down("sm")]: {
-          width: "100%",
-          display: "block",
-        },
-      })}
-    >
-      <StyledPlayerRatingTable>
-        <StyledTableHead>
-          <StyledTableRow>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell>Overall Rating</StyledTableCell>
-            <StyledTableCell>Your Rating</StyledTableCell>
-          </StyledTableRow>
-        </StyledTableHead>
-        <TableBody>
-          {ratingCategories.map((category, index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell>
-                <Typography variant="body1">{category}</Typography>
-              </StyledTableCell>
-              <StyledTableCell>
-                <StyledRating
-                  name={`overall-${category.toLowerCase()}`}
-                  value={playerRatings.overall?.[category as keyof Rating] || 0}
-                  readOnly
-                />
-              </StyledTableCell>
-              <StyledTableCell>
-                <StyledRating
-                  name={`your-${category.toLowerCase()}`}
-                  value={
-                    isEditing
-                      ? temporaryRating?.[
-                          category.toLowerCase() as keyof Rating
-                        ]
-                      : playerRatings.userRating?.[
-                          category.toLowerCase() as keyof Rating
-                        ] || 0
-                  }
-                  readOnly={!isEditing}
-                  onChange={(_, newValue) =>
-                    isEditing &&
-                    newValue !== null &&
-                    handleRatingChange(
-                      category.toLowerCase() as keyof Rating,
-                      newValue,
-                    )
-                  }
-                />
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-          <StyledTableRow>
-            <StyledTableCell>
-              <Typography variant="body1">Average</Typography>
-            </StyledTableCell>
-            <StyledTableCell>
-              <StyledRating
-                name="overall-average"
-                value={
-                  (playerRatings.overall &&
-                    Object.values(playerRatings.overall).reduce(
-                      (a, b) => a + b,
-                      0,
-                    ) / ratingCategories.length) ||
-                  0
-                }
-                readOnly
-              />
-            </StyledTableCell>
-            <StyledTableCell>
-              <StyledRating
-                name="your-average"
-                value={
-                  isEditing
-                    ? (temporaryRating &&
-                        Object.values(temporaryRating).reduce(
-                          (a, b) => a + b,
-                          0,
-                        ) / ratingCategories.length) ||
-                      0
-                    : (playerRatings.userRating &&
-                        Object.values(playerRatings.userRating).reduce(
-                          (a, b) => a + b,
-                          0,
-                        ) / ratingCategories.length) ||
-                      0
-                }
-                readOnly
-              />
-            </StyledTableCell>
-          </StyledTableRow>
-        </TableBody>
-      </StyledPlayerRatingTable>
-      {isEditing ? (
-        <Button
-          onClick={handleSaveChanges}
-          text="Save changes"
-          sx={{ mt: 2 }}
-        />
-      ) : (
-        <Button onClick={handleEdit} text="Edit your rating" sx={{ mt: 2 }} />
+    <TableContainer>
+      {isOverallRatingError && (
+        <ErrorAlert message="Failed to load player's overall rating" />
       )}
+
+      {isUserRatingError && (
+        <ErrorAlert message="Failed to load user's rating" />
+      )}
+
+      {isSaveUserRatingError && (
+        <ErrorAlert message="Failed to save user's rating" />
+      )}
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell></TableCell>
+            <TableCell>Overall Rating</TableCell>
+            <TableCell>Your Rating</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Attack</TableCell>
+            <TableCell>
+              {!isOverallRatingPending ? (
+                <StyledRating readOnly value={overallRating?.attack} />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+            <TableCell>
+              {!isUserRatingLoading ? (
+                <StyledRating
+                  readOnly={!isEditingPlayerRating}
+                  value={attack}
+                  onChange={(_, rating) => handleAttackChange(rating)}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Defence</TableCell>
+            <TableCell>
+              {!isOverallRatingPending ? (
+                <StyledRating
+                  readOnly
+                  value={overallRating?.defence}
+                  precision={0.1}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+            <TableCell>
+              {!isUserRatingLoading ? (
+                <StyledRating
+                  readOnly={!isEditingPlayerRating}
+                  value={defence}
+                  onChange={(_, rating) => handleDefenceChange(rating)}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Passing</TableCell>
+            <TableCell>
+              {!isOverallRatingPending ? (
+                <StyledRating
+                  readOnly
+                  value={overallRating?.passing}
+                  precision={0.1}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+            <TableCell>
+              {!isUserRatingLoading ? (
+                <StyledRating
+                  readOnly={!isEditingPlayerRating}
+                  value={passing}
+                  onChange={(_, rating) => handlePassingChange(rating)}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Intelligence</TableCell>
+            <TableCell>
+              {!isOverallRatingPending ? (
+                <StyledRating
+                  readOnly
+                  value={overallRating?.intelligence}
+                  precision={0.1}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+            <TableCell>
+              {!isUserRatingLoading ? (
+                <StyledRating
+                  readOnly={!isEditingPlayerRating}
+                  value={intelligence}
+                  onChange={(_, rating) => handleIntelligenceChange(rating)}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Average</TableCell>
+            <TableCell>
+              {!isOverallRatingPending ? (
+                <StyledRating
+                  readOnly
+                  value={overallRating?.average}
+                  precision={0.1}
+                />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+            <TableCell>
+              {!isUserRatingLoading ? (
+                <StyledRating readOnly value={average} />
+              ) : (
+                <CircularProgressBar size={20} />
+              )}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={1}></TableCell>
+            <TableCell colSpan={2}>
+              <Button
+                fullWidth
+                disabled={isSaveUserRatingPending}
+                endIcon={
+                  isSaveUserRatingPending && <CircularProgressBar size={25} />
+                }
+                startIcon={
+                  isEditingPlayerRating ? (
+                    <SaveIcon />
+                  ) : isSaveUserRatingPending ? null : (
+                    <EditIcon />
+                  )
+                }
+                onClick={
+                  isEditingPlayerRating ? handleSaveChanges : onEditClick
+                }
+                text={
+                  isEditingPlayerRating
+                    ? "Save changes"
+                    : isSaveUserRatingPending
+                      ? "Saving..."
+                      : "Edit rating"
+                }
+              />
+            </TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
     </TableContainer>
   );
 };

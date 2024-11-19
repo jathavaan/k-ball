@@ -3,6 +3,7 @@ export interface Rating {
   defence: number;
   passing: number;
   intelligence: number;
+  average: number | null;
 }
 
 export interface SaveRatingResponse {
@@ -10,12 +11,17 @@ export interface SaveRatingResponse {
 }
 
 export interface PlayerRatingState {
-  ratingsByPlayer: {
-    [playerId: number]: {
-      overall: Rating;
-      userRating?: Rating; // Brukerens rating for spilleren, hvis den finnes
-    };
-  };
+  attack: number | null;
+  defence: number | null;
+  passing: number | null;
+  intelligence: number | null;
+  average: number | null;
+  overallAttack: number | null;
+  overallDefence: number | null;
+  overallPassing: number | null;
+  overallIntelligence: number | null;
+  overallAverage: number | null;
+  isEditingPlayerRating: boolean;
 }
 
 export interface PlayerRatingProps {

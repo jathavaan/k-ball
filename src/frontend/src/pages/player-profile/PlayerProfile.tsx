@@ -16,7 +16,7 @@ import {
   StyledBreadcrumbs,
 } from "../../features/player-profile-info/playerProfileInfo.style.ts";
 import Grid from "@mui/material/Grid2";
-import { PlayerRating } from "../../features/player-rating/PlayerRating";
+import { PlayerRating } from "../../features/player-rating";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();
@@ -73,6 +73,8 @@ export const PlayerProfile = () => {
           <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
             <Grid size={{ xs: 12 }}>
               <PlayerStatsTable playerStatsTable={playerStats} />
+            </Grid>
+            <Grid size={{ xs: 12 }}>
               {playerId && <PlayerRating playerId={parseInt(playerId)} />}
             </Grid>
           </Grid>

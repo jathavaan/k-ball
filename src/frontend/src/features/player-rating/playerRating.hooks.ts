@@ -1,144 +1,160 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { setOverallRating, setUserRating } from "./playerRating.slice";
+import { useEffect } from "react";
+import {
+  selectAttack,
+  selectDefence,
+  selectIntelligence,
+  selectPassing,
+  setAttack,
+  setAverage,
+  setDefence,
+  setIntelligence,
+  setIsEditingPlayerRating,
+  setOverallAttack,
+  setOverallAverage,
+  setOverallDefence,
+  setOverallIntelligence,
+  setOverallPassing,
+  setPassing,
+} from "./playerRating.slice";
+import { getLoggedInUser } from "../auth/auth.hooks";
+import { AppDispatch } from "../../store.ts";
 import {
   useOverallRating,
-  useUserRating,
   useSaveUserRating,
-} from "./playerRating.query";
-import { getLoggedInUser } from "../auth/auth.hooks";
-import { Rating } from "./playerRating.types";
-import { RootState } from "../../store.ts";
+  useUserRating,
+} from "./playerRating.query.ts";
 
-const calculateAverageRatings = (ratings: Array<Rating>) => {
-  const totalRatings = ratings.length;
-  const summedRatings = ratings.reduce(
-    (acc, rating) => {
-      acc.attack += rating.attack;
-      acc.defence += rating.defence;
-      acc.passing += rating.passing;
-      acc.intelligence += rating.intelligence;
-      return acc;
-    },
-    { attack: 0, defence: 0, passing: 0, intelligence: 0 },
-  );
+const calculateAverageRating = (
+  attack: number,
+  defence: number,
+  passing: number,
+  intelligence: number,
+) => (attack + defence + passing + intelligence) / 4;
+
+export const usePlayerRating = (playerId: number) => {
+  const userId = getLoggedInUser();
+  if (!userId) throw new Error("Failed to get user ID");
+  const dispatch = useDispatch<AppDispatch>();
+  const attack = useSelector(selectAttack);
+  const defence = useSelector(selectDefence);
+  const passing = useSelector(selectPassing);
+  const intelligence = useSelector(selectIntelligence);
+
+  const {
+    mutate: mutateOverallRating,
+    data: overallRating,
+    isError: isOverallRatingError,
+    isPending: isOverallRatingPending,
+  } = useOverallRating(playerId);
+
+  const {
+    data: userRating,
+    isLoading: isUserRatingLoading,
+    isError: isUserRatingError,
+  } = useUserRating(playerId, userId);
+
+  const {
+    mutate: mutateSaveUserRating,
+    isPending: isSaveUserRatingPending,
+    isError: isSaveUserRatingError,
+  } = useSaveUserRating(playerId, userId, {
+    attack: attack ?? 0,
+    defence: defence ?? 0,
+    passing: passing ?? 0,
+    intelligence: intelligence ?? 0,
+    average: null,
+  });
+
+  const handleSaveChanges = () => {
+    mutateSaveUserRating(undefined, {
+      onSuccess: () => {
+        mutateOverallRating(undefined, {
+          onSettled: (overallRating) => {
+            if (!overallRating) return;
+            dispatch(setOverallAttack(overallRating.attack));
+            dispatch(setOverallDefence(overallRating.defence));
+            dispatch(setOverallIntelligence(overallRating.intelligence));
+            dispatch(setOverallPassing(overallRating.passing));
+            dispatch(setOverallAverage(overallRating.average));
+          },
+        });
+      },
+    });
+    dispatch(setIsEditingPlayerRating(false));
+  };
+
+  useEffect(() => {
+    mutateOverallRating();
+  }, [mutateOverallRating]);
+
+  useEffect(() => {
+    if (!userRating) return;
+    dispatch(setAttack(userRating.attack));
+    dispatch(setDefence(userRating.defence));
+    dispatch(setPassing(userRating.passing));
+    dispatch(setIntelligence(userRating.intelligence));
+  }, [dispatch, userRating]);
 
   return {
-    attack: summedRatings.attack / totalRatings,
-    defence: summedRatings.defence / totalRatings,
-    passing: summedRatings.passing / totalRatings,
-    intelligence: summedRatings.intelligence / totalRatings,
+    overallRating,
+    isOverallRatingPending,
+    isOverallRatingError,
+    isUserRatingLoading,
+    isUserRatingError,
+    isSaveUserRatingPending,
+    isSaveUserRatingError,
+    handleSaveChanges,
   };
 };
 
-export const usePlayerRating = (playerId: number) => {
-  const dispatch = useDispatch();
-  const userId = getLoggedInUser() || 0; // Hent innlogget bruker-ID
-  const playerRatings = useSelector(
-    (state: RootState) =>
-      state.playerRatingReducer.ratingsByPlayer[playerId] || {},
-  );
+export const usePlayerRatingEdit = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const attack = useSelector(selectAttack);
+  const defence = useSelector(selectDefence);
+  const passing = useSelector(selectPassing);
+  const intelligence = useSelector(selectIntelligence);
 
-  //state som holder styr på om vi er i edit modus, settes til true når bruker trykker edit
-  const [isEditing, setIsEditing] = useState(false);
+  const handleAttackChange = (attack: number | null) => {
+    dispatch(setAttack(attack));
+  };
 
-  const [temporaryRating, setTemporaryRating] = useState<Rating>({
-    attack: 0,
-    defence: 0,
-    passing: 0,
-    intelligence: 0,
-  });
+  const handleDefenceChange = (defence: number | null) => {
+    dispatch(setDefence(defence));
+  };
 
-  const { data: overallRatingData } = useOverallRating(playerId);
-  const { data: userRatingData } = useUserRating(playerId, userId || 0);
-  const { mutate: saveUserRating } = useSaveUserRating();
+  const handlePassingChange = (passing: number | null) => {
+    dispatch(setPassing(passing));
+  };
 
-  //overvåker endring i overallRatingData og userRatingdat
+  const handleIntelligenceChange = (intelligence: number | null) => {
+    dispatch(setIntelligence(intelligence));
+  };
+
+  const onEditClick = () => {
+    dispatch(setIsEditingPlayerRating(true));
+  };
+
   useEffect(() => {
-    if (overallRatingData) {
-      dispatch(setOverallRating({ playerId, overall: overallRatingData }));
+    if (!attack || !defence || !passing || !intelligence) {
+      dispatch(setAverage(null));
     }
-    if (userRatingData) {
-      console.log("UserRatingData:\n\n", userRatingData);
-      dispatch(setUserRating({ playerId, userRating: userRatingData }));
-    }
-  }, [dispatch, playerId, overallRatingData, userRatingData, playerRatings]);
 
-  const handleEdit = () => {
-    //Setter isEditing til true og initialiserer temporaryRating basert på gjeldende bruker-rating.
-    setIsEditing(true);
-    setTemporaryRating(
-      playerRatings.userRating || {
-        attack: 0,
-        defence: 0,
-        passing: 0,
-        intelligence: 0,
-      },
+    const average = calculateAverageRating(
+      attack!,
+      defence!,
+      passing!,
+      intelligence!,
     );
-  };
-  //Lagrer endringene ved å bruke saveUserRating, oppdaterer overall rating, og setter isEditing tilbake til false.
 
-  const handleSaveChanges = () => {
-    if (temporaryRating && userId) {
-      console.log(
-        "Saving rating for user:",
-        userId,
-        "with rating:",
-        temporaryRating,
-      );
-
-      saveUserRating(
-        {
-          playerId,
-          userId,
-          userRating: temporaryRating,
-        },
-        {
-          onSuccess: () => {
-            console.log("Rating saved successfully for user:", userId);
-
-            console.log("Dispatching setUserRating with:", temporaryRating);
-            dispatch(setUserRating({ playerId, userRating: temporaryRating }));
-            // Oppdaterer overall rating med de nye verdiene
-            const updatedRatings = [
-              playerRatings.overall || {
-                attack: 0,
-                defence: 0,
-                passing: 0,
-                intelligence: 0,
-              },
-              temporaryRating,
-            ];
-            const newOverall = calculateAverageRatings(updatedRatings);
-            console.log("Dispatching setOverallRating with: ", newOverall);
-            dispatch(setOverallRating({ playerId, overall: newOverall }));
-          },
-          onError: (error) => {
-            console.error("Failed to save rating:", error);
-          },
-        },
-      );
-    }
-    setIsEditing(false);
-  };
-
-  const handleRatingChange = (category: keyof Rating, value: number) => {
-    if (temporaryRating) {
-      console.log("Category:", category);
-      console.log("Value", value);
-      setTemporaryRating({
-        ...temporaryRating,
-        [category]: value,
-      });
-    }
-  };
+    dispatch(setAverage(average));
+  }, [attack, defence, dispatch, intelligence, passing]);
 
   return {
-    playerRatings,
-    isEditing,
-    handleEdit,
-    handleSaveChanges,
-    temporaryRating,
-    handleRatingChange,
+    handleAttackChange,
+    handleDefenceChange,
+    handlePassingChange,
+    handleIntelligenceChange,
+    onEditClick,
   };
 };

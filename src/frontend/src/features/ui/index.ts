@@ -13,3 +13,5 @@ export * from "./success-alert/SuccessAlert";
 export * from "./helper-text/HelperText";
 export * from "./helper-error-text/HelperErrorText";
 export * from "./card-info-text/CardInfoText";
+export * from "./table/Table";
+export * from "./circular-progress-bar/CircularProgressBar";
