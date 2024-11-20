@@ -5,7 +5,7 @@
 
 export interface LoginResponse {
   auth: {
-    userId: Number;
+    userId: number;
   };
 }
 
