@@ -1,218 +1,164 @@
-# K-Ball
+﻿# K-Ball
 
-## URL
-[for NTNU server](http://it2810-25.idi.ntnu.no/project2/)
+K-Ball is a web application where football enthusiasts users can view and rate players in the Korean football league.
+With almost **500 players** from **15+ countries**, there are plenty of stats available retrieved
+from [Football-API](https://www.api-football.com/).
 
-## Description
+> ### **See the project here**: [K-Ball](http://it2810-25.idi.ntnu.no/project2/)
+> Make sure you are connected to the NTNU network<br>
+> Other important links:
+> - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
+> - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
+> - [Developer guide](./docs/README4DEVS.md)
 
-K-Ball is a website that shows player statistics for players in the korean football league, K-League. A user can log in, 
-filter, sort, and search among players, leave ratings and view detailed player statistics by clicking on a specific player. 
-The data is based on [API-Football](https://www.api-football.com/).
+## Roadmap
 
-## Technologies
+### **Completed:**
 
-The website is built using React, Node.js, GraphQL and PostgreSQL. The website is hosted on the NTNU server and requires
-a NTNU VPN connection to access. Husky is used for pre-commit and pre-push hooks, and Vitest and Cypress are used for
-testing.
+✅ Dashboard displaying all players  
+✅ Base for design system  
+✅ Caching in frontend  
+✅ Robust state management  
+✅ Detailed player information page  
+✅ Automated data import  
+✅ Search bar and filters on dashboard  
+✅ Hashing of sensitive information in database  
+✅ Authentication and authorization  
+✅ Rating system  
+✅ "My profile" functionality
 
-## Husky
+---
 
-The following have been set up for pre-commit and pre-push hooks (in the `frontend` folder):
+### **In Progress:**
 
-- `pre-commit`: Formatting with Prettier
-- `pre-push`: Running tests with Vitest and Cypress
+🚧 Snapshot, unit, and E2E testing in frontend  
+🚧 Unit and integration testing in backend
 
-## Architecture
+---
 
-The root directory contains the following folders:
+### **Requested Features:**
 
-- `.github` which contains issues and pull requests templates, and workflows for the project.
-- `src` which contains the frontend and backend code. The code is split into two folders, `frontend` and `backend`.
+📝 Server side caching  
+📝 Comment section  
+📝 Create your own team  
+📝 Chatbot
 
-### Backend
+---
 
-The backend is built using Node.js and GraphQL with a PostgreSQL database. The database is created in a code-first
-approach using TypeORM. In the backend is structured according to Clean Architecture with
-command-query-responsibility-segregation (CQRS). The backend is split into the following layers:
+## Getting started
 
-- `domain` which contains the entities and value objects of the application.
-- `application` which contains the use cases of the application. Contracts for services are also defined here.
-- `infrastructure` which contains the implementation of the interfaces defined in the application layer, as well as the
-  connection to the database.
-- `presentation` which contains the GraphQL schema and resolvers.
+There are three possible configurations when running the application locally:
 
-### Frontend
+| Frontend | Backend | Database |
+|:--------:|:-------:|:--------:|
+|  Local   | Server  |  Server  |
+|  Local   |  Local  |  Server  |
+|  Local   |  Local  |  Local   |
 
-The frontend follows a feature based architecture as proposed in
-this [article](https://profy.dev/article/react-folder-structure). The code can be sorted into the
-folders `features`, `pages`and `shared`. Content in the `shared`-folder will be code that can be used across multiple
-features. The `pages`-folder will contain the main pages of the website, while the `features`-folder will contain the
-smaller components that make up the pages. In the directory `feature/ui` there are componets that are part of the design
-system and have no business logic attached to them.
+The app will run using the first configuration when cloning the repo. Check
+out [the developer guide](./docs/README4DEVS.md) to modify the configuration.
 
-## Installation
+> ⚠️ **Requirements:**
+> - Node version: `22.5.x` or higher
+> - Package manager: `npm`
 
-There are three main parts to the installation process: setting up the database, setting up the backend and setting up
-the frontend.
-
-### Database
-
-> **Note:** The database setup is for a local database. When the database is up and running on the NTNU server, the
-> installation is not needed.
-
-Install the latest PostgreSQL version from the [official website](https://www.postgresql.org/download/). Ensure that the
-default port is set to `5432` when setting up PostgresSQL. You may now create a database locally named `k-ball-db` which
-will have the `postgres`as the owner, username and password.
-
-### Backend
-
-To set up the backend, navigate to the `src/backend` directory and run the following commands:
+The repo consists of two different node projects: one for the `frontend` and one for the `backend`. Navigate to
+the `frontend` folder to be able to install the dependencies.
 
 ```powershell
+cd src/frontend
 npm i
 ```
 
-### Frontend
-
-From the root directory, navigate to the `src/frontend` directory and run the following commands:
-
-```powershell
-npm i
-```
-
-This will install all the necessary dependencies for the frontend.
-
-## Usage
-
-Navigate to `src/backend` and run the following command to start the backend server:
+Now that the required dependencies have been installed, the frontend can be run. However, ensure that you are connected
+to the NTNU network as all API-calls are done to the backend running on server:
 
 ```powershell
 npm run dev
 ```
 
-The command above will create the database tables and start the backend server
-on [`http://localhost:4000/graphql`](http://localhost:4000/graphql). To start the frontend, navigate to
-the `src/frontend` directory and run the following command:
+---
 
-```powershell
-npm run dev
-```
+## Sustainable Web Design
 
-and to run the tests for the frontend, run the following command:
+The team has taken several steps to ensure both a sustainable product and a sustainable development process. For
+instance, we have utilized **WEBP files** wherever possible and implemented **client-side caching** to minimize
+unnecessary API calls. This caching is enabled by default for all API requests and is only disabled when absolutely
+necessary. As a result, we observed a significant reduction in server calls. Additionally, we blocked filters that would
+yield no results and implemented **debouncing** in the search functionality to improve performance.
 
-```powershell
-npm run test
-```
+Accessibility has been a key focus for the team. The site is fully navigable via keyboard shortcuts, allowing users
+to **tab through all interactive elements**. Moreover, we worked on providing clear feedback to users through validation
+in both the frontend and backend, as well as implementing **clear and informative error messages**.
 
-or to view the tests in the Vitest UI, run the following command:
+In the backend, we utilize **TypeORM** to model the database using a **code-first approach**. This allows us to make
+changes quickly without the extensive manual effort often required with a database-first approach. Using TypeORM's
+tools, such as `select`, we ensure that only the strictly necessary data is fetched from the database. This optimization
+minimizes data retrieval from the database to the frontend, significantly improving efficiency.
 
-```powershell
-npm run test:ui
-```
+Furthermore, the group has invested considerable time in designing a scalable architecture built on well-maintained
+frameworks with long-term support. Developing a **design system**
+has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
+development efficiency.
 
-To run the Cypress End-to-End (E2E) tests, use the following commands:
 
-To open the Cypress Test Runner UI: This will launch the Cypress graphical interface where you can run and observe E2E
-tests interactively.
+---
 
-```powershell
-npm run cy:open
-```
+## Development process
 
-To run all Cypress E2E tests in headless mode: This will run the E2E tests in the terminal without opening the Cypress
-UI.
+### Brainstorming
 
-```powershell
-npm run cy:run
-```
+The team held several brainstorming sessions to decide on a project idea. Our goal was to create something meaningful to
+us while standing out as unique. Being based in South Korea and sharing a deep passion for football, the concept of
+**K-Ball** quickly became an obvious choice.
 
-Make sure that the development server is running (npm start) before executing Cypress E2E tests, as they require the
-frontend to be live.
+### Forming a plan
 
-## Further documentation
+The first step we took was to assess the technical expertise within the team, which allowed us to assign roles
+effectively. Next, we researched potential data sources and decided on the types of statistics we wanted to showcase in
+the app. Finally, we developed a plan for meetings and outlined how we would work collaboratively toward our
+deliverables.
 
-The API have been documented using GraphQL Playground. To access the documentation, navigate
-to [`http://it2810-25.idi.ntnu.no:4000/docs`](http://localhost:4000/docs) and click on the `DOCS` tab in the top right corner.
+### Learning new technologies
 
-## Accessing the Database via Terminal
+At the beginning of the project, we dedicated significant time to familiarizing ourselves with new technologies,
+exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
+codebase, experimenting with various approaches and ideas.
 
-To access the PostgreSQL database on the server for K-Ball, follow these steps:
+---
 
-Connect to the Server:
+## Technologies & Tools
 
-Ensure that you have VPN access to NTNU if you are connecting remotely. Once connected, use SSH to log in to the server:
+### **Frontend**
 
-```powershell
-ssh username@it2810-25.idi.ntnu.no
-```
+The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
+development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
+appealing user interface.
 
-Replace username with your actual username. You will be prompted to enter your password.
+### **Backend**
 
-Access the PostgreSQL Database:
+The backend is powered by an **Express** server, hosting a **GraphQL API** built with **Apollo**. This combination
+ensures a flexible and efficient way to query and interact with the application’s data.
 
-Once logged into the server, switch to the postgres user and access the PostgreSQL interface by running the following command:
+### **Database**
 
-```powershell
-sudo -u postgres psql
-```
+We used **PostgreSQL** as the database for storing and managing structured data, chosen for its reliability and robust
+relational capabilities.
 
-You may be prompted to enter your password again.
+### **Testing**
 
-Switch to the Correct Database:
+To maintain code reliability and stability, we used **Vitest** for comprehensive and fast testing during development.
 
-Once in the PostgreSQL interface, list all databases to ensure k-ball-db is available:
+### **Development Tools**
 
-```sql
-\l
-```
+To ensure a clean and maintainable codebase, we implemented:
 
-Then, connect to the k-ball-db database:
+- **Prettier**: For consistent code formatting.
+- **ESLint**: For identifying and fixing code quality issues.
+- **Husky**: To automate pre-commit and pre-push hooks, running format checks and tests.
 
-```sql
-\c k-ball-db
-````
+### **Project Management**
 
-You should see a message like this:
+The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
+an efficient development workflow.
 
-```powershell
-You are now connected to database "k-ball-db" as user "postgres".
-```
-
-Query the Database:
-
-Once connected, you can run SQL queries. For example, to see all users:
-
-```sql
-SELECT * FROM public."user";
-````
-
-List Tables:
-
-If you want to list all tables in the current database:
-
-```sql
-\dt
-```
-
-Exit the Database:
-
-When finished, you can exit the PostgreSQL interface by typing:
-
-```powershell
-\q
-```
-
-Exit the Server:
-
-To disconnect from the server, type:
-
-```powershell
-exit
-```
-
-## Starting the API on server
-Run the following command to start the API on the server after going into `src/backend`:
-
-```powershell
-npm run start
-```
