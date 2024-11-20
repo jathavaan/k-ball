@@ -1,11 +1,11 @@
-﻿import {
+﻿import { PlayerRatingInfoVm } from "application/view-models";
+import {
   PlayerRatingDto,
   PlayerRatingRepositoryServiceBase,
 } from "../../../application/contracts";
 import { PlayerRating } from "../../../domain/entities";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { injectable } from "inversify";
-import { PlayerRatingInfoVm } from "application/view-models/playerRatingVm";
 
 @injectable()
 export class PlayerRatingRepositoryService
