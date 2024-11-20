@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Navbar } from "./Navbar";
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/logo.webp";
 
 describe("Navbar", () => {
   it("should render the logo image", () => {

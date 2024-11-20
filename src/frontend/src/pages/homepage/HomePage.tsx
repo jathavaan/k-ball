@@ -1,4 +1,4 @@
-import Home from "../../assets/home.jpg";
+import Home from "../../assets/home.webp";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { isUserLoggedIn } from "../../features/auth/auth.hooks.ts";

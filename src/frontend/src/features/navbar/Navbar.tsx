@@ -4,7 +4,7 @@ import {
   StyledAppBar,
   StyledToolbar,
 } from "./navbar.style";
-import logo from "../../assets/Logo.png";
+import logo from "../../assets/Logo.webp";
 import { useNavigate } from "react-router-dom";
 import { isUserLoggedIn } from "../auth/auth.hooks.ts";
 import { ProfileMenu } from "../profile-menu"; // Import the isUserLoggedIn function
