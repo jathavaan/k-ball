@@ -1,6 +1,6 @@
 ﻿import { PlayerRating } from "../../../domain/entities";
 import { PlayerRatingDto } from "./playerRating.dto";
-import { PlayerRatingInfoVm } from "../../view-models/playerRatingVm";
+import { PlayerRatingInfoVm } from "../../view-models";
 
 export interface PlayerRatingRepositoryServiceBase {
   getPlayerRatingByUserId: (
