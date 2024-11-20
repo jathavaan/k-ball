@@ -1,8 +1,11 @@
-﻿import { PlayerRatingRepositoryServiceBase } from "../../../application/contracts/player-service/playerRatingRepository.service.base";
+﻿import {
+  PlayerRatingDto,
+  PlayerRatingRepositoryServiceBase,
+} from "../../../application/contracts";
 import { PlayerRating } from "../../../domain/entities";
 import { KBallDbContext } from "../../persistence/dataSource";
-import { PlayerRatingDto } from "../../../application/contracts";
 import { injectable } from "inversify";
+import { PlayerRatingInfoVm } from "application/view-models/playerRatingVm";
 
 @injectable()
 export class PlayerRatingRepositoryService
@@ -93,6 +96,43 @@ export class PlayerRatingRepositoryService
           playerRating.intelligence,
         ),
     );
+  }
+
+  async getUsersDetailedPlayerRating(userId: number) {
+    const players = await this.dbContext.find(PlayerRating, {
+      select: {
+        playerId: true,
+        attack: true,
+        defence: true,
+        passing: true,
+        intelligence: true,
+        player: {
+          fullName: true,
+          imageUrl: true,
+        },
+      },
+      where: {
+        userId: userId,
+      },
+      relations: {
+        player: true,
+      },
+    });
+
+    return players
+      .map((playerRating: PlayerRating) => {
+        return new PlayerRatingInfoVm(
+          playerRating.playerId,
+          playerRating.player.fullName,
+          playerRating.player.imageUrl,
+          (playerRating.attack +
+            playerRating.defence +
+            playerRating.passing +
+            playerRating.intelligence) /
+            4,
+        );
+      })
+      .sort((a, b) => a.fullName.localeCompare(b.fullName));
   }
 
   async upsertPlayerRating(playerRating: PlayerRating) {

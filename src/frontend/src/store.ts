@@ -7,6 +7,7 @@ import { playerCardGridReducer } from "./features/player-card";
 import { playerSortingReducer } from "./features/player-sorting";
 import { loginFormReducer, registerFormReducer } from "./features/auth";
 import { playerRatingReducer } from "./features/player-rating/";
+import { profileMenuReducer } from "./features/profile-menu";
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     loginFormReducer,
     registerFormReducer,
     playerRatingReducer,
+    profileMenuReducer,
   },
 });
 

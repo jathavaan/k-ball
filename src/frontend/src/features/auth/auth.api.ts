@@ -3,6 +3,7 @@
   LoginResponse,
   RegisterProps,
   RegisterResponse,
+  UserInfoResponse,
 } from "./auth.types.ts";
 import { gql } from "@apollo/client";
 import { apiClient } from "../../shared/api.client.ts";
@@ -77,11 +78,7 @@ export const authenticateUser = async (
   }
 };
 
-// Continuing from your existing auth.api.ts file...
-
-import { UserInfoResponse } from "./auth.types.ts";
-
-export const fetchUserInfo = async (
+export const getUserInfo = async (
   userId: number,
 ): Promise<UserInfoResponse["user"]> => {
   const GET_USER_INFO = gql`
