@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { authenticateUser, registerUser } from "./auth.api.ts";
+import { authenticateUser, getUserInfo, registerUser } from "./auth.api.ts";
 
 export const useRegisterUser = () =>
   useMutation({
@@ -12,3 +12,10 @@ export const useAuthenticateUser = () =>
     mutationFn: authenticateUser,
     gcTime: 0,
   });
+
+export const useUserInfo = (userId: number) => {
+  return useMutation({
+    mutationKey: ["userInfo", userId],
+    mutationFn: () => getUserInfo(userId),
+  });
+};

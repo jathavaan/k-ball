@@ -1,5 +1,4 @@
 ﻿import {
-  GraphQLBoolean,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -7,6 +6,7 @@
   GraphQLString,
 } from "graphql/type";
 import {
+  DetailedPlayerRatingType,
   UserAuthType,
   UserRegisterType,
   UserType,
@@ -104,6 +104,13 @@ const QueryType = new GraphQLObjectType({
         userId: { type: GraphQLInt, defaultValue: null },
       },
       resolve: playerResolver.PlayerQuery.playerRating,
+    },
+    detailedPlayerRating: {
+      type: new GraphQLList(DetailedPlayerRatingType),
+      args: {
+        userId: { type: GraphQLInt },
+      },
+      resolve: userResolver.UserQuery.detailedPlayerRating,
     },
   },
 });

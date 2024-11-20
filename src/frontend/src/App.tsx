@@ -16,6 +16,7 @@ import {
 } from "./pages";
 import { isUserLoggedIn } from "./features/auth/auth.hooks.ts";
 import { ReactElement } from "react";
+import { ProfileMenuDrawer } from "./features/profile-menu";
 
 type ProtectedRouteProps = {
   element: ReactElement;
@@ -34,6 +35,7 @@ function App() {
     <>
       <Router>
         <Navbar />
+        <ProfileMenuDrawer />
         <Container style={{ marginTop: "115px" }}>
           <Routes>
             <Route path="/project2" element={<HomePage />} />

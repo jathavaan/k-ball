@@ -4,6 +4,7 @@
   GraphQLObjectType,
   GraphQLString,
 } from "graphql/type";
+import { GraphQLFloat } from "graphql";
 
 export const UserType = new GraphQLObjectType({
   name: "User",
@@ -26,5 +27,15 @@ export const UserRegisterType = new GraphQLObjectType({
   name: "Register",
   fields: {
     isUserRegistered: { type: GraphQLBoolean },
+  },
+});
+
+export const DetailedPlayerRatingType = new GraphQLObjectType({
+  name: "DetailedPlayerRating",
+  fields: {
+    playerId: { type: GraphQLInt },
+    fullName: { type: GraphQLString },
+    imageUrl: { type: GraphQLString },
+    averageRating: { type: GraphQLFloat },
   },
 });

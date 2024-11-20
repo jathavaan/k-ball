@@ -3,6 +3,7 @@
   LoginResponse,
   RegisterProps,
   RegisterResponse,
+  UserInfoResponse,
 } from "./auth.types.ts";
 import { gql } from "@apollo/client";
 import { apiClient } from "../../shared/api.client.ts";
@@ -69,10 +70,43 @@ export const authenticateUser = async (
       },
     });
 
-    return response.data.auth.userId;
+    return Number(response.data.auth.userId);
   } catch (error) {
     console.error("Something went wrong while logging in");
     console.error(error);
+    throw error;
+  }
+};
+
+export const getUserInfo = async (
+  userId: number,
+): Promise<UserInfoResponse["user"]> => {
+  const GET_USER_INFO = gql`
+    query GetUser($userId: Int!) {
+      user(userId: $userId) {
+        firstName
+        lastName
+        email
+      }
+    }
+  `;
+
+  try {
+    const response = await apiClient.query<UserInfoResponse>({
+      query: GET_USER_INFO,
+      variables: { userId },
+    });
+
+    if (!response.data.user) {
+      throw new Error("User not found");
+    }
+
+    return response.data.user;
+  } catch (error) {
+    console.error(
+      "Something went wrong while fetching user information:",
+      error,
+    );
     throw error;
   }
 };

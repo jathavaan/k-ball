@@ -1,6 +1,8 @@
 ﻿import {
   CheckUserCredentialsQuery,
   CheckUserCredentialsQueryHandler,
+  GetGivenPlayerRatingsQuery,
+  GetGivenPlayerRatingsQueryHandler,
   GetUserByIdQuery,
   GetUserByIdQueryHandler,
   GetUsersQuery,
@@ -14,6 +16,8 @@ import {
 const createUserCommandHandler = new CreateUserCommandHandler();
 const getUserByIdQueryHandler = new GetUserByIdQueryHandler();
 const getUsersQueryHandler = new GetUsersQueryHandler();
+const getGivenPlayerRatingsQueryHandler =
+  new GetGivenPlayerRatingsQueryHandler();
 const checkUserCredentialsQueryHandler = new CheckUserCredentialsQueryHandler();
 
 export const userResolver = {
@@ -30,6 +34,12 @@ export const userResolver = {
       );
 
       return { userId };
+    },
+    detailedPlayerRating: async (_: any, args: { userId: number }) => {
+      const { userId } = args;
+      return await getGivenPlayerRatingsQueryHandler.handle(
+        new GetGivenPlayerRatingsQuery(userId),
+      );
     },
   },
   UserMutation: {

@@ -16,6 +16,16 @@ export interface RegisterProps {
   password: string;
 }
 
+export interface UserInfoProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface UserInfoResponse {
+  user: UserInfoProps;
+}
+
 export interface RegisterResponse {
   register: {
     isUserRegistered: boolean;

@@ -1,5 +1,6 @@
 ﻿import { PlayerRating } from "../../../domain/entities";
 import { PlayerRatingDto } from "./playerRating.dto";
+import { PlayerRatingInfoVm } from "../../view-models/playerRatingVm";
 
 export interface PlayerRatingRepositoryServiceBase {
   getPlayerRatingByUserId: (
@@ -9,5 +10,8 @@ export interface PlayerRatingRepositoryServiceBase {
   getAllPlayerRatings: (playerId: number) => Promise<PlayerRatingDto[]>;
   getAveragePlayerRating: (playerId: number) => Promise<PlayerRatingDto | null>;
   getUsersPlayerRating: (userId: number) => Promise<PlayerRatingDto[]>;
+  getUsersDetailedPlayerRating: (
+    userId: number,
+  ) => Promise<PlayerRatingInfoVm[]>;
   upsertPlayerRating: (playerRating: PlayerRating) => Promise<boolean>;
 }
