@@ -1,5 +1,5 @@
 ﻿import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { PlayerReview } from "./playerReview";
+import { PlayerRating } from "./playerRating";
 
 @Entity()
 export class User {
@@ -14,6 +14,6 @@ export class User {
   @Column({ type: "text" })
   password!: string;
 
-  @OneToMany(() => PlayerReview, (playerReview) => playerReview.user)
-  playerReviews!: PlayerReview[];
+  @OneToMany(() => PlayerRating, (playerReview) => playerReview.user)
+  playerReviews!: PlayerRating[];
 }

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { PlayerStatsTable } from "./PlayerStatsTable";
 import { PlayerStatsProps } from "./playerStatsTable.types";
 

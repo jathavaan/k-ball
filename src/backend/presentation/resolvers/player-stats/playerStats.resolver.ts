@@ -1,16 +1,16 @@
 import {
-  GetPlayerStatsQuery,
-  GetPlayerStatsQueryHandler,
-} from "../../../application/features/player-stats/query";
+  GetPlayerStatisticsQuery,
+  GetPlayerStatisticsQueryHandler,
+} from "../../../application/features/player/query/";
 
-const getPlayerStatsQueryHandler = new GetPlayerStatsQueryHandler();
+const getPlayerStatsQueryHandler = new GetPlayerStatisticsQueryHandler();
 
 export const playerStatsResolver = {
   PlayerStatsQuery: {
     playerStats: async (_: any, args: { playerId: number }) => {
       const { playerId } = args;
       return await getPlayerStatsQueryHandler.handle(
-        new GetPlayerStatsQuery(playerId),
+        new GetPlayerStatisticsQuery(playerId),
       );
     },
   },

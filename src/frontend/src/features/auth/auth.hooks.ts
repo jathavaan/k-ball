@@ -6,6 +6,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../store.ts";
 import {
+  clearLoginForm,
   loginEmailSelector,
   loginPasswordSelector,
   registerEmailSelector,
@@ -31,12 +32,21 @@ import {
   setRegisterPassword,
   setRegisterPasswordError,
 } from "./auth.slice.ts";
+import React from "react";
 
 export const useLogin = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const email = useSelector(loginEmailSelector);
   const password = useSelector(loginPasswordSelector);
 
   const { mutate, data, isPending, error } = useAuthenticateUser();
+
+  const isLoginButtonDisabled =
+    email.error.isError ||
+    password.error.isError ||
+    isPending ||
+    !email.value ||
+    !password.value;
 
   if (typeof data === "number") {
     localStorage.setItem("token", String(data));
@@ -44,9 +54,23 @@ export const useLogin = () => {
 
   const onLoginClick = () => {
     mutate({ email: email.value, password: password.value });
+    dispatch(clearLoginForm());
   };
 
-  return { onLoginClick, data, error, isPending };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" && !isLoginButtonDisabled) {
+      onLoginClick();
+    }
+  };
+
+  return {
+    onLoginClick,
+    handleKeyDown,
+    isLoginButtonDisabled,
+    data,
+    error,
+    isPending,
+  };
 };
 
 export const useLoginForm = () => {
@@ -91,6 +115,17 @@ export const useRegister = () => {
 
   const { mutate, data, isPending, error } = useRegisterUser();
 
+  const isRegisterButtonDisabled =
+    firstName.error.isError ||
+    lastName.error.isError ||
+    email.error.isError ||
+    password.error.isError ||
+    !firstName.value ||
+    !lastName.value ||
+    !email.value ||
+    !password.value ||
+    isPending;
+
   const onRegisterClick = () => {
     mutate({
       firstName: firstName.value,
@@ -100,7 +135,20 @@ export const useRegister = () => {
     });
   };
 
-  return { onRegisterClick, data, error, isPending };
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" && !isRegisterButtonDisabled) {
+      onRegisterClick();
+    }
+  };
+
+  return {
+    onRegisterClick,
+    handleKeyDown,
+    isRegisterButtonDisabled,
+    data,
+    error,
+    isPending,
+  };
 };
 
 export const useRegisterForm = () => {

@@ -9,6 +9,7 @@ import { Navbar } from "./features/navbar/Navbar.tsx";
 import {
   HomePage,
   LoginPage,
+  PageNotFound,
   PlayerDashboard,
   PlayerProfile,
   SignUp,
@@ -48,6 +49,7 @@ function App() {
               path="/project2/players/:playerId"
               element={<ProtectedRoute element={<PlayerProfile />} />}
             />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Container>
       </Router>

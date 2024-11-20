@@ -1,5 +1,4 @@
 ﻿import { Container } from "inversify";
-import { PlayerStatsRepositoryService } from "./player-stats-service/playerStatsRepository.service";
 
 import {
   BirthPlaceRepositoryServiceBase,
@@ -7,8 +6,9 @@ import {
   CountryRepositoryServiceBase,
   DatabaseImportServiceBase,
   FootballApiServiceBase,
+  PlayerImportStateRepositoryServiceBase,
   PlayerRepositoryServiceBase,
-  PlayerStatsRepositoryServiceBase,
+  PlayerStatisticsRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
   UserRepositoryServiceBase,
@@ -22,8 +22,10 @@ import { UserRepositoryService } from "./user-service/userRepository.service";
 import { ClubRepositoryService } from "./club-service/clubRepository.service";
 import { CountryRepositoryService } from "./country-service/countryRepository.service";
 import { PositionRepositoryService } from "./position-service/positionRepository.service";
-import { PlayerImportStateRepositoryServiceBase } from "../../application/contracts/playerImportStateRepository.service.base";
-import { PlayerImportStateRepositoryService } from "./player-import-state-service/playerImportStateRepository.service";
+import { PlayerImportStateRepositoryService } from "./database-import-service/playerImportStateRepository.service";
+import { PlayerStatisticsRepositoryService } from "./player-service/playerStatisticsRepository.service";
+import { PlayerRatingRepositoryServiceBase } from "../../application/contracts/player-service/playerRatingRepository.service.base";
+import { PlayerRatingRepositoryService } from "./player-service/playerRatingRepository.service";
 
 const container = new Container();
 container
@@ -69,7 +71,13 @@ container
   .to(PlayerImportStateRepositoryService);
 
 container
-  .bind<PlayerStatsRepositoryServiceBase>("PlayerStatsRepositoryServiceBase")
-  .to(PlayerStatsRepositoryService);
+  .bind<PlayerStatisticsRepositoryServiceBase>(
+    "PlayerStatsRepositoryServiceBase",
+  )
+  .to(PlayerStatisticsRepositoryService);
+
+container
+  .bind<PlayerRatingRepositoryServiceBase>("PlayerRatingRepositoryServiceBase")
+  .to(PlayerRatingRepositoryService);
 
 export { container };

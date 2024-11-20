@@ -2,7 +2,7 @@
 import { ClubRepositoryServiceBase } from "../../../application/contracts";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { Club } from "../../../domain/entities";
-import { ClubDto } from "../../../application/dtos";
+import { ClubDto } from "../../../application/contracts/database-import-service/footballApi.dto";
 
 @injectable()
 export class ClubRepositoryService implements ClubRepositoryServiceBase {
@@ -38,8 +38,8 @@ export class ClubRepositoryService implements ClubRepositoryServiceBase {
       (club) =>
         !existingClubs.some(
           (existingClub) =>
-            existingClub.name.toLowerCase() === club.name.toLowerCase()
-        )
+            existingClub.name.toLowerCase() === club.name.toLowerCase(),
+        ),
     );
 
     if (clubs.length === 0) {

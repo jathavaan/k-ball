@@ -7,7 +7,7 @@
 } from "typeorm";
 import { BirthPlace } from "./birthPlace";
 import { Club } from "./club";
-import { PlayerReview } from "./playerReview";
+import { PlayerRating } from "./playerRating";
 import { PlayerSeason } from "./playerSeason";
 import { Position } from "./position";
 import { Country } from "./country";
@@ -45,8 +45,8 @@ export class Player {
   currentClub!: Club;
   @ManyToOne(() => Country, (country) => country.players)
   country!: Country;
-  @OneToMany(() => PlayerReview, (playerReview) => playerReview.player)
-  playerReviews!: PlayerReview[];
+  @OneToMany(() => PlayerRating, (playerReview) => playerReview.player)
+  playerReviews!: PlayerRating[];
   @OneToMany(() => PlayerSeason, (playerSeason) => playerSeason.player)
   playerSeasons!: PlayerSeason[];
   @ManyToOne(() => Position, (position) => position.players, {

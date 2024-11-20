@@ -25,7 +25,7 @@ export class UserRepositoryService implements UserRepositoryServiceBase {
   async getUserByEmail(email: string) {
     return await this.dbContext.findOne(User, {
       where: {
-        email: email,
+        email: email.trim().toLowerCase(),
       },
     });
   }
@@ -48,7 +48,9 @@ export class UserRepositoryService implements UserRepositoryServiceBase {
       return false;
     }
 
+    user.email = user.email.trim().toLowerCase();
     user.password = await bcrypt.hash(user.password, 10);
+
     await this.dbContext.save(User, user);
     return true;
   }

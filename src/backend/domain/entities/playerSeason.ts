@@ -8,7 +8,7 @@ import {
 import { Player } from "./player";
 import { Club } from "./club";
 import { Season } from "./season";
-import { PlayerStats } from "./playerStats";
+import { PlayerStatistics } from "./playerStatistics";
 
 @Entity()
 @Index(["player", "club", "season"], { unique: true })
@@ -31,6 +31,6 @@ export class PlayerSeason {
     onUpdate: "CASCADE",
   })
   season!: Season;
-  @OneToOne(() => PlayerStats, (playerStats) => playerStats.playerSeason)
-  playerStats!: PlayerStats;
+  @OneToOne(() => PlayerStatistics, (playerStats) => playerStats.playerSeason)
+  playerStats!: PlayerStatistics;
 }

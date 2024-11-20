@@ -1,82 +1,85 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
-  StyledSearchContainer,
-  StyledSearchInput,
-  StyledSearchButton,
-  StyledClearButton,
+  StyledClearIcon,
+  StyledGrid,
+  StyledIconButton,
+  StyledSearchIcon,
+  StyledSearchOffIcon,
+  StyledSearchTextInput,
 } from "./searchbar.style";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useSearch } from "./searchbar.hooks.ts";
-import { selectSearchQuery, setTempSearch } from "./searchbar.slice.ts";
-import { AppDispatch } from "../../store.ts";
+import Grid from "@mui/material/Grid2";
+import { HelperErrorText } from "../ui";
 
 export const SearchBar = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const searchQuery = useSelector(selectSearchQuery);
-  const [localQuery, setLocalQuery] = useState(searchQuery); // Search is local until the user submits search
-  const { triggerSearch } = useSearch();
-  const [hasUserInteracted, setHasUserInteracted] = useState(false);
-
-  const handleSearch = () => {
-    if (localQuery) {
-      triggerSearch(localQuery);
-    }
-  };
-
-  const handleClear = () => {
-    setLocalQuery("");
-    dispatch(setTempSearch(""));
-    triggerSearch("");
-    setHasUserInteracted(false);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = event.target.value;
-    setLocalQuery(newQuery);
-    setHasUserInteracted(true);
-
-    if (newQuery === "" && searchQuery) {
-      dispatch(setTempSearch(""));
-      triggerSearch("");
-    }
-  };
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      dispatch(setTempSearch(localQuery));
-    }, 1000);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [localQuery, dispatch]);
+  const {
+    localSearchQuery,
+    searchQuery,
+    searchResultCount,
+    handleChange,
+    handleKeyDown,
+    handleClear,
+    handleSearch,
+  } = useSearch();
 
   return (
-    <StyledSearchContainer>
-      <StyledSearchInput
-        value={localQuery}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        variant="outlined"
-        placeholder="Search..."
-      />
-
-      {hasUserInteracted && searchQuery && (
-        <StyledClearButton aria-label="clear" onClick={handleClear}>
-          <ClearIcon />
-        </StyledClearButton>
-      )}
-      <StyledSearchButton aria-label="search" onClick={handleSearch}>
-        <SearchIcon />
-      </StyledSearchButton>
-    </StyledSearchContainer>
+    <StyledGrid
+      container
+      spacing={0}
+      sx={{
+        display: "flex",
+        padding: 0,
+        height: "100%",
+        alignItems: "flex-end",
+      }}
+    >
+      <Grid
+        size={{ xs: 8, md: 10 }}
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent:
+            searchQuery && searchResultCount === 0
+              ? "space-between"
+              : "flex-end",
+        }}
+      >
+        {searchQuery &&
+        searchResultCount !== undefined &&
+        searchResultCount === 0 ? (
+          <HelperErrorText description="No results" />
+        ) : null}
+        <StyledSearchTextInput
+          value={localSearchQuery}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Search for name..."
+          fullWidth
+        />
+      </Grid>
+      <Grid size={{ xs: 2, md: 1 }}>
+        {localSearchQuery ? (
+          <StyledIconButton aria-label="clear" onClick={handleClear}>
+            <StyledClearIcon aria-label="clear" />
+          </StyledIconButton>
+        ) : null}
+      </Grid>
+      <Grid size={{ xs: 2, md: 1 }}>
+        {searchQuery && searchResultCount !== undefined ? (
+          <StyledIconButton
+            aria-label="search"
+            disableTouchRipple
+            disabled={searchResultCount === 0}
+            onClick={handleSearch}
+          >
+            {searchResultCount > 0 ? (
+              <StyledSearchIcon aria-label="search" />
+            ) : (
+              <StyledSearchOffIcon aria-label="disabled search" />
+            )}
+          </StyledIconButton>
+        ) : null}
+      </Grid>
+    </StyledGrid>
   );
 };
