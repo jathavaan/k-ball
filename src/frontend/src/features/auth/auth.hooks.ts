@@ -44,13 +44,12 @@ export const useLogin = () => {
     !email.value ||
     !password.value;
 
-  if (typeof data === "number") {
+  if (typeof data === "number" && data > 0) {
     localStorage.setItem("token", String(data));
   }
 
   const onLoginClick = () => {
     mutate({ email: email.value, password: password.value });
-    dispatch(clearLoginForm());
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {

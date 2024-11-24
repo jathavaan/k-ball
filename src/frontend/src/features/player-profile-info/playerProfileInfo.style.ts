@@ -25,7 +25,7 @@ export const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
 })) as typeof Breadcrumbs;
 
 export const StyledBreadcrumb = styled(Chip)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
+  backgroundColor: theme.palette.secondary.dark,
   color: theme.palette.secondary.contrastText,
   "&:hover": {
     backgroundColor: theme.palette.secondary.light,

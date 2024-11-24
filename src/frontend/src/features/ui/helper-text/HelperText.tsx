@@ -1,6 +1,6 @@
-import { helperTextProps } from "./helperText.types";
+import { HelperTextProps } from "./helperText.types";
 import { StyledHelperText } from "./helperText.style";
 
-export const HelperText = ({ description }: helperTextProps) => {
-  return <StyledHelperText>{description}</StyledHelperText>;
+export const HelperText = ({ description, ...props }: HelperTextProps) => {
+  return <StyledHelperText {...props}>{description}</StyledHelperText>;
 };

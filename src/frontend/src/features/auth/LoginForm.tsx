@@ -149,6 +149,7 @@ export const LoginForm = () => {
             }}
           >
             <StyledLink
+              href={"/project2/register#"}
               onClick={() => navigate("/project2/register")}
               variant="body2"
               underline="hover"

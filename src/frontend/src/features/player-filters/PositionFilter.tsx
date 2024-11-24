@@ -13,6 +13,7 @@ export const PositionFilter = () => {
       multiple={true}
       disabled={isLoading || isError}
       description="Select positions to filter by"
+      labelId="position-select-filter-label"
       children={[
         <MenuItem
           key={-1}

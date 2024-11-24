@@ -12,6 +12,7 @@ export const CountryFilter = () => {
       variant="standard"
       multiple={true}
       disabled={isLoading || isError}
+      labelId="country-select-filter-label"
       children={[
         <MenuItem
           key={-1}

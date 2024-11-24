@@ -6,15 +6,20 @@ import {
 } from "./select.style.ts";
 import { HelperText } from "../helper-text/HelperText.tsx";
 import { ImageContainer } from "../image-container/ImageContainer.tsx";
-import { Box } from "@mui/material";
+import { Box, FormControl } from "@mui/material";
 
-export const Select = ({ children, description, ...props }: SelectProps) => {
+export const Select = ({
+  children,
+  description,
+  labelId,
+  ...props
+}: SelectProps) => {
   return (
-    <>
-      <HelperText description={description} />
+    <FormControl>
+      <HelperText id={labelId} description={description} />
       <StyledSelect
         {...props}
-        disableUnderline
+        aria-describedby={labelId}
         MenuProps={{
           PaperProps: {
             style: { maxHeight: "27rem" },
@@ -23,13 +28,17 @@ export const Select = ({ children, description, ...props }: SelectProps) => {
       >
         {children}
       </StyledSelect>
-    </>
+    </FormControl>
   );
 };
 
 export const MenuItem = ({ isChecked, endIcon, ...props }: MenuItemProps) => {
   return (
-    <StyledMenuItem {...props}>
+    <StyledMenuItem
+      {...props}
+      aria-selected={isChecked}
+      aria-checked={isChecked}
+    >
       <Box
         sx={{
           display: "flex",
@@ -43,7 +52,7 @@ export const MenuItem = ({ isChecked, endIcon, ...props }: MenuItemProps) => {
       {endIcon ? (
         <ImageContainer
           src={endIcon!}
-          alt={`End icon for ${endIcon}`}
+          alt={`End icon for menu item: ${endIcon}`}
           style={{ height: "1.5rem", width: "1.5rem" }}
         />
       ) : null}

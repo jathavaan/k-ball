@@ -12,6 +12,7 @@ export const ClubFilter = () => {
       variant="standard"
       multiple={true}
       disabled={isLoading || isError}
+      labelId="club-select-filter-label"
       children={[
         <MenuItem
           key={-1}
