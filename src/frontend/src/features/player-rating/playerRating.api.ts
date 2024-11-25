@@ -89,7 +89,6 @@ export const saveUserRating = async (
     },
   });
 
-  console.log(response.data.playerRating);
   return response.data.playerRating;
 };
 
