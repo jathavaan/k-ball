@@ -9,6 +9,8 @@ import {
   GetPlayersQueryHandler,
 } from "../../../application/features/player/query";
 import {
+  DeletePlayerRatingCommand,
+  DeletePlayerRatingCommandHandler,
   UpsertPlayerRatingCommand,
   UpsertPlayerRatingCommandHandler,
 } from "../../../application/features/player/command";
@@ -20,6 +22,7 @@ const getPlayerRatingGivenByUserQueryHandler =
 const getAveragePlayerRatingQueryHandler =
   new GetAveragePlayerRatingQueryHandler();
 const upsertPlayerRatingCommandHandler = new UpsertPlayerRatingCommandHandler();
+const deletePlayerRatingCommandHandler = new DeletePlayerRatingCommandHandler();
 
 export const playerResolver = {
   PlayerQuery: {
@@ -110,6 +113,17 @@ export const playerResolver = {
         ),
       );
       return { isUpsertSuccessful };
+    },
+    deletePlayerRating: async (
+      _: any,
+      args: { playerId: number; userId: number },
+    ) => {
+      const { playerId, userId } = args;
+      const isDeleteSuccessful = await deletePlayerRatingCommandHandler.handle(
+        new DeletePlayerRatingCommand(playerId, userId),
+      );
+
+      return { isDeleteSuccessful };
     },
   },
 };

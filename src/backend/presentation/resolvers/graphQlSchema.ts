@@ -1,4 +1,5 @@
 ﻿import {
+  GraphQLBoolean,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -19,6 +20,7 @@ import { CountryType } from "./country/country.typeDefinitions";
 import { PositionType } from "./position/position.typeDefinitions";
 import { positionResolver } from "./position/position.resolver";
 import {
+  DeletePlayerRatingType,
   PlayerRatingType,
   PlayerType,
   UpsertPlayerRatingType,
@@ -139,6 +141,14 @@ const MutationType = new GraphQLObjectType({
         intelligence: { type: GraphQLInt },
       },
       resolve: playerResolver.PlayerMutation.playerRating,
+    },
+    deletePlayerRating: {
+      type: DeletePlayerRatingType,
+      args: {
+        playerId: { type: GraphQLInt },
+        userId: { type: GraphQLInt },
+      },
+      resolve: playerResolver.PlayerMutation.deletePlayerRating,
     },
   },
 });

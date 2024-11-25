@@ -70,7 +70,7 @@ export const authenticateUser = async (
       },
     });
 
-    return Number(response.data.auth.userId);
+    return response.data.auth.userId ? Number(response.data.auth.userId) : null;
   } catch (error) {
     console.error("Something went wrong while logging in");
     console.error(error);

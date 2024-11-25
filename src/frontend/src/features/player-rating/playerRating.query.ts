@@ -1,5 +1,6 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
+  deletePlayerRating,
   getOverallRating,
   getUserRating,
   saveUserRating,
@@ -13,12 +14,10 @@ export const useOverallRating = (playerId: number) =>
   });
 
 export const useUserRating = (playerId: number, userId: number) =>
-  useQuery<Rating>({
-    queryKey: ["userRating", playerId, userId],
-    queryFn: () => getUserRating(playerId, userId),
+  useMutation<Rating>({
+    mutationKey: ["userRating", playerId, userId],
+    mutationFn: () => getUserRating(playerId, userId),
     gcTime: 0,
-    refetchOnWindowFocus: false,
-    staleTime: 0,
   });
 
 export const useSaveUserRating = (
@@ -29,5 +28,10 @@ export const useSaveUserRating = (
   useMutation<SaveRatingResponse>({
     mutationFn: () => saveUserRating(playerId, userId, userRating),
     mutationKey: ["saveUserRating", playerId, userId, userRating],
-    gcTime: 0,
+  });
+
+export const useDeletePlayerRating = (playerId: number, userId: number) =>
+  useMutation({
+    mutationFn: () => deletePlayerRating(playerId, userId),
+    mutationKey: ["deletePlayerRating", playerId, userId],
   });

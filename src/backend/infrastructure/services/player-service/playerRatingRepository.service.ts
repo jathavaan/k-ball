@@ -157,4 +157,12 @@ export class PlayerRatingRepositoryService
       return false;
     }
   }
+
+  async deletePlayerRating(userId: number, playerId: number) {
+    const playerRating = await this.getPlayerRatingByUserId(playerId, userId);
+    if (!playerRating) return false;
+
+    await this.dbContext.remove(playerRating);
+    return true;
+  }
 }
