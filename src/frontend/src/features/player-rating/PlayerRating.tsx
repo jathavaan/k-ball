@@ -262,6 +262,13 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
                   }
                   onClick={() => onEditClick()}
                 />
+                {userRating && (
+                  <StyledSpeedDialAction
+                    icon={<DeleteIcon />}
+                    tooltipTitle="Delete rating"
+                    onClick={() => handleDelete()}
+                  />
+                )}
                 {isEditingPlayerRating && (
                   <StyledSpeedDialAction
                     icon={<SaveIcon />}
@@ -275,14 +282,6 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
                     icon={<ClearIcon />}
                     tooltipTitle="Clear changes"
                     onClick={() => handleClear()}
-                  />
-                )}
-
-                {userRating && (
-                  <StyledSpeedDialAction
-                    icon={<DeleteIcon />}
-                    tooltipTitle="Delete rating"
-                    onClick={() => handleDelete()}
                   />
                 )}
               </StyledSpeedDial>
