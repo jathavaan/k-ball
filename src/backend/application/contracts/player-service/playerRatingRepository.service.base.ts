@@ -14,4 +14,5 @@ export interface PlayerRatingRepositoryServiceBase {
     userId: number,
   ) => Promise<PlayerRatingInfoVm[]>;
   upsertPlayerRating: (playerRating: PlayerRating) => Promise<boolean>;
+  deletePlayerRating: (userId: number, playerId: number) => Promise<boolean>;
 }

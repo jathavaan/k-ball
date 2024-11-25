@@ -1,5 +1,4 @@
 import {
-  Button,
   CircularProgressBar,
   ErrorAlert,
   Table,
@@ -11,11 +10,19 @@ import {
   TableRow,
 } from "../ui";
 import { usePlayerRating, usePlayerRatingEdit } from "./playerRating.hooks.ts";
-import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
+import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
 import { PlayerRatingProps } from "./playerRating.types.ts";
-import { StyledRating } from "./playerRating.style.ts";
+import {
+  StyledRating,
+  StyledSpeedDial,
+  StyledSpeedDialAction,
+  StyledSpeedDialIcon,
+} from "./playerRating.style.ts";
 import { useSelector } from "react-redux";
 import {
   selectAttack,
@@ -23,9 +30,11 @@ import {
   selectDefence,
   selectIntelligence,
   selectIsEditingPlayerRating,
+  selectIsPlayerRatingInDb,
   selectPassing,
 } from "./playerRating.slice.ts";
 import Grid from "@mui/material/Grid2";
+import { Add } from "@mui/icons-material";
 
 export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
   const attack = useSelector(selectAttack);
@@ -34,17 +43,22 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
   const intelligence = useSelector(selectIntelligence);
   const average = useSelector(selectAverage);
   const isEditingPlayerRating = useSelector(selectIsEditingPlayerRating);
+  const isPlayerRatingInDb = useSelector(selectIsPlayerRatingInDb);
 
   const {
     overallRating,
     isOverallRatingPending,
     isOverallRatingError,
+    userRating,
     isUserRatingLoading,
     isUserRatingError,
     isSaveUserRatingPending,
     isSaveUserRatingError,
+    isDeletePlayerRatingPending,
+    isDeletePlayerRatingError,
     handleSaveChanges,
-    onClearClick,
+    handleClear,
+    handleDelete,
   } = usePlayerRating(playerId);
 
   const {
@@ -67,6 +81,10 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
 
       {isSaveUserRatingError && (
         <ErrorAlert message="Failed to save user's rating" />
+      )}
+
+      {isDeletePlayerRatingError && (
+        <ErrorAlert message="Failed to delete player rating" />
       )}
       <Table>
         <TableHead>
@@ -199,45 +217,75 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
           <TableRow>
             <TableCell colSpan={1}></TableCell>
             <TableCell colSpan={2}>
-              <Grid container spacing={2}>
-                <Grid size={{ xs: isEditingPlayerRating ? 9 : 12 }}>
-                  <Button
-                    fullWidth
-                    disabled={isSaveUserRatingPending}
-                    endIcon={
-                      isSaveUserRatingPending && (
+              <Grid container spacing={2}></Grid>
+              <StyledSpeedDial
+                icon={
+                  <StyledSpeedDialIcon
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    icon={
+                      isSaveUserRatingPending ||
+                      isOverallRatingPending ||
+                      isDeletePlayerRatingPending ? (
                         <CircularProgressBar size={25} />
-                      )
-                    }
-                    startIcon={
-                      isEditingPlayerRating ? (
-                        <SaveIcon />
-                      ) : isSaveUserRatingPending ? null : (
+                      ) : isEditingPlayerRating ? (
                         <EditIcon />
+                      ) : (
+                        <ExpandLessIcon sx={{ transform: "rotate(-90deg)" }} />
                       )
                     }
-                    onClick={
-                      isEditingPlayerRating ? handleSaveChanges : onEditClick
-                    }
-                    text={
-                      isEditingPlayerRating
-                        ? "Save changes"
-                        : isSaveUserRatingPending
-                          ? "Saving..."
-                          : "Edit rating"
+                    openIcon={
+                      !isSaveUserRatingPending &&
+                      !isOverallRatingPending &&
+                      !isDeletePlayerRatingPending && <ThumbsUpDownIcon />
                     }
                   />
-                </Grid>
+                }
+                ariaLabel="Add or edit rating"
+                direction="left"
+              >
+                <StyledSpeedDialAction
+                  icon={
+                    !isUserRatingLoading && !isPlayerRatingInDb ? (
+                      <Add />
+                    ) : (
+                      <EditIcon />
+                    )
+                  }
+                  tooltipTitle={
+                    !isUserRatingLoading && !userRating
+                      ? "Add rating"
+                      : "Edit rating"
+                  }
+                  onClick={() => onEditClick()}
+                />
                 {isEditingPlayerRating && (
-                  <Grid size={{ xs: 3 }}>
-                    <Button
-                      text="Clear"
-                      endIcon={<ClearIcon />}
-                      onClick={() => onClearClick()}
-                    />
-                  </Grid>
+                  <StyledSpeedDialAction
+                    icon={<SaveIcon />}
+                    tooltipTitle="Save changes"
+                    onClick={() => handleSaveChanges()}
+                  />
                 )}
-              </Grid>
+
+                {isEditingPlayerRating && (
+                  <StyledSpeedDialAction
+                    icon={<ClearIcon />}
+                    tooltipTitle="Clear changes"
+                    onClick={() => handleClear()}
+                  />
+                )}
+
+                {userRating && (
+                  <StyledSpeedDialAction
+                    icon={<DeleteIcon />}
+                    tooltipTitle="Delete rating"
+                    onClick={() => handleDelete()}
+                  />
+                )}
+              </StyledSpeedDial>
             </TableCell>
           </TableRow>
         </TableFooter>
