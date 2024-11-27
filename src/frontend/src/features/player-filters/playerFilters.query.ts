@@ -4,7 +4,7 @@ import {
   getCountries,
   getPositions,
   getCount,
-} from "./playerFilters.api.ts";
+} from "@features/player-filters/playerFilters.api.ts";
 
 export const useCountries = () =>
   useQuery({

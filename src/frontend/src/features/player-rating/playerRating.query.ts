@@ -4,8 +4,11 @@ import {
   getOverallRating,
   getUserRating,
   saveUserRating,
-} from "./playerRating.api.ts";
-import { Rating, SaveRatingResponse } from "./playerRating.types.ts";
+} from "@features/player-rating/playerRating.api.ts";
+import {
+  Rating,
+  SaveRatingResponse,
+} from "@features/player-rating/playerRating.types.ts";
 
 export const useOverallRating = (playerId: number) =>
   useMutation<Rating>({

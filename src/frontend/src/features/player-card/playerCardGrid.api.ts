@@ -1,5 +1,5 @@
 import { PlayerCardProps } from "./playerCard.types";
-import { apiClient } from "../../shared/api.client";
+import { apiClient } from "@shared/api.client.ts";
 import { gql } from "@apollo/client";
 
 const GET_PLAYER_CARDS = gql`

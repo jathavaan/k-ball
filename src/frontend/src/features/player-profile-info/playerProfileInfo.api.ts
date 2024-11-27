@@ -1,5 +1,5 @@
-import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
-import { apiClient } from "../../shared/api.client.ts";
+import { PlayerProfileInfoProps } from "@features/player-profile-info/playerProfileInfo.types.ts";
+import { apiClient } from "@shared/api.client.ts";
 import { gql } from "@apollo/client";
 
 export const getPlayerProfileInfo = async ({

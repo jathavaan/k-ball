@@ -1,10 +1,10 @@
-import { apiClient } from "../../shared/api.client.ts";
+import { apiClient } from "@shared/api.client.ts";
 import { gql } from "@apollo/client";
 import {
   DeleteRatingResponse,
   Rating,
   SaveRatingResponse,
-} from "./playerRating.types.ts";
+} from "@features/player-rating/playerRating.types.ts";
 
 export const getOverallRating = async (playerId: number): Promise<Rating> => {
   const GET_OVERALL_RATING = gql`

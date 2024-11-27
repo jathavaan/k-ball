@@ -1,6 +1,9 @@
-﻿import { CardInfoTextProps } from "./CardInfoTextProps.ts";
-import { StyledContentText, StyledTitleText } from "./cardInfoText.style.ts";
-import { Box } from "@mui/material";
+﻿import { Box } from "@mui/material";
+import { CardInfoTextProps } from "@features/ui/card-info-text/CardInfoTextProps.ts";
+import {
+  StyledContentText,
+  StyledTitleText,
+} from "@features/ui/card-info-text/cardInfoText.style.ts";
 
 export const CardInfoText = ({
   titleText,

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPlayerCards } from "./playerCardGrid.api";
+import { getPlayerCards } from "@features/player-card/playerCardGrid.api.ts";
 
 export const usePlayerCards = (
   page: number,

@@ -1,5 +1,5 @@
-﻿import { CardContentTextProps } from "./cardContentText.types.ts";
-import { StyledCardContentText } from "./cardContentText.style.ts";
+﻿import { CardContentTextProps } from "@features/ui/card-content-text/cardContentText.types.ts";
+import { StyledCardContentText } from "@features/ui/card-content-text/cardContentText.style.ts";
 
 export const CardContentText = (props: CardContentTextProps) => {
   return (

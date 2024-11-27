@@ -18,15 +18,15 @@ import {
   setOverallIntelligence,
   setOverallPassing,
   setPassing,
-} from "./playerRating.slice";
-import { getLoggedInUser } from "../auth/auth.hooks";
-import { AppDispatch } from "../../store.ts";
+} from "@features/player-rating/playerRating.slice";
+import { getLoggedInUser } from "@features/auth";
+import { AppDispatch } from "@/store.ts";
 import {
   useDeletePlayerRating,
   useOverallRating,
   useSaveUserRating,
   useUserRating,
-} from "./playerRating.query.ts";
+} from "@features/player-rating/playerRating.query.ts";
 
 const calculateAverageRating = (
   attack: number,

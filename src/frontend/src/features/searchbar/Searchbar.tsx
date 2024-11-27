@@ -5,10 +5,10 @@ import {
   StyledSearchIcon,
   StyledSearchOffIcon,
   StyledSearchTextInput,
-} from "./searchbar.style";
-import { useSearch } from "./searchbar.hooks.ts";
+} from "@features/searchbar/searchbar.style";
+import { useSearch } from "@features/searchbar/searchbar.hooks.ts";
 import Grid from "@mui/material/Grid2";
-import { HelperErrorText } from "../ui";
+import { HelperErrorText } from "@features/ui";
 
 export const SearchBar = () => {
   const {

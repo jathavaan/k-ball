@@ -1,6 +1,6 @@
-import { MenuItem, Select } from "../ui";
-import { useClubs } from "./playerFilters.query.ts";
-import { useClubSelection } from "./playerFilters.hooks.ts";
+import { MenuItem, Select } from "@features/ui";
+import { useClubs } from "@features/player-filters/playerFilters.query.ts";
+import { useClubSelection } from "@features/player-filters/playerFilters.hooks.ts";
 
 export const ClubFilter = () => {
   const { data, isLoading, isError } = useClubs();

@@ -5,11 +5,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from "../ui";
+} from "@features/ui";
 import {
   PlayerStatsProps,
   PlayerStatsTableProps,
-} from "./playerStatsTable.types";
+} from "@features/player-stats-table/playerStatsTable.types";
 
 export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
   const { playerStatsTable } = props;

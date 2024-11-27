@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   PlayerProfileInfoProps,
   PlayerProfileInfoState,
-} from "./playerProfileInfo.types.ts";
+} from "@features/player-profile-info/playerProfileInfo.types.ts";
 
 const initialState: PlayerProfileInfoState = {
   playerProfileInfo: undefined,
