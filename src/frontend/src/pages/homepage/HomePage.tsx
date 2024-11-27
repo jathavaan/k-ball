@@ -1,8 +1,8 @@
-import Home from "../../assets/home.webp";
+import { Home } from "@assets/index";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../../features/auth/auth.hooks.ts";
-import { Button, Text } from "../../features/ui";
+import { isUserLoggedIn } from "@features/auth";
+import { Button, Text } from "@features/ui";
 
 export const HomePage = () => {
   const navigate = useNavigate();
