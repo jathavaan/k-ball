@@ -30,7 +30,9 @@ describe("PlayerProfileInfo", () => {
   });
 
   it("should render the player's age", () => {
-    expect(screen.getByText(mockProps.age.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(`${mockProps.age.toString()} years`),
+    ).toBeInTheDocument();
   });
 
   it("should render the player's position", () => {
