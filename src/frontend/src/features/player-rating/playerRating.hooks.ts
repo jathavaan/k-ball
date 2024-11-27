@@ -11,6 +11,7 @@ import {
   setDefence,
   setIntelligence,
   setIsEditingPlayerRating,
+  setIsPlayerRatingInDb,
   setOverallAttack,
   setOverallAverage,
   setOverallDefence,
@@ -21,6 +22,7 @@ import {
 import { getLoggedInUser } from "../auth/auth.hooks";
 import { AppDispatch } from "../../store.ts";
 import {
+  useDeletePlayerRating,
   useOverallRating,
   useSaveUserRating,
   useUserRating,
@@ -50,10 +52,17 @@ export const usePlayerRating = (playerId: number) => {
   } = useOverallRating(playerId);
 
   const {
+    mutate: mutateUserRating,
     data: userRating,
-    isLoading: isUserRatingLoading,
+    isPending: isUserRatingPending,
     isError: isUserRatingError,
   } = useUserRating(playerId, userId);
+
+  const {
+    mutate: mutateDeletePlayerRating,
+    isPending: isDeletePlayerRatingPending,
+    isError: isDeletePlayerRatingError,
+  } = useDeletePlayerRating(playerId, userId);
 
   const {
     mutate: mutateSaveUserRating,
@@ -80,47 +89,89 @@ export const usePlayerRating = (playerId: number) => {
             dispatch(setOverallAverage(overallRating.average));
           },
         });
+
+        mutateUserRating(undefined, {
+          onSettled: (userRating) => {
+            if (!userRating) return;
+            dispatch(setAttack(userRating.attack));
+            dispatch(setDefence(userRating.defence));
+            dispatch(setPassing(userRating.passing));
+            dispatch(setIntelligence(userRating.intelligence));
+            dispatch(setAverage(userRating.average));
+          },
+        });
       },
     });
     dispatch(setIsEditingPlayerRating(false));
   };
 
-  const onClearClick = () => {
+  const handleClear = () => {
     if (!userRating) {
       dispatch(resetPlayerRating());
       return;
     }
-    dispatch(setAttack(userRating.attack));
-    dispatch(setDefence(userRating.attack));
-    dispatch(setPassing(userRating.attack));
-    dispatch(setIntelligence(userRating.attack));
-    dispatch(setAverage(userRating.attack));
-    dispatch(setIsEditingPlayerRating(false));
-  };
 
-  useEffect(() => {
-    mutateOverallRating();
-  }, [mutateOverallRating]);
-
-  useEffect(() => {
-    dispatch(resetPlayerRating());
-    if (!userRating) return;
     dispatch(setAttack(userRating.attack));
     dispatch(setDefence(userRating.defence));
     dispatch(setPassing(userRating.passing));
     dispatch(setIntelligence(userRating.intelligence));
+    dispatch(setAverage(userRating.average));
+    dispatch(setIsEditingPlayerRating(false));
+  };
+
+  const handleDelete = () => {
+    mutateDeletePlayerRating(undefined, {
+      onSuccess: () => {
+        dispatch(resetPlayerRating()); // Optionally, you can keep this if it resets other fields
+        dispatch(setIsEditingPlayerRating(false));
+
+        mutateOverallRating();
+        mutateUserRating(undefined, {
+          onSuccess: () => {
+            dispatch(setAttack(null));
+            dispatch(setDefence(null));
+            dispatch(setPassing(null));
+            dispatch(setIntelligence(null));
+            dispatch(setAverage(null));
+          },
+        });
+      },
+    });
+  };
+
+  useEffect(() => {
+    mutateUserRating();
+    mutateOverallRating();
+  }, [mutateOverallRating, mutateUserRating]);
+
+  useEffect(() => {
+    dispatch(resetPlayerRating());
+    if (!userRating) {
+      dispatch(setIsPlayerRatingInDb(false));
+      return;
+    }
+
+    dispatch(setAttack(userRating.attack));
+    dispatch(setDefence(userRating.defence));
+    dispatch(setPassing(userRating.passing));
+    dispatch(setIntelligence(userRating.intelligence));
+    dispatch(setIsPlayerRatingInDb(true));
   }, [dispatch, userRating]);
 
   return {
     overallRating,
     isOverallRatingPending,
     isOverallRatingError,
-    isUserRatingLoading,
+    userRating,
+    isUserRatingLoading: isUserRatingPending,
     isUserRatingError,
     isSaveUserRatingPending,
     isSaveUserRatingError,
+    isDeletePlayerRatingPending,
+    isDeletePlayerRatingError,
     handleSaveChanges,
-    onClearClick,
+    handleClear,
+    handleDelete,
   };
 };
 

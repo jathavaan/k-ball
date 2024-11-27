@@ -1,2 +1,4 @@
-export * from "./upsert-player-rating-command/UpsertPlayerRatingCommand";
-export * from "./upsert-player-rating-command/UpsertPlayerRatingCommandHandler";
+export * from "./delete-player-rating-command/deletePlayerRatingCommand";
+export * from "./delete-player-rating-command/deletePlayerRatingCommandHandler";
+export * from "./upsert-player-rating-command/upsertPlayerRatingCommand";
+export * from "./upsert-player-rating-command/upsertPlayerRatingCommandHandler";

@@ -32,6 +32,13 @@ export const UpsertPlayerRatingType = new GraphQLObjectType({
   },
 });
 
+export const DeletePlayerRatingType = new GraphQLObjectType({
+  name: "DeletePlayerRatingType",
+  fields: {
+    isDeleteSuccessful: { type: GraphQLBoolean },
+  },
+});
+
 export const PlayerRatingType = new GraphQLObjectType({
   name: "PlayerRating",
   fields: {
