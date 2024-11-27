@@ -12,10 +12,19 @@ import { ProfileMenu } from "../profile-menu"; // Import the isUserLoggedIn func
 export function Navbar() {
   const navigate = useNavigate();
 
+  const handleLogoClick = () => {
+    if (window.location.pathname == "/project2/players") {
+      window.location.reload();
+    } else {
+      navigate("/project2/players");
+      window.location.reload();
+    }
+  };
+
   return (
     <StyledAppBar position="static">
       <StyledToolbar>
-        <LogoButton onClick={() => navigate("/project2/players")}>
+        <LogoButton onClick={handleLogoClick}>
           <LogoImage src={logo} alt="Logo" />
         </LogoButton>
         {isUserLoggedIn() && <ProfileMenu />}
