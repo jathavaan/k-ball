@@ -1,21 +1,5 @@
 import { styled } from "@mui/material/styles";
-import {
-  Rating,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-} from "@mui/material";
-
-export const StyledRating = styled(Rating)(({ theme }) => ({
-  "& .MuiRating-iconFilled": {
-    color: "ffb400",
-    marginRight: "5px",
-  },
-  "& .MuiRating-iconEmpty": {
-    color: theme.palette.grey[500],
-    marginRight: "5px",
-  },
-}));
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
 
 export const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   "& .MuiFab-root": {

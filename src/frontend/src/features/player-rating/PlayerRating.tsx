@@ -1,6 +1,7 @@
 import {
   CircularProgressBar,
   ErrorAlert,
+  Rating,
   Table,
   TableBody,
   TableCell,
@@ -18,7 +19,6 @@ import ClearIcon from "@mui/icons-material/Clear";
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
 import { PlayerRatingProps } from "./playerRating.types.ts";
 import {
-  StyledRating,
   StyledSpeedDial,
   StyledSpeedDialAction,
   StyledSpeedDialIcon,
@@ -98,118 +98,100 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
           <TableRow>
             <TableCell>Attack</TableCell>
             <TableCell>
-              {!isOverallRatingPending ? (
-                <StyledRating readOnly value={overallRating?.attack} />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly
+                value={overallRating?.attack}
+                isLoading={isOverallRatingPending}
+              />
             </TableCell>
             <TableCell>
-              {!isUserRatingLoading ? (
-                <StyledRating
-                  readOnly={!isEditingPlayerRating}
-                  value={attack}
-                  onChange={(_, rating) => handleAttackChange(rating)}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly={!isEditingPlayerRating}
+                isEditing={isEditingPlayerRating}
+                value={attack}
+                onChange={(_, rating) => handleAttackChange(rating)}
+                isLoading={isUserRatingLoading}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Defence</TableCell>
             <TableCell>
-              {!isOverallRatingPending ? (
-                <StyledRating
-                  readOnly
-                  value={overallRating?.defence}
-                  precision={0.1}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly
+                value={overallRating?.defence}
+                precision={0.1}
+                isLoading={isOverallRatingPending}
+              />
             </TableCell>
             <TableCell>
-              {!isUserRatingLoading ? (
-                <StyledRating
-                  readOnly={!isEditingPlayerRating}
-                  value={defence}
-                  onChange={(_, rating) => handleDefenceChange(rating)}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly={!isEditingPlayerRating}
+                isEditing={isEditingPlayerRating}
+                value={defence}
+                onChange={(_, rating) => handleDefenceChange(rating)}
+                isLoading={isUserRatingLoading}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Passing</TableCell>
             <TableCell>
-              {!isOverallRatingPending ? (
-                <StyledRating
-                  readOnly
-                  value={overallRating?.passing}
-                  precision={0.1}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly
+                value={overallRating?.passing}
+                precision={0.1}
+                isLoading={isOverallRatingPending}
+              />
             </TableCell>
             <TableCell>
-              {!isUserRatingLoading ? (
-                <StyledRating
-                  readOnly={!isEditingPlayerRating}
-                  value={passing}
-                  onChange={(_, rating) => handlePassingChange(rating)}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly={!isEditingPlayerRating}
+                isEditing={isEditingPlayerRating}
+                value={passing}
+                onChange={(_, rating) => handlePassingChange(rating)}
+                isLoading={isUserRatingLoading}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Intelligence</TableCell>
             <TableCell>
-              {!isOverallRatingPending ? (
-                <StyledRating
-                  readOnly
-                  value={overallRating?.intelligence}
-                  precision={0.1}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly
+                value={overallRating?.intelligence}
+                precision={0.1}
+                isLoading={isOverallRatingPending}
+              />
             </TableCell>
             <TableCell>
-              {!isUserRatingLoading ? (
-                <StyledRating
-                  readOnly={!isEditingPlayerRating}
-                  value={intelligence}
-                  onChange={(_, rating) => handleIntelligenceChange(rating)}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly={!isEditingPlayerRating}
+                isEditing={isEditingPlayerRating}
+                value={intelligence}
+                onChange={(_, rating) => handleIntelligenceChange(rating)}
+                isLoading={isUserRatingLoading}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Average</TableCell>
             <TableCell>
-              {!isOverallRatingPending ? (
-                <StyledRating
-                  readOnly
-                  value={overallRating?.average}
-                  precision={0.1}
-                />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly
+                value={overallRating?.average}
+                precision={0.1}
+                isAverage
+                isLoading={isOverallRatingPending}
+              />
             </TableCell>
             <TableCell>
-              {!isUserRatingLoading ? (
-                <StyledRating readOnly value={average} />
-              ) : (
-                <CircularProgressBar size={20} />
-              )}
+              <Rating
+                readOnly
+                value={average}
+                isAverage
+                isLoading={isUserRatingLoading}
+              />
             </TableCell>
           </TableRow>
         </TableBody>
