@@ -1,5 +1,5 @@
 cd src/frontend
-# npx vitest run --passWithNoTests
+npx vitest run --passWithNoTests
 # npm run test:e2e
 
 # If tests fail, block the push

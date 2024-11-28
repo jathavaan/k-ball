@@ -1,18 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`should match ArrowDownwardIcon snapshot 1`] = `
-<DocumentFragment>
-  <p
-    class="MuiTypography-root MuiTypography-body1 css-1r3a445-MuiTypography-root"
-    text=""
-  />
-</DocumentFragment>
-`;
-
 exports[`should match Text snapshot 1`] = `
 <DocumentFragment>
   <p
-    class="MuiTypography-root MuiTypography-body1 css-1r3a445-MuiTypography-root"
+    class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
     text=""
   />
 </DocumentFragment>

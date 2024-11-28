@@ -3,24 +3,23 @@
 exports[`Navbar > should match Navbar snapshot 1`] = `
 <DocumentFragment>
   <header
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-19dtn19-MuiPaper-root-MuiAppBar-root"
+    class=MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-dynamic-MuiPaper-root-MuiAppBar-root
     style="--Paper-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);"
   >
     <div
-      class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1rzpizw-MuiToolbar-root"
+      class=MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-dynamic-MuiToolbar-root
     >
-      <a
-        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-g22zqs-MuiButtonBase-root-MuiButton-root"
-        href="/"
+      <button
+        class=MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-dynamic-MuiButtonBase-root-MuiButton-root
         tabindex="0"
+        type="button"
       >
-         
         <img
           alt="Logo"
-          class="css-g7ene0"
-          src="/project2/src/assets/logo.png"
+          class="css-13mc50n"
+          src="/project2/src/assets/logo.webp"
         />
-      </a>
+      </button>
     </div>
   </header>
 </DocumentFragment>

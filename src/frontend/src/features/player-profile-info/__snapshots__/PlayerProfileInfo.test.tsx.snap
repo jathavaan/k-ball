@@ -3,141 +3,172 @@
 exports[`PlayerProfileInfo > should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1b5bqtm-MuiPaper-root-MuiCard-root"
+    class=MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-dynamic-MuiPaper-root-MuiCard-root
     data-testid="player-profile-info"
     style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
   >
     <div
-      class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-11fq522-MuiGrid2-root"
+      class=MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-dynamic-MuiGrid2-root
     >
       <div
-        class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-4 css-1bvnjma-MuiGrid2-root"
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
       >
         <img
           alt="Portrait of Kim Young-Gwon"
           class="css-1sws5au"
           src="https://media.api-sports.io/football/players/2898.png"
         />
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
+      >
         <h4
-          class="MuiTypography-root MuiTypography-h4 css-q3gesp-MuiTypography-root"
+          class=MuiTypography-root MuiTypography-h4 css-dynamic-MuiTypography-root
         >
           Kim Young-Gwon
         </h4>
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-1jcjesy-MuiTypography-root"
-        >
-          Ulsan Hyundai FC
-        </p>
-        <img
-          alt="Logo of Ulsan Hyundai FC"
-          src="https://media.api-sports.io/football/teams/2767.png"
-          style="width: 2.5rem; height: 2.5rem;"
-        />
       </div>
       <div
-        class="MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 MuiGrid2-grid-md-8 MuiGrid2-spacing-xs-2 css-1r50rh8-MuiGrid2-root"
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
       >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
+          class="MuiBox-root css-wkpw2c"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="Defender"
-            title="Position"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Position:
-            </b>
-             Defender
+            Ulsan Hyundai FC
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Current club
           </p>
         </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
+          class="MuiBox-root css-wkpw2c"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="34"
-            title="Age"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Age:
-            </b>
-             34
+            Defender
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Position
           </p>
         </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-skmjaf-MuiGrid2-root"
+          class="MuiBox-root css-wkpw2c"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="Korea Republic"
-            title="Nationality"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Nationality:
-            </b>
-             Korea Republic
+            Korea Republic
           </p>
-          <img
-            alt="Flag of Korea Republic"
-            src="https://media.api-sports.io/flags/kr.svg"
-            style="width: 1.25rem; height: 1.25rem; margin-left: 0.5rem;"
-          />
-        </div>
-        <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
-        >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="186 cm"
-            title="Height"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Height:
-            </b>
-             186 cm
+            Nationality
           </p>
         </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
+          class="MuiBox-root css-wkpw2c"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="Jeonju, Korea Republic"
-            title="Place"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Place:
-            </b>
-             Jeonju, Korea Republic
+            Jeonju, Korea Republic
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Birth place
           </p>
         </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
+          class="MuiBox-root css-wkpw2c"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="1990-02-27"
-            title="Birth Date"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Birth Date:
-            </b>
-             1990-02-27
+            1990-02-27
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Date of birth
           </p>
         </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
         <div
-          class="MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-ticvdu-MuiGrid2-root"
+          class="MuiBox-root css-wkpw2c"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-sdsfyc-MuiTypography-root"
-            text="74 kg"
-            title="Weight"
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
           >
-            <b>
-              Weight:
-            </b>
-             74 kg
+            34 years
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Age
+          </p>
+        </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
+        <div
+          class="MuiBox-root css-wkpw2c"
+        >
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            186 cm
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Height
+          </p>
+        </div>
+      </div>
+      <div
+        class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-grid-md-6 css-dynamic-MuiGrid2-root
+      >
+        <div
+          class="MuiBox-root css-wkpw2c"
+        >
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            74 kg
+          </p>
+          <p
+            class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+          >
+            Weight
           </p>
         </div>
       </div>
