@@ -1,8 +1,8 @@
-import { AppDispatch } from "../../store";
+import { AppDispatch } from "@/store.ts";
 import { useDispatch } from "react-redux";
-import { setPlayerStatsTable } from "./playerStatsTable.slice";
+import { setPlayerStatsTable } from "@features/player-stats-table/playerStatsTable.slice";
 import { useEffect } from "react";
-import { usePlayerStatsTable } from "./playerStatsTable.query";
+import { usePlayerStatsTable } from "@features/player-stats-table/playerStatsTable.query";
 
 export const usePlayerStatsTableData = (playerId: number) => {
   const dispatch = useDispatch<AppDispatch>();

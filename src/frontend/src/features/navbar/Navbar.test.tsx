@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Navbar } from "./Navbar";
-import logo from "../../assets/logo.webp";
+import { Logo } from "@/assets";
+import { Navbar } from "@features/navbar/Navbar";
 import { MemoryRouter } from "react-router-dom";
 
 describe("Navbar", () => {
@@ -17,7 +17,7 @@ describe("Navbar", () => {
 
   it("Should render the logo image with correct src", () => {
     const logoImage = screen.getByAltText("Logo") as HTMLImageElement;
-    expect(logoImage.src).toContain(logo);
+    expect(logoImage.src).toContain(Logo);
   });
 
   it("should match Navbar snapshot", () => {

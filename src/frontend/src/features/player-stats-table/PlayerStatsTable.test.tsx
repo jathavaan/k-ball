@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { beforeEach, describe, expect, it } from "vitest";
-import { PlayerStatsTable } from "./PlayerStatsTable";
-import { PlayerStatsProps } from "./playerStatsTable.types";
+import { PlayerStatsTable } from "@features/player-stats-table/PlayerStatsTable";
+import { PlayerStatsProps } from "@features/player-stats-table/playerStatsTable.types";
 
 describe("PlayerStatsTable", () => {
   const mockStats: PlayerStatsProps[] = [

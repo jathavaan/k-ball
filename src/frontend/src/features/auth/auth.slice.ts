@@ -1,6 +1,6 @@
 import { LoginFormState, RegisterFormState } from "./auth.types.ts";
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store.ts";
+import { RootState } from "@/store.ts";
 
 const initialLoginFormState: LoginFormState = {
   email: {

@@ -1,5 +1,5 @@
 ﻿import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../store.ts";
+import { AppDispatch } from "@/store.ts";
 import {
   selectIsProfileInfoExpanded,
   selectIsProfileMenuOpen,
@@ -7,12 +7,11 @@ import {
   setIsProfileInfoExpanded,
   setIsProfileMenuOpen,
   setIsRatingsExpanded,
-} from "./profileMenu.slice.ts";
-import { getLoggedInUser, logOutUser } from "../auth/auth.hooks.ts";
+} from "@features/profile-menu/profileMenu.slice.ts";
+import { getLoggedInUser, logOutUser, useUserInfo } from "@features/auth";
 import { useNavigate } from "react-router-dom";
-import { useDetailedPlayerRatings } from "./profileMenu.query.ts";
+import { useDetailedPlayerRatings } from "@features/profile-menu/profileMenu.query.ts";
 import { useEffect } from "react";
-import { useUserInfo } from "../auth/auth.query.ts";
 
 export const useProfileMenu = () => {
   const userId = getLoggedInUser();

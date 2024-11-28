@@ -1,12 +1,14 @@
-﻿import { MenuItemProps, SelectProps } from "./select.types.ts";
-import {
+﻿import {
   StyledCheckBox,
   StyledMenuItem,
   StyledSelect,
-} from "./select.style.ts";
-import { HelperText } from "../helper-text/HelperText.tsx";
-import { ImageContainer } from "../image-container/ImageContainer.tsx";
+} from "@features/ui/select/select.style.ts";
+import { HelperText, ImageContainer } from "@features/ui";
 import { Box } from "@mui/material";
+import {
+  MenuItemProps,
+  SelectProps,
+} from "@features/ui/select/select.types.ts";
 
 export const Select = ({ children, description, ...props }: SelectProps) => {
   return (

@@ -1,6 +1,6 @@
-import { useCountries } from "./playerFilters.query.ts";
-import { MenuItem, Select } from "../ui";
-import { useCountrySelection } from "./playerFilters.hooks.ts";
+import { MenuItem, Select } from "@features/ui";
+import { useCountries } from "@features/player-filters/playerFilters.query.ts";
+import { useCountrySelection } from "@features/player-filters/playerFilters.hooks.ts";
 
 export const CountryFilter = () => {
   const { data, isLoading, isError } = useCountries();

@@ -1,6 +1,6 @@
-import { PlayerFilterState } from "./playerFilters.types.ts";
+import { PlayerFilterState } from "@features/player-filters/playerFilters.types.ts";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store.ts";
+import { RootState } from "@/store.ts";
 import { createSelector } from "reselect";
 
 const initialState: PlayerFilterState = {

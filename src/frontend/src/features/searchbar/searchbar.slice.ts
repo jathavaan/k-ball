@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { SearchbarState } from "./searchbar.types.ts";
+import { RootState } from "@/store.ts";
+import { SearchbarState } from "@features/searchbar/searchbar.types.ts";
 
 const initialState: SearchbarState = {
   searchQuery: "",

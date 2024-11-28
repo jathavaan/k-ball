@@ -1,5 +1,5 @@
 ﻿import { render, screen } from "@testing-library/react";
-import { LinearProgressBar } from "./LinearProgressBar";
+import { LinearProgressBar } from "@features/ui";
 
 describe("LinearProgressBar", () => {
   it("Should render the LinearProgressBar", () => {

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerRatingState } from "./playerRating.types.ts";
-import { RootState } from "../../store.ts";
+import { RootState } from "@/store.ts";
 
 const initialState: PlayerRatingState = {
   attack: null,

@@ -1,5 +1,5 @@
 ﻿import { render, screen } from "@testing-library/react";
-import { CardHeader } from "./CardHeader";
+import { CardHeader } from "@features/ui";
 
 describe("CardHeader", () => {
   it("Should render the header text", () => {

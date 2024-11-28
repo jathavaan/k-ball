@@ -4,10 +4,10 @@ import {
   StyledAppBar,
   StyledToolbar,
 } from "./navbar.style";
-import logo from "../../assets/logo.webp";
+import { Logo } from "@/assets";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../auth/auth.hooks.ts";
-import { ProfileMenu } from "../profile-menu";
+import { isUserLoggedIn } from "@features/auth";
+import { ProfileMenu } from "@features/profile-menu";
 
 export function Navbar() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export function Navbar() {
     <StyledAppBar position="static">
       <StyledToolbar>
         <LogoButton onClick={handleLogoClick}>
-          <LogoImage src={logo} alt="Logo" />
+          <LogoImage src={Logo} alt="Logo" />
         </LogoButton>
         {isUserLoggedIn() && <ProfileMenu />}
       </StyledToolbar>

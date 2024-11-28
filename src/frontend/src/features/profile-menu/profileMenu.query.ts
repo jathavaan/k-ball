@@ -1,5 +1,5 @@
 ﻿import { useMutation } from "@tanstack/react-query";
-import { getDetailedPlayerRatings } from "./profileMenu.api.ts";
+import { getDetailedPlayerRatings } from "@features/profile-menu/profileMenu.api.ts";
 
 export const useDetailedPlayerRatings = (userId: number) => {
   return useMutation({

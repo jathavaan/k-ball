@@ -1,8 +1,8 @@
 ﻿import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { PlayerCardProps } from "./playerCard.types.ts";
-import { PlayerCard } from "./PlayerCard";
 import "@testing-library/jest-dom";
+import { PlayerCardProps } from "@features/player-card/playerCard.types.ts";
+import { PlayerCard } from "@features/player-card/PlayerCard.tsx";
 
 const mockPlayerCardProps: PlayerCardProps = {
   playerId: 2890,

@@ -4,8 +4,8 @@ import {
   selectSortOrder,
   setSortBy,
   setSortOrder,
-} from "./playerSorting.slice";
-import { AppDispatch } from "../../store.ts";
+} from "@features/player-sorting/playerSorting.slice";
+import { AppDispatch } from "@/store.ts";
 
 export const useSorting = () => {
   const dispatch = useDispatch<AppDispatch>();
