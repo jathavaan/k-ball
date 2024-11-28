@@ -1,18 +1,15 @@
 import { styled } from "@mui/material/styles";
-import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
-export const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
-  "& .MuiFab-root": {
-    backgroundColor: theme.palette.secondary.dark,
-    color: theme.palette.secondary.contrastText,
-  },
-  "& .MuiFab-root:hover": {
-    backgroundColor: theme.palette.secondary.light,
-  },
+export const StyledGridContainer = styled(Grid)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.light,
+  borderRadius: "0.4rem",
 }));
-export const StyledSpeedDialIcon = styled(SpeedDialIcon)(() => ({}));
 
-export const StyledSpeedDialAction = styled(SpeedDialAction)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.contrastText,
-  color: theme.palette.primary.dark,
+export const StyledGridItem = styled(Grid)(() => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "0.2rem",
+  borderRadius: "0.4rem",
 }));
