@@ -1,12 +1,12 @@
 import {
   CircularProgressBar,
   ErrorAlert,
+  FloatingActionButton,
   Rating,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableFooter,
   TableHead,
   TableRow,
 } from "@features/ui";
@@ -15,17 +15,11 @@ import {
   usePlayerRatingEdit,
 } from "@features/player-rating/playerRating.hooks.ts";
 import EditIcon from "@mui/icons-material/Edit";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ClearIcon from "@mui/icons-material/Clear";
-import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
+import RestoreIcon from "@mui/icons-material/Restore";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { PlayerRatingProps } from "@features/player-rating/playerRating.types.ts";
-import {
-  StyledSpeedDial,
-  StyledSpeedDialAction,
-  StyledSpeedDialIcon,
-} from "@features/player-rating/playerRating.style.ts";
 import { useSelector } from "react-redux";
 import {
   selectAttack,
@@ -36,8 +30,8 @@ import {
   selectIsPlayerRatingInDb,
   selectPassing,
 } from "@features/player-rating/playerRating.slice.ts";
-import Grid from "@mui/material/Grid2";
 import { Add } from "@mui/icons-material";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
   const attack = useSelector(selectAttack);
@@ -73,7 +67,11 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
   } = usePlayerRatingEdit();
 
   return (
-    <TableContainer>
+    <TableContainer
+      sx={{
+        paddingBottom: "0.4rem",
+      }}
+    >
       {isOverallRatingError && (
         <ErrorAlert message="Failed to load player's overall rating" />
       )}
@@ -198,82 +196,81 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
             </TableCell>
           </TableRow>
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={1}></TableCell>
-            <TableCell colSpan={2}>
-              <Grid container spacing={2}></Grid>
-              <StyledSpeedDial
-                icon={
-                  <StyledSpeedDialIcon
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                    icon={
-                      isSaveUserRatingPending ||
-                      isOverallRatingPending ||
-                      isDeletePlayerRatingPending ? (
-                        <CircularProgressBar size={25} />
-                      ) : isEditingPlayerRating ? (
-                        <EditIcon />
-                      ) : (
-                        <ExpandLessIcon sx={{ transform: "rotate(-90deg)" }} />
-                      )
-                    }
-                    openIcon={
-                      !isSaveUserRatingPending &&
-                      !isOverallRatingPending &&
-                      !isDeletePlayerRatingPending && <ThumbsUpDownIcon />
-                    }
-                  />
-                }
-                ariaLabel="Add or edit rating"
-                direction="left"
-              >
-                <StyledSpeedDialAction
-                  icon={
-                    !isUserRatingLoading && !isPlayerRatingInDb ? (
-                      <Add />
-                    ) : (
-                      <EditIcon />
-                    )
-                  }
-                  tooltipTitle={
-                    !isUserRatingLoading && !userRating
-                      ? "Add rating"
-                      : "Edit rating"
-                  }
-                  onClick={() => onEditClick()}
-                />
-                {userRating && (
-                  <StyledSpeedDialAction
-                    icon={<DeleteIcon />}
-                    tooltipTitle="Delete rating"
-                    onClick={() => handleDelete()}
-                  />
-                )}
-                {isEditingPlayerRating && (
-                  <StyledSpeedDialAction
-                    icon={<SaveIcon />}
-                    tooltipTitle="Save changes"
-                    onClick={() => handleSaveChanges()}
-                  />
-                )}
-
-                {isEditingPlayerRating && (
-                  <StyledSpeedDialAction
-                    icon={<ClearIcon />}
-                    tooltipTitle="Clear changes"
-                    onClick={() => handleClear()}
-                  />
-                )}
-              </StyledSpeedDial>
-            </TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
+      <section
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "right",
+        }}
+      >
+        {isEditingPlayerRating && (userRating || isPlayerRatingInDb) && (
+          <FloatingActionButton
+            onClick={() => handleDelete()}
+            disabled={isUserRatingLoading || isDeletePlayerRatingPending}
+            sx={(theme) => ({
+              backgroundColor: theme.palette.common.black,
+              "&:hover": {
+                backgroundColor: theme.palette.primary.dark,
+              },
+            })}
+            aria-label="delete player rating"
+            tooltipTitle="Delete your rating"
+          >
+            {isUserRatingLoading || isDeletePlayerRatingPending ? (
+              <CircularProgressBar size={20} />
+            ) : (
+              <DeleteIcon />
+            )}
+          </FloatingActionButton>
+        )}
+
+        {isEditingPlayerRating && (
+          <FloatingActionButton
+            onClick={() => handleSaveChanges()}
+            aria-label="save your player rating"
+            tooltipTitle={
+              isPlayerRatingInDb ? "Save changes" : "Publish rating"
+            }
+          >
+            {isPlayerRatingInDb ? <SaveIcon /> : <CloudUploadIcon />}
+          </FloatingActionButton>
+        )}
+        {isEditingPlayerRating && isPlayerRatingInDb && (
+          <FloatingActionButton
+            color="primary"
+            variant="extended"
+            onClick={() => handleClear()}
+            aria-label="reset player rating"
+            tooltipTitle="Restore to last save"
+          >
+            <RestoreIcon />
+          </FloatingActionButton>
+        )}
+        <FloatingActionButton
+          variant="extended"
+          disabled={isSaveUserRatingPending || isOverallRatingPending}
+          onClick={() => onEditClick()}
+          aria-label="edit player rating"
+          tooltipTitle={
+            isEditingPlayerRating
+              ? "Cancel"
+              : isPlayerRatingInDb
+                ? "Edit your rating"
+                : "Add your rating"
+          }
+        >
+          {isUserRatingLoading || isSaveUserRatingPending ? (
+            <CircularProgressBar size={20} />
+          ) : isEditingPlayerRating ? (
+            <ClearIcon />
+          ) : !isUserRatingLoading && !isPlayerRatingInDb ? (
+            <Add />
+          ) : (
+            <EditIcon />
+          )}
+        </FloatingActionButton>
+      </section>
     </TableContainer>
   );
 };

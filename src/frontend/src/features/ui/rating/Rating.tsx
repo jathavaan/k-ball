@@ -21,7 +21,7 @@ export const Rating = ({
             })}
           />
         }
-        precision={0.01}
+        precision={0.1}
         {...props}
       />
     );

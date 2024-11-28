@@ -5,6 +5,7 @@ import {
   selectAttack,
   selectDefence,
   selectIntelligence,
+  selectIsEditingPlayerRating,
   selectPassing,
   setAttack,
   setAverage,
@@ -181,6 +182,7 @@ export const usePlayerRatingEdit = () => {
   const defence = useSelector(selectDefence);
   const passing = useSelector(selectPassing);
   const intelligence = useSelector(selectIntelligence);
+  const isEditingPlayerRating = useSelector(selectIsEditingPlayerRating);
 
   const handleAttackChange = (attack: number | null) => {
     dispatch(setAttack(attack));
@@ -199,7 +201,7 @@ export const usePlayerRatingEdit = () => {
   };
 
   const onEditClick = () => {
-    dispatch(setIsEditingPlayerRating(true));
+    dispatch(setIsEditingPlayerRating(!isEditingPlayerRating));
   };
 
   useEffect(() => {
