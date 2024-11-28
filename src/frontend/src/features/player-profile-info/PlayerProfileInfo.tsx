@@ -1,6 +1,6 @@
-import { StyledPlayerInfoCard } from "./playerProfileInfo.style.ts";
-import { CardHeader, CardInfoText, ImageContainer } from "../ui";
-import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
+import { StyledPlayerInfoCard } from "@features/player-profile-info/playerProfileInfo.style.ts";
+import { CardHeader, CardInfoText, ImageContainer } from "@features/ui";
+import { PlayerProfileInfoProps } from "@features/player-profile-info/playerProfileInfo.types.ts";
 import Grid from "@mui/material/Grid2";
 
 export const PlayerProfileInfo = (props: PlayerProfileInfoProps) => {

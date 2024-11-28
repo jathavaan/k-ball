@@ -8,21 +8,24 @@ import {
   TableFooter,
   TableHead,
   TableRow,
-} from "../ui";
-import { usePlayerRating, usePlayerRatingEdit } from "./playerRating.hooks.ts";
+} from "@features/ui";
+import {
+  usePlayerRating,
+  usePlayerRatingEdit,
+} from "@features/player-rating/playerRating.hooks.ts";
 import EditIcon from "@mui/icons-material/Edit";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
-import { PlayerRatingProps } from "./playerRating.types.ts";
+import { PlayerRatingProps } from "@features/player-rating/playerRating.types.ts";
 import {
   StyledRating,
   StyledSpeedDial,
   StyledSpeedDialAction,
   StyledSpeedDialIcon,
-} from "./playerRating.style.ts";
+} from "@features/player-rating/playerRating.style.ts";
 import { useSelector } from "react-redux";
 import {
   selectAttack,
@@ -32,7 +35,7 @@ import {
   selectIsEditingPlayerRating,
   selectIsPlayerRatingInDb,
   selectPassing,
-} from "./playerRating.slice.ts";
+} from "@features/player-rating/playerRating.slice.ts";
 import Grid from "@mui/material/Grid2";
 import { Add } from "@mui/icons-material";
 

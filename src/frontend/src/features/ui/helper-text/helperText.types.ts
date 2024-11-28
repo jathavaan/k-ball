@@ -1,3 +1,3 @@
-export interface helperTextProps {
+export interface HelperTextProps {
   description: string;
 }

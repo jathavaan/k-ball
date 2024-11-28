@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Button } from "./Button";
+import { Button } from "@features/ui";
 
 it("should match Button snapshot", () => {
   const { asFragment } = render(

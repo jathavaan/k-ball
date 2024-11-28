@@ -4,11 +4,14 @@ import {
   StyledLink,
   StyledPaper,
   StyledTypography,
-} from "./auth.style.ts";
-import { Button, ErrorAlert, TextField } from "../ui";
-import { loginEmailSelector, loginPasswordSelector } from "./auth.slice.ts";
+} from "@features/auth/auth.style.ts";
+import { Button, ErrorAlert, TextField } from "@features/ui";
+import {
+  loginEmailSelector,
+  loginPasswordSelector,
+} from "@features/auth/auth.slice.ts";
 import { useSelector } from "react-redux";
-import { useLogin, useLoginForm } from "./auth.hooks.ts";
+import { useLogin, useLoginForm } from "@features/auth/auth.hooks.ts";
 import Grid from "@mui/material/Grid2";
 
 export const LoginForm = () => {

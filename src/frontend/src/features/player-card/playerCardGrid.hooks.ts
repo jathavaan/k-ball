@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../store";
-import { usePlayerCards } from "./playerCardGrid.query";
+import { AppDispatch } from "@/store.ts";
 import {
   addLoadedPages,
   addPlayerCards,
@@ -15,7 +14,8 @@ import {
   setPlayerCardsGrid,
   setShowScrollToTopButton,
   setTotalPages,
-} from "./playerCardGrid.slice";
+} from "@features/player-card/playerCardGrid.slice";
+import { usePlayerCards } from "@features/player-card/playerCardGrid.query.ts";
 
 export const usePlayerCardGrid = (
   page: number,

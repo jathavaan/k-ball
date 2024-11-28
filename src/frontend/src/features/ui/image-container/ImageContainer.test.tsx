@@ -1,5 +1,5 @@
 ﻿import { render, screen } from "@testing-library/react";
-import { ImageContainer } from "./ImageContainer";
+import { ImageContainer } from "@features/ui";
 
 describe("Tests for ImageContainer", () => {
   it("Should render the image with correct source and alt text", () => {

@@ -15,7 +15,7 @@ import {
   StyledTableFooter,
   StyledTableHead,
   StyledTableRow,
-} from "./table.style";
+} from "@features/ui/table/table.style";
 
 export const TableContainer = ({ children, ...props }: TableContainerProps) => {
   return <StyledTableContainer {...props}>{children}</StyledTableContainer>;

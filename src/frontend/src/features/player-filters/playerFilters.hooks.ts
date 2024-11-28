@@ -1,4 +1,4 @@
-import { AppDispatch } from "../../store.ts";
+import { AppDispatch } from "@/store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
   applyFilters,
@@ -7,13 +7,13 @@ import {
   setTempClubFilters,
   setTempCountryFilters,
   setTempPositionFilters,
-} from "./playerFilters.slice.ts";
-import { useCount } from "./playerFilters.query.ts";
+} from "@features/player-filters/playerFilters.slice.ts";
+import { useCount } from "@features/player-filters/playerFilters.query.ts";
 import {
   selectSearchQueryForCount,
   selectSearchResultCount,
   setSearchResultCount,
-} from "../searchbar";
+} from "@features/searchbar";
 import { useEffect } from "react";
 
 export const useClubSelection = () => {

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   PlayerStatsProps,
   PlayerStatsTableState,
-} from "./playerStatsTable.types";
+} from "@features/player-stats-table/playerStatsTable.types";
 
 const initialState: PlayerStatsTableState = {
   playerStatsTable: [],
