@@ -1,4 +1,4 @@
-import { PlayerStatsTableProps } from "./playerStatsTable.types";
+import { PlayerStatsTableProps } from "@features/player-stats-table/playerStatsTable.types";
 
 export const getPlayerStatsTable = ({
   queryKey,

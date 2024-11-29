@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { beforeEach, describe, expect, it } from "vitest";
-import { PlayerProfileInfo } from "./PlayerProfileInfo";
-import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
+import { PlayerProfileInfo } from "@features/player-profile-info/PlayerProfileInfo";
+import { PlayerProfileInfoProps } from "@features/player-profile-info/playerProfileInfo.types.ts";
 
 describe("PlayerProfileInfo", () => {
   const mockProps: PlayerProfileInfoProps = {
@@ -30,7 +30,9 @@ describe("PlayerProfileInfo", () => {
   });
 
   it("should render the player's age", () => {
-    expect(screen.getByText(mockProps.age.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(`${mockProps.age.toString()} years`),
+    ).toBeInTheDocument();
   });
 
   it("should render the player's position", () => {

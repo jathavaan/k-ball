@@ -2,21 +2,21 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import {
   PlayerProfileInfo,
   usePlayerProfileInfoCard,
-} from "../../features/player-profile-info";
-import { ErrorAlert, LinearProgressBar } from "../../features/ui";
+} from "@features/player-profile-info";
+import { ErrorAlert, LinearProgressBar } from "@features/ui";
 import {
   PlayerStatsTable,
   usePlayerStatsTableData,
-} from "../../features/player-stats-table";
+} from "@features/player-stats-table";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { RootState } from "@/store.ts";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   StyledBreadcrumb,
   StyledBreadcrumbs,
-} from "../../features/player-profile-info/playerProfileInfo.style.ts";
+} from "@features/player-profile-info/playerProfileInfo.style.ts";
 import Grid from "@mui/material/Grid2";
-import { PlayerRating } from "../../features/player-rating";
+import { PlayerRating } from "@features/player-rating";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();

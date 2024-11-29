@@ -1,4 +1,4 @@
-﻿import { StyledTextField } from "./textField.style.ts";
+﻿import { StyledTextField } from "@features/ui/text-field/textField.style.ts";
 import { TextFieldProps } from "@mui/material";
 
 export const TextField = (props: TextFieldProps) => {

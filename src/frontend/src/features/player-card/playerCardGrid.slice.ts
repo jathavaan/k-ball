@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { PlayerCardBase, PlayerCardGridState } from "./playerCard.types";
+import { RootState } from "@/store.ts";
+import {
+  PlayerCardBase,
+  PlayerCardGridState,
+} from "@features/player-card/playerCard.types.ts";
 
 const initialState: PlayerCardGridState = {
   playerCards: [],

@@ -1,4 +1,4 @@
-import { AppDispatch } from "../../store.ts";
+import { AppDispatch } from "@/store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectLocalSearchQuery,
@@ -8,7 +8,7 @@ import {
   setLocalSearchQuery,
   setSearchQuery,
   setSearchQueryForCount,
-} from "./searchbar.slice.ts";
+} from "@features/searchbar/searchbar.slice.ts";
 import React, { useEffect } from "react";
 
 export const useSearch = () => {

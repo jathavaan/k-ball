@@ -1,6 +1,6 @@
 ﻿import { useAuthenticateUser, useRegisterUser } from "./auth.query.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../store.ts";
+import { AppDispatch } from "@/store.ts";
 import {
   clearLoginForm,
   loginEmailSelector,

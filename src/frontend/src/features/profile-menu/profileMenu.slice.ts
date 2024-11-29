@@ -1,6 +1,6 @@
-﻿import { ProfileMenuState } from "./profileMenu.types.ts";
+﻿import { ProfileMenuState } from "@features/profile-menu/profileMenu.types.ts";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store.ts";
+import { RootState } from "@/store.ts";
 
 const initialState: ProfileMenuState = {
   isProfileMenuOpen: false,

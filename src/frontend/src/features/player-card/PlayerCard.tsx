@@ -1,9 +1,9 @@
-﻿import { StyledPlayerCard } from "./playerCard.style.ts";
-import { CardContentText, CardHeader, ImageContainer } from "../ui";
+﻿import { CardContentText, CardHeader, ImageContainer } from "@features/ui";
 import Grid from "@mui/material/Grid2";
-import { PlayerCardProps } from "./playerCard.types.ts";
 import { CardActionArea } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { StyledPlayerCard } from "@features/player-card/playerCard.style.ts";
+import { PlayerCardProps } from "@features/player-card/playerCard.types.ts";
 
 export const PlayerCard = (props: PlayerCardProps) => {
   return (

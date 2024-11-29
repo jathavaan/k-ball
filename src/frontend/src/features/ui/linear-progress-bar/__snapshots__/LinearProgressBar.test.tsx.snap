@@ -3,15 +3,15 @@
 exports[`LinearProgressBar > Should match LinearProgressBar snapshot 1`] = `
 <DocumentFragment>
   <span
-    class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate css-c73l4e-MuiLinearProgress-root"
+    class=MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate css-dynamic-MuiLinearProgress-root
     data-testid="linear-progress-bar"
     role="progressbar"
   >
     <span
-      class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-lcqqge-MuiLinearProgress-bar1"
+      class=MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate css-dynamic-MuiLinearProgress-bar1
     />
     <span
-      class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-lfb3c7-MuiLinearProgress-bar2"
+      class=MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar2Indeterminate css-dynamic-MuiLinearProgress-bar2
     />
   </span>
 </DocumentFragment>

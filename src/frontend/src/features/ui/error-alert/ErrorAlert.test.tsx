@@ -1,5 +1,5 @@
 ﻿import { render, screen } from "@testing-library/react";
-import { ErrorAlert } from "./ErrorAlert";
+import { ErrorAlert } from "@features/ui";
 
 describe("ErrorAlert", () => {
   it("Should render the error message", () => {

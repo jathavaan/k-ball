@@ -5,6 +5,7 @@ import {
   selectAttack,
   selectDefence,
   selectIntelligence,
+  selectIsEditingPlayerRating,
   selectPassing,
   setAttack,
   setAverage,
@@ -18,15 +19,15 @@ import {
   setOverallIntelligence,
   setOverallPassing,
   setPassing,
-} from "./playerRating.slice";
-import { getLoggedInUser } from "../auth/auth.hooks";
-import { AppDispatch } from "../../store.ts";
+} from "@features/player-rating/playerRating.slice";
+import { getLoggedInUser } from "@features/auth";
+import { AppDispatch } from "@/store.ts";
 import {
   useDeletePlayerRating,
   useOverallRating,
   useSaveUserRating,
   useUserRating,
-} from "./playerRating.query.ts";
+} from "@features/player-rating/playerRating.query.ts";
 
 const calculateAverageRating = (
   attack: number,
@@ -181,6 +182,7 @@ export const usePlayerRatingEdit = () => {
   const defence = useSelector(selectDefence);
   const passing = useSelector(selectPassing);
   const intelligence = useSelector(selectIntelligence);
+  const isEditingPlayerRating = useSelector(selectIsEditingPlayerRating);
 
   const handleAttackChange = (attack: number | null) => {
     dispatch(setAttack(attack));
@@ -199,7 +201,7 @@ export const usePlayerRatingEdit = () => {
   };
 
   const onEditClick = () => {
-    dispatch(setIsEditingPlayerRating(true));
+    dispatch(setIsEditingPlayerRating(!isEditingPlayerRating));
   };
 
   useEffect(() => {

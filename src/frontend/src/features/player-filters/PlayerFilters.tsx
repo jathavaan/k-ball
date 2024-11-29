@@ -1,15 +1,14 @@
-﻿import { FormControl, IconButton, Tooltip } from "@mui/material";
+import { FormControl, IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ClubFilter } from "./ClubFilter";
+import { ClubFilter } from "@features/player-filters/ClubFilter";
 import Grid from "@mui/material/Grid2";
-import { CountryFilter } from "./CountryFilter.tsx";
-import { PositionFilter } from "./PositionFilter.tsx";
+import { CountryFilter } from "@features/player-filters/CountryFilter.tsx";
+import { PositionFilter } from "@features/player-filters/PositionFilter.tsx";
 import {
   useApplyFilters,
   useFilteredCount,
-  useClearFilters,
-} from "./playerFilters.hooks.ts";
-import { Button, HelperText } from "../ui";
+} from "@features/player-filters/playerFilters.hooks.ts";
+import { Button, HelperText } from "@features/ui";
 
 export const PlayerFilters = () => {
   const { hasChanges, applyFiltersChanges } = useApplyFilters();

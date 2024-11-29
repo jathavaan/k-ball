@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPlayerProfileInfo } from "./playerProfileInfo.api.ts";
+import { getPlayerProfileInfo } from "@features/player-profile-info/playerProfileInfo.api.ts";
 
 export const usePlayerProfileInfo = (playerId: number) =>
   useQuery({

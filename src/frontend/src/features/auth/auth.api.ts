@@ -6,7 +6,7 @@
   UserInfoResponse,
 } from "./auth.types.ts";
 import { gql } from "@apollo/client";
-import { apiClient } from "../../shared/api.client.ts";
+import { apiClient } from "@shared/api.client.ts";
 
 export const registerUser = async (props: RegisterProps): Promise<boolean> => {
   const REGISTER_USER = gql`
