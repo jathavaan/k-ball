@@ -12,6 +12,9 @@ const mockPlayerCardProps: PlayerCardProps = {
   position: "Goalkeeper",
   nationality: "Korea Republic",
   age: 33,
+  clubLogoUrl: "https://media.api-sports.io/football/players/2890.png",
+  averageRating: 3,
+  birthDate: "2024-01-01",
 };
 
 describe("PlayerCard", () => {
@@ -45,7 +48,15 @@ describe("PlayerCard", () => {
 
   it("Should render player age", () => {
     expect(
-      screen.getByText(mockPlayerCardProps.age.toString()),
+      screen.getByText(
+        `${Intl.DateTimeFormat("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }).format(
+          new Date(mockPlayerCardProps.birthDate),
+        )} | ${mockPlayerCardProps.age} years`,
+      ),
     ).toBeInTheDocument();
   });
 

@@ -28,9 +28,12 @@ const GET_PLAYER_CARDS = gql`
         fullName
         currentClub
         imageUrl
+        clubLogoUrl
         position
         nationality
+        birthDate
         age
+        averageRating
       }
       totalPages
       currentPage
@@ -57,7 +60,7 @@ export const getPlayerCards = async ({
   | undefined
 > => {
   const [
-    // THe line is required for Tanstack Query
+    // The line is required for Tanstack Query
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _,
     page,

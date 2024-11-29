@@ -206,6 +206,7 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
         currentClub: true,
         country: true,
         position: true,
+        playerReviews: true,
       },
       skip: offset,
       take: limit,
@@ -224,10 +225,17 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
         currentClub: {
           id: true,
           name: true,
+          logoUrl: true,
         },
         country: {
           id: true,
           name: true,
+        },
+        playerReviews: {
+          attack: true,
+          defence: true,
+          passing: true,
+          intelligence: true,
         },
       },
     });

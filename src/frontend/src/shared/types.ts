@@ -3,4 +3,5 @@
   fullName: string;
   currentClub: string;
   imageUrl: string;
+  clubLogoUrl: string;
 }

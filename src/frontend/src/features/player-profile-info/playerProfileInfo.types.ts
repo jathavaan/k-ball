@@ -10,7 +10,6 @@ export interface PlayerProfileInfoBase extends Player {
   birthDate: string;
   height?: number;
   weight?: number;
-  clubLogo: string;
 }
 
 export interface PlayerProfileInfoProps

@@ -13,84 +13,131 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
       tabindex="0"
     >
       <div
-        class=MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-spacing-xs-2 css-dynamic-MuiGrid2-root
+        class=MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row css-dynamic-MuiGrid2-root
       >
         <div
-          class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-5 css-dynamic-MuiGrid2-root
+          class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 css-dynamic-MuiGrid2-root
         >
           <img
-            alt="Portrait of Jo Hyeon-Woo"
+            alt="Profile picture for Jo Hyeon-Woo"
             class="css-1sws5au"
             src="https://media.api-sports.io/football/players/2890.png"
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 0;"
           />
         </div>
         <div
-          class=MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-7 css-dynamic-MuiGrid2-root
+          class=MuiGrid2-root MuiGrid2-container MuiGrid2-direction-xs-row MuiGrid2-grid-xs-6 MuiGrid2-spacing-xs-1 css-dynamic-MuiGrid2-root
         >
           <div
             class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
           >
-            <h4
-              class=MuiTypography-root MuiTypography-h4 css-dynamic-MuiTypography-root
+            <p
+              class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+              text="Jo Hyeon-Woo"
             >
               Jo Hyeon-Woo
-            </h4>
-          </div>
-          <div
-            class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
-          >
+            </p>
             <p
               class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
-              text="Ulsan Hyundai FC"
-              title="Team"
+              text="3 star rating by fellow K-Ballers"
             >
-              <b>
-                Team:
-              </b>
-               Ulsan Hyundai FC
+              3 star rating by fellow K-Ballers
             </p>
           </div>
           <div
             class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
           >
-            <p
-              class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
-              text="Goalkeeper"
-              title="Pos."
+            <section
+              style="display: flex; flex-direction: row; align-items: center; margin-left: 0.6rem;"
             >
-              <b>
-                Pos.:
-              </b>
-               Goalkeeper
-            </p>
+              <img
+                alt="Ulsan Hyundai FC logo"
+                class="css-1sws5au"
+                src="https://media.api-sports.io/football/players/2890.png"
+                style="height: 1.2rem; width: 1.2rem;"
+              />
+              <p
+                class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+                text="Ulsan Hyundai FC"
+              >
+                Ulsan Hyundai FC
+              </p>
+            </section>
           </div>
           <div
             class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
           >
-            <p
-              class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
-              text="Korea Republic"
-              title="Nat."
+            <section
+              style="display: flex; flex-direction: row; align-items: center; margin-left: 0.6rem;"
             >
-              <b>
-                Nat.:
-              </b>
-               Korea Republic
-            </p>
+              <svg
+                aria-hidden="true"
+                class=MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-dynamic-MuiSvgIcon-root
+                data-testid="FmdGoodIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2c-4.2 0-8 3.22-8 8.2 0 3.32 2.67 7.25 8 11.8 5.33-4.55 8-8.48 8-11.8C20 5.22 16.2 2 12 2m0 10c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2"
+                />
+              </svg>
+              <p
+                class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+                text="Goalkeeper"
+              >
+                Goalkeeper
+              </p>
+            </section>
           </div>
           <div
             class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
           >
-            <p
-              class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
-              text="33"
-              title="Age"
+            <section
+              style="display: flex; flex-direction: row; align-items: center; margin-left: 0.6rem;"
             >
-              <b>
-                Age:
-              </b>
-               33
-            </p>
+              <svg
+                aria-hidden="true"
+                class=MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-dynamic-MuiSvgIcon-root
+                data-testid="CakeIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 6c1.11 0 2-.9 2-2 0-.38-.1-.73-.29-1.03L12 0l-1.71 2.97c-.19.3-.29.65-.29 1.03 0 1.1.9 2 2 2m4.6 9.99-1.07-1.07-1.08 1.07c-1.3 1.3-3.58 1.31-4.89 0l-1.07-1.07-1.09 1.07C6.75 16.64 5.88 17 4.96 17c-.73 0-1.4-.23-1.96-.61V21c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-4.61c-.56.38-1.23.61-1.96.61-.92 0-1.79-.36-2.44-1.01M18 9h-5V7h-2v2H6c-1.66 0-3 1.34-3 3v1.54c0 1.08.88 1.96 1.96 1.96.52 0 1.02-.2 1.38-.57l2.14-2.13 2.13 2.13c.74.74 2.03.74 2.77 0l2.14-2.13 2.13 2.13c.37.37.86.57 1.38.57 1.08 0 1.96-.88 1.96-1.96V12C21 10.34 19.66 9 18 9"
+                />
+              </svg>
+              <p
+                class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+                text="Jan 1, 2024 | 33 years"
+              >
+                Jan 1, 2024 | 33 years
+              </p>
+            </section>
+          </div>
+          <div
+            class=MuiGrid2-root MuiGrid2-direction-xs-row MuiGrid2-grid-xs-12 css-dynamic-MuiGrid2-root
+          >
+            <section
+              style="display: flex; flex-direction: row; align-items: center; margin-left: 0.6rem;"
+            >
+              <svg
+                aria-hidden="true"
+                class=MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-dynamic-MuiSvgIcon-root
+                data-testid="PublicIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39"
+                />
+              </svg>
+              <p
+                class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+                text="Korea Republic"
+              >
+                Korea Republic
+              </p>
+            </section>
           </div>
         </div>
       </div>

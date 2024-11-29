@@ -16,12 +16,13 @@ export const PlayerType = new GraphQLObjectType({
     position: { type: GraphQLString },
     nationality: { type: GraphQLString },
     age: { type: GraphQLInt },
-    clubLogo: { type: GraphQLString },
+    clubLogoUrl: { type: GraphQLString },
     flagUrl: { type: GraphQLString },
     birthDate: { type: GraphQLString },
     height: { type: GraphQLInt },
     weight: { type: GraphQLInt },
     birthPlace: { type: GraphQLString },
+    averageRating: { type: GraphQLFloat },
   },
 });
 
