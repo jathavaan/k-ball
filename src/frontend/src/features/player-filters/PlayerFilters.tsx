@@ -63,13 +63,7 @@ export const PlayerFilters = () => {
         </Tooltip>
       </Grid>
 
-      <Grid
-        size={{ xs: 12, sm: 5, md: 3 }}
-        alignItems="flex-start"
-        sx={{
-          ml: "auto",
-        }}
-      >
+      <Grid size={{ xs: 12, sm: 5, md: 4 }} alignItems="flex-start">
         <HelperText
           description={
             isLoading
