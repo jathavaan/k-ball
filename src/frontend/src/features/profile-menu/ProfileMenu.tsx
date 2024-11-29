@@ -27,8 +27,12 @@ import { DetailedPlayerRatingResponse } from "@features/profile-menu/profileMenu
 export const ProfileMenu = () => {
   const { openDrawer, isProfileMenuOpen } = useProfileMenuToggle();
   return (
-    <IconButton onClick={() => openDrawer()}>
-      {!isProfileMenuOpen ? <StyledProfileIcon /> : <StyledCloseIcon />}
+    <IconButton aria-label="Toggle profile view" onClick={() => openDrawer()}>
+      {!isProfileMenuOpen ? (
+        <StyledProfileIcon aria-label="Show profile view" />
+      ) : (
+        <StyledCloseIcon aria-label="Show profile view" />
+      )}
     </IconButton>
   );
 };

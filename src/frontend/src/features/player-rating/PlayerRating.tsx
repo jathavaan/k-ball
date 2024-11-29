@@ -308,6 +308,9 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
                 ? "Edit your rating"
                 : "Add your rating"
           }
+          sx={{
+            marginRight: 0,
+          }}
         >
           {isUserRatingLoading || isSaveUserRatingPending ? (
             <CircularProgressBar size={20} />

@@ -8,4 +8,5 @@ export const StyledContentText = styled(Typography)(() => ({
 export const StyledTitleText = styled(Typography)(() => ({
   fontSize: "0.8rem",
   fontWeight: 100,
+  textTransform: "lowercase",
 }));
