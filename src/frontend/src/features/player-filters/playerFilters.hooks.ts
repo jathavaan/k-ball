@@ -132,6 +132,26 @@ export const useApplyFilters = () => {
       dispatch(applyFilters());
     }
   };
-
   return { hasChanges, applyFiltersChanges };
+};
+
+export const useClearFilters = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { clubIds, countryIds, positionIds } = useSelector(selectTempFilters);
+  const canClearFilters =
+    clubIds.length > 1 ||
+    (clubIds.length === 1 && clubIds[0] !== -1) ||
+    countryIds.length > 1 ||
+    (countryIds.length === 1 && countryIds[0] !== -1) ||
+    positionIds.length > 1 ||
+    (positionIds.length === 1 && positionIds[0] !== -1);
+
+  const clearFilters = () => {
+    if (canClearFilters) {
+      dispatch(setTempClubFilters([-1]));
+      dispatch(setTempCountryFilters([-1]));
+      dispatch(setTempPositionFilters([-1]));
+    }
+  };
+  return { canClearFilters, clearFilters };
 };
