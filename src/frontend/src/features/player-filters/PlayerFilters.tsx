@@ -7,6 +7,7 @@ import { PositionFilter } from "@features/player-filters/PositionFilter.tsx";
 import {
   useApplyFilters,
   useFilteredCount,
+  useClearFilters,
 } from "@features/player-filters/playerFilters.hooks.ts";
 import { Button, HelperText } from "@features/ui";
 
@@ -18,43 +19,56 @@ export const PlayerFilters = () => {
 
   return (
     <Grid container spacing={4} alignItems="flex-end">
-      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+      <Grid size={{ xs: 10, sm: 5, md: 2.5 }}>
         <FormControl fullWidth>
           <ClubFilter />
         </FormControl>
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+      <Grid size={{ xs: 10, sm: 5, md: 2.5 }}>
         <FormControl fullWidth>
           <CountryFilter />
         </FormControl>
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+      <Grid size={{ xs: 10, sm: 5, md: 2.5 }}>
         <FormControl fullWidth>
           <PositionFilter />
         </FormControl>
       </Grid>
-      <Grid size={{ xs: "auto" }}>
-        <Tooltip title="Reset filters" arrow>
-          <IconButton
-            onClick={clearFilters}
-            disabled={!canClearFilters}
-            sx={{
-              color: canClearFilters ? "secondary.main" : "grey.500",
-              "&:hover": {
-                color: canClearFilters ? "secondary.light" : "grey.500",
-              },
-            }}
+      <Grid
+        size={{ xs: 0.5 }}
+        container
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Tooltip title="Reset filters" arrow disableInteractive>
+          <span
+            role="presentation"
+            aria-disabled={!canClearFilters}
+            tabIndex={!canClearFilters ? 0 : undefined}
           >
-            <DeleteIcon />
-          </IconButton>
+            <IconButton
+              onClick={clearFilters}
+              disabled={!canClearFilters}
+              sx={{
+                color: canClearFilters ? "secondary.main" : "grey.500",
+                "&:hover": {
+                  color: canClearFilters ? "secondary.light" : "grey.500",
+                },
+                pointerEvents: "auto",
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </span>
         </Tooltip>
       </Grid>
 
       <Grid
-        size={{ xs: 12, sm: 6, md: 2 }}
-        container
-        direction="column"
+        size={{ xs: 12, sm: 5, md: 3 }}
         alignItems="flex-start"
+        sx={{
+          ml: "auto",
+        }}
       >
         <HelperText
           description={
@@ -68,7 +82,6 @@ export const PlayerFilters = () => {
           onClick={applyFiltersChanges}
           disabled={isFilterButtonDisabled}
           sx={{
-            borderRadius: "0.4rem",
             width: "100%",
           }}
           text={"Apply filters"}
