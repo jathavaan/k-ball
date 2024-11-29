@@ -1,10 +1,17 @@
-﻿import { FabProps } from "@mui/material";
-import { StyledFloatingActionButton } from "./floatingActionButton.style.ts";
+﻿import { StyledFloatingActionButton } from "@features/ui/floating-action-button/floatingActionButton.style.ts";
+import { Tooltip } from "@features/ui";
+import { FloatingActionButtonProps } from "@features/ui/floating-action-button/floatingActionButton.types.ts";
 
-export const FloatingActionButton = ({ children, ...props }: FabProps) => {
+export const FloatingActionButton = ({
+  tooltipTitle,
+  children,
+  ...props
+}: FloatingActionButtonProps) => {
   return (
-    <StyledFloatingActionButton {...props} size="small">
-      {children}
-    </StyledFloatingActionButton>
+    <Tooltip title={tooltipTitle}>
+      <StyledFloatingActionButton {...props} variant="extended" size="small">
+        {children}
+      </StyledFloatingActionButton>
+    </Tooltip>
   );
 };
