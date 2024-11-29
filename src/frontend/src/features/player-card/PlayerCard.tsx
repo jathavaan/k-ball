@@ -58,7 +58,8 @@ export const PlayerCard = (props: PlayerCardProps) => {
               size={{ xs: 12 }}
               sx={(theme) => ({
                 display: "flex",
-                alignItems: "center",
+                flexDirection: "column",
+                alignItems: "left",
                 justifyContent: "space-between",
                 backgroundColor: theme.palette.secondary.dark,
                 borderBottomRightRadius: "0.4rem",
@@ -75,39 +76,29 @@ export const PlayerCard = (props: PlayerCardProps) => {
             >
               <Text
                 text={props.fullName}
-                sx={{
+                sx={(theme) => ({
+                  color: theme.palette.secondary.contrastText,
                   fontSize: { xs: "1rem", md: "1.1rem" },
-                  fontWeight: 100,
+                  fontWeight: 300,
                   textAlign: "left",
                   marginLeft: "0.6rem",
-                }}
+                })}
               />
-            </Grid>
-            <Grid
-              size={{ xs: 12 }}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                position: "relative",
-                alignItems: "center",
-                left: "-4%",
-              }}
-            >
-              <CardText
-                icon={
-                  <StarIcon
-                    sx={(theme) => ({
-                      fontSize: { xs: "0.6rem", md: "0.6rem" },
-                      color: theme.palette.grey.A400,
-                    })}
-                  />
-                }
+              <Text
                 text={
                   props.averageRating
                     ? `${parseFloat(props.averageRating.toString()).toFixed(0)} star rating by fellow K-Ballers`
                     : `Be the first K-Baller to rate!`
                 }
-                secondary
+                sx={(theme) => ({
+                  fontSize: {
+                    xs: "0.7rem",
+                    md: "0.8rem",
+                  },
+                  color: theme.palette.grey["300"],
+                  textAlign: "left",
+                  marginLeft: "0.6rem",
+                })}
               />
             </Grid>
             <Grid
@@ -117,7 +108,7 @@ export const PlayerCard = (props: PlayerCardProps) => {
                 flexDirection: "row",
                 position: "relative",
                 alignItems: "center",
-                left: "-3%",
+                left: "-8%",
               }}
             >
               <CardText
@@ -141,14 +132,14 @@ export const PlayerCard = (props: PlayerCardProps) => {
                 flexDirection: "row",
                 position: "relative",
                 alignItems: "center",
-                left: "-1%",
+                left: "-6%",
               }}
             >
               <CardText
                 icon={
                   <FmdGoodIcon
                     sx={{
-                      fontSize: { xs: "0.7rem", md: "1rem" },
+                      fontSize: { xs: "0.9rem", md: "1rem" },
                     }}
                   />
                 }
@@ -162,14 +153,14 @@ export const PlayerCard = (props: PlayerCardProps) => {
                 flexDirection: "row",
                 position: "relative",
                 alignItems: "center",
-                left: "0%",
+                left: "-4%",
               }}
             >
               <CardText
                 icon={
                   <CakeIcon
                     sx={{
-                      fontSize: { xs: "0.7rem", md: "1rem" },
+                      fontSize: { xs: "0.9rem", md: "1rem" },
                     }}
                   />
                 }
@@ -187,14 +178,14 @@ export const PlayerCard = (props: PlayerCardProps) => {
                 flexDirection: "row",
                 position: "relative",
                 alignItems: "center",
-                left: "1%",
+                left: "-2%",
               }}
             >
               <CardText
                 icon={
                   <PublicIcon
                     sx={{
-                      fontSize: { xs: "0.7rem", md: "1rem" },
+                      fontSize: { xs: "0.9rem", md: "1rem" },
                     }}
                   />
                 }
