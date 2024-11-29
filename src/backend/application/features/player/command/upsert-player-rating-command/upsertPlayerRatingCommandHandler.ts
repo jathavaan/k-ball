@@ -1,8 +1,8 @@
-﻿import { UpsertPlayerRatingCommand } from "./UpsertPlayerRatingCommand";
-import { Request } from "../../../../common";
+﻿import { Request } from "../../../../common";
 import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
 import { container } from "../../../../../infrastructure/services/inversify.config";
 import { PlayerRating } from "../../../../../domain/entities";
+import { UpsertPlayerRatingCommand } from "./upsertPlayerRatingCommand";
 
 export class UpsertPlayerRatingCommandHandler
   implements Request<UpsertPlayerRatingCommand, boolean>
