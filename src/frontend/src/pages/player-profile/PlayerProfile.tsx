@@ -64,6 +64,11 @@ export const PlayerProfile = () => {
                   ) : undefined
                 }
                 label={playerProfileInfo?.fullName ?? ""}
+                sx={(theme) => ({
+                  "&:hover": {
+                    backgroundColor: theme.palette.secondary.dark,
+                  },
+                })}
               />
             </StyledBreadcrumbs>
           </Grid>

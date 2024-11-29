@@ -4,11 +4,11 @@
   StyledSelect,
 } from "@features/ui/select/select.style.ts";
 import { HelperText, ImageContainer } from "@features/ui";
-import { Box, FormControl } from "@mui/material";
 import {
   MenuItemProps,
   SelectProps,
 } from "@features/ui/select/select.types.ts";
+import { Box, FormControl } from "@mui/material";
 
 export const Select = ({
   children,
