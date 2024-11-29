@@ -72,7 +72,7 @@ export const PlayerCardGrid = () => {
     >
       <Grid
         container
-        spacing={4}
+        spacing={3}
         sx={{
           overflowX: "hidden",
           overflowY: "hidden",
@@ -108,6 +108,9 @@ export const PlayerCardGrid = () => {
                 fullName={playerCard.fullName}
                 currentClub={playerCard.currentClub}
                 imageUrl={playerCard.imageUrl}
+                clubLogoUrl={playerCard.clubLogoUrl}
+                birthDate={playerCard.birthDate}
+                averageRating={playerCard.averageRating}
               />
             </Grid>
           ))

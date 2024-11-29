@@ -19,7 +19,7 @@ export const getPlayerProfileInfo = async ({
         position
         nationality
         age
-        clubLogo
+        clubLogoUrl
         flagUrl
         birthDate
         height

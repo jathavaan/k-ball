@@ -9,7 +9,7 @@ describe("PlayerProfileInfo", () => {
     playerId: 2898,
     fullName: "Kim Young-Gwon",
     currentClub: "Ulsan Hyundai FC",
-    clubLogo: "https://media.api-sports.io/football/teams/2767.png",
+    clubLogoUrl: "https://media.api-sports.io/football/teams/2767.png",
     imageUrl: "https://media.api-sports.io/football/players/2898.png",
     position: "Defender",
     nationality: "Korea Republic",

@@ -57,7 +57,7 @@ export const PlayerProfile = () => {
                 icon={
                   playerProfileInfo ? (
                     <img
-                      src={playerProfileInfo.clubLogo}
+                      src={playerProfileInfo.clubLogoUrl}
                       alt={`Logo of ${playerProfileInfo.currentClub}`}
                       style={{ width: "1rem", height: "1rem" }}
                     />

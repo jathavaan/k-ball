@@ -4,6 +4,7 @@ import { GetPlayersQuery } from "./getPlayersQuery";
 import { PlayerVm } from "../../../../view-models";
 import { container } from "../../../../../infrastructure/services/inversify.config";
 import { PlayerRepositoryServiceBase } from "../../../../contracts";
+import { PlayerRatingServiceBase } from "../../../../contracts/player-service/playerRating.service.base";
 
 export class GetPlayersQueryHandler
   implements
@@ -20,6 +21,9 @@ export class GetPlayersQueryHandler
   playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
     "PlayerRepositoryServiceBase",
   );
+  playerRatingService = container.get<PlayerRatingServiceBase>(
+    "PlayerRatingServiceBase",
+  );
 
   async handle(request: GetPlayersQuery): Promise<{
     playerCards: PlayerVm[];
@@ -33,8 +37,15 @@ export class GetPlayersQueryHandler
 
     const totalPages = Math.ceil(totalPlayers / limit);
     const currentPage = Math.ceil(offset / limit) + 1;
+
     return {
-      playerCards: playerCards.map((player) => new PlayerVm(player)),
+      playerCards: playerCards.map((player) => {
+        const averageRating = this.playerRatingService.getAveragePlayerRating(
+          player.playerReviews,
+        );
+
+        return new PlayerVm(player, averageRating);
+      }),
       totalPlayers: totalPlayers,
       totalPages: totalPages,
       currentPage: currentPage,
