@@ -13,3 +13,6 @@ export * from "./helper-error-text/HelperErrorText";
 export * from "./card-info-text/CardInfoText";
 export * from "./table/Table";
 export * from "./circular-progress-bar/CircularProgressBar";
+export * from "./rating/Rating";
+export * from "./floating-action-button/FloatingActionButton";
+export * from "./tooltip/Tooltip";
