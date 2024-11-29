@@ -1,8 +1,8 @@
 ﻿import Grid from "@mui/material/Grid2";
-import { PlayerCardGrid } from "../../features/player-card";
-import { PlayerFilters } from "../../features/player-filters";
-import { PlayerSorting } from "../../features/player-sorting";
-import { SearchBar } from "../../features/searchbar";
+import { PlayerCardGrid } from "@features/player-card";
+import { PlayerFilters } from "@features/player-filters";
+import { PlayerSorting } from "@features/player-sorting";
+import { SearchBar } from "@features/searchbar";
 
 export const PlayerDashboard = () => {
   return (

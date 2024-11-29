@@ -2,8 +2,8 @@ import {
   ClubProps,
   CountryProps,
   PositionProps,
-} from "./playerFilters.types.ts";
-import { apiClient } from "../../shared/api.client.ts";
+} from "@features/player-filters/playerFilters.types.ts";
+import { apiClient } from "@shared/api.client.ts";
 import { gql } from "@apollo/client";
 
 export const getCountries = async (): Promise<CountryProps[]> => {

@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { beforeEach, describe, expect, it } from "vitest";
-import { PlayerProfileInfo } from "./PlayerProfileInfo";
-import { PlayerProfileInfoProps } from "./playerProfileInfo.types.ts";
+import { PlayerProfileInfo } from "@features/player-profile-info/PlayerProfileInfo";
+import { PlayerProfileInfoProps } from "@features/player-profile-info/playerProfileInfo.types.ts";
 
 describe("PlayerProfileInfo", () => {
   const mockProps: PlayerProfileInfoProps = {
     playerId: 2898,
     fullName: "Kim Young-Gwon",
     currentClub: "Ulsan Hyundai FC",
-    clubLogo: "https://media.api-sports.io/football/teams/2767.png",
+    clubLogoUrl: "https://media.api-sports.io/football/teams/2767.png",
     imageUrl: "https://media.api-sports.io/football/players/2898.png",
     position: "Defender",
     nationality: "Korea Republic",
@@ -30,7 +30,9 @@ describe("PlayerProfileInfo", () => {
   });
 
   it("should render the player's age", () => {
-    expect(screen.getByText(mockProps.age.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(`${mockProps.age.toString()} years`),
+    ).toBeInTheDocument();
   });
 
   it("should render the player's position", () => {

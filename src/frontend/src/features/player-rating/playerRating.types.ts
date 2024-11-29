@@ -10,6 +10,10 @@ export interface SaveRatingResponse {
   isUpsertSuccessful: boolean;
 }
 
+export interface DeleteRatingResponse {
+  isDeleteSuccessful: boolean;
+}
+
 export interface PlayerRatingState {
   attack: number | null;
   defence: number | null;
@@ -22,6 +26,7 @@ export interface PlayerRatingState {
   overallIntelligence: number | null;
   overallAverage: number | null;
   isEditingPlayerRating: boolean;
+  isPlayerRatingInDb: boolean;
 }
 
 export interface PlayerRatingProps {

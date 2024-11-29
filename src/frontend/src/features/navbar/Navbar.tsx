@@ -4,19 +4,28 @@ import {
   StyledAppBar,
   StyledToolbar,
 } from "./navbar.style";
-import logo from "../../assets/logo.webp";
+import { Logo } from "@/assets";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../auth/auth.hooks.ts";
-import { ProfileMenu } from "../profile-menu"; // Import the isUserLoggedIn function
+import { isUserLoggedIn } from "@features/auth";
+import { ProfileMenu } from "@features/profile-menu";
 
 export function Navbar() {
   const navigate = useNavigate();
 
+  const handleLogoClick = () => {
+    if (window.location.pathname == "/project2/players") {
+      window.location.reload();
+    } else {
+      navigate("/project2/players");
+      window.location.reload();
+    }
+  };
+
   return (
     <StyledAppBar position="static">
       <StyledToolbar>
-        <LogoButton onClick={() => navigate("/project2/players")}>
-          <LogoImage src={logo} alt="Logo" />
+        <LogoButton onClick={handleLogoClick}>
+          <LogoImage src={Logo} alt="Logo" />
         </LogoButton>
         {isUserLoggedIn() && <ProfileMenu />}
       </StyledToolbar>

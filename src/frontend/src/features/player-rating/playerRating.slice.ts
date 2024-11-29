@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerRatingState } from "./playerRating.types.ts";
-import { RootState } from "../../store.ts";
+import { RootState } from "@/store.ts";
 
 const initialState: PlayerRatingState = {
   attack: null,
@@ -14,6 +14,7 @@ const initialState: PlayerRatingState = {
   overallIntelligence: null,
   overallAverage: null,
   isEditingPlayerRating: false,
+  isPlayerRatingInDb: false,
 };
 
 const playerRatingSlice = createSlice({
@@ -50,6 +51,9 @@ const playerRatingSlice = createSlice({
     setOverallAverage: (state, action: PayloadAction<number | null>) => {
       state.overallAverage = action.payload;
     },
+    setIsPlayerRatingInDb: (state, action: PayloadAction<boolean>) => {
+      state.isPlayerRatingInDb = action.payload;
+    },
     resetPlayerRating: (state) => {
       state.attack = null;
       state.defence = null;
@@ -74,6 +78,7 @@ export const {
   setOverallPassing,
   setOverallIntelligence,
   setOverallAverage,
+  setIsPlayerRatingInDb,
   resetPlayerRating,
   setIsEditingPlayerRating,
 } = playerRatingSlice.actions;
@@ -100,5 +105,7 @@ export const selectOverallAverage = (state: RootState) =>
   state.playerRatingReducer.overallAverage;
 export const selectIsEditingPlayerRating = (state: RootState) =>
   state.playerRatingReducer.isEditingPlayerRating;
+export const selectIsPlayerRatingInDb = (state: RootState) =>
+  state.playerRatingReducer.isPlayerRatingInDb;
 
 export const playerRatingReducer = playerRatingSlice.reducer;

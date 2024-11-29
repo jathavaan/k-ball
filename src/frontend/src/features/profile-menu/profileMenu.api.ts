@@ -1,6 +1,6 @@
-﻿import { DetailedPlayerRatingResponse } from "./profileMenu.types.ts";
+﻿import { DetailedPlayerRatingResponse } from "@features/profile-menu/profileMenu.types.ts";
 import { gql } from "@apollo/client";
-import { apiClient } from "../../shared/api.client.ts";
+import { apiClient } from "@shared/api.client.ts";
 
 export const getDetailedPlayerRatings = async (
   userId: number,

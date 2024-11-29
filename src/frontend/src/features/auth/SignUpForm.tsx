@@ -4,16 +4,16 @@ import {
   StyledLink,
   StyledPaper,
   StyledTypography,
-} from "./auth.style";
-import { Button, ErrorAlert, SuccessAlert, TextField } from "../ui";
-import { useRegister, useRegisterForm } from "./auth.hooks.ts";
+} from "@features/auth/auth.style";
+import { Button, ErrorAlert, SuccessAlert, TextField } from "@features/ui";
+import { useRegister, useRegisterForm } from "@features/auth/auth.hooks.ts";
 import Grid from "@mui/material/Grid2";
 import {
   registerEmailSelector,
   registerFirstNameSelector,
   registerLastNameSelector,
   registerPasswordSelector,
-} from "./auth.slice.ts";
+} from "@features/auth/auth.slice.ts";
 import { useSelector } from "react-redux";
 
 export const SignUpForm = () => {

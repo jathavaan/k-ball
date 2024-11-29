@@ -6,7 +6,7 @@
   UserInfoResponse,
 } from "./auth.types.ts";
 import { gql } from "@apollo/client";
-import { apiClient } from "../../shared/api.client.ts";
+import { apiClient } from "@shared/api.client.ts";
 
 export const registerUser = async (props: RegisterProps): Promise<boolean> => {
   const REGISTER_USER = gql`
@@ -71,7 +71,7 @@ export const authenticateUser = async (
       fetchPolicy: "no-cache",
     });
 
-    return Number(response.data.auth.userId);
+    return response.data.auth.userId ? Number(response.data.auth.userId) : null;
   } catch (error) {
     console.error("Something went wrong while logging in");
     console.error(error);

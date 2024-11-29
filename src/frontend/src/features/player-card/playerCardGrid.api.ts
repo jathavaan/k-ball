@@ -1,5 +1,5 @@
 import { PlayerCardProps } from "./playerCard.types";
-import { apiClient } from "../../shared/api.client";
+import { apiClient } from "@shared/api.client.ts";
 import { gql } from "@apollo/client";
 
 const GET_PLAYER_CARDS = gql`
@@ -28,9 +28,12 @@ const GET_PLAYER_CARDS = gql`
         fullName
         currentClub
         imageUrl
+        clubLogoUrl
         position
         nationality
+        birthDate
         age
+        averageRating
       }
       totalPages
       currentPage
@@ -57,7 +60,7 @@ export const getPlayerCards = async ({
   | undefined
 > => {
   const [
-    // THe line is required for Tanstack Query
+    // The line is required for Tanstack Query
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _,
     page,

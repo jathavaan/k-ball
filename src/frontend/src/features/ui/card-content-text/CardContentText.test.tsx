@@ -1,5 +1,5 @@
 ﻿import { render, screen } from "@testing-library/react";
-import { CardContentText } from "./CardContentText";
+import { CardContentText } from "@features/ui";
 
 describe("CardContentText", () => {
   it("Should render the title and text", () => {

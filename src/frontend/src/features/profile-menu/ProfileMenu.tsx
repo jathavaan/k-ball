@@ -6,8 +6,11 @@
   StyledListItemButton,
   StyledListItemIcon,
   StyledProfileIcon,
-} from "./profileMenu.style.ts";
-import { useProfileMenu, useProfileMenuToggle } from "./profileMenu.hooks.ts";
+} from "@features/profile-menu/profileMenu.style.ts";
+import {
+  useProfileMenu,
+  useProfileMenuToggle,
+} from "@features/profile-menu/profileMenu.hooks.ts";
 import { Collapse, IconButton, ListItemText } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -18,8 +21,8 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import { CircularProgressBar, ErrorAlert, ImageContainer } from "../ui";
-import { DetailedPlayerRatingResponse } from "./profileMenu.types.ts";
+import { CircularProgressBar, ErrorAlert, ImageContainer } from "@features/ui";
+import { DetailedPlayerRatingResponse } from "@features/profile-menu/profileMenu.types.ts";
 
 export const ProfileMenu = () => {
   const { openDrawer, isProfileMenuOpen } = useProfileMenuToggle();
@@ -37,7 +40,7 @@ export const ProfileMenu = () => {
 export const ProfileMenuDrawer = () => {
   const {
     userInfo,
-    isUserInfoLoading,
+    isUserInfoPending,
     isUserInfoError,
     playerRatings,
     isPlayerRatingsPending,
@@ -81,7 +84,7 @@ export const ProfileMenuDrawer = () => {
               <StyledListItemIcon>
                 <BadgeIcon />
               </StyledListItemIcon>
-              {!isUserInfoLoading ? (
+              {!isUserInfoPending ? (
                 <ListItemText
                   primary={`${userInfo?.firstName} ${userInfo?.lastName}`}
                 />
@@ -93,7 +96,7 @@ export const ProfileMenuDrawer = () => {
               <StyledListItemIcon>
                 <AlternateEmailIcon />
               </StyledListItemIcon>
-              {!isUserInfoLoading ? (
+              {!isUserInfoPending ? (
                 <ListItemText primary={userInfo?.email} />
               ) : (
                 <CircularProgressBar size={15} />

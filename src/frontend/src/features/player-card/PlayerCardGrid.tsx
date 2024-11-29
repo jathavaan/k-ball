@@ -1,21 +1,21 @@
 ﻿import {
   usePlayerCardGrid,
   useScrollToTopButton,
-} from "./playerCardGrid.hooks.ts";
+} from "@features/player-card/playerCardGrid.hooks.ts";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store.ts";
+import { RootState } from "@/store.ts";
 import Grid from "@mui/material/Grid2";
-import { Button, ErrorAlert, LinearProgressBar } from "../ui";
-import { PlayerCard } from "./PlayerCard.tsx";
+import { PlayerCard } from "@features/player-card/PlayerCard.tsx";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { selectSortBy, selectSortOrder } from "../player-sorting";
+import { selectSortBy, selectSortOrder } from "@features/player-sorting";
+import { Button, ErrorAlert, LinearProgressBar } from "@features/ui";
+import { selectSearchQuery } from "@features/searchbar";
 import {
   selectCurrentPage,
   selectPlayerCards,
   selectTotalPages,
-} from "./playerCardGrid.slice.ts";
+} from "@features/player-card/playerCardGrid.slice.ts";
 import { Slide } from "@mui/material";
-import { selectSearchQuery } from "../searchbar";
 
 export const PlayerCardGrid = () => {
   const searchQuery = useSelector(selectSearchQuery);
@@ -72,7 +72,7 @@ export const PlayerCardGrid = () => {
     >
       <Grid
         container
-        spacing={4}
+        spacing={3}
         sx={{
           overflowX: "hidden",
           overflowY: "hidden",
@@ -108,6 +108,9 @@ export const PlayerCardGrid = () => {
                 fullName={playerCard.fullName}
                 currentClub={playerCard.currentClub}
                 imageUrl={playerCard.imageUrl}
+                clubLogoUrl={playerCard.clubLogoUrl}
+                birthDate={playerCard.birthDate}
+                averageRating={playerCard.averageRating}
               />
             </Grid>
           ))

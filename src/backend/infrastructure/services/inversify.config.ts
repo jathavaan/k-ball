@@ -26,6 +26,8 @@ import { PlayerImportStateRepositoryService } from "./database-import-service/pl
 import { PlayerStatisticsRepositoryService } from "./player-service/playerStatisticsRepository.service";
 import { PlayerRatingRepositoryServiceBase } from "../../application/contracts/player-service/playerRatingRepository.service.base";
 import { PlayerRatingRepositoryService } from "./player-service/playerRatingRepository.service";
+import { PlayerRatingServiceBase } from "../../application/contracts/player-service/playerRating.service.base";
+import { PlayerRatingService } from "./player-service/playerRating.service";
 
 const container = new Container();
 container
@@ -79,5 +81,9 @@ container
 container
   .bind<PlayerRatingRepositoryServiceBase>("PlayerRatingRepositoryServiceBase")
   .to(PlayerRatingRepositoryService);
+
+container
+  .bind<PlayerRatingServiceBase>("PlayerRatingServiceBase")
+  .to(PlayerRatingService);
 
 export { container };

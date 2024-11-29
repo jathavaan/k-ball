@@ -1,8 +1,8 @@
 ﻿import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { PlayerCardProps } from "./playerCard.types.ts";
-import { PlayerCard } from "./PlayerCard";
 import "@testing-library/jest-dom";
+import { PlayerCardProps } from "@features/player-card/playerCard.types.ts";
+import { PlayerCard } from "@features/player-card/PlayerCard.tsx";
 
 const mockPlayerCardProps: PlayerCardProps = {
   playerId: 2890,
@@ -12,6 +12,9 @@ const mockPlayerCardProps: PlayerCardProps = {
   position: "Goalkeeper",
   nationality: "Korea Republic",
   age: 33,
+  clubLogoUrl: "https://media.api-sports.io/football/players/2890.png",
+  averageRating: 3,
+  birthDate: "2024-01-01",
 };
 
 describe("PlayerCard", () => {
@@ -45,7 +48,15 @@ describe("PlayerCard", () => {
 
   it("Should render player age", () => {
     expect(
-      screen.getByText(mockPlayerCardProps.age.toString()),
+      screen.getByText(
+        `${Intl.DateTimeFormat("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }).format(
+          new Date(mockPlayerCardProps.birthDate),
+        )} | ${mockPlayerCardProps.age} years`,
+      ),
     ).toBeInTheDocument();
   });
 

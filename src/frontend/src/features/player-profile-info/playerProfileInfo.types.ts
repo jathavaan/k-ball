@@ -1,4 +1,4 @@
-import { Player } from "../../shared/types.ts";
+import { Player } from "@shared/types.ts";
 import { CardProps } from "@mui/material";
 
 export interface PlayerProfileInfoBase extends Player {
@@ -10,7 +10,6 @@ export interface PlayerProfileInfoBase extends Player {
   birthDate: string;
   height?: number;
   weight?: number;
-  clubLogo: string;
 }
 
 export interface PlayerProfileInfoProps

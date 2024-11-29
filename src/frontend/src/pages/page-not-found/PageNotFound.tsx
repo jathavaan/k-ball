@@ -1,7 +1,7 @@
 ﻿import Grid from "@mui/material/Grid2";
-import { Button, Text } from "../../features/ui";
+import { Button, Text } from "@features/ui";
 import { useNavigate } from "react-router-dom";
-import { isUserLoggedIn } from "../../features/auth/auth.hooks.ts";
+import { isUserLoggedIn } from "@features/auth";
 
 export const PageNotFound = () => {
   const navigate = useNavigate();

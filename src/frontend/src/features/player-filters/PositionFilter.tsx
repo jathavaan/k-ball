@@ -1,6 +1,6 @@
-﻿import { MenuItem, Select } from "../ui";
-import { usePositions } from "./playerFilters.query.ts";
-import { usePositionSelection } from "./playerFilters.hooks.ts";
+﻿import { MenuItem, Select } from "@features/ui";
+import { usePositions } from "@features/player-filters/playerFilters.query.ts";
+import { usePositionSelection } from "@features/player-filters/playerFilters.hooks.ts";
 
 export const PositionFilter = () => {
   const { data, isLoading, isError } = usePositions();

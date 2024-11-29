@@ -1,6 +1,6 @@
 ﻿import { UpsertPlayerRatingCommand } from "./UpsertPlayerRatingCommand";
-import { Request } from "../../../../common/request";
-import { PlayerRatingRepositoryServiceBase } from "../../../../contracts/player-service/playerRatingRepository.service.base";
+import { Request } from "../../../../common";
+import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
 import { container } from "../../../../../infrastructure/services/inversify.config";
 import { PlayerRating } from "../../../../../domain/entities";
 
