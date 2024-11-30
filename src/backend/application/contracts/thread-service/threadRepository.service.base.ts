@@ -12,7 +12,11 @@ export interface ThreadRepositoryServiceBase {
     content: string,
   ): Promise<boolean>;
 
-  updateThread(threadId: number, content: string): Promise<boolean>;
+  updateThread(
+    threadId: number,
+    title: string,
+    content: string,
+  ): Promise<boolean>;
 
   deleteThread(threadId: number): Promise<boolean>;
 

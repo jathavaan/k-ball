@@ -41,3 +41,10 @@ export const DeleteThreadType = new GraphQLObjectType({
     isDeleteSuccessful: { type: GraphQLBoolean },
   },
 });
+
+export const EditThreadType = new GraphQLObjectType({
+  name: "EditThread",
+  fields: {
+    isEditSuccessful: { type: GraphQLBoolean },
+  },
+});

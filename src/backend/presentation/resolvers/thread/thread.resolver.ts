@@ -7,11 +7,14 @@ import {
   CreateThreadCommandHandler,
   DeleteThreadCommand,
   DeleteThreadCommandHandler,
+  EditThreadCommandHandler,
 } from "../../../application/features/thread/command";
+import { EditThreadCommand } from "../../../application/features/thread/command/edit-thread-command/editThreadCommand";
 
 const getPlayerThreadsQueryHandler = new GetPlayerThreadsQueryHandler();
 const createThreadCommandHandler = new CreateThreadCommandHandler();
 const deleteThreadCommandHandler = new DeleteThreadCommandHandler();
+const editThreadCommandHandler = new EditThreadCommandHandler();
 export const threadResolver = {
   ThreadQuery: {
     playerThreads: async (_: any, args: { playerId: number }) => {
@@ -50,6 +53,21 @@ export const threadResolver = {
       );
 
       return { isDeleteSuccessful };
+    },
+    editThread: async (
+      _: any,
+      args: {
+        threadId: number;
+        title: string;
+        content: string;
+      },
+    ) => {
+      const { threadId, title, content } = args;
+      const isEditSuccessful = await editThreadCommandHandler.handle(
+        new EditThreadCommand(threadId, title, content),
+      );
+
+      return { isEditSuccessful };
     },
   },
 };

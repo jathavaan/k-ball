@@ -82,10 +82,15 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
     return true;
   }
 
-  async updateThread(threadId: number, content: string): Promise<boolean> {
+  async updateThread(
+    threadId: number,
+    title: string,
+    content: string,
+  ): Promise<boolean> {
     const thread = await this.getThread(threadId);
     if (!thread) return false;
 
+    thread.title = title;
     thread.content = content;
     await this.dbContext.save(thread);
     return true;
