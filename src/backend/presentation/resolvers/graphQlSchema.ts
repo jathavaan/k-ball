@@ -27,7 +27,11 @@ import {
 import { playerResolver } from "./players/player.resolver";
 import { PlayerStatsType } from "./player-stats/playerStats.typeDefinitions";
 import { playerStatsResolver } from "./player-stats/playerStats.resolver";
-import { PostThreadType, ThreadType } from "./thread/thread.typeDefinition";
+import {
+  DeleteThreadType,
+  PostThreadType,
+  ThreadType,
+} from "./thread/thread.typeDefinition";
 import { threadResolver } from "./thread/thread.resolver";
 
 const QueryType = new GraphQLObjectType({
@@ -167,6 +171,13 @@ const MutationType = new GraphQLObjectType({
         content: { type: GraphQLString },
       },
       resolve: threadResolver.ThreadMutation.postThread,
+    },
+    deleteThread: {
+      type: DeleteThreadType,
+      args: {
+        threadId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadMutation.deleteThread,
     },
   },
 });

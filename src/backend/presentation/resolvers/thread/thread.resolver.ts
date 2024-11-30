@@ -5,10 +5,13 @@
 import {
   CreateThreadCommand,
   CreateThreadCommandHandler,
+  DeleteThreadCommand,
+  DeleteThreadCommandHandler,
 } from "../../../application/features/thread/command";
 
 const getPlayerThreadsQueryHandler = new GetPlayerThreadsQueryHandler();
-const createThreadCommand = new CreateThreadCommandHandler();
+const createThreadCommandHandler = new CreateThreadCommandHandler();
+const deleteThreadCommandHandler = new DeleteThreadCommandHandler();
 export const threadResolver = {
   ThreadQuery: {
     playerThreads: async (_: any, args: { playerId: number }) => {
@@ -29,11 +32,24 @@ export const threadResolver = {
       },
     ) => {
       const { userId, playerId, title, content } = args;
-      const isPostSuccessful = await createThreadCommand.handle(
+      const isPostSuccessful = await createThreadCommandHandler.handle(
         new CreateThreadCommand(userId, playerId, title, content),
       );
 
       return { isPostSuccessful };
+    },
+    deleteThread: async (
+      _: any,
+      args: {
+        threadId: number;
+      },
+    ) => {
+      const { threadId } = args;
+      const isDeleteSuccessful = await deleteThreadCommandHandler.handle(
+        new DeleteThreadCommand(threadId),
+      );
+
+      return { isDeleteSuccessful };
     },
   },
 };

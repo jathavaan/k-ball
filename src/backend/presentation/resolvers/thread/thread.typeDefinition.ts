@@ -34,3 +34,10 @@ export const PostThreadType = new GraphQLObjectType({
     isPostSuccessful: { type: GraphQLBoolean },
   },
 });
+
+export const DeleteThreadType = new GraphQLObjectType({
+  name: "DeleteThread",
+  fields: {
+    isDeleteSuccessful: { type: GraphQLBoolean },
+  },
+});
