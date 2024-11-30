@@ -20,12 +20,10 @@ export const StyledTable = styled(Table)(({ theme }) => ({
 }));
 
 export const StyledTableHead = styled(TableHead)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
+  backgroundColor: theme.palette.secondary.dark,
   color: theme.palette.primary.contrastText,
   "& .MuiTableCell-head": {
-    fontWeight: "bold",
     fontSize: "1rem",
-    padding: "12px",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
       fontSize: "0.85rem",

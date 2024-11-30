@@ -68,6 +68,7 @@ export const authenticateUser = async (
         email: props.email,
         password: props.password,
       },
+      fetchPolicy: "no-cache",
     });
 
     return response.data.auth.userId ? Number(response.data.auth.userId) : null;
