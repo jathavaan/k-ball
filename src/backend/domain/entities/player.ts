@@ -11,6 +11,7 @@ import { PlayerRating } from "./playerRating";
 import { PlayerSeason } from "./playerSeason";
 import { Position } from "./position";
 import { Country } from "./country";
+import { Thread } from "./thread";
 
 @Entity()
 export class Player {
@@ -56,4 +57,6 @@ export class Player {
     nullable: true,
   })
   position?: Position;
+  @OneToMany(() => Thread, (thread) => thread.player)
+  threads!: Thread[];
 }

@@ -1,5 +1,7 @@
-﻿import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+﻿import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PlayerRating } from "./playerRating";
+import { Thread } from "./thread";
+import { ThreadComment } from "./threadComment";
 
 @Entity()
 export class User {
@@ -16,4 +18,8 @@ export class User {
 
   @OneToMany(() => PlayerRating, (playerReview) => playerReview.user)
   playerReviews!: PlayerRating[];
+  @OneToMany(() => Thread, (thread) => thread.user)
+  threads!: Thread[];
+  @OneToMany(() => ThreadComment, (threadComment) => threadComment.user)
+  threadComments!: ThreadComment[];
 }

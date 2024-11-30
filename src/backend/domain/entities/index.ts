@@ -10,3 +10,5 @@ export * from "./playerSeason";
 export * from "./playerStatistics";
 export * from "./position";
 export * from "./playerImportState";
+export * from "./thread";
+export * from "./threadComment";
