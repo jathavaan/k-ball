@@ -17,6 +17,7 @@ import {
 } from "@features/player-profile-info/playerProfileInfo.style.ts";
 import Grid from "@mui/material/Grid2";
 import { PlayerRating } from "@features/player-rating";
+import { PlayerPosition } from "@features/player-position/PlayerPosition.tsx";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();
@@ -32,7 +33,13 @@ export const PlayerProfile = () => {
   const playerStats = playerStatsTable || [];
   const navigate = useNavigate();
   return (
-    <Grid container spacing={2}>
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        display: "flex",
+      }}
+    >
       {isLoading || isStatsLoading ? (
         <Grid size={{ xs: 12 }}>
           <LinearProgressBar />
@@ -72,8 +79,20 @@ export const PlayerProfile = () => {
               />
             </StyledBreadcrumbs>
           </Grid>
-          <Grid size={{ xs: 12, md: 4 }}>
-            {playerProfileInfo && <PlayerProfileInfo {...playerProfileInfo} />}
+          <Grid container size={{ xs: 12, md: 4 }} spacing={2}>
+            <Grid size={{ xs: 12 }}>
+              {playerProfileInfo && (
+                <PlayerProfileInfo {...playerProfileInfo} />
+              )}
+            </Grid>
+            <Grid size={{ xs: 12 }}>
+              {playerProfileInfo && (
+                <PlayerPosition
+                  position={playerProfileInfo.position}
+                  club={playerProfileInfo.currentClub}
+                />
+              )}
+            </Grid>
           </Grid>
           <Grid size={{ xs: 12, md: 8 }} container spacing={2}>
             <Grid size={{ xs: 12 }}>
