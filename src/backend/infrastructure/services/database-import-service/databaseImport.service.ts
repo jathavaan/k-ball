@@ -17,15 +17,15 @@ import {
 export class DatabaseImportService implements DatabaseImportServiceBase {
   dbContext = KBallDbContext.manager;
   apiFootballService = container.get<FootballApiServiceBase>(
-    "FootballApiServiceBase",
+    "FootballApiServiceBase"
   );
 
   clubRepositoryService = container.get<ClubRepositoryServiceBase>(
-    "ClubRepositoryServiceBase",
+    "ClubRepositoryServiceBase"
   );
 
   playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase",
+    "PlayerRepositoryServiceBase"
   );
 
   async populateDatabase(): Promise<boolean> {
@@ -56,7 +56,7 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
 
         if (!playerIsAddedSuccessfully) {
           console.error(
-            `Failed to add the following player ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID: ${playerResponse.player.id})`,
+            `Failed to add the following player ${playerResponse.player.firstname} ${playerResponse.player.lastname} (ID: ${playerResponse.player.id})`
           );
           playerImportFailed = true;
         }
@@ -94,6 +94,7 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
     for (const season of config.SEASONS_TO_IMPORT) {
       const playersResponse = await this.apiFootballService.getPlayers(season);
       players.push(...playersResponse.response);
+      console.log("playersResponse", playersResponse);
     }
 
     return players;
