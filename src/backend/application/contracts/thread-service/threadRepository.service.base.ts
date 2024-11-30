@@ -8,6 +8,7 @@ export interface ThreadRepositoryServiceBase {
   insertThread(
     userId: number,
     playerId: number,
+    title: string,
     content: string,
   ): Promise<boolean>;
 

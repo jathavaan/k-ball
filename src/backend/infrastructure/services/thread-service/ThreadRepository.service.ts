@@ -28,6 +28,23 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
 
   async getPlayerThreads(playerId: number): Promise<Thread[]> {
     return await this.dbContext.find(Thread, {
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        timestamp: true,
+        user: {
+          email: true,
+        },
+        threadComments: {
+          id: true,
+          user: {
+            email: true,
+          },
+          content: true,
+          timestamp: true,
+        },
+      },
       where: {
         player: {
           id: playerId,
@@ -35,6 +52,7 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
       },
       relations: {
         player: true,
+        user: true,
         threadComments: {
           user: true,
         },
@@ -45,6 +63,7 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
   async insertThread(
     userId: number,
     playerId: number,
+    title: string,
     content: string,
   ): Promise<boolean> {
     const user = await this.userRepositoryService.getUserById(userId);
@@ -56,6 +75,7 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
     const thread = new Thread();
     thread.user = user;
     thread.player = player;
+    thread.title = title;
     thread.content = content;
 
     await this.dbContext.save(thread);

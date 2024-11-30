@@ -1,4 +1,5 @@
 ﻿import {
+  GraphQLBoolean,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -24,5 +25,12 @@ export const ThreadType = new GraphQLObjectType({
     content: { type: GraphQLString },
     timestamp: { type: GraphQLDateTime },
     comments: { type: new GraphQLList(ThreadCommentType) },
+  },
+});
+
+export const PostThreadType = new GraphQLObjectType({
+  name: "PostThread",
+  fields: {
+    isPostSuccessful: { type: GraphQLBoolean },
   },
 });

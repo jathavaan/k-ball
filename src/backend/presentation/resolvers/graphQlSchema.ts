@@ -1,5 +1,4 @@
 ﻿import {
-  GraphQLBoolean,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -28,7 +27,7 @@ import {
 import { playerResolver } from "./players/player.resolver";
 import { PlayerStatsType } from "./player-stats/playerStats.typeDefinitions";
 import { playerStatsResolver } from "./player-stats/playerStats.resolver";
-import { ThreadType } from "./thread/thread.typeDefinition";
+import { PostThreadType, ThreadType } from "./thread/thread.typeDefinition";
 import { threadResolver } from "./thread/thread.resolver";
 
 const QueryType = new GraphQLObjectType({
@@ -158,6 +157,16 @@ const MutationType = new GraphQLObjectType({
         userId: { type: GraphQLInt },
       },
       resolve: playerResolver.PlayerMutation.deletePlayerRating,
+    },
+    postThread: {
+      type: PostThreadType,
+      args: {
+        userId: { type: GraphQLInt },
+        playerId: { type: GraphQLInt },
+        title: { type: GraphQLString },
+        content: { type: GraphQLString },
+      },
+      resolve: threadResolver.ThreadMutation.postThread,
     },
   },
 });
