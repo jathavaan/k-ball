@@ -14,6 +14,8 @@ import { ThreadComment } from "./threadComment";
 export class Thread {
   @PrimaryGeneratedColumn()
   id!: number;
+  @Column({ type: "varchar" })
+  title!: string;
   @Column({ type: "text" })
   content!: string;
   @CreateDateColumn()

@@ -35,7 +35,9 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
       },
       relations: {
         player: true,
-        threadComments: true,
+        threadComments: {
+          user: true,
+        },
       },
     });
   }

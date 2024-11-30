@@ -28,6 +28,8 @@ import {
 import { playerResolver } from "./players/player.resolver";
 import { PlayerStatsType } from "./player-stats/playerStats.typeDefinitions";
 import { playerStatsResolver } from "./player-stats/playerStats.resolver";
+import { ThreadType } from "./thread/thread.typeDefinition";
+import { threadResolver } from "./thread/thread.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -113,6 +115,13 @@ const QueryType = new GraphQLObjectType({
         userId: { type: GraphQLInt },
       },
       resolve: userResolver.UserQuery.detailedPlayerRating,
+    },
+    playerThreads: {
+      type: new GraphQLList(ThreadType),
+      args: {
+        playerId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadQuery.playerThreads,
     },
   },
 });
