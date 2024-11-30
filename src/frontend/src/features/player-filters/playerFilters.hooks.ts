@@ -151,6 +151,7 @@ export const useClearFilters = () => {
       dispatch(setTempClubFilters([-1]));
       dispatch(setTempCountryFilters([-1]));
       dispatch(setTempPositionFilters([-1]));
+      dispatch(applyFilters());
     }
   };
   return { canClearFilters, clearFilters };
