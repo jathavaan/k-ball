@@ -5,16 +5,20 @@
 import {
   CreateThreadCommand,
   CreateThreadCommandHandler,
+  CreateThreadCommentCommand,
+  CreateThreadCommentCommandHandler,
   DeleteThreadCommand,
   DeleteThreadCommandHandler,
+  EditThreadCommand,
   EditThreadCommandHandler,
 } from "../../../application/features/thread/command";
-import { EditThreadCommand } from "../../../application/features/thread/command/edit-thread-command/editThreadCommand";
 
 const getPlayerThreadsQueryHandler = new GetPlayerThreadsQueryHandler();
 const createThreadCommandHandler = new CreateThreadCommandHandler();
 const deleteThreadCommandHandler = new DeleteThreadCommandHandler();
 const editThreadCommandHandler = new EditThreadCommandHandler();
+const createThreadCommentCommandHandler =
+  new CreateThreadCommentCommandHandler();
 export const threadResolver = {
   ThreadQuery: {
     playerThreads: async (_: any, args: { playerId: number }) => {
@@ -68,6 +72,21 @@ export const threadResolver = {
       );
 
       return { isEditSuccessful };
+    },
+    postThreadComment: async (
+      _: any,
+      args: {
+        userId: number;
+        threadId: number;
+        content: string;
+      },
+    ) => {
+      const { userId, threadId, content } = args;
+      const isPostSuccessful = await createThreadCommentCommandHandler.handle(
+        new CreateThreadCommentCommand(threadId, userId, content),
+      );
+
+      return { isPostSuccessful };
     },
   },
 };
