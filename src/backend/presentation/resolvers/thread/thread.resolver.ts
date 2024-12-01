@@ -9,6 +9,8 @@ import {
   CreateThreadCommentCommandHandler,
   DeleteThreadCommand,
   DeleteThreadCommandHandler,
+  DeleteThreadCommentCommand,
+  DeleteThreadCommentCommandHandler,
   EditThreadCommand,
   EditThreadCommandHandler,
   EditThreadCommentCommand,
@@ -22,6 +24,9 @@ const editThreadCommandHandler = new EditThreadCommandHandler();
 const createThreadCommentCommandHandler =
   new CreateThreadCommentCommandHandler();
 const editThreadCommentCommandHandler = new EditThreadCommentCommandHandler();
+const deleteThreadCommentCommandHandler =
+  new DeleteThreadCommentCommandHandler();
+
 export const threadResolver = {
   ThreadQuery: {
     playerThreads: async (_: any, args: { playerId: number }) => {
@@ -104,6 +109,19 @@ export const threadResolver = {
       );
 
       return { isEditSuccessful };
+    },
+    deleteThreadComment: async (
+      _: any,
+      args: {
+        threadCommentId: number;
+      },
+    ) => {
+      const { threadCommentId } = args;
+      const isDeleteSuccessful = await deleteThreadCommentCommandHandler.handle(
+        new DeleteThreadCommentCommand(threadCommentId),
+      );
+
+      return { isDeleteSuccessful };
     },
   },
 };

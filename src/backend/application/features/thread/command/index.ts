@@ -8,3 +8,5 @@ export * from "./create-thread-comment-command/createThreadCommentCommand";
 export * from "./create-thread-comment-command/createThreadCommentCommandHandler";
 export * from "./edit-thread-comment-command/editThreadCommentCommand";
 export * from "./edit-thread-comment-command/editThreadCommentCommandHandler";
+export * from "./delete-thread-comment-command/deleteThreadCommentCommand";
+export * from "./delete-thread-comment-command/deleteThreadCommentCommandHandler";
