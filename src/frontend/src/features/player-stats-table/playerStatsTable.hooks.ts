@@ -12,8 +12,14 @@ export const usePlayerStatsTableData = (playerId: number) => {
     isError,
   } = usePlayerStatsTable(playerId);
 
+  console.log("playerStatsTable Hook", playerStatsTable);
+
   useEffect(() => {
     if (playerStatsTable) {
+      console.log(
+        "Setting playerStatsTable in Redux state to:",
+        playerStatsTable,
+      );
       dispatch(setPlayerStatsTable(playerStatsTable));
     }
   }, [dispatch, playerStatsTable]);

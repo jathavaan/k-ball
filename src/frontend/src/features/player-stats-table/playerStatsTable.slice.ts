@@ -12,11 +12,9 @@ const playerStatsTableSlice = createSlice({
   name: "playerStatsTables",
   initialState,
   reducers: {
-    setPlayerStatsTable: (
-      state,
-      action: PayloadAction<{ playerStatsTable: PlayerStatsProps[] }>,
-    ) => {
-      state.playerStatsTable = action.payload.playerStatsTable;
+    setPlayerStatsTable: (state, action: PayloadAction<PlayerStatsProps[]>) => {
+      console.log("Updating Redux state with:", action.payload);
+      state.playerStatsTable = action.payload;
     },
   },
 });

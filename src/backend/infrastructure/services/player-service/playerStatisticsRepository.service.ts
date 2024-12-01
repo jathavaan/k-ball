@@ -18,10 +18,26 @@ export class PlayerStatisticsRepositoryService
   ): Promise<PlayerStatistics[] | null> {
     const player = await this.dbContext.findOne(Player, {
       where: { id: playerId },
-      relations: { playerSeasons: { playerStats: true } },
+      relations: {
+        playerSeasons: {
+          playerStats: { playerSeason: { season: true } },
+          season: true,
+        },
+      },
     });
 
-    console.log("player", player);
+    console.log(
+      "playerseasonids",
+      player?.playerSeasons?.map((season) => season.id)
+    );
+    console.log(
+      "years",
+      player?.playerSeasons?.map((season) => season.season.year)
+    );
+    console.log(
+      "playerstats",
+      player?.playerSeasons?.flatMap((season) => season.playerStats)
+    );
     return (
       player?.playerSeasons?.flatMap((season) => season.playerStats) || null
     );
