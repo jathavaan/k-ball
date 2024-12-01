@@ -11,6 +11,8 @@ import {
   DeleteThreadCommandHandler,
   EditThreadCommand,
   EditThreadCommandHandler,
+  EditThreadCommentCommand,
+  EditThreadCommentCommandHandler,
 } from "../../../application/features/thread/command";
 
 const getPlayerThreadsQueryHandler = new GetPlayerThreadsQueryHandler();
@@ -19,6 +21,7 @@ const deleteThreadCommandHandler = new DeleteThreadCommandHandler();
 const editThreadCommandHandler = new EditThreadCommandHandler();
 const createThreadCommentCommandHandler =
   new CreateThreadCommentCommandHandler();
+const editThreadCommentCommandHandler = new EditThreadCommentCommandHandler();
 export const threadResolver = {
   ThreadQuery: {
     playerThreads: async (_: any, args: { playerId: number }) => {
@@ -87,6 +90,20 @@ export const threadResolver = {
       );
 
       return { isPostSuccessful };
+    },
+    editThreadComment: async (
+      _: any,
+      args: {
+        threadCommentId: number;
+        content: string;
+      },
+    ) => {
+      const { threadCommentId, content } = args;
+      const isEditSuccessful = await editThreadCommentCommandHandler.handle(
+        new EditThreadCommentCommand(threadCommentId, content),
+      );
+
+      return { isEditSuccessful };
     },
   },
 };

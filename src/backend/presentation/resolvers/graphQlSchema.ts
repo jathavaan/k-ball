@@ -198,6 +198,14 @@ const MutationType = new GraphQLObjectType({
       },
       resolve: threadResolver.ThreadMutation.postThreadComment,
     },
+    editThreadComment: {
+      type: EditThreadType,
+      args: {
+        threadCommentId: { type: GraphQLInt },
+        content: { type: GraphQLString },
+      },
+      resolve: threadResolver.ThreadMutation.editThreadComment,
+    },
   },
 });
 

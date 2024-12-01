@@ -6,3 +6,5 @@ export * from "./edit-thread-command/editThreadCommand";
 export * from "./edit-thread-command/editThreadCommandHandler";
 export * from "./create-thread-comment-command/createThreadCommentCommand";
 export * from "./create-thread-comment-command/createThreadCommentCommandHandler";
+export * from "./edit-thread-comment-command/editThreadCommentCommand";
+export * from "./edit-thread-comment-command/editThreadCommentCommandHandler";
