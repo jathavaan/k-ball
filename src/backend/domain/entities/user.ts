@@ -16,10 +16,16 @@ export class User {
   @Column({ type: "text" })
   password!: string;
 
-  @OneToMany(() => PlayerRating, (playerReview) => playerReview.user)
+  @OneToMany(() => PlayerRating, (playerReview) => playerReview.user, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   playerReviews!: PlayerRating[];
   @OneToMany(() => Thread, (thread) => thread.user)
   threads!: Thread[];
-  @OneToMany(() => ThreadComment, (threadComment) => threadComment.user)
+  @OneToMany(() => ThreadComment, (threadComment) => threadComment.user, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   threadComments!: ThreadComment[];
 }

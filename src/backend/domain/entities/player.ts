@@ -57,6 +57,9 @@ export class Player {
     nullable: true,
   })
   position?: Position;
-  @OneToMany(() => Thread, (thread) => thread.player)
+  @OneToMany(() => Thread, (thread) => thread.player, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   threads!: Thread[];
 }

@@ -21,7 +21,10 @@ export class Thread {
   @CreateDateColumn()
   timestamp!: Date;
 
-  @OneToMany(() => ThreadComment, (threadComment) => threadComment.thread)
+  @OneToMany(() => ThreadComment, (threadComment) => threadComment.thread, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   threadComments!: ThreadComment[];
   @ManyToOne(() => User, (user) => user.threads, {
     onDelete: "CASCADE",
