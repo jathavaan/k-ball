@@ -25,6 +25,7 @@ export const StyledTableHead = styled(TableHead)(({ theme }) => ({
   "& .MuiTableCell-head": {
     fontSize: "1rem",
     textAlign: "center",
+    fontWeight: 300,
     [theme.breakpoints.down("sm")]: {
       fontSize: "0.85rem",
       padding: "8px",
