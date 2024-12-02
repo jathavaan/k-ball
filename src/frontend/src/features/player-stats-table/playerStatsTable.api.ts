@@ -27,7 +27,6 @@ export const getPlayerStatsTable = async ({
       query: GET_PLAYER_STATS,
       variables: { playerId },
     });
-    console.log("GraphQL response:", response.data);
 
     if (!response.data.playerStats) {
       throw new Error(

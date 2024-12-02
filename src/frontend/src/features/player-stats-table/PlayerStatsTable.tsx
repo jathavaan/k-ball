@@ -13,7 +13,6 @@ import {
 
 export const PlayerStatsTable = (props: PlayerStatsTableProps) => {
   const { playerStatsTable } = props;
-  console.log("playerStatsTable", playerStatsTable);
 
   return (
     <TableContainer>
