@@ -39,9 +39,9 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
             </p>
             <p
               class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
-              text="3 star rating by fellow K-Ballers"
+              text="Rating: 3/5"
             >
-              3 star rating by fellow K-Ballers
+              Rating: 3/5
             </p>
           </div>
           <div
@@ -108,9 +108,9 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
               </svg>
               <p
                 class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
-                text="Jan 1, 2024 | 33 years"
+                text="2024 | 33 years"
               >
-                Jan 1, 2024 | 33 years
+                2024 | 33 years
               </p>
             </section>
           </div>

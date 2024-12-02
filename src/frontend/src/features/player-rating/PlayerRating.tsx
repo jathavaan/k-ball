@@ -91,7 +91,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
               fontSize: "1rem",
               fontWeight: 200,
             })}
-            text="See what other K-Ballers think"
+            text="Overall Rating"
           />
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
@@ -180,9 +180,9 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
             sx={(theme) => ({
               color: theme.palette.primary.contrastText,
               fontSize: "1rem",
-              fontWeight: 200,
+              fontWeight: 300,
             })}
-            text="Share your ratings with the K-Ball community"
+            text="Your Rating"
           />
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
