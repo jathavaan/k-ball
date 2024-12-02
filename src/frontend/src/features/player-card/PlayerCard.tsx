@@ -7,7 +7,6 @@ import { PlayerCardProps } from "@features/player-card/playerCard.types.ts";
 import PublicIcon from "@mui/icons-material/Public";
 import CakeIcon from "@mui/icons-material/Cake";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-import StarIcon from "@mui/icons-material/Star";
 
 export const PlayerCard = (props: PlayerCardProps) => {
   return (
@@ -165,8 +164,6 @@ export const PlayerCard = (props: PlayerCardProps) => {
                   />
                 }
                 text={`${Intl.DateTimeFormat("en-US", {
-                  //month: "short",
-                  //day: "numeric",
                   year: "numeric",
                 }).format(new Date(props.birthDate))} | ${props.age} years`}
               />
