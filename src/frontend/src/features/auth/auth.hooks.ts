@@ -108,7 +108,13 @@ export const useRegister = () => {
   const email = useSelector(registerEmailSelector);
   const password = useSelector(registerPasswordSelector);
 
-  const { mutate, data, isPending, error } = useRegisterUser();
+  const {
+    mutate: registerUser,
+    data: registerData,
+    isPending,
+    error,
+  } = useRegisterUser();
+  const { mutate: authenticateUser } = useAuthenticateUser();
 
   const isRegisterButtonDisabled =
     firstName.error.isError ||
@@ -121,18 +127,60 @@ export const useRegister = () => {
     !password.value ||
     isPending;
 
-  const onRegisterClick = () => {
+  /* const onRegisterClick = () => {
     mutate({
       firstName: firstName.value,
       lastName: lastName.value,
       email: email.value,
       password: password.value,
     });
+  }; */
+
+  const onRegisterClick = (
+    userData: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+    },
+    onSuccessLogin: () => void,
+  ) => {
+    registerUser(userData, {
+      onSuccess: () => {
+        console.log("Registration successful. Logging in...");
+        authenticateUser(
+          { email: userData.email, password: userData.password },
+          {
+            onSuccess: (authData) => {
+              if (authData) {
+                console.log("Login successful, saving token...");
+                localStorage.setItem("token", String(authData));
+                onSuccessLogin(); // Kjør callback ved suksess
+              }
+            },
+            onError: (authError) => {
+              console.error("Auto-login failed:", authError);
+            },
+          },
+        );
+      },
+      onError: (error) => {
+        console.error("Registration failed:", error);
+      },
+    });
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" && !isRegisterButtonDisabled) {
-      onRegisterClick();
+      onRegisterClick(
+        {
+          firstName: firstName.value,
+          lastName: lastName.value,
+          email: email.value,
+          password: password.value,
+        },
+        () => {},
+      );
     }
   };
 
@@ -140,7 +188,7 @@ export const useRegister = () => {
     onRegisterClick,
     handleKeyDown,
     isRegisterButtonDisabled,
-    data,
+    registerData,
     error,
     isPending,
   };

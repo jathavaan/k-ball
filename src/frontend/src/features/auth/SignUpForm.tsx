@@ -28,7 +28,7 @@ export const SignUpForm = () => {
     onRegisterClick,
     handleKeyDown,
     isRegisterButtonDisabled,
-    data,
+    registerData,
     error,
     isPending,
   } = useRegister();
@@ -38,6 +38,18 @@ export const SignUpForm = () => {
     handleEmailChange,
     handleLastNameChange,
   } = useRegisterForm();
+
+  const handleRegisterClick = () => {
+    onRegisterClick(
+      {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+      },
+      () => navigate("/project2/players"),
+    );
+  };
 
   return (
     <StyledContainer maxWidth="sm" onKeyDown={(e) => handleKeyDown(e)}>
@@ -147,7 +159,7 @@ export const SignUpForm = () => {
               disabled={isRegisterButtonDisabled}
               isLoading={isPending}
               fullWidth
-              onClick={() => onRegisterClick()}
+              onClick={handleRegisterClick}
             />
           </Grid>
           {error ? (
@@ -169,7 +181,7 @@ export const SignUpForm = () => {
               />
             </Grid>
           ) : null}
-          {typeof data === "boolean" && !data ? (
+          {typeof registerData === "boolean" && !registerData ? (
             <Grid
               size={{ xs: 12 }}
               sx={{
@@ -188,7 +200,7 @@ export const SignUpForm = () => {
                 }}
               />
             </Grid>
-          ) : typeof data === "boolean" && data ? (
+          ) : typeof registerData === "boolean" && registerData ? (
             <Grid
               size={{ xs: 12 }}
               sx={{
