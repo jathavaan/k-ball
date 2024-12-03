@@ -13,6 +13,7 @@ export const ThreadCommentType = new GraphQLObjectType({
     id: { type: GraphQLInt },
     user: { type: GraphQLString },
     content: { type: GraphQLString },
+    timestamp: { type: GraphQLDateTime },
   },
 });
 
