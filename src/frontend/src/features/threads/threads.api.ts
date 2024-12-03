@@ -9,16 +9,12 @@ export const getThreads = async (
     query PlayerThreads($playerId: Int!) {
       playerThreads(playerId: $playerId) {
         id
-        user
+        userId
+        email
         title
         content
         timestamp
-        comments {
-          id
-          user
-          content
-          timestamp
-        }
+        commentsCount
       }
     }
   `;

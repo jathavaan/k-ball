@@ -31,6 +31,7 @@ import {
   DeleteThreadType,
   EditThreadType,
   PostThreadType,
+  ThreadCommentType,
   ThreadType,
 } from "./thread/thread.typeDefinition";
 import { threadResolver } from "./thread/thread.resolver";
@@ -126,6 +127,13 @@ const QueryType = new GraphQLObjectType({
         playerId: { type: GraphQLInt },
       },
       resolve: threadResolver.ThreadQuery.playerThreads,
+    },
+    playerThreadComments: {
+      type: new GraphQLList(ThreadCommentType),
+      args: {
+        threadId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadQuery.playerThreadsComments,
     },
   },
 });

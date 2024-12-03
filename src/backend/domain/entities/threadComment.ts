@@ -19,6 +19,9 @@ export class ThreadComment {
 
   @ManyToOne(() => User, (user) => user.threadComments)
   user!: User;
-  @ManyToOne(() => Thread, (thread) => thread.threadComments)
+  @ManyToOne(() => Thread, (thread) => thread.threadComments, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   thread!: Thread;
 }

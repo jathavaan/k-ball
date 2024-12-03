@@ -7,14 +7,19 @@ export const StyledBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
   borderRadius: "0.4rem",
   [theme.breakpoints.up("md")]: {
-    maxHeight: "17.5rem", // Applies on medium and larger screens
+    maxHeight: "17.5rem",
   },
   [theme.breakpoints.down("md")]: {
-    maxHeight: "16.5rem", // Applies on small and smaller screens
+    maxHeight: "16.5rem",
   },
 }));
 
-export const StyledImage = styled("img")(() => ({
-  width: "60%",
+export const StyledImage = styled("img")(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    width: "60%",
+  },
+  [theme.breakpoints.down("md")]: {
+    width: "30%",
+  },
   transform: "rotate(90deg) translate(-20%, 0%)",
 }));

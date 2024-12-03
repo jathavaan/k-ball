@@ -94,5 +94,7 @@ export const selectThreadContent = (state: RootState) =>
   state.threadFormReducer.content.value;
 export const selectThreadContentError = (state: RootState) =>
   state.threadFormReducer.content.error;
+export const selectThreadCommentResponse = (state: RootState) =>
+  state.threadReducer.threadCommentsResponse;
 
 export const threadsReducer = threadsSlice.reducer;

@@ -16,8 +16,11 @@ import {
   EditThreadCommentCommand,
   EditThreadCommentCommandHandler,
 } from "../../../application/features/thread/command";
+import { GetThreadCommentsQueryHandler } from "../../../application/features/thread/query/get-thread-comments-query/getThreadCommentsQueryHandler";
+import { GetThreadCommentsQuery } from "../../../application/features/thread/query/get-thread-comments-query/getThreadCommentsQuery";
 
 const getPlayerThreadsQueryHandler = new GetPlayerThreadsQueryHandler();
+const getThreadCommentsQueryHandler = new GetThreadCommentsQueryHandler();
 const createThreadCommandHandler = new CreateThreadCommandHandler();
 const deleteThreadCommandHandler = new DeleteThreadCommandHandler();
 const editThreadCommandHandler = new EditThreadCommandHandler();
@@ -33,6 +36,12 @@ export const threadResolver = {
       const { playerId } = args;
       return await getPlayerThreadsQueryHandler.handle(
         new GetPlayerThreadsQuery(playerId),
+      );
+    },
+    playerThreadsComments: async (_: any, args: { threadId: number }) => {
+      const { threadId } = args;
+      return await getThreadCommentsQueryHandler.handle(
+        new GetThreadCommentsQuery(threadId),
       );
     },
   },

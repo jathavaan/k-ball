@@ -21,7 +21,10 @@ export class User {
     onUpdate: "CASCADE",
   })
   playerReviews!: PlayerRating[];
-  @OneToMany(() => Thread, (thread) => thread.user)
+  @OneToMany(() => Thread, (thread) => thread.user, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   threads!: Thread[];
   @OneToMany(() => ThreadComment, (threadComment) => threadComment.user, {
     onDelete: "CASCADE",

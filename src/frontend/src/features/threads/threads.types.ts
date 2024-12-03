@@ -4,18 +4,12 @@ export interface ThreadsProps {
 
 export interface ThreadsResponse {
   id: number;
-  user: string;
+  userId: number;
+  email: string;
   timestamp: string;
   title: string;
   content: string;
-  comments: ThreadCommentResponse[];
-}
-
-export interface ThreadCommentResponse {
-  id: number;
-  user: string;
-  timestamp: string;
-  content: string;
+  commentsCount: number;
 }
 
 export interface ThreadsState {

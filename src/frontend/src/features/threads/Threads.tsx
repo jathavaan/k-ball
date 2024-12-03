@@ -165,16 +165,13 @@ export const Threads = ({ playerId }: ThreadsProps) => {
           threads?.map((thread) => (
             <Thread
               threadId={thread.id}
-              timestamp={thread.timestamp}
-              email={thread.user}
+              userId={thread.userId}
+              playerId={playerId}
+              email={thread.email}
               title={thread.title}
               content={thread.content}
-              threadComments={thread.comments.map((comment) => ({
-                commentId: comment.id,
-                timestamp: comment.timestamp,
-                email: comment.user,
-                content: comment.content,
-              }))}
+              commentsCount={thread.commentsCount}
+              timestamp={thread.timestamp}
             />
           ))
         )}

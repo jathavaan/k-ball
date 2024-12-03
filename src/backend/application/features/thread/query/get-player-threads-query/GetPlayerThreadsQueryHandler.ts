@@ -25,31 +25,17 @@ export class GetPlayerThreadsQueryHandler
         (a, b) =>
           new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
       )
-      .map((thread) => this.mapThreadToThreadVm(thread));
-  }
-
-  private mapThreadToThreadVm(thread: Thread): ThreadVm {
-    const comments: ThreadCommentVm[] = thread.threadComments
-      .sort(
-        (a, b) =>
-          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
-      )
       .map(
-        (threadComment) =>
-          new ThreadCommentVm(
-            threadComment.id,
-            threadComment.user.email,
-            threadComment.content,
-            threadComment.timestamp,
+        (thread) =>
+          new ThreadVm(
+            thread.id,
+            thread.user.id,
+            thread.user.email,
+            thread.title,
+            thread.content,
+            thread.threadComments.length,
+            thread.timestamp,
           ),
       );
-    return new ThreadVm(
-      thread.id,
-      thread.user.email,
-      thread.title,
-      thread.content,
-      thread.timestamp,
-      comments,
-    );
   }
 }

@@ -11,8 +11,10 @@ export const ThreadCommentType = new GraphQLObjectType({
   name: "ThreadComment",
   fields: {
     id: { type: GraphQLInt },
-    user: { type: GraphQLString },
+    userId: { type: GraphQLInt },
+    email: { type: GraphQLString },
     content: { type: GraphQLString },
+    commentsCount: { type: GraphQLInt },
     timestamp: { type: GraphQLDateTime },
   },
 });
@@ -21,11 +23,12 @@ export const ThreadType = new GraphQLObjectType({
   name: "Thread",
   fields: {
     id: { type: GraphQLInt },
-    user: { type: GraphQLString },
+    userId: { type: GraphQLInt },
+    email: { type: GraphQLString },
     title: { type: GraphQLString },
     content: { type: GraphQLString },
+    commentsCount: { type: GraphQLInt },
     timestamp: { type: GraphQLDateTime },
-    comments: { type: new GraphQLList(ThreadCommentType) },
   },
 });
 

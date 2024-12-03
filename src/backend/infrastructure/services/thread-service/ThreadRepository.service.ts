@@ -23,6 +23,9 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
       where: {
         id: threadId,
       },
+      relations: {
+        threadComments: true,
+      },
     });
   }
 
@@ -34,6 +37,7 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
         content: true,
         timestamp: true,
         user: {
+          id: true,
           email: true,
         },
         threadComments: {
@@ -108,6 +112,29 @@ export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
   ): Promise<ThreadComment | null> {
     return await this.dbContext.findOne(ThreadComment, {
       where: { id: threadCommentId },
+    });
+  }
+
+  getThreadComments(threadId: number) {
+    return this.dbContext.find(ThreadComment, {
+      select: {
+        id: true,
+        content: true,
+        timestamp: true,
+        user: {
+          id: true,
+          email: true,
+        },
+      },
+      where: {
+        thread: {
+          id: threadId,
+        },
+      },
+      relations: {
+        user: true,
+        thread: true,
+      },
     });
   }
 

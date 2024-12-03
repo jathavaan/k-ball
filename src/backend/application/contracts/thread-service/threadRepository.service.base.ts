@@ -22,6 +22,8 @@ export interface ThreadRepositoryServiceBase {
 
   getThreadComment(threadCommentId: number): Promise<ThreadComment | null>;
 
+  getThreadComments(threadId: number): Promise<ThreadComment[]>;
+
   insertThreadComment(
     userId: number,
     threadId: number,
