@@ -127,15 +127,6 @@ export const useRegister = () => {
     !password.value ||
     isPending;
 
-  /* const onRegisterClick = () => {
-    mutate({
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
-      password: password.value,
-    });
-  }; */
-
   const onRegisterClick = (
     userData: {
       firstName: string;
@@ -146,23 +137,27 @@ export const useRegister = () => {
     onSuccessLogin: () => void,
   ) => {
     registerUser(userData, {
-      onSuccess: () => {
-        console.log("Registration successful. Logging in...");
-        authenticateUser(
-          { email: userData.email, password: userData.password },
-          {
-            onSuccess: (authData) => {
-              if (authData) {
-                console.log("Login successful, saving token...");
-                localStorage.setItem("token", String(authData));
-                onSuccessLogin(); // Kjør callback ved suksess
-              }
+      onSuccess: (isNewUser) => {
+        if (typeof isNewUser === "boolean" && isNewUser) {
+          console.log("Registration successful. Logging in...");
+          authenticateUser(
+            { email: userData.email, password: userData.password },
+            {
+              onSuccess: (authData) => {
+                if (authData) {
+                  console.log("Login successful, saving token...");
+                  localStorage.setItem("token", String(authData));
+                  onSuccessLogin();
+                }
+              },
+              onError: (authError) => {
+                console.error("Auto-login failed:", authError);
+              },
             },
-            onError: (authError) => {
-              console.error("Auto-login failed:", authError);
-            },
-          },
-        );
+          );
+        } else {
+          console.log("Registration failed: Email already exists.");
+        }
       },
       onError: (error) => {
         console.error("Registration failed:", error);
