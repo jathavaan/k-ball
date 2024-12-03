@@ -148,13 +148,10 @@ export const useRegister = () => {
                   onSuccessLogin();
                 }
               },
-              onError: () => {},
             },
           );
-        } else {
         }
       },
-      onError: () => {},
     });
   };
 
