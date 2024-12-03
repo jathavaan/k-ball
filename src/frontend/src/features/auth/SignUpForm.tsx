@@ -5,7 +5,7 @@ import {
   StyledPaper,
   StyledTypography,
 } from "@features/auth/auth.style";
-import { Button, ErrorAlert, SuccessAlert, TextField } from "@features/ui";
+import { Button, ErrorAlert, TextField } from "@features/ui";
 import { useRegister, useRegisterForm } from "@features/auth/auth.hooks.ts";
 import Grid from "@mui/material/Grid2";
 import {
@@ -208,17 +208,7 @@ export const SignUpForm = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-            >
-              <SuccessAlert
-                message={`Successfully registered user`}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "100%",
-                }}
-              />
-            </Grid>
+            ></Grid>
           ) : null}
           <Grid
             size={{ xs: 12 }}
