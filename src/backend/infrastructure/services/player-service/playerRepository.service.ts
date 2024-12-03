@@ -147,44 +147,88 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     await this.dbContext.save(Player, player, { reload: true });
 
-    this.generatePlayerSeasons(player);
-
     return true;
   }
 
-  private async generatePlayerSeasons(player: Player): Promise<void> {
-    const SEASON_YEARS = [2024, 2023, 2022, 2021, 2020];
+  async generateAllPlayerSeasons(): Promise<boolean> {
+    const POSSIBLE_SEASONS = [2024, 2023, 2022, 2021, 2020, 2019, 2018];
 
-    for (const seasonYear of SEASON_YEARS) {
-      const season =
-        (await this.seasonRepositoryService.getSeason(seasonYear)) ||
-        (await this.seasonRepositoryService.insertSeason(seasonYear));
+    const dbPlayers = await this.dbContext.find(Player, {
+      relations: {
+        currentClub: true,
+      },
+    });
 
-      const existingPlayerSeason = await this.dbContext.findOne(PlayerSeason, {
-        where: {
-          player: { id: player.id },
-          club: { id: player.currentClub.id },
-          season: { id: season.id },
-        },
-      });
+    let allSuccessful = true;
 
-      if (existingPlayerSeason) {
-        console.log(
-          `PlayerSeason already exists for playerId ${player.id}, clubId ${player.currentClub.id}, seasonId ${season.id}`
+    for (const player of dbPlayers) {
+      const randomSeasonCount =
+        Math.floor(Math.random() * POSSIBLE_SEASONS.length) + 1;
+
+      const selectedSeasons = POSSIBLE_SEASONS.slice(0, randomSeasonCount);
+
+      const success = await this.generatePlayerSeasons(player, selectedSeasons);
+
+      if (!success) {
+        allSuccessful = false;
+      }
+    }
+
+    return allSuccessful;
+  }
+
+  private async generatePlayerSeasons(
+    player: Player,
+    seasonYears: number[]
+  ): Promise<boolean> {
+    try {
+      for (const seasonYear of seasonYears) {
+        const season =
+          (await this.seasonRepositoryService.getSeason(seasonYear)) ||
+          (await this.seasonRepositoryService.insertSeason(seasonYear));
+
+        const existingPlayerSeason = await this.dbContext.findOne(
+          PlayerSeason,
+          {
+            where: {
+              player: { id: player.id },
+              club: { id: player.currentClub.id },
+              season: { id: season.id },
+            },
+          }
         );
-        continue; 
+
+        if (existingPlayerSeason) {
+          console.log(
+            `PlayerSeason already exists for playerId ${player.id}, clubId ${player.currentClub.id}, seasonId ${season.id}`
+          );
+          continue;
+        }
+
+        const playerSeason = new PlayerSeason();
+        playerSeason.player = player;
+        playerSeason.club = player.currentClub;
+        playerSeason.season = season;
+
+        await this.dbContext.save(PlayerSeason, playerSeason);
+
+        try {
+          await this.playerStatisticsRepositoryService.generatePlayerStatistics(
+            playerSeason
+          );
+        } catch (statsError) {
+          console.error(
+            `Failed to generate statistics for playerSeasonId ${playerSeason.id}:`,
+            statsError
+          );
+          return false;
+        }
       }
 
-      const playerSeason = new PlayerSeason();
-      playerSeason.player = player;
-      playerSeason.club = player.currentClub;
-      playerSeason.season = season;
-
-      await this.dbContext.save(PlayerSeason, playerSeason);
-
-      await this.playerStatisticsRepositoryService.generatePlayerStatistics(
-        playerSeason
-      );
+      return true;
+    } catch (error) {
+      console.error("Failed to generate player seasons:", error);
+      return false;
     }
   }
 

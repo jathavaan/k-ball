@@ -58,25 +58,25 @@ export class PlayerStatisticsRepositoryService
           maxGoals = 0;
           maxAssists = 2;
           yellowCardProbability = 0.08;
-          redCardProbability = 0.05;
+          redCardProbability = 0.08;
           break;
         case "defender":
           maxGoals = 5;
           maxAssists = 5;
           yellowCardProbability = 0.2;
-          redCardProbability = 0.08;
+          redCardProbability = 0.12;
           break;
         case "midfielder":
           maxGoals = 14;
           maxAssists = 16;
           yellowCardProbability = 0.15;
-          redCardProbability = 0.06;
+          redCardProbability = 0.1;
           break;
         case "attacker":
           maxGoals = 25;
           maxAssists = 14;
           yellowCardProbability = 0.1;
-          redCardProbability = 0.05;
+          redCardProbability = 0.08;
           break;
       }
     }

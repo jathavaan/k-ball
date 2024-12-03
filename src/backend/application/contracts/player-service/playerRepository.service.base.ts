@@ -12,7 +12,7 @@ export interface PlayerRepositoryServiceBase {
       positionIds?: number[];
       sortBy?: string;
       sortOrder?: string;
-    },
+    }
   ) => Promise<{ playerCards: Player[]; totalPlayers: number }>;
 
   getPlayerById(playerId: number): Promise<Player | null>;
@@ -20,4 +20,6 @@ export interface PlayerRepositoryServiceBase {
   getPlayerByExternalId(externalId: number): Promise<Player | null>;
 
   upsertPlayer(playerResponse: PlayerResponse): Promise<boolean | null>;
+
+  generateAllPlayerSeasons(): Promise<boolean>;
 }
