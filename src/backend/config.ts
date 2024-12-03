@@ -9,8 +9,6 @@
 
   // API config
   API_FOOTBALL_BASE_URL: "https://v3.football.api-sports.io",
-  // API_FOOTBALL_KEY: "d1e9c6711633d6c9373c9c9510f282f3",
-  // API_FOOTBALL_KEY: "b1c3fce73a0303e762203c3421cf3254",
   API_FOOTBALL_KEY: "be97d4051fb7b08cd5e3b6528a3e7f67",
   API_FOOTBALL_K_LEAGUE_ID: 292,
 
