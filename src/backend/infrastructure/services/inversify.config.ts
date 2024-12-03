@@ -76,7 +76,7 @@ container
 
 container
   .bind<PlayerStatisticsRepositoryServiceBase>(
-    "PlayerStatsRepositoryServiceBase",
+    "PlayerStatisticsRepositoryServiceBase",
   )
   .to(PlayerStatisticsRepositoryService);
 

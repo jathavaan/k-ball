@@ -5,8 +5,13 @@ import {
   PlayerRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
+  PlayerStatisticsRepositoryServiceBase,
 } from "../../../application/contracts";
-import { Player, PlayerSeason } from "../../../domain/entities";
+import {
+  Player,
+  PlayerSeason,
+  PlayerStatistics,
+} from "../../../domain/entities";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { injectable } from "inversify";
 import { container } from "../inversify.config";
@@ -38,6 +43,11 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
   seasonRepositoryService = container.get<SeasonRepositoryServiceBase>(
     "SeasonRepositoryServiceBase",
   );
+
+  playerStatisticsRepositoryService =
+    container.get<PlayerStatisticsRepositoryServiceBase>(
+      "PlayerStatisticsRepositoryServiceBase",
+    );
 
   async getPlayerById(playerId: number): Promise<Player | null> {
     return await this.dbContext.findOne(Player, {
@@ -136,29 +146,90 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
     player.position = playerPosition;
 
     await this.dbContext.save(Player, player, { reload: true });
+
     return true;
   }
 
-  private async createPlayerSeason(
-    player: Player,
-    playerStatistics: PlayerStatisticsDto,
-  ): Promise<PlayerSeason> {
-    const playerSeason = new PlayerSeason();
-    playerSeason.player = player;
-    playerSeason.club = player.currentClub;
+  async generateAllPlayerSeasons(): Promise<boolean> {
+    const POSSIBLE_SEASONS = [2024, 2023, 2022, 2021, 2020, 2019, 2018];
 
-    const season = await this.seasonRepositoryService.getSeason(
-      playerStatistics.league.season,
-    );
+    const dbPlayers = await this.dbContext.find(Player, {
+      relations: {
+        currentClub: true,
+      },
+    });
 
-    if (season === null) {
-      const season = await this.seasonRepositoryService.insertSeason(
-        playerStatistics.league.season,
-      );
+    let allSuccessful = true;
+
+    for (const player of dbPlayers) {
+      const randomSeasonCount =
+        Math.floor(Math.random() * POSSIBLE_SEASONS.length) + 1;
+
+      const selectedSeasons = POSSIBLE_SEASONS.slice(0, randomSeasonCount);
+
+      const success = await this.generatePlayerSeasons(player, selectedSeasons);
+
+      if (!success) {
+        allSuccessful = false;
+      }
     }
 
-    playerSeason.season = season!;
-    return playerSeason;
+    return allSuccessful;
+  }
+
+  private async generatePlayerSeasons(
+    player: Player,
+    seasonYears: number[],
+  ): Promise<boolean> {
+    try {
+      for (const seasonYear of seasonYears) {
+        const season =
+          (await this.seasonRepositoryService.getSeason(seasonYear)) ||
+          (await this.seasonRepositoryService.insertSeason(seasonYear));
+
+        const existingPlayerSeason = await this.dbContext.findOne(
+          PlayerSeason,
+          {
+            where: {
+              player: { id: player.id },
+              club: { id: player.currentClub.id },
+              season: { id: season.id },
+            },
+          },
+        );
+
+        if (existingPlayerSeason) {
+          console.log(
+            `PlayerSeason already exists for playerId ${player.id}, clubId ${player.currentClub.id}, seasonId ${season.id}`,
+          );
+          continue;
+        }
+
+        const playerSeason = new PlayerSeason();
+        playerSeason.player = player;
+        playerSeason.club = player.currentClub;
+        playerSeason.season = season;
+
+        await this.dbContext.save(PlayerSeason, playerSeason);
+
+        try {
+          await this.playerStatisticsRepositoryService.generatePlayerStatistics(
+            playerSeason,
+          );
+        } catch (statsError) {
+          console.error(
+            `Failed to generate statistics for playerSeasonId ${playerSeason.id}:`,
+            statsError,
+          );
+          return false;
+        }
+      }
+
+      return true;
+    } catch (error) {
+      console.error("Failed to generate player seasons:", error);
+      return false;
+    }
   }
 
   async getPlayers(

@@ -12,11 +12,8 @@ const playerStatsTableSlice = createSlice({
   name: "playerStatsTables",
   initialState,
   reducers: {
-    setPlayerStatsTable: (
-      state,
-      action: PayloadAction<{ playerStatsTable: PlayerStatsProps[] }>,
-    ) => {
-      state.playerStatsTable = action.payload.playerStatsTable;
+    setPlayerStatsTable: (state, action: PayloadAction<PlayerStatsProps[]>) => {
+      state.playerStatsTable = action.payload;
     },
   },
 });

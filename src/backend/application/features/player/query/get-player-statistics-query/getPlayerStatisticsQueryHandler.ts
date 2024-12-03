@@ -11,7 +11,7 @@ export class GetPlayerStatisticsQueryHandler
   validator = new GetPlayerStatisticsQueryValidator();
   playerStatsRepositoryService =
     container.get<PlayerStatisticsRepositoryServiceBase>(
-      "PlayerStatsRepositoryServiceBase",
+      "PlayerStatisticsRepositoryServiceBase",
     );
 
   async handle(
@@ -23,6 +23,9 @@ export class GetPlayerStatisticsQueryHandler
         request.playerId,
       );
     if (!playerStats) return null;
-    return playerStats.map((playerStats) => new PlayerStatsVm(playerStats));
+    const result = playerStats.map(
+      (playerStats) => new PlayerStatsVm(playerStats),
+    );
+    return result;
   }
 }

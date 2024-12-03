@@ -4,6 +4,7 @@ export const PlayerStatsType = new GraphQLObjectType({
   name: "PlayerStats",
   fields: {
     playerSeasonId: { type: GraphQLInt },
+    season: { type: GraphQLInt },
     goals: { type: GraphQLInt },
     assists: { type: GraphQLInt },
     appearances: { type: GraphQLInt },

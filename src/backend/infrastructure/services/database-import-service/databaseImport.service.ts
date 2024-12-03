@@ -32,8 +32,14 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
     const isClubsInserted = await this.insertClubs();
     const isCountriesInserted = await this.insertCountries();
     const isPlayersInserted = await this.insertPlayers();
+    const isPlayerStatsInserted = await this.insertPlayerStats();
 
-    return isClubsInserted && isCountriesInserted && isPlayersInserted;
+    return (
+      isClubsInserted &&
+      isCountriesInserted &&
+      isPlayersInserted &&
+      isPlayerStatsInserted
+    );
   }
 
   async insertClubs(): Promise<boolean> {
@@ -71,6 +77,17 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
 
   async insertCountries(): Promise<boolean> {
     return true;
+  }
+
+  async insertPlayerStats(): Promise<boolean> {
+    let playerStatsImported = false;
+    try {
+      playerStatsImported =
+        await this.playerRepositoryService.generateAllPlayerSeasons();
+    } catch (error: any) {
+      console.error("Unhandled error:", error.message);
+    }
+    return playerStatsImported;
   }
 
   private async convertApiClubsToClubDtos(): Promise<ClubDto[]> {
