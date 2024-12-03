@@ -19,7 +19,7 @@ export const StyledImage = styled("img")(({ theme }) => ({
     width: "60%",
   },
   [theme.breakpoints.down("md")]: {
-    width: "30%",
+    width: "25%",
   },
   transform: "rotate(90deg) translate(-20%, 0%)",
 }));
