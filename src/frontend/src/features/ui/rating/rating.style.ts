@@ -16,7 +16,7 @@ export const StyledAverageRating = styled(Rating)(({ theme }) => ({
     marginRight: "0.25rem",
   },
   "& .MuiRating-iconEmpty": {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.common.black,
     marginRight: "0.25rem",
   },
 }));

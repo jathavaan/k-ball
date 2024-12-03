@@ -2,7 +2,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store.ts";
 import {
-  clearLoginForm,
   loginEmailSelector,
   loginPasswordSelector,
   registerEmailSelector,
@@ -31,7 +30,6 @@ import {
 import React from "react";
 
 export const useLogin = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const email = useSelector(loginEmailSelector);
   const password = useSelector(loginPasswordSelector);
 

@@ -5,3 +5,4 @@ export * from "./playerVm";
 export * from "./playerStatsVm";
 export * from "./playerRatingVm";
 export * from "./playerRatingInfoVm";
+export * from "./threadVm";
