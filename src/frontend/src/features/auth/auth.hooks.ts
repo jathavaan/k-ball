@@ -108,7 +108,13 @@ export const useRegister = () => {
   const email = useSelector(registerEmailSelector);
   const password = useSelector(registerPasswordSelector);
 
-  const { mutate, data, isPending, error } = useRegisterUser();
+  const {
+    mutate: registerUser,
+    data: registerData,
+    isPending,
+    error,
+  } = useRegisterUser();
+  const { mutate: authenticateUser } = useAuthenticateUser();
 
   const isRegisterButtonDisabled =
     firstName.error.isError ||
@@ -121,18 +127,45 @@ export const useRegister = () => {
     !password.value ||
     isPending;
 
-  const onRegisterClick = () => {
-    mutate({
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
-      password: password.value,
+  const onRegisterClick = (
+    userData: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+    },
+    onSuccessLogin: () => void,
+  ) => {
+    registerUser(userData, {
+      onSuccess: (isNewUser) => {
+        if (typeof isNewUser === "boolean" && isNewUser) {
+          authenticateUser(
+            { email: userData.email, password: userData.password },
+            {
+              onSuccess: (authData) => {
+                if (authData) {
+                  localStorage.setItem("token", String(authData));
+                  onSuccessLogin();
+                }
+              },
+            },
+          );
+        }
+      },
     });
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" && !isRegisterButtonDisabled) {
-      onRegisterClick();
+      onRegisterClick(
+        {
+          firstName: firstName.value,
+          lastName: lastName.value,
+          email: email.value,
+          password: password.value,
+        },
+        () => {},
+      );
     }
   };
 
@@ -140,7 +173,7 @@ export const useRegister = () => {
     onRegisterClick,
     handleKeyDown,
     isRegisterButtonDisabled,
-    data,
+    registerData,
     error,
     isPending,
   };
