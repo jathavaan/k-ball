@@ -139,29 +139,22 @@ export const useRegister = () => {
     registerUser(userData, {
       onSuccess: (isNewUser) => {
         if (typeof isNewUser === "boolean" && isNewUser) {
-          console.log("Registration successful. Logging in...");
           authenticateUser(
             { email: userData.email, password: userData.password },
             {
               onSuccess: (authData) => {
                 if (authData) {
-                  console.log("Login successful, saving token...");
                   localStorage.setItem("token", String(authData));
                   onSuccessLogin();
                 }
               },
-              onError: (authError) => {
-                console.error("Auto-login failed:", authError);
-              },
+              onError: () => {},
             },
           );
         } else {
-          console.log("Registration failed: Email already exists.");
         }
       },
-      onError: (error) => {
-        console.error("Registration failed:", error);
-      },
+      onError: () => {},
     });
   };
 
