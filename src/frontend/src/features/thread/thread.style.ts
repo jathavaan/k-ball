@@ -11,7 +11,7 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 export const StyledListItemTextAuthor = styled(ListItemText)(({ theme }) => ({
-  color: theme.palette.grey.A400,
+  color: theme.palette.grey.A200,
   margin: 0,
   "& .MuiTypography-root": {
     fontSize: "0.6rem",
@@ -44,7 +44,7 @@ export const StyledListItemTextContent = styled(ListItemText)(({ theme }) => ({
 }));
 
 export const StyledListItemTextButton = styled(ListItemText)(({ theme }) => ({
-  color: theme.palette.grey.A400,
+  color: theme.palette.grey.A200,
   margin: 0,
   "& .MuiTypography-root": {
     fontSize: "0.7rem",

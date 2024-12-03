@@ -44,7 +44,9 @@ export const Rating = ({
       <Text
         text={ratingText}
         sx={(theme) => ({
-          color: theme.palette.primary.contrastText,
+          color: !isAverage
+            ? theme.palette.primary.contrastText
+            : theme.palette.common.black,
           textTransform: "lowercase",
           fontSize: "0.8rem",
         })}

@@ -132,6 +132,7 @@ export const Threads = ({ playerId }: ThreadsProps) => {
         ) : (
           threads?.map((thread) => (
             <Thread
+              key={thread.id}
               threadId={thread.id}
               userId={thread.userId}
               playerId={playerId}

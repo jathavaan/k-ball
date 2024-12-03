@@ -56,7 +56,7 @@ export const Thread = (props: ThreadProps) => {
         <FiberManualRecordIcon
           sx={(theme) => ({
             fontSize: "0.5rem",
-            color: theme.palette.grey.A400,
+            color: theme.palette.grey.A200,
             margin: "0 0.5rem",
           })}
         />
@@ -99,7 +99,7 @@ export const Thread = (props: ThreadProps) => {
                 xs: "0.7rem",
                 sm: "0.8rem",
               },
-              color: theme.palette.grey.A400,
+              color: theme.palette.grey.A200,
               mr: 0.3,
             })}
           />
@@ -118,7 +118,7 @@ export const Thread = (props: ThreadProps) => {
                   xs: "0.7rem",
                   sm: "0.8rem",
                 },
-                color: theme.palette.grey.A400,
+                color: theme.palette.grey.A200,
                 mr: 0.3,
               })}
             />
@@ -243,7 +243,7 @@ export const ThreadComment = (props: ThreadCommentProps) => {
         <FiberManualRecordIcon
           sx={(theme) => ({
             fontSize: "0.5rem",
-            color: theme.palette.grey.A400,
+            color: theme.palette.grey.A200,
             margin: "0 0.5rem",
           })}
         />
@@ -271,7 +271,7 @@ export const ThreadComment = (props: ThreadCommentProps) => {
                 xs: "0.7rem",
                 sm: "0.8rem",
               },
-              color: theme.palette.grey.A400,
+              color: theme.palette.grey.A200,
               mr: 0.3,
             })}
           />
