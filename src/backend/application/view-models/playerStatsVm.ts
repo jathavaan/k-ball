@@ -14,7 +14,7 @@ export class PlayerStatsVm {
 
     if (!playerStats.playerSeason) {
       throw new Error(
-        `Missing season data for playerSeasonId ${playerStats.playerSeasonId}`
+        `Missing season data for playerSeasonId ${playerStats.playerSeasonId}`,
       );
     }
     this.season = playerStats.playerSeason.season.year;

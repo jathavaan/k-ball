@@ -26,7 +26,7 @@ export class FootballApiService implements FootballApiServiceBase {
         params: {
           id: config.API_FOOTBALL_K_LEAGUE_ID,
         },
-      }
+      },
     );
 
     return response.data;
@@ -40,14 +40,14 @@ export class FootballApiService implements FootballApiServiceBase {
           league: config.API_FOOTBALL_K_LEAGUE_ID,
           season: seasonStartYear,
         },
-      }
+      },
     );
 
     return response.data;
   }
 
   async getPlayers(
-    seasonStartYear: number
+    seasonStartYear: number,
   ): Promise<FootballApiPlayersResponse> {
     const timeout = 75_000;
     let currentPage = 1;
@@ -59,13 +59,13 @@ export class FootballApiService implements FootballApiServiceBase {
           season: seasonStartYear,
           page: currentPage,
         },
-      }
+      },
     );
 
     const result = response.data;
 
-    // const totalPages = result.paging.total;
-    const totalPages: number = 2;
+    const totalPages = result.paging.total;
+    // const totalPages: number = 4;
     const playerResponses: PlayerResponse[] = [...result.response];
 
     console.log(`Fetching page ${currentPage}/${totalPages}`);
@@ -80,14 +80,14 @@ export class FootballApiService implements FootballApiServiceBase {
             season: seasonStartYear,
             page: currentPage,
           },
-        }
+        },
       );
 
       playerResponses.push(...response.data.response);
 
       if (currentPage % 10 == 0) {
         console.log(
-          `-> Sleeping ${timeout} milliseconds to bypass rate-limit of football API`
+          `-> Sleeping ${timeout} milliseconds to bypass rate-limit of football API`,
         );
         await new Promise((f) => setTimeout(f, timeout));
       }

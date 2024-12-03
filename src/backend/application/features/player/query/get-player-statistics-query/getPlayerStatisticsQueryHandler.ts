@@ -11,20 +11,20 @@ export class GetPlayerStatisticsQueryHandler
   validator = new GetPlayerStatisticsQueryValidator();
   playerStatsRepositoryService =
     container.get<PlayerStatisticsRepositoryServiceBase>(
-      "PlayerStatisticsRepositoryServiceBase"
+      "PlayerStatisticsRepositoryServiceBase",
     );
 
   async handle(
-    request: GetPlayerStatisticsQuery
+    request: GetPlayerStatisticsQuery,
   ): Promise<PlayerStatsVm[] | null> {
     this.validator.validate(request);
     const playerStats =
       await this.playerStatsRepositoryService.getPlayerStatsByPlayerId(
-        request.playerId
+        request.playerId,
       );
     if (!playerStats) return null;
     const result = playerStats.map(
-      (playerStats) => new PlayerStatsVm(playerStats)
+      (playerStats) => new PlayerStatsVm(playerStats),
     );
     return result;
   }

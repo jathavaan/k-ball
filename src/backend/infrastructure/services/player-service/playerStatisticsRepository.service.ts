@@ -14,7 +14,7 @@ export class PlayerStatisticsRepositoryService
   dbContext = KBallDbContext.manager;
 
   async getPlayerStatsByPlayerId(
-    playerId: number
+    playerId: number,
   ): Promise<PlayerStatistics[] | null> {
     const player = await this.dbContext.findOne(Player, {
       where: { id: playerId },
@@ -31,12 +31,12 @@ export class PlayerStatisticsRepositoryService
     }
 
     const playerStats = player.playerSeasons.flatMap(
-      (season) => season.playerStats
+      (season) => season.playerStats,
     );
 
     const sortedPlayerStats = playerStats.sort(
       (a, b) =>
-        (b.playerSeason.season.year || 0) - (a.playerSeason.season.year || 0)
+        (b.playerSeason.season.year || 0) - (a.playerSeason.season.year || 0),
     );
 
     return sortedPlayerStats;
@@ -83,24 +83,24 @@ export class PlayerStatisticsRepositoryService
 
     const goals = Math.min(
       Math.round(Math.random() * Math.sqrt(appearances) * (maxGoals / 5)),
-      maxGoals
+      maxGoals,
     );
 
     const assists = Math.min(
       Math.round(Math.random() * Math.sqrt(appearances) * (maxAssists / 5)),
-      maxAssists
+      maxAssists,
     );
 
     const yellowCards = Math.min(
       Math.round(Math.random() * appearances * yellowCardProbability),
-      6
+      6,
     );
 
     const redCards =
       Math.random() < yellowCards / 30
         ? Math.min(
             Math.round(Math.random() * redCardProbability * appearances),
-            2
+            2,
           )
         : 0;
 

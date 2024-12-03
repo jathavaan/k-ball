@@ -12,7 +12,7 @@ export interface PlayerRepositoryServiceBase {
       positionIds?: number[];
       sortBy?: string;
       sortOrder?: string;
-    }
+    },
   ) => Promise<{ playerCards: Player[]; totalPlayers: number }>;
 
   getPlayerById(playerId: number): Promise<Player | null>;

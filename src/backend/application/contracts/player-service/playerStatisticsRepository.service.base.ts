@@ -4,7 +4,7 @@ import { PlayerStatisticsDto } from "../database-import-service/footballApi.dto"
 
 export interface PlayerStatisticsRepositoryServiceBase {
   getPlayerStatsByPlayerId: (
-    playerId: number
+    playerId: number,
   ) => Promise<PlayerStatistics[] | null>;
   generatePlayerStatistics: (playerSeason: PlayerSeason) => Promise<void>;
 }
