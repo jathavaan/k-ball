@@ -51,6 +51,14 @@ export const useThreads = (playerId: number) => {
   } = usePostPlayerThread(userId!, playerId, title, content);
 
   const handleTitleChange = (title: string) => {
+    if (title.length > 150) {
+      dispatch(
+        setThreadTitleError(
+          "Thread title cannot be longer than 150 characters",
+        ),
+      );
+      return;
+    }
     dispatch(setThreadTitle(title));
     if (!title) {
       dispatch(setThreadTitleError("This field is required"));
@@ -61,6 +69,14 @@ export const useThreads = (playerId: number) => {
   };
 
   const handleContentChange = (content: string) => {
+    if (content.length > 4_000) {
+      dispatch(
+        setThreadContentError(
+          "Thread content cannot be longer than 4000 characters",
+        ),
+      );
+      return;
+    }
     dispatch(setThreadContent(content));
     if (!content) {
       dispatch(setThreadContentError("This field is required"));

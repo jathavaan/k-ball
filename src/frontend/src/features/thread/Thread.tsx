@@ -20,7 +20,7 @@ import {
   selectThreadReplies,
 } from "@features/thread/thread.slice.ts";
 import { useThread, useThreadComment } from "@features/thread/thread.hooks.ts";
-import { Button, ErrorAlert, TextFieldLarge } from "@features/ui";
+import { Button, DenseTextField, ErrorAlert } from "@features/ui";
 import MessageIcon from "@mui/icons-material/Message";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { getLoggedInUser } from "@features/auth";
@@ -146,35 +146,16 @@ export const Thread = (props: ThreadProps) => {
             width: "100%",
           }}
         >
-          <TextFieldLarge
+          <DenseTextField
             placeholder="Share your thoughts..."
             required
-            fullWidth
+            multiline
             value={threadReplies[props.threadId]?.value}
             error={threadReplies[props.threadId]?.error.isError}
             helperText={threadReplies[props.threadId]?.error.message}
             onChange={(e) =>
               onThreadReplyChange(props.threadId, e.target.value)
             }
-            sx={(theme) => ({
-              backgroundColor: theme.palette.primary.contrastText,
-              borderRadius: "0.4rem",
-              "& .MuiOutlinedInput-root": {
-                fontSize: { xs: "0.8rem", md: "1rem" },
-                "& fieldset": {
-                  borderColor: "transparent",
-                },
-                "&:hover fieldset": {
-                  borderColor: "transparent",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "transparent",
-                },
-                "&:focus": {
-                  outline: "none",
-                },
-              },
-            })}
           />
           <Button
             text="Post comment"
@@ -184,6 +165,11 @@ export const Thread = (props: ThreadProps) => {
               threadReplies[props.threadId]?.error.isError ||
               !threadReplies[props.threadId]?.value
             }
+            sx={{
+              fontSize: { xs: "0.8rem", md: "1rem" },
+              maxWidth: { xs: "100%", md: "11rem" },
+              padding: 0,
+            }}
           />
           {isPostThreadCommentError && (
             <ErrorAlert

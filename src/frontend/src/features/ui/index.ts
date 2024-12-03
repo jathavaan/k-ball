@@ -18,3 +18,4 @@ export * from "./rating/Rating";
 export * from "./floating-action-button/FloatingActionButton";
 export * from "./tooltip/Tooltip";
 export * from "./text-field-large/TextFieldLarge";
+export * from "./dense-text-field/DenseTextField";

@@ -10,6 +10,7 @@ export const StyledFloatingActionButton = styled(Fab)(({ theme }) => ({
   justifyContent: "space-between",
   padding: "0.5rem 1rem",
   marginRight: "0.5rem",
+  boxShadow: "none",
   "&:hover": {
     backgroundColor: theme.palette.secondary.light,
   },

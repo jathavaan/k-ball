@@ -5,11 +5,10 @@
 import { Thread } from "@features/thread";
 import {
   Button,
+  DenseTextField,
   ErrorAlert,
   LinearProgressBar,
   Text,
-  TextField,
-  TextFieldLarge,
 } from "@features/ui";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import { useThreads } from "@features/threads/threads.hooks.ts";
@@ -42,94 +41,61 @@ export const Threads = ({ playerId }: ThreadsProps) => {
 
   return (
     <section>
-      <section
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Text
-          text="Interact with other K-Ballers"
-          sx={{
-            textAlign: "left",
-            fontSize: { xs: "1.1rem", md: "1.5rem" },
-            mr: 0.5,
-          }}
-        />
-        <SportsSoccerIcon
-          sx={(theme) => ({
-            color: theme.palette.primary.contrastText,
-            size: { xs: "1.1rem", md: "1.5rem" },
-          })}
-        />
-      </section>
       <StyledFormControl>
+        <section
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            text="Interact with the community"
+            sx={{
+              textAlign: "left",
+              fontSize: { xs: "1.1rem", md: "1.5rem" },
+              mr: 0.5,
+            }}
+          />
+          <SportsSoccerIcon
+            sx={(theme) => ({
+              color: theme.palette.primary.contrastText,
+              size: { xs: "1.1rem", md: "1.5rem" },
+            })}
+          />
+        </section>
         <Text
-          text="Share your thoughts, ask questions, or just chat with other K-Ballers."
+          text="Share your thoughts, ask questions, or just chat"
           sx={{
             textAlign: "left",
             fontSize: { xs: "0.8rem", md: "1rem" },
             mt: 0.5,
           }}
         />
-        <TextField
+        <DenseTextField
           required
-          placeholder="Title"
+          placeholder="Title*"
           value={title}
+          minRows={4}
           onChange={(e) => handleTitleChange(e.target.value)}
           helperText={titleError.isError ? titleError.message : null}
           error={titleError.isError}
-          sx={(theme) => ({
-            backgroundColor: theme.palette.primary.contrastText,
-            borderRadius: "0.4rem",
-            maxWidth: {
-              xs: "1000%",
-              md: "70%",
-            },
-            "& .MuiOutlinedInput-root": {
-              fontSize: { xs: "0.8rem", md: "1rem" },
-              "& fieldset": {
-                borderColor: "transparent",
-              },
-              "&:hover fieldset": {
-                borderColor: "transparent",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "transparent",
-              },
-              "&:focus": {
-                outline: "none",
-              },
-            },
-          })}
         />
-        <TextFieldLarge
-          placeholder="Share your thoughts..."
+        <DenseTextField
+          placeholder="Body*"
+          multiline
           required
           value={content}
           helperText={contentError.isError ? contentError.message : null}
           error={contentError.isError}
           onChange={(e) => handleContentChange(e.target.value)}
-          sx={(theme) => ({
-            backgroundColor: theme.palette.primary.contrastText,
-            borderRadius: "0.4rem",
+          sx={{
+            maxWidth: "80%",
+            marginBottom: "0.8rem",
             "& .MuiOutlinedInput-root": {
-              fontSize: { xs: "0.8rem", md: "1rem" },
-              "& fieldset": {
-                borderColor: "transparent",
-              },
-              "&:hover fieldset": {
-                borderColor: "transparent",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "transparent",
-              },
-              "&:focus": {
-                outline: "none",
-              },
+              minHeight: "2.5rem",
             },
-          })}
+          }}
         />
         <Button
           text="Post thread"
@@ -140,6 +106,8 @@ export const Threads = ({ playerId }: ThreadsProps) => {
           }
           sx={{
             fontSize: { xs: "0.8rem", md: "1rem" },
+            maxWidth: { xs: "100%", md: "10rem" },
+            padding: 0,
           }}
         />
         {isPostThreadError && (

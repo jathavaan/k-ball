@@ -6,8 +6,8 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
   flexDirection: "column",
   backgroundColor: theme.palette.primary.light,
   borderRadius: "0.4rem",
-  marginBottom: "0.7rem",
   alignItems: "self-start",
+  marginBottom: "1rem",
 }));
 
 export const StyledListItemTextAuthor = styled(ListItemText)(({ theme }) => ({
@@ -54,7 +54,7 @@ export const StyledListItemTextButton = styled(ListItemText)(({ theme }) => ({
   },
 }));
 
-export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
+export const StyledListItemButton = styled(ListItemButton)(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

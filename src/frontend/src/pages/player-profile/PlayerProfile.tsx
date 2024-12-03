@@ -80,8 +80,16 @@ export const PlayerProfile = () => {
               />
             </StyledBreadcrumbs>
           </Grid>
-          <Grid container size={{ xs: 12, md: 4 }} spacing={2}>
-            <Grid size={{ xs: 12 }}>
+          <Grid
+            container
+            size={{ xs: 12, md: 4 }}
+            spacing={2}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Grid size={{ xs: 12 }} sx={{}}>
               {playerProfileInfo && (
                 <PlayerProfileInfo {...playerProfileInfo} />
               )}
