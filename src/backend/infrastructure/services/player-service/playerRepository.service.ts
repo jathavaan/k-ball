@@ -5,6 +5,7 @@ import {
   PlayerRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
+  PlayerStatisticsRepositoryServiceBase,
 } from "../../../application/contracts";
 import {
   Player,
@@ -42,6 +43,11 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
   seasonRepositoryService = container.get<SeasonRepositoryServiceBase>(
     "SeasonRepositoryServiceBase"
   );
+
+  playerStatisticsRepositoryService =
+    container.get<PlayerStatisticsRepositoryServiceBase>(
+      "PlayerStatisticsRepositoryServiceBase"
+    );
 
   async getPlayerById(playerId: number): Promise<Player | null> {
     return await this.dbContext.findOne(Player, {
@@ -87,7 +93,6 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     const playerDto = playerResponse.player;
     const playerStatisticsDto = playerResponse.statistics[0];
-    console.log("playerStatisticsDto", playerStatisticsDto);
 
     const playerBirthPlace =
       await this.birthPlaceRepositoryService.getBirthPlaceAddIfMissing(
@@ -142,70 +147,45 @@ export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
 
     await this.dbContext.save(Player, player, { reload: true });
 
-    const playerSeason = await this.createOrUpdatePlayerSeason(
-      player,
-      playerStatisticsDto
-    );
-    await this.createOrUpdatePlayerStatistics(
-      playerSeason,
-      playerStatisticsDto
-    );
+    this.generatePlayerSeasons(player);
 
     return true;
   }
 
-  private async createOrUpdatePlayerSeason(
-    player: Player,
-    playerStatistics: PlayerStatisticsDto
-  ): Promise<PlayerSeason> {
-    const seasonYear = playerStatistics.league.season;
+  private async generatePlayerSeasons(player: Player): Promise<void> {
+    const SEASON_YEARS = [2024, 2023, 2022, 2021, 2020];
 
-    let season = await this.seasonRepositoryService.getSeason(seasonYear);
-    if (!season) {
-      season = await this.seasonRepositoryService.insertSeason(seasonYear);
-    }
+    for (const seasonYear of SEASON_YEARS) {
+      const season =
+        (await this.seasonRepositoryService.getSeason(seasonYear)) ||
+        (await this.seasonRepositoryService.insertSeason(seasonYear));
 
-    let playerSeason = await this.dbContext.findOne(PlayerSeason, {
-      where: {
-        player: { id: player.id },
-        club: { id: player.currentClub.id },
-        season: { id: season.id },
-      },
-    });
+      const existingPlayerSeason = await this.dbContext.findOne(PlayerSeason, {
+        where: {
+          player: { id: player.id },
+          club: { id: player.currentClub.id },
+          season: { id: season.id },
+        },
+      });
 
-    if (!playerSeason) {
-      playerSeason = new PlayerSeason();
+      if (existingPlayerSeason) {
+        console.log(
+          `PlayerSeason already exists for playerId ${player.id}, clubId ${player.currentClub.id}, seasonId ${season.id}`
+        );
+        continue; 
+      }
+
+      const playerSeason = new PlayerSeason();
       playerSeason.player = player;
       playerSeason.club = player.currentClub;
       playerSeason.season = season;
 
       await this.dbContext.save(PlayerSeason, playerSeason);
+
+      await this.playerStatisticsRepositoryService.generatePlayerStatistics(
+        playerSeason
+      );
     }
-
-    return playerSeason;
-  }
-
-  private async createOrUpdatePlayerStatistics(
-    playerSeason: PlayerSeason,
-    playerStatistics: PlayerStatisticsDto
-  ): Promise<PlayerStatistics> {
-    let playerStats = await this.dbContext.findOne(PlayerStatistics, {
-      where: { playerSeason: { id: playerSeason.id } },
-    });
-
-    if (!playerStats) {
-      playerStats = new PlayerStatistics();
-      playerStats.playerSeason = playerSeason;
-    }
-
-    playerStats.goals = playerStatistics.goals.total || 0;
-    playerStats.assists = playerStatistics.goals.assists || 0;
-    playerStats.appearances = playerStatistics.games.appearences || 0;
-    playerStats.yellowCards = playerStatistics.cards.yellow || 0;
-    playerStats.redCards = playerStatistics.cards.red || 0;
-
-    await this.dbContext.save(PlayerStatistics, playerStats);
-    return playerStats;
   }
 
   async getPlayers(

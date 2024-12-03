@@ -68,13 +68,13 @@ container
 
 container
   .bind<PlayerImportStateRepositoryServiceBase>(
-    "PlayerImportStateRepositoryServiceBase",
+    "PlayerImportStateRepositoryServiceBase"
   )
   .to(PlayerImportStateRepositoryService);
 
 container
   .bind<PlayerStatisticsRepositoryServiceBase>(
-    "PlayerStatsRepositoryServiceBase",
+    "PlayerStatisticsRepositoryServiceBase"
   )
   .to(PlayerStatisticsRepositoryService);
 

@@ -94,7 +94,6 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
     for (const season of config.SEASONS_TO_IMPORT) {
       const playersResponse = await this.apiFootballService.getPlayers(season);
       players.push(...playersResponse.response);
-      console.log("playersResponse", playersResponse);
     }
 
     return players;

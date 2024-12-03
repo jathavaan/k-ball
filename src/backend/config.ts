@@ -15,5 +15,5 @@
   API_FOOTBALL_K_LEAGUE_ID: 292,
 
   // Import config
-  SEASONS_TO_IMPORT: [2020, 2021, 2022], // TODO: Implement for multiple seasons when the system is up and running [2020, 2021, 2022]
+  SEASONS_TO_IMPORT: [2022], // TODO: Implement for multiple seasons when the system is up and running [2020, 2021, 2022]
 };

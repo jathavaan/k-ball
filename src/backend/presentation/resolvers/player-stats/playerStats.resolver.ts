@@ -12,7 +12,6 @@ export const playerStatsResolver = {
       const result = await getPlayerStatsQueryHandler.handle(
         new GetPlayerStatisticsQuery(playerId)
       );
-      console.log("Resolver: ", result);
       return result;
     },
   },
