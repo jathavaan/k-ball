@@ -17,9 +17,10 @@ export const StyledBox = styled(Box)(({ theme }) => ({
 export const StyledImage = styled("img")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     width: "60%",
+    transform: "rotate(90deg) translate(-20%, 0%)",
   },
   [theme.breakpoints.down("md")]: {
-    width: "25%",
+    width: "40%",
+    paddingBottom: "0.8rem",
   },
-  transform: "rotate(90deg) translate(-20%, 0%)",
 }));
