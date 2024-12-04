@@ -123,7 +123,7 @@ export const usePlayerRating = (playerId: number) => {
   const handleDelete = () => {
     mutateDeletePlayerRating(undefined, {
       onSuccess: () => {
-        dispatch(resetPlayerRating()); // Optionally, you can keep this if it resets other fields
+        dispatch(resetPlayerRating());
         dispatch(setIsEditingPlayerRating(false));
 
         mutateOverallRating();
@@ -146,18 +146,34 @@ export const usePlayerRating = (playerId: number) => {
   }, [mutateOverallRating, mutateUserRating]);
 
   useEffect(() => {
-    dispatch(resetPlayerRating());
-    if (!userRating) {
-      dispatch(setIsPlayerRatingInDb(false));
-      return;
-    }
+    mutateUserRating(undefined, {
+      onSuccess: (userRating) => {
+        if (userRating) {
+          dispatch(setAttack(userRating.attack));
+          dispatch(setDefence(userRating.defence));
+          dispatch(setPassing(userRating.passing));
+          dispatch(setIntelligence(userRating.intelligence));
+          dispatch(setAverage(userRating.average));
+          dispatch(setIsPlayerRatingInDb(true));
+        }
+      },
+      onError: () => {
+        dispatch(resetPlayerRating());
+      },
+    });
 
-    dispatch(setAttack(userRating.attack));
-    dispatch(setDefence(userRating.defence));
-    dispatch(setPassing(userRating.passing));
-    dispatch(setIntelligence(userRating.intelligence));
-    dispatch(setIsPlayerRatingInDb(true));
-  }, [dispatch, userRating]);
+    mutateOverallRating(undefined, {
+      onSuccess: (overallRating) => {
+        if (overallRating) {
+          dispatch(setOverallAttack(overallRating.attack));
+          dispatch(setOverallDefence(overallRating.defence));
+          dispatch(setOverallPassing(overallRating.passing));
+          dispatch(setOverallIntelligence(overallRating.intelligence));
+          dispatch(setOverallAverage(overallRating.average));
+        }
+      },
+    });
+  }, [dispatch, playerId]);
 
   return {
     overallRating,
