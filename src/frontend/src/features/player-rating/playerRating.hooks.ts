@@ -141,11 +141,8 @@ export const usePlayerRating = (playerId: number) => {
   };
 
   useEffect(() => {
-    mutateUserRating();
-    mutateOverallRating();
-  }, [mutateOverallRating, mutateUserRating]);
+    dispatch(resetPlayerRating());
 
-  useEffect(() => {
     mutateUserRating(undefined, {
       onSuccess: (userRating) => {
         if (userRating) {
