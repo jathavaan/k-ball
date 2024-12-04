@@ -18,6 +18,7 @@ import {
 import Grid from "@mui/material/Grid2";
 import { PlayerRating } from "@features/player-rating";
 import { PlayerPosition } from "@features/player-position/PlayerPosition.tsx";
+import { Threads } from "@features/threads";
 
 export const PlayerProfile = () => {
   const { playerId } = useParams<{ playerId: string }>();
@@ -79,8 +80,16 @@ export const PlayerProfile = () => {
               />
             </StyledBreadcrumbs>
           </Grid>
-          <Grid container size={{ xs: 12, md: 4 }} spacing={2}>
-            <Grid size={{ xs: 12 }}>
+          <Grid
+            container
+            size={{ xs: 12, md: 4 }}
+            spacing={2}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Grid size={{ xs: 12 }} sx={{}}>
               {playerProfileInfo && (
                 <PlayerProfileInfo {...playerProfileInfo} />
               )}
@@ -100,6 +109,9 @@ export const PlayerProfile = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               {playerId && <PlayerRating playerId={parseInt(playerId)} />}
+            </Grid>
+            <Grid size={{ xs: 12 }}>
+              {playerId && <Threads playerId={parseInt(playerId)} />}
             </Grid>
           </Grid>
         </>

@@ -9,9 +9,10 @@ export const playerStatsResolver = {
   PlayerStatsQuery: {
     playerStats: async (_: any, args: { playerId: number }) => {
       const { playerId } = args;
-      return await getPlayerStatsQueryHandler.handle(
+      const result = await getPlayerStatsQueryHandler.handle(
         new GetPlayerStatisticsQuery(playerId),
       );
+      return result;
     },
   },
 };

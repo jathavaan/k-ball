@@ -9,9 +9,11 @@ export const FloatingActionButton = ({
 }: FloatingActionButtonProps) => {
   return (
     <Tooltip title={tooltipTitle}>
-      <StyledFloatingActionButton {...props} variant="extended" size="small">
-        {children}
-      </StyledFloatingActionButton>
+      <>
+        <StyledFloatingActionButton {...props} variant="extended" size="small">
+          {children}
+        </StyledFloatingActionButton>
+      </>
     </Tooltip>
   );
 };

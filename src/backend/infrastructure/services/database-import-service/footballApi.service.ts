@@ -57,13 +57,15 @@ export class FootballApiService implements FootballApiServiceBase {
         params: {
           league: config.API_FOOTBALL_K_LEAGUE_ID,
           season: seasonStartYear,
+          page: currentPage,
         },
       },
     );
 
     const result = response.data;
+
     const totalPages = result.paging.total;
-    // const totalPages: number = 8;
+    // const totalPages: number = 4;
     const playerResponses: PlayerResponse[] = [...result.response];
 
     console.log(`Fetching page ${currentPage}/${totalPages}`);
@@ -80,6 +82,7 @@ export class FootballApiService implements FootballApiServiceBase {
           },
         },
       );
+
       playerResponses.push(...response.data.response);
 
       if (currentPage % 10 == 0) {
@@ -90,10 +93,6 @@ export class FootballApiService implements FootballApiServiceBase {
       }
     }
 
-    await new Promise((f) => setTimeout(f, timeout));
-    console.log(
-      `-> Sleeping ${timeout} milliseconds to bypass rate-limit of football API`,
-    );
     result.response = playerResponses;
     return result;
   }
