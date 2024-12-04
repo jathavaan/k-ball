@@ -5,15 +5,26 @@ import { FloatingActionButtonProps } from "@features/ui/floating-action-button/f
 export const FloatingActionButton = ({
   tooltipTitle,
   children,
+  disabled,
   ...props
 }: FloatingActionButtonProps) => {
+  if (disabled) {
+    return (
+      <StyledFloatingActionButton
+        {...props}
+        disabled={disabled}
+        variant="extended"
+        size="small"
+      >
+        {children}
+      </StyledFloatingActionButton>
+    );
+  }
   return (
     <Tooltip title={tooltipTitle}>
-      <>
-        <StyledFloatingActionButton {...props} variant="extended" size="small">
-          {children}
-        </StyledFloatingActionButton>
-      </>
+      <StyledFloatingActionButton {...props} variant="extended" size="small">
+        {children}
+      </StyledFloatingActionButton>
     </Tooltip>
   );
 };
