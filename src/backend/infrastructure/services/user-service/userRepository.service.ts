@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 
 @injectable()
 export class UserRepositoryService implements UserRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
+  public dbContext = KBallDbContext.manager;
 
   async getUserById(id: number) {
     return await this.dbContext.findOne(User, {
@@ -27,11 +27,24 @@ export class UserRepositoryService implements UserRepositoryServiceBase {
       where: {
         email: email.trim().toLowerCase(),
       },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+      },
     });
   }
 
   async getUsers() {
-    return await this.dbContext.find(User);
+    return await this.dbContext.find(User, {
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+      },
+    });
   }
 
   async checkCredentials(email: string, password: string) {
@@ -55,7 +68,7 @@ export class UserRepositoryService implements UserRepositoryServiceBase {
     return true;
   }
 
-  async deleteUserById(id: any) {
+  async deleteUserById(id: number) {
     const user = await this.getUserById(id);
     if (!user) {
       return false;

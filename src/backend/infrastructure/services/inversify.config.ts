@@ -30,8 +30,15 @@ import { PlayerRatingRepositoryService } from "./player-service/playerRatingRepo
 import { PlayerRatingServiceBase } from "../../application/contracts/player-service/playerRating.service.base";
 import { PlayerRatingService } from "./player-service/playerRating.service";
 import { ThreadRepositoryService } from "./thread-service/ThreadRepository.service";
+import { EntityManager } from "typeorm";
+import { KBallDbContext } from "../persistence/dataSource";
 
 const container = new Container();
+
+container
+  .bind<EntityManager>("EntityManager")
+  .toDynamicValue(() => KBallDbContext.manager);
+
 container
   .bind<UserRepositoryServiceBase>("UserRepositoryServiceBase")
   .to(UserRepositoryService);
@@ -42,7 +49,10 @@ container
 
 container
   .bind<CountryRepositoryServiceBase>("CountryRepositoryServiceBase")
-  .to(CountryRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new CountryRepositoryService(dbContext);
+  });
 
 container
   .bind<PositionRepositoryServiceBase>("PositionRepositoryServiceBase")
@@ -58,7 +68,15 @@ container
 
 container
   .bind<BirthPlaceRepositoryServiceBase>("BirthPlaceRepositoryServiceBase")
-  .to(BirthPlaceRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    const countryRepositoryService =
+      context.container.get<CountryRepositoryServiceBase>(
+        "CountryRepositoryServiceBase",
+      );
+
+    return new BirthPlaceRepositoryService(dbContext, countryRepositoryService);
+  });
 
 container
   .bind<FootballApiServiceBase>("FootballApiServiceBase")

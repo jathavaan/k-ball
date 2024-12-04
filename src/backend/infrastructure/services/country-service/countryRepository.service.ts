@@ -1,11 +1,13 @@
-﻿import { injectable } from "inversify";
+﻿import { inject, injectable } from "inversify";
 import { CountryRepositoryServiceBase } from "../../../application/contracts";
-import { KBallDbContext } from "../../persistence/dataSource";
-import { Country, Player } from "../../../domain/entities";
+import { Country } from "../../../domain/entities";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class CountryRepositoryService implements CountryRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getCountries() {
     const countries = await this.dbContext.query(`
