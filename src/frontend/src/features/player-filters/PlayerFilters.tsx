@@ -20,23 +20,23 @@ export const PlayerFilters = () => {
 
   return (
     <Grid container spacing={4} alignItems="flex-end">
-      <Grid size={{ xs: 12, sm: 6, md: 2.5 }}>
+      <Grid size={{ xs: 12, sm: 6, lg: 2.5 }}>
         <FormControl fullWidth>
           <ClubFilter />
         </FormControl>
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 2.5 }}>
+      <Grid size={{ xs: 12, sm: 6, lg: 2.5 }}>
         <FormControl fullWidth>
           <CountryFilter />
         </FormControl>
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 2.5 }}>
+      <Grid size={{ xs: 12, sm: 6, lg: 2.5 }}>
         <FormControl fullWidth>
           <PositionFilter />
         </FormControl>
       </Grid>
       <Grid
-        size={{ xs: 12, sm: 6, md: 4 }}
+        size={{ xs: 12, sm: 6, lg: 3.5 }}
         container
         spacing={2}
         sx={{
@@ -47,7 +47,7 @@ export const PlayerFilters = () => {
           size={{ xs: 2 }}
           display="flex"
           alignItems="flex-end"
-          justifyContent={{ xs: "flex-start", md: "flex-end" }}
+          justifyContent={{ xs: "flex-start", lg: "flex-end" }}
         >
           <Tooltip title="Reset filters" arrow disableInteractive>
             <span
@@ -67,7 +67,7 @@ export const PlayerFilters = () => {
 
         <Grid
           size={{ xs: 10 }}
-          justifyContent={{ xs: "flex-start", md: "flex-end" }}
+          justifyContent={{ xs: "flex-start", lg: "flex-end" }}
         >
           <HelperText
             description={
