@@ -1,5 +1,4 @@
 ﻿import {
-  GraphQLBoolean,
   GraphQLInt,
   GraphQLList,
   GraphQLObjectType,
@@ -28,6 +27,14 @@ import {
 import { playerResolver } from "./players/player.resolver";
 import { PlayerStatsType } from "./player-stats/playerStats.typeDefinitions";
 import { playerStatsResolver } from "./player-stats/playerStats.resolver";
+import {
+  DeleteThreadType,
+  EditThreadType,
+  PostThreadType,
+  ThreadCommentType,
+  ThreadType,
+} from "./thread/thread.typeDefinition";
+import { threadResolver } from "./thread/thread.resolver";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -114,6 +121,20 @@ const QueryType = new GraphQLObjectType({
       },
       resolve: userResolver.UserQuery.detailedPlayerRating,
     },
+    playerThreads: {
+      type: new GraphQLList(ThreadType),
+      args: {
+        playerId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadQuery.playerThreads,
+    },
+    playerThreadComments: {
+      type: new GraphQLList(ThreadCommentType),
+      args: {
+        threadId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadQuery.playerThreadsComments,
+    },
   },
 });
 
@@ -149,6 +170,56 @@ const MutationType = new GraphQLObjectType({
         userId: { type: GraphQLInt },
       },
       resolve: playerResolver.PlayerMutation.deletePlayerRating,
+    },
+    postThread: {
+      type: PostThreadType,
+      args: {
+        userId: { type: GraphQLInt },
+        playerId: { type: GraphQLInt },
+        title: { type: GraphQLString },
+        content: { type: GraphQLString },
+      },
+      resolve: threadResolver.ThreadMutation.postThread,
+    },
+    deleteThread: {
+      type: DeleteThreadType,
+      args: {
+        threadId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadMutation.deleteThread,
+    },
+    editThread: {
+      type: EditThreadType,
+      args: {
+        threadId: { type: GraphQLInt },
+        title: { type: GraphQLString },
+        content: { type: GraphQLString },
+      },
+      resolve: threadResolver.ThreadMutation.editThread,
+    },
+    postThreadComment: {
+      type: PostThreadType,
+      args: {
+        userId: { type: GraphQLInt },
+        threadId: { type: GraphQLInt },
+        content: { type: GraphQLString },
+      },
+      resolve: threadResolver.ThreadMutation.postThreadComment,
+    },
+    editThreadComment: {
+      type: EditThreadType,
+      args: {
+        threadCommentId: { type: GraphQLInt },
+        content: { type: GraphQLString },
+      },
+      resolve: threadResolver.ThreadMutation.editThreadComment,
+    },
+    deleteThreadComment: {
+      type: DeleteThreadType,
+      args: {
+        threadCommentId: { type: GraphQLInt },
+      },
+      resolve: threadResolver.ThreadMutation.deleteThreadComment,
     },
   },
 });

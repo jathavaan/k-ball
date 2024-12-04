@@ -86,7 +86,7 @@ interface PlayerLeagueDto {
 }
 
 interface PlayerGamesDto {
-  appearances: number;
+  appearences: number;
   lineups: number;
   minutes: number;
   position: string;

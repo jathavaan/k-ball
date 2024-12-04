@@ -1,7 +1,6 @@
 import { TableProps } from "@mui/material";
 
 export interface PlayerStatsProps {
-  playerId: number;
   season: number;
   goals: number;
   assists: number;
