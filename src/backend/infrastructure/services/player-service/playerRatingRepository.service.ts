@@ -3,15 +3,17 @@
   PlayerRatingRepositoryServiceBase,
 } from "../../../application/contracts";
 import { PlayerRating } from "../../../domain/entities";
-import { KBallDbContext } from "../../persistence/dataSource";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 import { PlayerRatingInfoVm } from "../../../application/view-models";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class PlayerRatingRepositoryService
   implements PlayerRatingRepositoryServiceBase
 {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getPlayerRatingByUserId(playerId: number, userId: number) {
     return await this.dbContext.findOne(PlayerRating, {

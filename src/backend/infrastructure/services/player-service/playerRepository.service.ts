@@ -3,51 +3,32 @@ import {
   ClubRepositoryServiceBase,
   CountryRepositoryServiceBase,
   PlayerRepositoryServiceBase,
+  PlayerStatisticsRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
-  PlayerStatisticsRepositoryServiceBase,
 } from "../../../application/contracts";
-import {
-  Player,
-  PlayerSeason,
-  PlayerStatistics,
-} from "../../../domain/entities";
-import { KBallDbContext } from "../../persistence/dataSource";
-import { injectable } from "inversify";
-import { container } from "../inversify.config";
-import { ILike, In } from "typeorm";
-import {
-  PlayerResponse,
-  PlayerStatisticsDto,
-} from "../../../application/contracts/database-import-service/footballApi.dto";
+import { Player, PlayerSeason } from "../../../domain/entities";
+import { inject, injectable } from "inversify";
+import { EntityManager, ILike, In } from "typeorm";
+import { PlayerResponse } from "../../../application/contracts/database-import-service/footballApi.dto";
 
 @injectable()
 export class PlayerRepositoryService implements PlayerRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
-  clubRepositoryService = container.get<ClubRepositoryServiceBase>(
-    "ClubRepositoryServiceBase",
-  );
-
-  birthPlaceRepositoryService = container.get<BirthPlaceRepositoryServiceBase>(
-    "BirthPlaceRepositoryServiceBase",
-  );
-
-  countryRepositoryService = container.get<CountryRepositoryServiceBase>(
-    "CountryRepositoryServiceBase",
-  );
-
-  positionRepositoryService = container.get<PositionRepositoryServiceBase>(
-    "PositionRepositoryServiceBase",
-  );
-
-  seasonRepositoryService = container.get<SeasonRepositoryServiceBase>(
-    "SeasonRepositoryServiceBase",
-  );
-
-  playerStatisticsRepositoryService =
-    container.get<PlayerStatisticsRepositoryServiceBase>(
-      "PlayerStatisticsRepositoryServiceBase",
-    );
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+    @inject("ClubRepositoryServiceBase")
+    private readonly clubRepositoryService: ClubRepositoryServiceBase,
+    @inject("BirthPlaceRepositoryServiceBase")
+    private readonly birthPlaceRepositoryService: BirthPlaceRepositoryServiceBase,
+    @inject("CountryRepositoryServiceBase")
+    private readonly countryRepositoryService: CountryRepositoryServiceBase,
+    @inject("PositionRepositoryServiceBase")
+    private readonly positionRepositoryService: PositionRepositoryServiceBase,
+    @inject("SeasonRepositoryServiceBase")
+    private readonly seasonRepositoryService: SeasonRepositoryServiceBase,
+    @inject("PlayerStatisticsRepositoryServiceBase")
+    private readonly playerStatisticsRepositoryService: PlayerStatisticsRepositoryServiceBase,
+  ) {}
 
   async getPlayerById(playerId: number): Promise<Player | null> {
     return await this.dbContext.findOne(Player, {

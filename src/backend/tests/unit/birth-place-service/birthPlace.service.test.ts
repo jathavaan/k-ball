@@ -1,5 +1,4 @@
-﻿import { DataSource, EntityManager } from "typeorm";
-import { BirthPlaceRepositoryService } from "../../../infrastructure/services/birth-place-service/birthPlaceRepository.service";
+﻿import { DataSource } from "typeorm";
 import { mockDatabase } from "../../mocks/mock.database";
 import { container } from "../../../infrastructure/services/inversify.config";
 import { BirthPlaceRepositoryServiceBase } from "../../../application/contracts";

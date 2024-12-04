@@ -10,5 +10,6 @@ export * from "./player-service/playerRepository.service.base";
 export * from "./player-service/playerRating.dto";
 export * from "./player-service/playerStatisticsRepository.service.base";
 export * from "./player-service/playerRatingRepository.service.base";
+export * from "./player-service/playerRating.service.base";
 export * from "./database-import-service/playerImportStateRepository.service.base";
 export * from "./thread-service/threadRepository.service.base";

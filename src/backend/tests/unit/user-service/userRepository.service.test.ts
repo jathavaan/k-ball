@@ -1,7 +1,8 @@
 ﻿import { DataSource } from "typeorm";
 import { mockDatabase } from "../../mocks/mock.database";
-import { UserRepositoryService } from "../../../infrastructure/services/user-service/userRepository.service";
 import bcrypt from "bcrypt";
+import { UserRepositoryServiceBase } from "../../../application/contracts";
+import { container } from "../../../infrastructure/services/inversify.config";
 
 jest.mock("bcrypt", () => ({
   compare: jest.fn(),
@@ -9,12 +10,14 @@ jest.mock("bcrypt", () => ({
 
 describe("UserRepositoryService with Mock Database", () => {
   let dataSource: DataSource;
-  let userRepositoryService: UserRepositoryService;
+  let userRepositoryService: UserRepositoryServiceBase;
 
   beforeEach(async () => {
     dataSource = await mockDatabase();
-    userRepositoryService = new UserRepositoryService();
-    userRepositoryService.dbContext = dataSource.manager;
+    userRepositoryService = container.get<UserRepositoryServiceBase>(
+      "UserRepositoryServiceBase",
+    );
+
     jest.clearAllMocks();
   });
 

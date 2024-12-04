@@ -8,6 +8,7 @@ import {
   FootballApiServiceBase,
   PlayerImportStateRepositoryServiceBase,
   PlayerRatingRepositoryServiceBase,
+  PlayerRatingServiceBase,
   PlayerRepositoryServiceBase,
   PlayerStatisticsRepositoryServiceBase,
   PositionRepositoryServiceBase,
@@ -27,9 +28,8 @@ import { PositionRepositoryService } from "./position-service/positionRepository
 import { PlayerImportStateRepositoryService } from "./database-import-service/playerImportStateRepository.service";
 import { PlayerStatisticsRepositoryService } from "./player-service/playerStatisticsRepository.service";
 import { PlayerRatingRepositoryService } from "./player-service/playerRatingRepository.service";
-import { PlayerRatingServiceBase } from "../../application/contracts/player-service/playerRating.service.base";
 import { PlayerRatingService } from "./player-service/playerRating.service";
-import { ThreadRepositoryService } from "./thread-service/ThreadRepository.service";
+import { ThreadRepositoryService } from "./thread-service/threadRepository.service";
 import { EntityManager } from "typeorm";
 import { KBallDbContext } from "../persistence/dataSource";
 
@@ -41,11 +41,17 @@ container
 
 container
   .bind<UserRepositoryServiceBase>("UserRepositoryServiceBase")
-  .to(UserRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new UserRepositoryService(dbContext);
+  });
 
 container
   .bind<ClubRepositoryServiceBase>("ClubRepositoryServiceBase")
-  .to(ClubRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new ClubRepositoryService(dbContext);
+  });
 
 container
   .bind<CountryRepositoryServiceBase>("CountryRepositoryServiceBase")
@@ -56,15 +62,62 @@ container
 
 container
   .bind<PositionRepositoryServiceBase>("PositionRepositoryServiceBase")
-  .to(PositionRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new PositionRepositoryService(dbContext);
+  });
 
 container
   .bind<PlayerRepositoryServiceBase>("PlayerRepositoryServiceBase")
-  .to(PlayerRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    const clubRepositoryService =
+      context.container.get<ClubRepositoryServiceBase>(
+        "ClubRepositoryServiceBase",
+      );
+
+    const birthPlaceRepositoryService =
+      context.container.get<BirthPlaceRepositoryServiceBase>(
+        "BirthPlaceRepositoryServiceBase",
+      );
+
+    const countryRepositoryService =
+      container.get<CountryRepositoryServiceBase>(
+        "CountryRepositoryServiceBase",
+      );
+
+    const positionRepositoryService =
+      context.container.get<PositionRepositoryServiceBase>(
+        "PositionRepositoryServiceBase",
+      );
+
+    const seasonRepositoryService =
+      context.container.get<SeasonRepositoryServiceBase>(
+        "SeasonRepositoryServiceBase",
+      );
+
+    const playerStatisticsRepositoryService =
+      context.container.get<PlayerStatisticsRepositoryServiceBase>(
+        "PlayerStatisticsRepositoryServiceBase",
+      );
+
+    return new PlayerRepositoryService(
+      dbContext,
+      clubRepositoryService,
+      birthPlaceRepositoryService,
+      countryRepositoryService,
+      positionRepositoryService,
+      seasonRepositoryService,
+      playerStatisticsRepositoryService,
+    );
+  });
 
 container
   .bind<SeasonRepositoryServiceBase>("SeasonRepositoryServiceBase")
-  .to(SeasonRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new SeasonRepositoryService(dbContext);
+  });
 
 container
   .bind<BirthPlaceRepositoryServiceBase>("BirthPlaceRepositoryServiceBase")
@@ -80,34 +133,84 @@ container
 
 container
   .bind<FootballApiServiceBase>("FootballApiServiceBase")
-  .to(FootballApiService);
+  .toDynamicValue(() => {
+    return new FootballApiService();
+  });
 
 container
   .bind<DatabaseImportServiceBase>("DatabaseImportServiceBase")
-  .to(DatabaseImportService);
+  .toDynamicValue((context) => {
+    const footballApiService = context.container.get<FootballApiServiceBase>(
+      "FootballApiServiceBase",
+    );
+
+    const clubRepositoryService =
+      context.container.get<ClubRepositoryServiceBase>(
+        "ClubRepositoryServiceBase",
+      );
+
+    const playerRepositoryService =
+      context.container.get<PlayerRepositoryServiceBase>(
+        "PlayerRepositoryServiceBase",
+      );
+
+    return new DatabaseImportService(
+      footballApiService,
+      clubRepositoryService,
+      playerRepositoryService,
+    );
+  });
 
 container
   .bind<PlayerImportStateRepositoryServiceBase>(
     "PlayerImportStateRepositoryServiceBase",
   )
-  .to(PlayerImportStateRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new PlayerImportStateRepositoryService(dbContext);
+  });
 
 container
   .bind<PlayerStatisticsRepositoryServiceBase>(
     "PlayerStatisticsRepositoryServiceBase",
   )
-  .to(PlayerStatisticsRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new PlayerStatisticsRepositoryService(dbContext);
+  });
 
 container
   .bind<PlayerRatingRepositoryServiceBase>("PlayerRatingRepositoryServiceBase")
-  .to(PlayerRatingRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    return new PlayerRatingRepositoryService(dbContext);
+  });
 
 container
   .bind<PlayerRatingServiceBase>("PlayerRatingServiceBase")
-  .to(PlayerRatingService);
+  .toDynamicValue(() => {
+    return new PlayerRatingService();
+  });
 
 container
   .bind<ThreadRepositoryServiceBase>("ThreadRepositoryServiceBase")
-  .to(ThreadRepositoryService);
+  .toDynamicValue((context) => {
+    const dbContext = context.container.get<EntityManager>("EntityManager");
+    const userRepositoryService =
+      context.container.get<UserRepositoryServiceBase>(
+        "UserRepositoryServiceBase",
+      );
+
+    const playerRepositoryService =
+      context.container.get<PlayerRepositoryServiceBase>(
+        "PlayerRepositoryServiceBase",
+      );
+
+    return new ThreadRepositoryService(
+      dbContext,
+      playerRepositoryService,
+      userRepositoryService,
+    );
+  });
 
 export { container };

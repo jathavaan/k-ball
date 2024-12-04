@@ -1,12 +1,14 @@
-import { injectable } from "inversify";
-import { KBallDbContext } from "../../persistence/dataSource";
+import { inject, injectable } from "inversify";
 import { User } from "../../../domain/entities";
 import { UserRepositoryServiceBase } from "../../../application/contracts";
 import bcrypt from "bcrypt";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class UserRepositoryService implements UserRepositoryServiceBase {
-  public dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getUserById(id: number) {
     return await this.dbContext.findOne(User, {

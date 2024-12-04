@@ -4,19 +4,18 @@
   UserRepositoryServiceBase,
 } from "../../../application/contracts";
 import { Thread, ThreadComment } from "../../../domain/entities";
-import { KBallDbContext } from "../../persistence/dataSource";
-import { injectable } from "inversify";
-import { container } from "../inversify.config";
+import { inject, injectable } from "inversify";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class ThreadRepositoryService implements ThreadRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
-  playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase",
-  );
-  userRepositoryService = container.get<UserRepositoryServiceBase>(
-    "UserRepositoryServiceBase",
-  );
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+    @inject("PlayerRepositoryServiceBase")
+    private readonly playerRepositoryService: PlayerRepositoryServiceBase,
+    @inject("UserRepositoryServiceBase")
+    private readonly userRepositoryService: UserRepositoryServiceBase,
+  ) {}
 
   async getThread(threadId: number): Promise<Thread | null> {
     return await this.dbContext.findOne(Thread, {

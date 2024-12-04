@@ -1,12 +1,15 @@
-﻿import { injectable } from "inversify";
+﻿import { inject, injectable } from "inversify";
 import { ClubRepositoryServiceBase } from "../../../application/contracts";
 import { KBallDbContext } from "../../persistence/dataSource";
 import { Club } from "../../../domain/entities";
 import { ClubDto } from "../../../application/contracts/database-import-service/footballApi.dto";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class ClubRepositoryService implements ClubRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getClubs() {
     return await this.dbContext.find(Club, {
