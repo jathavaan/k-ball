@@ -192,6 +192,7 @@ export const Thread = (props: ThreadProps) => {
           threadComments[props.threadId].length > 0 ? (
             threadComments[props.threadId].map((comment) => (
               <ThreadComment
+                key={comment.id}
                 threadId={props.threadId}
                 commentId={comment.id}
                 userId={comment.userId}
@@ -202,6 +203,7 @@ export const Thread = (props: ThreadProps) => {
             ))
           ) : (
             <ThreadComment
+              key={9999999}
               threadId={props.threadId}
               commentId={9999999}
               userId={0}
