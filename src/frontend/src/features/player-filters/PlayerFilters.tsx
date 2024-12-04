@@ -52,12 +52,12 @@ export const PlayerFilters = () => {
           <Tooltip title="Reset filters" arrow disableInteractive>
             <span
               role="presentation"
-              aria-disabled={!canClearFilters}
               tabIndex={!canClearFilters ? 0 : undefined}
             >
               <StyledIconButton
                 onClick={clearFilters}
                 disabled={!canClearFilters}
+                aria-label="reset filters"
               >
                 <DeleteIcon />
               </StyledIconButton>
