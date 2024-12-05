@@ -7,6 +7,7 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   padding: "10px 30px",
   align: "center",
   textTransform: "none",
+  minHeight: "2.4rem",
   "&:hover": {
     backgroundColor: theme.palette.secondary.light,
   },

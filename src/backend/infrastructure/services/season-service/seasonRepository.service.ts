@@ -9,6 +9,7 @@ export class SeasonRepositoryService implements SeasonRepositoryServiceBase {
 
   async insertSeason(seasonYear: number): Promise<Season> {
     const season = new Season();
+    season.year = seasonYear;
     await this.dbContext.save(season);
     return (await this.getSeason(seasonYear))!;
   }

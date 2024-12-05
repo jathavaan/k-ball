@@ -20,4 +20,6 @@ export interface PlayerRepositoryServiceBase {
   getPlayerByExternalId(externalId: number): Promise<Player | null>;
 
   upsertPlayer(playerResponse: PlayerResponse): Promise<boolean | null>;
+
+  generateAllPlayerSeasons(): Promise<boolean>;
 }

@@ -7,10 +7,12 @@ import {
   DatabaseImportServiceBase,
   FootballApiServiceBase,
   PlayerImportStateRepositoryServiceBase,
+  PlayerRatingRepositoryServiceBase,
   PlayerRepositoryServiceBase,
   PlayerStatisticsRepositoryServiceBase,
   PositionRepositoryServiceBase,
   SeasonRepositoryServiceBase,
+  ThreadRepositoryServiceBase,
   UserRepositoryServiceBase,
 } from "../../application/contracts";
 import { FootballApiService } from "./database-import-service/footballApi.service";
@@ -24,10 +26,10 @@ import { CountryRepositoryService } from "./country-service/countryRepository.se
 import { PositionRepositoryService } from "./position-service/positionRepository.service";
 import { PlayerImportStateRepositoryService } from "./database-import-service/playerImportStateRepository.service";
 import { PlayerStatisticsRepositoryService } from "./player-service/playerStatisticsRepository.service";
-import { PlayerRatingRepositoryServiceBase } from "../../application/contracts/player-service/playerRatingRepository.service.base";
 import { PlayerRatingRepositoryService } from "./player-service/playerRatingRepository.service";
 import { PlayerRatingServiceBase } from "../../application/contracts/player-service/playerRating.service.base";
 import { PlayerRatingService } from "./player-service/playerRating.service";
+import { ThreadRepositoryService } from "./thread-service/ThreadRepository.service";
 
 const container = new Container();
 container
@@ -74,7 +76,7 @@ container
 
 container
   .bind<PlayerStatisticsRepositoryServiceBase>(
-    "PlayerStatsRepositoryServiceBase",
+    "PlayerStatisticsRepositoryServiceBase",
   )
   .to(PlayerStatisticsRepositoryService);
 
@@ -85,5 +87,9 @@ container
 container
   .bind<PlayerRatingServiceBase>("PlayerRatingServiceBase")
   .to(PlayerRatingService);
+
+container
+  .bind<ThreadRepositoryServiceBase>("ThreadRepositoryServiceBase")
+  .to(ThreadRepositoryService);
 
 export { container };

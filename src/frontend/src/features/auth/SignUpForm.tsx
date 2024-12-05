@@ -5,7 +5,7 @@ import {
   StyledPaper,
   StyledTypography,
 } from "@features/auth/auth.style";
-import { Button, ErrorAlert, SuccessAlert, TextField } from "@features/ui";
+import { Button, ErrorAlert, TextField } from "@features/ui";
 import { useRegister, useRegisterForm } from "@features/auth/auth.hooks.ts";
 import Grid from "@mui/material/Grid2";
 import {
@@ -28,7 +28,7 @@ export const SignUpForm = () => {
     onRegisterClick,
     handleKeyDown,
     isRegisterButtonDisabled,
-    data,
+    registerData,
     error,
     isPending,
   } = useRegister();
@@ -38,6 +38,18 @@ export const SignUpForm = () => {
     handleEmailChange,
     handleLastNameChange,
   } = useRegisterForm();
+
+  const handleRegisterClick = () => {
+    onRegisterClick(
+      {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+      },
+      () => navigate("/project2/players"),
+    );
+  };
 
   return (
     <StyledContainer maxWidth="sm" onKeyDown={(e) => handleKeyDown(e)}>
@@ -147,7 +159,7 @@ export const SignUpForm = () => {
               disabled={isRegisterButtonDisabled}
               isLoading={isPending}
               fullWidth
-              onClick={() => onRegisterClick()}
+              onClick={handleRegisterClick}
             />
           </Grid>
           {error ? (
@@ -169,7 +181,7 @@ export const SignUpForm = () => {
               />
             </Grid>
           ) : null}
-          {typeof data === "boolean" && !data ? (
+          {typeof registerData === "boolean" && !registerData ? (
             <Grid
               size={{ xs: 12 }}
               sx={{
@@ -188,7 +200,7 @@ export const SignUpForm = () => {
                 }}
               />
             </Grid>
-          ) : typeof data === "boolean" && data ? (
+          ) : typeof registerData === "boolean" && registerData ? (
             <Grid
               size={{ xs: 12 }}
               sx={{
@@ -196,17 +208,7 @@ export const SignUpForm = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-            >
-              <SuccessAlert
-                message={`Successfully registered user`}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "100%",
-                }}
-              />
-            </Grid>
+            ></Grid>
           ) : null}
           <Grid
             size={{ xs: 12 }}

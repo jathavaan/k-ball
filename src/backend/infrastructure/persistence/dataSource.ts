@@ -11,6 +11,8 @@ import {
   PlayerStatistics,
   Position,
   Season,
+  Thread,
+  ThreadComment,
   User,
 } from "../../domain/entities";
 import { config } from "../../config";
@@ -37,6 +39,8 @@ export const KBallDbContext = new DataSource({
     PlayerStatistics,
     Season,
     PlayerImportState,
+    Thread,
+    ThreadComment,
   ],
   migrations: ["migrations/*{.ts,.js}"],
   migrationsTableName: "__migration_history__",

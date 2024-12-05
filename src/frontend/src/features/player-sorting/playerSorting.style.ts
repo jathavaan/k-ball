@@ -14,7 +14,7 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
     "& .MuiToggleButton-root": {
       margin: theme.spacing(0),
       padding: "0.4rem 0.8rem",
-      color: "white",
+      color: theme.palette.primary.contrastText,
       fontFamily: theme.typography.fontFamily,
       width: "100%",
       "&.Mui-selected": {
