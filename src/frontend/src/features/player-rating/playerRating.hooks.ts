@@ -141,6 +141,25 @@ export const usePlayerRating = (playerId: number) => {
   };
 
   useEffect(() => {
+    mutateUserRating();
+    mutateOverallRating();
+  }, [mutateOverallRating, mutateUserRating]);
+
+  useEffect(() => {
+    dispatch(resetPlayerRating());
+    if (!userRating) {
+      dispatch(setIsPlayerRatingInDb(false));
+      return;
+    }
+
+    dispatch(setAttack(userRating.attack));
+    dispatch(setDefence(userRating.defence));
+    dispatch(setPassing(userRating.passing));
+    dispatch(setIntelligence(userRating.intelligence));
+    dispatch(setIsPlayerRatingInDb(true));
+  }, [dispatch, userRating]);
+
+  useEffect(() => {
     dispatch(resetPlayerRating());
 
     mutateUserRating(undefined, {
