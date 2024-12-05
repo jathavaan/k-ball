@@ -1,4 +1,0 @@
-cd src/backend
-npm run format
-git add .
-cd ../..
