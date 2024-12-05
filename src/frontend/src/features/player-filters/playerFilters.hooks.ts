@@ -2,6 +2,7 @@ import { AppDispatch } from "@/store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
   applyFilters,
+  selectFilters,
   selectHasChanges,
   selectTempFilters,
   setTempClubFilters,
@@ -132,6 +133,29 @@ export const useApplyFilters = () => {
       dispatch(applyFilters());
     }
   };
-
   return { hasChanges, applyFiltersChanges };
+};
+
+export const useClearFilters = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { clubIds, countryIds, positionIds } = useSelector(selectTempFilters);
+  const { selectedClubIds, selectedCountryIds, selectedPositionIds } =
+    useSelector(selectFilters);
+  const canClearFilters =
+    clubIds[0] !== -1 ||
+    countryIds[0] !== -1 ||
+    positionIds[0] !== -1 ||
+    selectedClubIds[0] !== -1 ||
+    selectedCountryIds[0] !== -1 ||
+    selectedPositionIds[0] !== -1;
+
+  const clearFilters = () => {
+    if (canClearFilters) {
+      dispatch(setTempClubFilters([-1]));
+      dispatch(setTempCountryFilters([-1]));
+      dispatch(setTempPositionFilters([-1]));
+      dispatch(applyFilters());
+    }
+  };
+  return { canClearFilters, clearFilters };
 };
