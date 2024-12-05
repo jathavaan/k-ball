@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "npx tsx ./presentation/server.ts",
     "build": "npx tsc",
-    "test": "npm run test",
+    "test": "jest",
     "start": "pm2 start dist/presentation/server.js --name k-ball-api",
     "stop": "pm2 stop k-ball-api",
     "delete": "pm2 delete k-ball-api",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "prepare": "cd ../.. && npx husky src/backend/.husky"
   },
   "author": "",
   "license": "ISC",
@@ -26,19 +27,29 @@
     "graphql-http": "^1.22.2",
     "graphql-playground-middleware-express": "^1.7.23",
     "graphql-scalars": "^1.23.0",
-    "inversify": "^6.0.2",
+    "inversify": "^6.1.6",
     "pg": "^8.13.0",
+    "pg-mem": "^3.0.4",
     "reflect-metadata": "^0.2.2",
-    "ts-node": "^10.9.2",
+    "sqlite3": "^5.1.7",
     "tsconfig-paths": "^4.2.0",
-    "typeorm": "^0.3.20",
-    "typescript": "^5.6.2"
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/inversify": "^2.0.32",
+    "@types/jest": "^29.5.14",
+    "@types/pg": "^8.11.10",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0-beta1",
     "prettier": "^3.3.3",
-    "tsx": "^4.19.1"
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.7.2"
   }
 }

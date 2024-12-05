@@ -3,14 +3,16 @@ import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
 import { container } from "../../../../../infrastructure/services/inversify.config";
 import { PlayerRating } from "../../../../../domain/entities";
 import { UpsertPlayerRatingCommand } from "./upsertPlayerRatingCommand";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class UpsertPlayerRatingCommandHandler
   implements Request<UpsertPlayerRatingCommand, boolean>
 {
-  playerRatingRepositoryService =
-    container.get<PlayerRatingRepositoryServiceBase>(
-      "PlayerRatingRepositoryServiceBase",
-    );
+  constructor(
+    @inject("PlayerRatingRepositoryServiceBase")
+    private readonly playerRatingRepositoryService: PlayerRatingRepositoryServiceBase,
+  ) {}
 
   async handle(request: UpsertPlayerRatingCommand): Promise<boolean> {
     const playerRating = new PlayerRating();

@@ -14,15 +14,22 @@ import {
   UpsertPlayerRatingCommand,
   UpsertPlayerRatingCommandHandler,
 } from "../../../application/features/player/command";
+import { container } from "../../../infrastructure/services/inversify.config";
 
-const getPlayersQueryHandler = new GetPlayersQueryHandler();
-const getPlayerByIdQueryHandler = new GetPlayerByIdQueryHandler();
-const getPlayerRatingGivenByUserQueryHandler =
-  new GetPlayerRatingGivenByUserQueryHandler();
-const getAveragePlayerRatingQueryHandler =
-  new GetAveragePlayerRatingQueryHandler();
-const upsertPlayerRatingCommandHandler = new UpsertPlayerRatingCommandHandler();
-const deletePlayerRatingCommandHandler = new DeletePlayerRatingCommandHandler();
+const getPlayersQueryHandler = container.get(GetPlayersQueryHandler);
+const getPlayerByIdQueryHandler = container.get(GetPlayerByIdQueryHandler);
+const getPlayerRatingGivenByUserQueryHandler = container.get(
+  GetPlayerRatingGivenByUserQueryHandler,
+);
+const getAveragePlayerRatingQueryHandler = container.get(
+  GetAveragePlayerRatingQueryHandler,
+);
+const upsertPlayerRatingCommandHandler = container.get(
+  UpsertPlayerRatingCommandHandler,
+);
+const deletePlayerRatingCommandHandler = container.get(
+  DeletePlayerRatingCommandHandler,
+);
 
 export const playerResolver = {
   PlayerQuery: {

@@ -2,7 +2,6 @@
 import "reflect-metadata";
 import { createHandler } from "graphql-http/lib/use/express";
 import expressPlayground from "graphql-playground-middleware-express";
-import { KBallDbContext } from "../infrastructure/persistence/dataSource";
 import { schema } from "./resolvers/graphQlSchema";
 import cors from "cors";
 import { config } from "../config";
@@ -12,9 +11,11 @@ import { loggingMiddleware } from "../application/middleware/logging.middleware"
 import {
   DatabaseImportServiceBase,
   PlayerImportStateRepositoryServiceBase,
-} from "../application/contracts"; // Initialize the database connection
+} from "../application/contracts";
+import { DataSource } from "typeorm";
 
 // Initialize the database connection
+const dataSource = container.get<DataSource>("DataSource");
 const databaseImportService = container.get<DatabaseImportServiceBase>(
   "DatabaseImportServiceBase",
 );
@@ -24,7 +25,8 @@ const playerImportStateService =
     "PlayerImportStateRepositoryServiceBase",
   );
 
-KBallDbContext.initialize()
+dataSource
+  .initialize()
   .then(() => {
     console.log(
       `Connected to ${config.DB_NAME} at ${config.DB_HOST}:${config.DB_PORT}`,
@@ -72,3 +74,5 @@ app.listen(3001, () => {
     "Running a GraphQL API server. View the docs at http://localhost:3001/docs",
   );
 });
+
+export { app };

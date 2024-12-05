@@ -3,18 +3,18 @@
   CountryRepositoryServiceBase,
 } from "../../../application/contracts";
 import { BirthPlace } from "../../../domain/entities";
-import { KBallDbContext } from "../../persistence/dataSource";
-import { container } from "../inversify.config";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class BirthPlaceRepositoryService
   implements BirthPlaceRepositoryServiceBase
 {
-  dbContext = KBallDbContext.manager;
-  countryRepositoryService = container.get<CountryRepositoryServiceBase>(
-    "CountryRepositoryServiceBase",
-  );
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+    @inject("CountryRepositoryServiceBase")
+    private readonly countryRepositoryService: CountryRepositoryServiceBase,
+  ) {}
 
   async getBirthPlaceByNameAndCountry(
     birthPlaceName: string,

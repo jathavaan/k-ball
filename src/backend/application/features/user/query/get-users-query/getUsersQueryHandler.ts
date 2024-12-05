@@ -1,13 +1,15 @@
-﻿import { Request } from "../../../../common/request";
+﻿import { Request } from "../../../../common";
 import { UserVm } from "../../../../view-models";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { GetUsersQuery } from "./getUsersQuery";
 import { UserRepositoryServiceBase } from "../../../../contracts";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetUsersQueryHandler implements Request<GetUsersQuery, UserVm[]> {
-  userRepositoryService = container.get<UserRepositoryServiceBase>(
-    "UserRepositoryServiceBase",
-  );
+  constructor(
+    @inject("UserRepositoryServiceBase")
+    private readonly userRepositoryService: UserRepositoryServiceBase,
+  ) {}
 
   async handle(request: GetUsersQuery): Promise<UserVm[]> {
     const users = await this.userRepositoryService.getUsers();

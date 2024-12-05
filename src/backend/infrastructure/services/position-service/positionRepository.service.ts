@@ -1,13 +1,15 @@
-﻿import { injectable } from "inversify";
+﻿import { inject, injectable } from "inversify";
 import { PositionRepositoryServiceBase } from "../../../application/contracts";
-import { KBallDbContext } from "../../persistence/dataSource";
 import { Position } from "../../../domain/entities";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class PositionRepositoryService
   implements PositionRepositoryServiceBase
 {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getPositions(): Promise<Position[]> {
     return await this.dbContext.find(Position);

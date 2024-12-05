@@ -1,17 +1,19 @@
-import { injectable } from "inversify";
-import { KBallDbContext } from "../../persistence/dataSource";
+import { inject, injectable } from "inversify";
 import {
   Player,
   PlayerSeason,
   PlayerStatistics,
 } from "../../../domain/entities";
 import { PlayerStatisticsRepositoryServiceBase } from "../../../application/contracts";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class PlayerStatisticsRepositoryService
   implements PlayerStatisticsRepositoryServiceBase
 {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getPlayerStatsByPlayerId(
     playerId: number,

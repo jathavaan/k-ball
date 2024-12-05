@@ -1,16 +1,20 @@
 ﻿import { Request } from "../../../../common";
 import { DeleteThreadCommentCommand } from "./deleteThreadCommentCommand";
 import { DeleteThreadCommentCommandValidator } from "./deleteThreadCommentCommandValidator";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { ThreadRepositoryServiceBase } from "../../../../contracts";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class DeleteThreadCommentCommandHandler
   implements Request<DeleteThreadCommentCommand, boolean>
 {
-  private validator = new DeleteThreadCommentCommandValidator();
-  private threadRepositoryService = container.get<ThreadRepositoryServiceBase>(
-    "ThreadRepositoryServiceBase",
-  );
+  constructor(
+    @inject("ThreadRepositoryServiceBase")
+    private readonly threadRepositoryService: ThreadRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new DeleteThreadCommentCommandValidator();
+
   async handle(request: DeleteThreadCommentCommand): Promise<boolean> {
     this.validator.validate(request);
     return await this.threadRepositoryService.deleteThreadComment(

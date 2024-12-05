@@ -4,10 +4,8 @@
   FootballApiServiceBase,
   PlayerRepositoryServiceBase,
 } from "../../../application/contracts";
-import { injectable } from "inversify";
-import { container } from "../inversify.config";
+import { inject, injectable } from "inversify";
 import { config } from "../../../config";
-import { KBallDbContext } from "../../persistence/dataSource";
 import {
   ClubDto,
   PlayerResponse,
@@ -15,18 +13,14 @@ import {
 
 @injectable()
 export class DatabaseImportService implements DatabaseImportServiceBase {
-  dbContext = KBallDbContext.manager;
-  apiFootballService = container.get<FootballApiServiceBase>(
-    "FootballApiServiceBase",
-  );
-
-  clubRepositoryService = container.get<ClubRepositoryServiceBase>(
-    "ClubRepositoryServiceBase",
-  );
-
-  playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase",
-  );
+  constructor(
+    @inject("FootballApiServiceBase")
+    private readonly footballApiService: FootballApiServiceBase,
+    @inject("ClubRepositoryServiceBase")
+    private readonly clubRepositoryService: ClubRepositoryServiceBase,
+    @inject("PlayerRepositoryServiceBase")
+    private readonly playerRepositoryService: PlayerRepositoryServiceBase,
+  ) {}
 
   async populateDatabase(): Promise<boolean> {
     const isClubsInserted = await this.insertClubs();
@@ -93,7 +87,7 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
   private async convertApiClubsToClubDtos(): Promise<ClubDto[]> {
     const uniqueClubs: ClubDto[] = [];
     for (const season of config.SEASONS_TO_IMPORT) {
-      const clubs = await this.apiFootballService.getClubs(season);
+      const clubs = await this.footballApiService.getClubs(season);
       for (const club of clubs.response) {
         if (!uniqueClubs.find((c) => c.id === club.team.id)) {
           uniqueClubs.push(club.team);
@@ -109,7 +103,7 @@ export class DatabaseImportService implements DatabaseImportServiceBase {
   > {
     const players: PlayerResponse[] = [];
     for (const season of config.SEASONS_TO_IMPORT) {
-      const playersResponse = await this.apiFootballService.getPlayers(season);
+      const playersResponse = await this.footballApiService.getPlayers(season);
       players.push(...playersResponse.response);
     }
 

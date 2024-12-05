@@ -1,31 +1,28 @@
-﻿import { injectable } from "inversify";
+﻿import { inject, injectable } from "inversify";
 import { CountryRepositoryServiceBase } from "../../../application/contracts";
-import { KBallDbContext } from "../../persistence/dataSource";
-import { Country, Player } from "../../../domain/entities";
+import { Country } from "../../../domain/entities";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class CountryRepositoryService implements CountryRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async getCountries() {
-    const countries = await this.dbContext.query(`
-      SELECT 
-          country.id AS id,
-          country.name AS name,
-          country."flagUrl" AS "flagUrl",
-          COUNT(player.id) AS "playerCount"
-      FROM 
-          country
-      LEFT JOIN 
-          player ON player."countryId" = country.id
-      GROUP BY 
-          country.id, country.name, country."flagUrl"
-      HAVING 
-          COUNT(player.id) > 0
-      ORDER BY 
-          "playerCount" DESC;
-    `);
-    return countries;
+    const countries = await this.dbContext.find(Country, {
+      select: {
+        id: true,
+        name: true,
+        flagUrl: true,
+        players: true,
+      },
+      relations: {
+        players: true,
+      },
+    });
+
+    return countries.filter((country: Country) => country.players.length > 0);
   }
 
   async getCountryByName(name: string) {

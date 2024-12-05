@@ -1,4 +1,4 @@
-﻿import { PlayerRatingServiceBase } from "../../../application/contracts/player-service/playerRating.service.base";
+﻿import { PlayerRatingServiceBase } from "../../../application/contracts";
 import { injectable } from "inversify";
 import { PlayerRating } from "../../../domain/entities";
 

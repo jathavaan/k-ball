@@ -1,16 +1,19 @@
 ﻿import { Request } from "../../../../common";
 import { EditThreadCommentCommand } from "./editThreadCommentCommand";
 import { EditThreadCommentCommandValidator } from "./editThreadCommentCommandValidator";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { ThreadRepositoryServiceBase } from "../../../../contracts";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class EditThreadCommentCommandHandler
   implements Request<EditThreadCommentCommand, boolean>
 {
-  private validator = new EditThreadCommentCommandValidator();
-  private threadRepositoryService = container.get<ThreadRepositoryServiceBase>(
-    "ThreadRepositoryServiceBase",
-  );
+  constructor(
+    @inject("ThreadRepositoryServiceBase")
+    private readonly threadRepositoryService: ThreadRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new EditThreadCommentCommandValidator();
 
   handle(request: EditThreadCommentCommand): Promise<boolean> {
     this.validator.validate(request);

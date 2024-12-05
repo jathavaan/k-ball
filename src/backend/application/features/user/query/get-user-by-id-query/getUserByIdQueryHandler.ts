@@ -1,17 +1,20 @@
-﻿import { Request } from "../../../../common/request";
+﻿import { Request } from "../../../../common";
 import { GetUserByIdQuery } from "./getUserByIdQuery";
 import { UserVm } from "../../../../view-models";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { UserRepositoryServiceBase } from "../../../../contracts";
 import { GetUserByIdQueryValidator } from "./getUserByIdQueryValidator";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetUserByIdQueryHandler
   implements Request<GetUserByIdQuery, UserVm | null>
 {
-  validator = new GetUserByIdQueryValidator();
-  userRepositoryService = container.get<UserRepositoryServiceBase>(
-    "UserRepositoryServiceBase",
-  );
+  constructor(
+    @inject("UserRepositoryServiceBase")
+    private readonly userRepositoryService: UserRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new GetUserByIdQueryValidator();
 
   async handle(request: GetUserByIdQuery): Promise<UserVm | null> {
     this.validator.validate(request);

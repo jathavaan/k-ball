@@ -1,17 +1,20 @@
 ﻿import { Request } from "../../../../common";
 import { GetThreadCommentsQuery } from "./getThreadCommentsQuery";
 import { ThreadCommentVm } from "../../../../view-models";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { ThreadRepositoryServiceBase } from "../../../../contracts";
-import { GetThreadCommentsQueryValidator } from "./getThreadCommentQueryValidator";
+import { GetThreadCommentsQueryValidator } from "./getThreadCommentsQueryValidator";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetThreadCommentsQueryHandler
   implements Request<GetThreadCommentsQuery, ThreadCommentVm[]>
 {
-  private validator = new GetThreadCommentsQueryValidator();
-  private threadRepositoryService = container.get<ThreadRepositoryServiceBase>(
-    "ThreadRepositoryServiceBase",
-  );
+  constructor(
+    @inject("ThreadRepositoryServiceBase")
+    private readonly threadRepositoryService: ThreadRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new GetThreadCommentsQueryValidator();
 
   async handle(request: GetThreadCommentsQuery): Promise<ThreadCommentVm[]> {
     this.validator.validate(request);

@@ -1,11 +1,13 @@
-﻿import { injectable } from "inversify";
+﻿import { inject, injectable } from "inversify";
 import { SeasonRepositoryServiceBase } from "../../../application/contracts";
-import { KBallDbContext } from "../../persistence/dataSource";
 import { Season } from "../../../domain/entities";
+import { EntityManager } from "typeorm";
 
 @injectable()
 export class SeasonRepositoryService implements SeasonRepositoryServiceBase {
-  dbContext = KBallDbContext.manager;
+  constructor(
+    @inject("EntityManager") private readonly dbContext: EntityManager,
+  ) {}
 
   async insertSeason(seasonYear: number): Promise<Season> {
     const season = new Season();

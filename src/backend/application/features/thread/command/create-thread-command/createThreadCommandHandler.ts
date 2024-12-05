@@ -1,16 +1,19 @@
 ﻿import { Request } from "../../../../common";
 import { CreateThreadCommand } from "./createThreadCommand";
 import { ThreadRepositoryServiceBase } from "../../../../contracts";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { CreateThreadCommandValidator } from "./createThreadCommandValidator";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class CreateThreadCommandHandler
   implements Request<CreateThreadCommand, boolean>
 {
-  private validator = new CreateThreadCommandValidator();
-  private threadRepositoryService = container.get<ThreadRepositoryServiceBase>(
-    "ThreadRepositoryServiceBase",
-  );
+  constructor(
+    @inject("ThreadRepositoryServiceBase")
+    private readonly threadRepositoryService: ThreadRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new CreateThreadCommandValidator();
 
   async handle(request: CreateThreadCommand): Promise<boolean> {
     this.validator.validate(request);

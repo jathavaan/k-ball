@@ -2,10 +2,13 @@
 import { Request } from "../../../../common";
 import { GetPlayersQuery } from "./getPlayersQuery";
 import { PlayerVm } from "../../../../view-models";
-import { container } from "../../../../../infrastructure/services/inversify.config";
-import { PlayerRepositoryServiceBase } from "../../../../contracts";
-import { PlayerRatingServiceBase } from "../../../../contracts/player-service/playerRating.service.base";
+import {
+  PlayerRatingServiceBase,
+  PlayerRepositoryServiceBase,
+} from "../../../../contracts";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetPlayersQueryHandler
   implements
     Request<
@@ -18,12 +21,12 @@ export class GetPlayersQueryHandler
       }
     >
 {
-  playerRepositoryService = container.get<PlayerRepositoryServiceBase>(
-    "PlayerRepositoryServiceBase",
-  );
-  playerRatingService = container.get<PlayerRatingServiceBase>(
-    "PlayerRatingServiceBase",
-  );
+  constructor(
+    @inject("PlayerRepositoryServiceBase")
+    private readonly playerRepositoryService: PlayerRepositoryServiceBase,
+    @inject("PlayerRatingServiceBase")
+    private readonly playerRatingService: PlayerRatingServiceBase,
+  ) {}
 
   async handle(request: GetPlayersQuery): Promise<{
     playerCards: PlayerVm[];

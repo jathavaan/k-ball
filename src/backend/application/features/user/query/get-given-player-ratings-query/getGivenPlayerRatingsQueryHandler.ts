@@ -2,17 +2,19 @@
 import { GetGivenPlayerRatingsQuery } from "./getGivenPlayerRatingsQuery";
 import { GetGivenRatingsQueryValidator } from "./getGivenRatingsQueryValidator";
 import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { PlayerRatingInfoVm } from "../../../../view-models";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetGivenPlayerRatingsQueryHandler
   implements Request<GetGivenPlayerRatingsQuery, PlayerRatingInfoVm[]>
 {
-  validator = new GetGivenRatingsQueryValidator();
-  playerRatingRepositoryService =
-    container.get<PlayerRatingRepositoryServiceBase>(
-      "PlayerRatingRepositoryServiceBase",
-    );
+  constructor(
+    @inject("PlayerRatingRepositoryServiceBase")
+    private readonly playerRatingRepositoryService: PlayerRatingRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new GetGivenRatingsQueryValidator();
 
   async handle(
     request: GetGivenPlayerRatingsQuery,
