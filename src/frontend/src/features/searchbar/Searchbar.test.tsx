@@ -1,11 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { searchbarReducer } from "@features/searchbar/searchbar.slice.ts";
 import { SearchBar } from "@features/searchbar/Searchbar.tsx";
 
-// Helper to render the component with a Redux provider
 const renderWithRedux = (
   component: React.ReactElement,
   options: { initialState?: any; store?: any } = {},
@@ -13,10 +12,13 @@ const renderWithRedux = (
   const {
     initialState,
     store = configureStore({
-      reducer: searchbarReducer,
+      reducer: {
+        searchbarReducer: searchbarReducer,
+      },
       preloadedState: initialState,
     }),
   } = options;
+
   return {
     ...render(<Provider store={store}>{component}</Provider>),
     store,
@@ -76,7 +78,8 @@ describe("SearchBar", () => {
       },
     };
     renderWithRedux(<SearchBar />, { initialState });
-    const button = screen.getByLabelText("disabled search");
+
+    const button = screen.getByRole("button", { name: /search/i });
     expect(button).toBeDisabled();
   });
 });
