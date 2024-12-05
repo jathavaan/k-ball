@@ -49,6 +49,15 @@ export const selectTempFilters = createSelector(
   }),
 );
 
+export const selectFilters = createSelector(
+  (state: RootState) => state.playerFiltersReducer,
+  (playerFiltersReducer) => ({
+    selectedClubIds: playerFiltersReducer.selectedClubIds,
+    selectedCountryIds: playerFiltersReducer.selectedCountryIds,
+    selectedPositionIds: playerFiltersReducer.selectedPositionIds,
+  }),
+);
+
 export const selectHasChanges = (state: RootState) => {
   const {
     tempClubIds,
