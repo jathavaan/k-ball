@@ -22,7 +22,9 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
       },
     });
 
-    return countries.filter((country: Country) => country.players.length > 0);
+    return countries
+      .filter((country: Country) => country.players.length > 0)
+      .sort((a, b) => b.players.length - a.players.length);
   }
 
   async getCountryByName(name: string) {
