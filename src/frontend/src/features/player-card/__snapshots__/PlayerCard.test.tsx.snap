@@ -33,6 +33,7 @@ exports[`PlayerCard > Should match PlayerCard snapshot 1`] = `
           >
             <p
               class=MuiTypography-root MuiTypography-body1 css-dynamic-MuiTypography-root
+              data-testid="player-name"
               text="Jo Hyeon-Woo"
             >
               Jo Hyeon-Woo

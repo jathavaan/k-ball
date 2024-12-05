@@ -79,6 +79,7 @@ export const Thread = (props: ThreadProps) => {
         }}
       >
         <StyledListItemButton
+          aria-label="replies"
           onClick={() => onCommentSectionClick(props.threadId)}
         >
           <StyledListItemTextButton>
@@ -88,6 +89,7 @@ export const Thread = (props: ThreadProps) => {
           </StyledListItemTextButton>
         </StyledListItemButton>
         <StyledListItemButton
+          aria-label="reply-thread"
           sx={{
             ml: 3,
           }}
@@ -107,6 +109,7 @@ export const Thread = (props: ThreadProps) => {
         </StyledListItemButton>
         {props.userId === getLoggedInUser() && (
           <StyledListItemButton
+            aria-label="delete-thread"
             sx={{
               ml: 3,
             }}
@@ -158,6 +161,7 @@ export const Thread = (props: ThreadProps) => {
             }
           />
           <Button
+            aria-label="post-comment"
             text="Post comment"
             onClick={onPostThreadCommentClick}
             isLoading={isPostThreadCommentPending}
@@ -224,6 +228,7 @@ export const ThreadComment = (props: ThreadCommentProps) => {
 
   return (
     <StyledListItem
+      aria-label="thread-comment"
       key={props.commentId}
       sx={{
         flex: "display",
@@ -262,6 +267,7 @@ export const ThreadComment = (props: ThreadCommentProps) => {
       <StyledListItemTextContent>{props.content}</StyledListItemTextContent>
       {props.userId === getLoggedInUser() && (
         <StyledListItemButton
+          aria-label="delete-comment"
           sx={{
             ml: 0,
           }}

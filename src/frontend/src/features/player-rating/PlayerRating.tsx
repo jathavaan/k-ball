@@ -96,6 +96,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="overall-attack"
             readOnly
             value={overallRating?.attack}
             isLoading={isOverallRatingPending}
@@ -104,6 +105,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="overall-defence"
             readOnly
             value={overallRating?.defence}
             precision={0.1}
@@ -113,6 +115,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="overall-passing"
             readOnly
             value={overallRating?.passing}
             precision={0.1}
@@ -122,6 +125,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="overall-intelligence"
             readOnly
             value={overallRating?.intelligence}
             precision={0.1}
@@ -141,6 +145,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         >
           <StyledGridItem size={{ xs: 12 }}>
             <Rating
+              aria-label="overall-average-rating"
               readOnly
               value={overallRating?.average}
               precision={0.1}
@@ -187,6 +192,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="your-attack"
             readOnly={!isEditingPlayerRating}
             isEditing={isEditingPlayerRating}
             value={attack}
@@ -197,6 +203,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="your-defence"
             readOnly={!isEditingPlayerRating}
             isEditing={isEditingPlayerRating}
             value={defence}
@@ -207,6 +214,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="your-passing"
             readOnly={!isEditingPlayerRating}
             isEditing={isEditingPlayerRating}
             value={passing}
@@ -217,6 +225,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         </StyledGridItem>
         <StyledGridItem size={{ xs: 12 }}>
           <Rating
+            aria-label="your-intelligence"
             readOnly={!isEditingPlayerRating}
             isEditing={isEditingPlayerRating}
             value={intelligence}
@@ -236,6 +245,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         >
           <StyledGridItem size={{ xs: 12 }}>
             <Rating
+              aria-label="your-average-rating"
               readOnly
               value={average}
               isAverage
@@ -299,7 +309,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         <FloatingActionButton
           variant="extended"
           disabled={isSaveUserRatingPending || isOverallRatingPending}
-          onClick={() => onEditClick()}
+          onClick={isEditingPlayerRating ? () => handleClear() : onEditClick}
           aria-label="edit player rating"
           tooltipTitle={
             isEditingPlayerRating
