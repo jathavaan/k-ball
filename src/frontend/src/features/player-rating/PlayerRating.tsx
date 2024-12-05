@@ -299,7 +299,7 @@ export const PlayerRating = ({ playerId }: PlayerRatingProps) => {
         <FloatingActionButton
           variant="extended"
           disabled={isSaveUserRatingPending || isOverallRatingPending}
-          onClick={() => onEditClick()}
+          onClick={isEditingPlayerRating ? () => handleClear() : onEditClick}
           aria-label="edit player rating"
           tooltipTitle={
             isEditingPlayerRating
