@@ -1,5 +1,5 @@
 ﻿import { DataSource } from "typeorm";
-import { mockDatabase } from "../../mocks/mock.database";
+import { mockDatabase } from "../../setup/mock.database";
 import bcrypt from "bcrypt";
 import { UserRepositoryServiceBase } from "../../../application/contracts";
 import { container } from "../../../infrastructure/services/inversify.config";
@@ -50,6 +50,7 @@ describe("UserRepositoryService with Mock Database", () => {
       email: "kari.nordmann@email.com",
       firstName: "Kari",
       lastName: "Nordmann",
+      password: "password2",
     });
   });
 

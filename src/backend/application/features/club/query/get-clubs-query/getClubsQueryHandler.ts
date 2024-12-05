@@ -1,13 +1,15 @@
-﻿import { Request } from "../../../../common/request";
+﻿import { Request } from "../../../../common";
 import { GetClubsQuery } from "./getClubsQuery";
 import { ClubVm } from "../../../../view-models";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { ClubRepositoryServiceBase } from "../../../../contracts";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetClubsQueryHandler implements Request<GetClubsQuery, ClubVm[]> {
-  clubRepositoryService = container.get<ClubRepositoryServiceBase>(
-    "ClubRepositoryServiceBase",
-  );
+  constructor(
+    @inject("ClubRepositoryServiceBase")
+    private readonly clubRepositoryService: ClubRepositoryServiceBase,
+  ) {}
 
   async handle(request: GetClubsQuery): Promise<ClubVm[]> {
     const clubs = await this.clubRepositoryService.getClubs();

@@ -18,17 +18,26 @@ import {
 } from "../../../application/features/thread/command";
 import { GetThreadCommentsQueryHandler } from "../../../application/features/thread/query/get-thread-comments-query/getThreadCommentsQueryHandler";
 import { GetThreadCommentsQuery } from "../../../application/features/thread/query/get-thread-comments-query/getThreadCommentsQuery";
+import { container } from "../../../infrastructure/services/inversify.config";
 
-const getPlayerThreadsQueryHandler = new GetPlayerThreadsQueryHandler();
-const getThreadCommentsQueryHandler = new GetThreadCommentsQueryHandler();
-const createThreadCommandHandler = new CreateThreadCommandHandler();
-const deleteThreadCommandHandler = new DeleteThreadCommandHandler();
-const editThreadCommandHandler = new EditThreadCommandHandler();
-const createThreadCommentCommandHandler =
-  new CreateThreadCommentCommandHandler();
-const editThreadCommentCommandHandler = new EditThreadCommentCommandHandler();
-const deleteThreadCommentCommandHandler =
-  new DeleteThreadCommentCommandHandler();
+const getPlayerThreadsQueryHandler = container.get(
+  GetPlayerThreadsQueryHandler,
+);
+const getThreadCommentsQueryHandler = container.get(
+  GetThreadCommentsQueryHandler,
+);
+const createThreadCommandHandler = container.get(CreateThreadCommandHandler);
+const deleteThreadCommandHandler = container.get(DeleteThreadCommandHandler);
+const editThreadCommandHandler = container.get(EditThreadCommandHandler);
+const createThreadCommentCommandHandler = container.get(
+  CreateThreadCommentCommandHandler,
+);
+const editThreadCommentCommandHandler = container.get(
+  EditThreadCommentCommandHandler,
+);
+const deleteThreadCommentCommandHandler = container.get(
+  DeleteThreadCommentCommandHandler,
+);
 
 export const threadResolver = {
   ThreadQuery: {

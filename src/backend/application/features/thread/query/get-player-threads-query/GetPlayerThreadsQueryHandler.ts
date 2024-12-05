@@ -1,18 +1,20 @@
 ﻿import { Request } from "../../../../common";
-import { ThreadCommentVm, ThreadVm } from "../../../../view-models";
+import { ThreadVm } from "../../../../view-models";
 import { GetPlayerThreadsQuery } from "./GetPlayerThreadsQuery";
 import { GetPlayerThreadsQueryValidator } from "./GetPlayerThreadsQueryValidator";
 import { ThreadRepositoryServiceBase } from "../../../../contracts";
-import { container } from "../../../../../infrastructure/services/inversify.config";
-import { Thread } from "../../../../../domain/entities";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetPlayerThreadsQueryHandler
   implements Request<GetPlayerThreadsQuery, ThreadVm[]>
 {
-  private validator = new GetPlayerThreadsQueryValidator();
-  private threadRepositoryService = container.get<ThreadRepositoryServiceBase>(
-    "ThreadRepositoryServiceBase",
-  );
+  constructor(
+    @inject("ThreadRepositoryServiceBase")
+    private readonly threadRepositoryService: ThreadRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new GetPlayerThreadsQueryValidator();
 
   async handle(request: GetPlayerThreadsQuery): Promise<ThreadVm[]> {
     this.validator.validate(request);

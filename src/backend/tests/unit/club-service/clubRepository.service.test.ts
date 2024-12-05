@@ -1,6 +1,6 @@
 ﻿import { DataSource } from "typeorm";
 import { ClubRepositoryServiceBase } from "../../../application/contracts";
-import { mockDatabase } from "../../mocks/mock.database";
+import { mockDatabase } from "../../setup/mock.database";
 import { container } from "../../../infrastructure/services/inversify.config";
 
 describe("ClubRepository", () => {

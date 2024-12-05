@@ -1,16 +1,17 @@
-﻿import { Request } from "../../../../common/request";
+﻿import { Request } from "../../../../common";
 import { GetAveragePlayerRatingQuery } from "./getAveragePlayerRatingQuery";
-import { PlayerRatingVm } from "../../../../view-models/playerRatingVm";
+import { PlayerRatingVm } from "../../../../view-models";
 import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
-import { container } from "../../../../../infrastructure/services/inversify.config";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class GetAveragePlayerRatingQueryHandler
   implements Request<GetAveragePlayerRatingQuery, PlayerRatingVm | null>
 {
-  playerRatingRepositoryService =
-    container.get<PlayerRatingRepositoryServiceBase>(
-      "PlayerRatingRepositoryServiceBase",
-    );
+  constructor(
+    @inject("PlayerRatingRepositoryServiceBase")
+    private readonly playerRatingRepositoryService: PlayerRatingRepositoryServiceBase,
+  ) {}
 
   async handle(
     request: GetAveragePlayerRatingQuery,

@@ -34,6 +34,7 @@ export class UserRepositoryService implements UserRepositoryServiceBase {
         email: true,
         firstName: true,
         lastName: true,
+        password: true,
       },
     });
   }

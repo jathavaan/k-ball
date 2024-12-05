@@ -12,13 +12,17 @@ import {
   CreateUserCommand,
   CreateUserCommandHandler,
 } from "../../../application/features/user/command";
+import { container } from "../../../infrastructure/services/inversify.config";
 
-const createUserCommandHandler = new CreateUserCommandHandler();
-const getUserByIdQueryHandler = new GetUserByIdQueryHandler();
-const getUsersQueryHandler = new GetUsersQueryHandler();
-const getGivenPlayerRatingsQueryHandler =
-  new GetGivenPlayerRatingsQueryHandler();
-const checkUserCredentialsQueryHandler = new CheckUserCredentialsQueryHandler();
+const createUserCommandHandler = container.get(CreateUserCommandHandler);
+const getUserByIdQueryHandler = container.get(GetUserByIdQueryHandler);
+const getUsersQueryHandler = container.get(GetUsersQueryHandler);
+const getGivenPlayerRatingsQueryHandler = container.get(
+  GetGivenPlayerRatingsQueryHandler,
+);
+const checkUserCredentialsQueryHandler = container.get(
+  CheckUserCredentialsQueryHandler,
+);
 
 export const userResolver = {
   UserQuery: {

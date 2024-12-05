@@ -1,6 +1,5 @@
 ﻿import { inject, injectable } from "inversify";
 import { ClubRepositoryServiceBase } from "../../../application/contracts";
-import { KBallDbContext } from "../../persistence/dataSource";
 import { Club } from "../../../domain/entities";
 import { ClubDto } from "../../../application/contracts/database-import-service/footballApi.dto";
 import { EntityManager } from "typeorm";

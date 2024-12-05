@@ -1,5 +1,5 @@
 ﻿import { DataSource } from "typeorm";
-import { mockDatabase } from "../../mocks/mock.database";
+import { mockDatabase } from "../../setup/mock.database";
 import { container } from "../../../infrastructure/services/inversify.config";
 import { BirthPlaceRepositoryServiceBase } from "../../../application/contracts";
 
@@ -53,7 +53,7 @@ describe("BirthPlaceService", () => {
       );
 
     expect(addedBirthPlace).toEqual({
-      id: 5,
+      id: 6,
       name: "Bergen",
       country: {
         id: 1,

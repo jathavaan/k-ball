@@ -14,5 +14,9 @@ export const seedDummyCountries = async (
       id: 2,
       name: "Korea Republic",
     },
+    {
+      id: 3,
+      name: "Brazil",
+    },
   ]);
 };

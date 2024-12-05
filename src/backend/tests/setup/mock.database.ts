@@ -1,5 +1,4 @@
-﻿import { newDb } from "pg-mem";
-import { DataSource, EntityManager } from "typeorm";
+﻿import { DataSource, EntityManager } from "typeorm";
 import {
   BirthPlace,
   Club,
@@ -23,26 +22,14 @@ import { seedDummyPositions } from "./seed.mock.positions";
 import { seedDummyUsers } from "./seed.mock.users";
 import { seedDummyPlayers } from "./seed.mock.players";
 import { container } from "../../infrastructure/services/inversify.config";
+import { seedDummySeasons } from "./seed.mock.season";
+import { seedDummyPlayerSeason } from "./seed.mock.playerSeason";
+import { seedDummyPlayerStatistics } from "./seed.mock.playerStatistics";
 
 export const mockDatabase = async (): Promise<DataSource> => {
-  const mockDb = newDb();
-
-  // Mock PostgreSQL functions
-  mockDb.public.registerFunction({
-    name: "current_database",
-    args: [],
-    implementation: () => "pg_mem",
-  });
-
-  mockDb.public.registerFunction({
-    name: "version",
-    args: [],
-    implementation: () => "PostgreSQL 12.3 (pg-mem)", // Mock version string
-  });
-
-  // Create a new PostgreSQL datasource
-  const dataSource = await mockDb.adapters.createTypeormDataSource({
-    type: "postgres",
+  const dataSource = new DataSource({
+    type: "sqlite",
+    database: ":memory:",
     entities: [
       BirthPlace,
       Club,
@@ -59,17 +46,20 @@ export const mockDatabase = async (): Promise<DataSource> => {
       ThreadComment,
       User,
     ],
-    synchronize: true, // Automatically synchronize schema
+    synchronize: true,
   });
 
   await dataSource.initialize();
 
-  // Data seed with dummy users
+  // Seed data
   await seedDummyCountries(dataSource);
   await seedDummyBirthPlaces(dataSource);
   await seedDummyClubs(dataSource);
   await seedDummyPositions(dataSource);
   await seedDummyPlayers(dataSource);
+  await seedDummySeasons(dataSource);
+  await seedDummyPlayerSeason(dataSource);
+  await seedDummyPlayerStatistics(dataSource);
   await seedDummyUsers(dataSource);
 
   // Inject mock database instead of production database

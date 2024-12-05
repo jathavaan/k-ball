@@ -9,8 +9,9 @@ export const seedDummyBirthPlaces = async (
 
   const norway = await countryRepository.findOneBy({ name: "Norway" });
   const korea = await countryRepository.findOneBy({ name: "Korea Republic" });
+  const brazil = await countryRepository.findOneBy({ name: "Brazil" });
 
-  if (!norway || !korea) {
+  if (!norway || !korea || !brazil) {
     throw new Error("Required countries not found in the mock database.");
   }
 
@@ -30,6 +31,10 @@ export const seedDummyBirthPlaces = async (
     {
       name: "Busan",
       country: korea,
+    },
+    {
+      name: "Rio de Janeiro",
+      country: brazil,
     },
   ]);
 };

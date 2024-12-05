@@ -10,24 +10,19 @@ export class CountryRepositoryService implements CountryRepositoryServiceBase {
   ) {}
 
   async getCountries() {
-    const countries = await this.dbContext.query(`
-      SELECT 
-          country.id AS id,
-          country.name AS name,
-          country."flagUrl" AS "flagUrl",
-          COUNT(player.id) AS "playerCount"
-      FROM 
-          country
-      LEFT JOIN 
-          player ON player."countryId" = country.id
-      GROUP BY 
-          country.id, country.name, country."flagUrl"
-      HAVING 
-          COUNT(player.id) > 0
-      ORDER BY 
-          "playerCount" DESC;
-    `);
-    return countries;
+    const countries = await this.dbContext.find(Country, {
+      select: {
+        id: true,
+        name: true,
+        flagUrl: true,
+        players: true,
+      },
+      relations: {
+        players: true,
+      },
+    });
+
+    return countries.filter((country: Country) => country.players.length > 0);
   }
 
   async getCountryByName(name: string) {

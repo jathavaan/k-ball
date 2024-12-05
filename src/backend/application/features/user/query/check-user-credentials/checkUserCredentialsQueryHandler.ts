@@ -1,16 +1,19 @@
 ﻿import { CheckUserCredentialsQuery } from "./checkUserCredentialsQuery";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 import { UserRepositoryServiceBase } from "../../../../contracts";
 import { Request } from "../../../../common";
 import { CheckUserCredentialsQueryValidator } from "./checkUserCredentialsQueryValidator";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class CheckUserCredentialsQueryHandler
   implements Request<CheckUserCredentialsQuery, number | null>
 {
-  validator = new CheckUserCredentialsQueryValidator();
-  userRepositoryService = container.get<UserRepositoryServiceBase>(
-    "UserRepositoryServiceBase",
-  );
+  constructor(
+    @inject("UserRepositoryServiceBase")
+    private readonly userRepositoryService: UserRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new CheckUserCredentialsQueryValidator();
 
   async handle(request: CheckUserCredentialsQuery): Promise<number | null> {
     this.validator.validate(request);

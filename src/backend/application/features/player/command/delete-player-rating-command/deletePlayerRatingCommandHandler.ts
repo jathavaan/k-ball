@@ -1,17 +1,19 @@
 ﻿import { Request } from "../../../../common";
 import { DeletePlayerRatingCommandValidator } from "./deletePlayerRatingCommandValidator";
 import { DeletePlayerRatingCommand } from "./deletePlayerRatingCommand";
+import { inject, injectable } from "inversify";
 import { PlayerRatingRepositoryServiceBase } from "../../../../contracts";
-import { container } from "../../../../../infrastructure/services/inversify.config";
 
+@injectable()
 export class DeletePlayerRatingCommandHandler
   implements Request<DeletePlayerRatingCommand, boolean>
 {
-  validator = new DeletePlayerRatingCommandValidator();
-  playerRatingRepositoryService =
-    container.get<PlayerRatingRepositoryServiceBase>(
-      "PlayerRatingRepositoryServiceBase",
-    );
+  constructor(
+    @inject("PlayerRatingRepositoryServiceBase")
+    private readonly playerRatingRepositoryService: PlayerRatingRepositoryServiceBase,
+  ) {}
+
+  private readonly validator = new DeletePlayerRatingCommandValidator();
 
   handle(request: DeletePlayerRatingCommand): Promise<boolean> {
     this.validator.validate(request);

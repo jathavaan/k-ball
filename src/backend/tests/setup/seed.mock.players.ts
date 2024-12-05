@@ -19,6 +19,9 @@ export const seedDummyPlayers = async (
   // Retrieve related entities
   const seoul = await birthPlaceRepository.findOneBy({ name: "Seoul" });
   const busan = await birthPlaceRepository.findOneBy({ name: "Busan" });
+  const rioDeJaneiro = await birthPlaceRepository.findOneBy({
+    name: "Rio de Janeiro",
+  });
 
   const fcSeoul = await clubRepository.findOneBy({ name: "FC Seoul" });
   const ulsanHyundai = await clubRepository.findOneBy({
@@ -26,6 +29,7 @@ export const seedDummyPlayers = async (
   });
 
   const korea = await countryRepository.findOneBy({ name: "Korea Republic" });
+  const brazil = await countryRepository.findOneBy({ name: "Brazil" });
 
   const forward = await positionRepository.findOneBy({ name: "Forward" });
   const defender = await positionRepository.findOneBy({ name: "Defender" });
@@ -33,9 +37,11 @@ export const seedDummyPlayers = async (
   if (
     !seoul ||
     !busan ||
+    !rioDeJaneiro ||
     !fcSeoul ||
     !ulsanHyundai ||
     !korea ||
+    !brazil ||
     !forward ||
     !defender
   ) {
@@ -71,6 +77,20 @@ export const seedDummyPlayers = async (
       currentClub: ulsanHyundai,
       country: korea,
       position: defender,
+    },
+    {
+      fullName: "Richarlison",
+      firstName: "Richarlison",
+      lastName: "",
+      imageUrl: "https://example.com/players/richarlison.jpg",
+      birthDate: new Date("1997-05-10"),
+      height: 177,
+      weight: 71,
+      externalId: 1003,
+      birthPlace: rioDeJaneiro,
+      currentClub: fcSeoul,
+      country: brazil,
+      position: forward,
     },
   ]);
 };
