@@ -136,6 +136,7 @@ export const PlayerCardGrid = () => {
             }}
           >
             <Button
+              aria-label="scroll-to-top"
               text="Scroll to the top"
               sx={{
                 borderRadius: "100rem",

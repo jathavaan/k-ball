@@ -35,3 +35,9 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add("setToken", (token) => {
+  cy.window().then((win) => {
+    win.localStorage.setItem("token", token);
+  });
+});

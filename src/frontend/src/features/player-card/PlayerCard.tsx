@@ -75,6 +75,7 @@ export const PlayerCard = (props: PlayerCardProps) => {
             >
               <Text
                 text={props.fullName}
+                data-testid="player-name"
                 sx={(theme) => ({
                   color: theme.palette.secondary.contrastText,
                   fontSize: { xs: "1rem", md: "1.1rem" },
