@@ -55,6 +55,7 @@ export const ProfileMenuDrawer = () => {
   const { isProfileMenuOpen, closeDrawer } = useProfileMenuToggle();
   return (
     <StyledDrawer
+      aria-label="profile-menu-drawer"
       anchor="right"
       open={isProfileMenuOpen}
       onClose={() => closeDrawer()}
