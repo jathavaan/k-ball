@@ -1,5 +1,5 @@
-﻿cd src/backend
-npx jest run --passWithNoTests
+cd src/backend
+npx jest run
 
 if [ $? -ne 0 ]; then
   echo "Tests failed. Push has been blocked."
