@@ -2,22 +2,21 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import configureStore from "redux-mock-store";
+import { configureStore } from "@reduxjs/toolkit";
+import { loginFormReducer } from "./auth.slice";
 import "@testing-library/jest-dom";
 import { LoginForm } from "./LoginForm";
 
-const mockStore = configureStore();
-const store = mockStore({
-  loginFormReducer: {
-    email: { value: "", error: { isError: false, message: "" } },
-    password: { value: "", error: { isError: false, message: "" } },
+const store = configureStore({
+  reducer: {
+    loginFormReducer,
   },
 });
 
 const queryClient = new QueryClient();
 
 describe("LoginForm", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     render(
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
@@ -36,7 +35,7 @@ describe("LoginForm", () => {
     expect(screen.getByText("Log in")).toBeInTheDocument();
   });
 
-  it("disables log in button when form requirements are not met", () => {
+  it("should disable log in button when form requirements are not met", () => {
     render(
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
