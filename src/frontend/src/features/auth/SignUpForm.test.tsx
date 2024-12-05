@@ -3,22 +3,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SignUpForm } from "./SignUpForm";
-import configureStore from "redux-mock-store";
-import "@testing-library/jest-dom";
-
-const mockStore = configureStore();
-const initialState = {
-  registerFormReducer: {
-    firstName: { value: "", error: { isError: false, message: "" } },
-    lastName: { value: "", error: { isError: false, message: "" } },
-    email: { value: "", error: { isError: false, message: "" } },
-    password: { value: "", error: { isError: false, message: "" } },
-  },
-};
-const store = mockStore(initialState);
-const queryClient = new QueryClient();
-
+import { registerFormReducer } from "./auth.slice";
 import { Store } from "redux";
+
+import "@testing-library/jest-dom";
+import { configureStore } from "@reduxjs/toolkit";
+
+const store = configureStore({
+  reducer: {
+    registerFormReducer,
+  },
+});
+
+const queryClient = new QueryClient();
 
 const renderSignUpForm = (store: Store) =>
   render(
@@ -32,7 +29,7 @@ const renderSignUpForm = (store: Store) =>
   );
 
 describe("SignUpForm", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     renderSignUpForm(store);
     const fields = [
       "Enter your first name",
@@ -46,18 +43,8 @@ describe("SignUpForm", () => {
     expect(screen.getByText("Sign up")).toBeInTheDocument();
   });
 
-  it("displays an error when invalid names are entered", async () => {
-    const modifiedStore = mockStore({
-      ...initialState,
-      registerFormReducer: {
-        ...initialState.registerFormReducer,
-        firstName: {
-          value: "123",
-          error: { isError: true, message: "Name can only contain letters" },
-        },
-      },
-    });
-    renderSignUpForm(modifiedStore);
+  it("should display an error when invalid names are entered", async () => {
+    renderSignUpForm(store);
     fireEvent.change(screen.getByPlaceholderText("Enter your first name"), {
       target: { value: "123" },
     });
@@ -69,7 +56,7 @@ describe("SignUpForm", () => {
     });
   });
 
-  it("disables sign up button when form requirements are not met", () => {
+  it("should disable sign up button when form requirements are not met", () => {
     renderSignUpForm(store);
     expect(screen.getByText("Sign up").closest("button")).toBeDisabled();
   });

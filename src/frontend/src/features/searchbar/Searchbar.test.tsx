@@ -13,7 +13,8 @@ const renderWithRedux = (
     initialState,
     store = configureStore({
       reducer: {
-        searchbarReducer: searchbarReducer,
+        // @ts-ignore
+        searchbarReducer,
       },
       preloadedState: initialState,
     }),
@@ -26,21 +27,21 @@ const renderWithRedux = (
 };
 
 describe("SearchBar", () => {
-  it("renders without crashing", () => {
+  it("should render without crashing", () => {
     renderWithRedux(<SearchBar />);
     expect(
       screen.getByPlaceholderText("Search for name..."),
     ).toBeInTheDocument();
   });
 
-  it("updates input field on change", () => {
+  it("should update input field on change", () => {
     renderWithRedux(<SearchBar />);
     const input = screen.getByPlaceholderText("Search for name...");
     fireEvent.change(input, { target: { value: "test" } });
     expect(input).toHaveValue("test");
   });
 
-  it("clears the input when clear button is clicked", () => {
+  it("should clear the input when clear button is clicked", () => {
     const initialState = {
       searchbarReducer: {
         searchQuery: "",
@@ -55,7 +56,7 @@ describe("SearchBar", () => {
     expect(screen.getByPlaceholderText("Search for name...")).toHaveValue("");
   });
 
-  it("shows no results text when searchResultCount is 0", () => {
+  it("should show no results text when searchResultCount is 0", () => {
     const initialState = {
       searchbarReducer: {
         searchQuery: "test",
@@ -68,7 +69,7 @@ describe("SearchBar", () => {
     expect(screen.getByText("No results")).toBeInTheDocument();
   });
 
-  it("disables search button when searchResultCount is 0", () => {
+  it("should disable search button when searchResultCount is 0", () => {
     const initialState = {
       searchbarReducer: {
         searchQuery: "test",
