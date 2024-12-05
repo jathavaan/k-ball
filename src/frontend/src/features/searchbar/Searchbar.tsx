@@ -59,8 +59,8 @@ export const SearchBar = () => {
       </Grid>
       <Grid size={{ xs: 2, md: 1 }}>
         {localSearchQuery ? (
-          <StyledIconButton onClick={handleClear}>
-            <StyledClearIcon aria-label="clear" />
+          <StyledIconButton aria-label="clear" onClick={handleClear}>
+            <StyledClearIcon aria-label="clear-icon" />
           </StyledIconButton>
         ) : null}
       </Grid>
