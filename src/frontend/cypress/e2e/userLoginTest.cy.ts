@@ -1,4 +1,4 @@
-describe("Login Test", () => {
+describe("User Login", () => {
   it("Should display the login button", () => {
     // Start by visiting the home page
     cy.visit("/");
@@ -28,7 +28,7 @@ describe("Login Test", () => {
     // Click the "Log in" button
     cy.get("button").contains("Log in").click();
 
-    // Verify that the navigation to the players page is successful
+    // Verify that the navigation to the players page is successful after a succesful login
     cy.url().should("include", "/project2/players");
   });
 });
