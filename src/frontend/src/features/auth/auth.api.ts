@@ -50,14 +50,6 @@ export const registerUser = async (props: RegisterProps): Promise<boolean> => {
   }
 };
 
-export const USER_AUTHENTICATION = gql`
-  query auth($email: String!, $password: String!) {
-    auth(email: $email, password: $password) {
-      userId
-    }
-  }
-`;
-
 export const authenticateUser = async (
   props: LoginProps,
 ): Promise<number | null> => {
