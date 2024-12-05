@@ -26,6 +26,8 @@ from [Football-API](https://www.api-football.com/).
 ✅ Authentication and authorization  
 ✅ Rating system  
 ✅ "My profile" functionality
+✅ "Threads" functionality 
+
 
 ---
 
@@ -87,6 +89,8 @@ unnecessary API calls. This caching is enabled by default for all API requests a
 necessary. As a result, we observed a significant reduction in server calls. Additionally, we blocked filters that would
 yield no results and implemented **debouncing** in the search functionality to improve performance.
 
+In the application, when navigating back to the player dashboard after submitting a player rating, the rating text on the player cards does not update unless the page is refreshed. This decision was made to reduce the number of API calls. In a hypothetical scenario where the application operates at full scale with a large user base, hundreds of user ratings might be submitted for each player. In such cases, a single new or updated rating would have minimal impact on the overall rating, and the text would likely to remain unchanged if it was updated. Given this, we concluded that not immediately render the player cards when navigating back was a reasonable and sustainable choice to optimize resource usage while maintaining functionality.
+
 Accessibility has been a key focus for the team. The site is fully navigable via keyboard shortcuts, allowing users
 to **tab through all interactive elements**. Moreover, we worked on providing clear feedback to users through validation
 in both the frontend and backend, as well as implementing **clear and informative error messages**.
@@ -133,7 +137,7 @@ codebase, experimenting with various approaches and ideas.
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface.
+appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components. 
 
 ### **Backend**
 
@@ -162,3 +166,11 @@ To ensure a clean and maintainable codebase, we implemented:
 The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
 an efficient development workflow.
 
+## Football API 
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation. 
+
+## Limitations
+
+One of the limitations we encountered during the project was the need to hardcode player statistics into the database. Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the K-League.
+
+To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible, considering factors such as player position. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
