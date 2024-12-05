@@ -34,7 +34,6 @@ export const useLogin = () => {
   const password = useSelector(loginPasswordSelector);
 
   const { mutate, data, isPending, error } = useAuthenticateUser();
-  console.log("Mutation result:", data);
 
   const isLoginButtonDisabled =
     email.error.isError ||
