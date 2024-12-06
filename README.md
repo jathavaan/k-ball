@@ -14,6 +14,10 @@ from [Football-API](https://www.api-football.com/).
 > - [Frontend guide](./docs/README_FRONTEND.md)
 > - [Backend guide](./docs/README_BACKEND.md)
 
+> ❗**Important**:<br>
+> The source code can be found on the virtual machine in the following directory:
+> `/home/jathavas/code/T25-Project-2`
+ 
 ---
 
 ## Features
