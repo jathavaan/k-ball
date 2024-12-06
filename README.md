@@ -205,7 +205,7 @@ development efficiency.
 
 ## From Concept to Execution: The K-Ball Project
 
-### Forming a plan
+### Forming a Plan
 
 The team held several brainstorming sessions to decide on a project idea. Our goal was to create something meaningful to
 us while standing out as unique. Being based in South Korea and sharing a deep passion for football, the concept of
@@ -217,7 +217,7 @@ Initially, we evaluated the technical expertise of each team member to assign ro
 
 For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation.
 
-### Learning new technologies
+### Learning new Technologies
 
 At the beginning of the project, we dedicated significant time to familiarizing ourselves with new technologies,
 exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
@@ -297,8 +297,8 @@ convention decided by the team:
 | `*.slice.ts`. | State management with Redux                           |
 | `*.hooks.ts`  | Custom hooks                                          |
 | `*.style.ts`  | Feature specific styled components                    |
-| `*.types`     | Types related toe the feature                         |
-| `*.tsx`       | React component wich is exported and used on the site |
+| `*.types`     | Types related to the feature                         |
+| `*.tsx`       | React component which is exported and used on the site |
 | `*.test.tsx`  | Test file containing snapshot and unit tests          |
 
 `*` is the feature name.
@@ -335,12 +335,10 @@ unnecessary memory usage, this design pattern is also called **singleton-pattern
 
 ## Limitations
 
-One of the limitations we encountered during the project was the need to hardcode player statistics into the database.
+One of the challenges we encountered during the project was the need to generate player statistics into the database.
 Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API
 provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the
-K-League.
-
-To work around this limitation without incurring personal expenses to pay for extended API access, we created a script
+K-League. To work around this limitation without incurring personal expenses to pay for extended API access, we created a script
 to generate statistics for all players in the database. The generated data was designed to be as realistic as possible
 and factors such as player position were considered. This approach allowed us to complete the functionality we had
 already built support for, ensuring the application remained functional despite the unexpected API restrictions.
@@ -375,7 +373,7 @@ Here's a summary of the degree of coverage our tests provide:
 
 To learn how to run the tests for the frontend, refer to the [Frontend guide](./docs/README_FRONTEND.md)
 
-### Further improvements
+### Further Improvements
 
 Throughout development, we implemented simple component tests alongside the creation of new components and features, ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted to end-to-end (E2E) tests that simulate core user workflows.
 
