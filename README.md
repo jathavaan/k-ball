@@ -318,16 +318,16 @@ so many different layers in a feature, the risk of the code getting cluttered an
 following the single responsibility principle (SRP) and splitting each feature into different files following a naming
 convention decided by the team:
 
-| File Ending   | Responsibility                                        |
-|:--------------|:------------------------------------------------------|
-| `*.api.ts`    | API-calls to the backend                              |
-| `*.query.ts`  | API state management with TanStackQuery               |
-| `*.slice.ts`. | State management with Redux                           |
-| `*.hooks.ts`  | Custom hooks                                          |
-| `*.style.ts`  | Feature specific styled components                    |
-| `*.types`     | Types related to the feature                         |
+| File Ending   | Responsibility                                         |
+|:--------------|:-------------------------------------------------------|
+| `*.api.ts`    | API-calls to the backend                               |
+| `*.query.ts`  | API state management with TanStackQuery                |
+| `*.slice.ts`. | State management with Redux                            |
+| `*.hooks.ts`  | Custom hooks                                           |
+| `*.style.ts`  | Feature specific styled components                     |
+| `*.types`     | Types related to the feature                           |
 | `*.tsx`       | React component which is exported and used on the site |
-| `*.test.tsx`  | Test file containing snapshot and unit tests          |
+| `*.test.tsx`  | Test file containing snapshot and unit tests           |
 
 `*` is the feature name.
 
@@ -366,7 +366,8 @@ unnecessary memory usage, this design pattern is also called **singleton-pattern
 One of the challenges we encountered during the project was the need to generate player statistics into the database.
 Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API
 provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the
-K-League. To work around this limitation without incurring personal expenses to pay for extended API access, we created a script
+K-League. To work around this limitation without incurring personal expenses to pay for extended API access, we created
+a script
 to generate statistics for all players in the database. The generated data was designed to be as realistic as possible
 and factors such as player position were considered. This approach allowed us to complete the functionality we had
 already built support for, ensuring the application remained functional despite the unexpected API restrictions.
@@ -378,11 +379,11 @@ performance.
 
 ## Testing
 
-Our application underwent extensive testing across both the frontend and backend, with over 80 tests implemented.
+Our application underwent extensive testing across both the frontend and backend, with over **90 tests** implemented.
 
 ### Frontend Testing
 
-### Component Test Description
+#### Component Test Description
 
 To maintain code reliability and stability, we used Vitest for comprehensive and fast testing during development. We
 utilized component testing to validate the behavior, rendering, and interactions of UI components in isolation, ensuring
@@ -391,10 +392,11 @@ to capture and verify the visual structure of components, detecting unintended U
 
 Our tests provide extensive coverage across multiple components, with a total of 52 component tests.
 
-### End-to-End (E2E) Test Description
+#### End-to-End (E2E) Test Description
 
-Our E2E tests ensure that key user workflows in the application are fully functional. For these tests, we use **Cypress
-**, a cutting-edge tool specifically designed for modern web applications. **Cypress** allows us to thoroughly simulate
+Our E2E tests ensure that key user workflows in the application are fully functional. For these tests, we use
+**Cypress**, a cutting-edge tool specifically designed for modern web applications. **Cypress** allows us to thoroughly
+simulate
 realistic user interactions across various components of the application. It also features an interactive testing
 environment, which is really useful. We have used Google Chrome when simulating the E2E tests in a browser.
 
@@ -408,11 +410,26 @@ Here's a summary of the degree of coverage our tests provide:
 - **Dynamic Interactions:** Tests cover UI elements that dynamically update based on user actions, such as search
   results, sorting, scrolling, adding ratings, and threads with replies.
 
-### Running Tests
+#### Running Tests
 
 To learn how to run the tests for the frontend, refer to the [Frontend guide](./docs/README_FRONTEND.md)
 
-### Further Improvements
+### Backend testing
+
+There have been written both unit and integration tests in the backend using the `jest` library. The team focused on
+writing unit tests that covered different cases in the application and to ensure that changes would not break the
+expected logic. This could be anything from only returning countries with players related to them to ensuring that the
+output is alphabetically sorted.
+
+The integration tests aim to test the behaviour when an API-endpoint is called. These check that the expected outputs
+are return with different API-parameters as well as checking if the validation is triggered when invalid input is
+provided. We aimed to cover both happy and unhappy path test scenarios.
+
+An important aspect of the backend testing was mocking both the database and external libraries. The database is mocked,
+seeded and run in-memory when running the tests. This ensures that the data provided in the test cases are the same for
+each test. External libraries such as `bcrypt` was mocked using `jest` mocking.
+
+### Further improvements
 
 Throughout development, we implemented simple component tests alongside the creation of new components and features,
 ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted
@@ -421,3 +438,8 @@ to end-to-end (E2E) tests that simulate core user workflows.
 However, we could improve by adding more integration tests to further check how components, Redux state, and GraphQL
 APIs work together. Using more advanced mocks for these dependencies would make the tests more reliable and thorough.
 This was the next step in the frontend testing.
+
+One weakness with the backend integration tests is that they skip the actual network layer. This is due to limited time
+and
+complexity of the setup. However, the handlers were tested, and considering that they are, in our codebase, more or less
+equivalent with the API-endpoints defined in the schema the team felt that this was a sufficient solution.
