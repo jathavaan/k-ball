@@ -138,12 +138,24 @@ codebase, experimenting with various approaches and ideas.
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
+appealing user interface. MUI's pre-designed components also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
+
+For state management, we utilized **Redux**. Key benefits include:
+
+- **Global State Synchronization:** Ensuring consistent state updates across components
+
+- **Scalability:** By structuring state management with slices, we’ve made it easier to scale the application as more features are added.
+
+- **Developer Experience:** The Redux DevTools extension simplifies tracking state changes and debugging.
+
+We integrated **Apollo Client** for handling **GraphQL** queries and client-side caching, enabling seamless interactions with the backend and reducing redundant network requests. Additionally, **TanStack Query** was used for its powerful data-fetching capabilities, error handling, and optimized re-renders.
 
 ### **Backend**
 
 The backend is powered by an **Express** server, hosting a **GraphQL API** built with **Apollo**. This combination
 ensures a flexible and efficient way to query and interact with the application’s data.
+
+We use **TypeORM** with the **code-first approach**, where the database schema is generated directly from TypeScript classes. This approach simplifies schema management, ensures consistency between the database and codebase, and allows for seamless migrations and updates as the application evolves.
 
 ### **Database**
 
