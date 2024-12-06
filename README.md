@@ -5,8 +5,10 @@ With almost **500 players** from **15+ countries**, there are plenty of stats av
 from [Football-API](https://www.api-football.com/).
 
 > ### **See the project here**: [K-Ball](http://it2810-25.idi.ntnu.no/project2/)
+>
 > Make sure you are connected to the NTNU network<br>
 > Other important links:
+>
 > - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
@@ -26,8 +28,7 @@ from [Football-API](https://www.api-football.com/).
 ✅ Authentication and authorization  
 ✅ Rating system  
 ✅ "My profile" functionality
-✅ "Threads" functionality 
-
+✅ "Threads" functionality
 
 ---
 
@@ -52,7 +53,7 @@ from [Football-API](https://www.api-football.com/).
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
-|:--------:|:-------:|:--------:|
+| :------: | :-----: | :------: |
 |  Local   | Server  |  Server  |
 |  Local   |  Local  |  Server  |
 |  Local   |  Local  |  Local   |
@@ -61,6 +62,7 @@ The app will run using the first configuration when cloning the repo. Check
 out [the developer guide](./docs/README4DEVS.md) to modify the configuration.
 
 > ⚠️ **Requirements:**
+>
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
 
@@ -105,7 +107,6 @@ frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
 development efficiency.
 
-
 ---
 
 ## Development process
@@ -137,7 +138,7 @@ codebase, experimenting with various approaches and ideas.
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components. 
+appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
 
 ### **Backend**
 
@@ -166,11 +167,32 @@ To ensure a clean and maintainable codebase, we implemented:
 The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
 an efficient development workflow.
 
-## Football API 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation. 
+## Football API
+
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation.
 
 ## Limitations
 
 One of the limitations we encountered during the project was the need to hardcode player statistics into the database. Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the K-League.
 
 To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible, considering factors such as player position. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
+
+---
+
+## Testing
+
+### Frontend
+
+### End-to-End (E2E) Test Description
+
+Our E2E tests ensure that key user workflows in the application are fully functional. For these tests, we use **Cypress**, a cutting-edge tool specifically designed for modern web applications. **Cypress** allows us to thoroughly simulate realistic user interactions across various components of the application. It also features an interactive testing environment, which is really useful. We have used Google Chrome when simulating the E2E tests in a browser.
+
+Here's a summary of the degree of coverage our tests provide:
+
+- **High Priority Features:** Core features such as "infinite" scrolling, search, sorting, player ratings, and threads are thoroughly tested. These workflows represent critical paths that users engage with frequently.
+
+- **User Authentication:** Login functionality is tested to ensure users can access restricted areas of the application.
+
+- **Dynamic Interactions:** Tests cover UI elements that dynamically update based on user actions, such as search results, sorting, scrolling, adding ratings, and threads with replies.
+
+
