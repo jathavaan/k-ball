@@ -23,31 +23,42 @@ Users can filter players by clubs, nationality and posistion. Filters are only a
 - **Sort:**
 Players can be sorted alphabetically in ascending (A-Z) or descending (Z-A) order.
 
-### **Details About Players:**
+### **Details About Players**
 View detailed information about each player by clicking on a player card from the dashboard. The player profile page includes:
 - **Player Statistics** from the seasons they have played in the K-League
 - **Personal Information** about the player
-- **Overall Rating:** An average rating from all users. If you have rated the player, your personal rating will also be displayed
+- **Player Rating:** An average rating from all users. If you have rated the player, your personal rating will also be displayed
 - **Threads:** Discussion and comments related to the player.
 
-### **Your Account**
+### **My Profile**
 - **Authentication**:
 Users can easily log in or sign up with clear feedback on input requirements. Upon successful sign-up, users are automatically logged in for a seamless experience. 
-- **Threads:**
+- **Post Threads:**
 Users can create new threads on player pages or reply to existing threads. Threads can also be deleted, offering full control over user contributions.
-- **Rating:**
+- **Rate Players:**
 Users can rate players on various metrics, update existing ratings, or delete them entirely.
 - **Profile Information:**
 Personal information and submitted ratings are accessible via the sidebar. Ratings can also be navigated directly from the sidebar, making it easy to manage user activity.
 
-### **User Experience Features:**
+### **Other Features**
 - **Infinite Scroll:**
 The player dashboard supports infinite scrolling for effortless exploration, with a "Scroll to Top" button for quick navigation.
-- **Responsive Design**
+- **Responsive Design:**
 The application is fully responsive, providing an optimized experience across all screen sizes and devices.
 - **Keyboard Navigation:**
-All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls. 
-  
+All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls.
+
+### **Further Improvements** 
+If we were to continue with the project, these are the features and improvements we consider as natural next steps and priorities:
+- **Thread Activity Overview:**
+Adding functionality to allow users to view their thread activity via the side menu, similar to how ratings are displayed. This would give users an easy way to track and revisit their contributions, enhancing the overall user experience. 
+- **Reply Notifications:**
+Implementing a notification system to alert users when they receive replies to their threads. In a full-scale application with a large user base, this feature would be particularly valuable, as users would likely receive numerous replies to their posts.
+- **Additional Sorting Options:**
+Expanding the sorting functionality to include options such as sorting by rating. Since the rating functionality was introduced relatively late in the development process, we did not have time to implement it as a sorting criterion. However, the backend already supports this feature, as each player in the database has an overall rating that updates dynamically whenever users add or modify their ratings.
+- **Improved Filter Logic:**
+Making filter options unavailable if they result in no matches, preventing users from applying invalid filters. While the current implementation provides feedback by showing the count of matches for a given filter, disabling invalid filters would improve usability. However, the current solution reduces API calls compared to dynamically disabling filter options. This makes it a reasonable trade-off from a sustainability perspective.
+
 ## Getting started
 
 There are three possible configurations when running the application locally:
