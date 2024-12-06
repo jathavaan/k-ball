@@ -3,8 +3,10 @@
 > This developer guide assumes that you are in the folder `src/backend`
 
 The backend is a GraphQL API developed using Apollo and runs on an express server. The API is hosted on the NTNU virtual
-machine and requests go to [http://it2810-25.idi.ntnu.no:3001/graphql](http://it2810-25.idi.ntnu.no:3001/graphql).
+machine and requests go to [`it2810-25.idi.ntnu.no:3001/graphql`](http://it2810-25.idi.ntnu.no:3001/graphql).
 The API docs can be viewed in the [GraphQL Playground](http://it2810-25.idi.ntnu.no:3001/docs).
+
+> The backend runs on port `3001`
 
 This developer guide will go through how you can set up and run the backend to run towards a local database and the
 production database. Steps on how to run the tests are also provided in this guide.
@@ -113,7 +115,7 @@ sudo -u postgres psql
 4. **Run Queries:** Execute SQL queries, such as:
 
 ```sql
-SELECT * FROM public."user";
+SELECT * FROM player;
 ```
 
 5. **Exit:** Leave the PostgreSQL interface:
