@@ -148,13 +148,9 @@ npm run dev
 
 ### Switching to a Local Backend
 
-If you'd like the frontend to connect to a locally running backend, update the uri in the following file:
+If you would like the frontend to connect to a locally running backend, update the uri in the `api.client.ts` file. Which can be found [here](src/frontend/src/shared/api.client.ts).
 
-```powershell
-src/shared/api.client.ts
-```
-
-Change the uri from
+Change the uri from:
 
 ```Typescript
 uri: "http://it2810-25.idi.ntnu.no:3001/graphql"
@@ -208,8 +204,6 @@ has also been a priority, enabling us to reuse components and reduce redundant w
 development efficiency.
 
 ## From Concept to Execution: The K-Ball Project
-
-## Development process
 
 ### Forming a plan
 
@@ -276,8 +270,6 @@ For a deeper dive into the technical details and implementation specifics of our
 
 - [Frontend Guide](./docs/README_FRONTEND.md)
 - [Backend Guide](./docs/README_BACKEND.md)
-
----
 
 ## Architecture
 
@@ -353,7 +345,38 @@ to generate statistics for all players in the database. The generated data was d
 and factors such as player position were considered. This approach allowed us to complete the functionality we had
 already built support for, ensuring the application remained functional despite the unexpected API restrictions.
 
-Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API
-calls across a significant geographical distance. This might result in slower API response times for us compared to
-users closer to the server. As a result, it has been challenging to fully test the application's actual speed and
-performance.
+Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API calls across a significant geographical distance. This might result in slower API response times for us compared to users closer to the server. As a result, it has been challenging to fully test the application's actual speed and performance.
+
+## Testing
+
+Our application underwent extensive testing across both the frontend and backend, with over 80 tests implemented.
+
+### Frontend Testing
+
+### Component Test Description
+
+To maintain code reliability and stability, we used Vitest for comprehensive and fast testing during development. We utilized component testing to validate the behavior, rendering, and interactions of UI components in isolation, ensuring they function as intended under various conditions with relevant data **mocked**. Additionally, we used snapshot testing to capture and verify the visual structure of components, detecting unintended UI changes during development.
+
+Our tests provide extensive coverage across multiple components, with a total of 52 component tests.
+
+### End-to-End (E2E) Test Description
+
+Our E2E tests ensure that key user workflows in the application are fully functional. For these tests, we use **Cypress**, a cutting-edge tool specifically designed for modern web applications. **Cypress** allows us to thoroughly simulate realistic user interactions across various components of the application. It also features an interactive testing environment, which is really useful. We have used Google Chrome when simulating the E2E tests in a browser.
+
+Here's a summary of the degree of coverage our tests provide:
+
+- **High Priority Features:** Core features such as "infinite" scrolling, search, sorting, player ratings, and threads are thoroughly tested. These workflows represent critical paths that users engage with frequently.
+
+- **User Authentication:** Login functionality is tested to ensure users can access restricted areas of the application.
+
+- **Dynamic Interactions:** Tests cover UI elements that dynamically update based on user actions, such as search results, sorting, scrolling, adding ratings, and threads with replies.
+
+### Running Tests
+
+To learn how to run the tests for the frontend, refer to the [Frontend guide](./docs/README_FRONTEND.md)
+
+### Further improvements
+
+Throughout development, we implemented simple component tests alongside the creation of new components and features, ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted to end-to-end (E2E) tests that simulate core user workflows.
+
+However, we could improve by adding more integration tests to further check how components, Redux state, and GraphQL APIs work together. Using more advanced mocks for these dependencies would make the tests more reliable and thorough. This was the next step in the frontend testing.
