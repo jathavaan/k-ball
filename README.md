@@ -11,7 +11,8 @@ from [Football-API](https://www.api-football.com/).
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
 
-## Features
+---
+## Features 
 
 ### **Exploration**
 
@@ -161,26 +162,28 @@ development efficiency.
 
 
 
-## Development process
+## From Concept to Execution: The K-Ball Project
 
-### Brainstorming
+### Forming a plan
 
 The team held several brainstorming sessions to decide on a project idea. Our goal was to create something meaningful to
 us while standing out as unique. Being based in South Korea and sharing a deep passion for football, the concept of
 **K-Ball** quickly became an obvious choice.
 
-### Forming a plan
+Initially, we evaluated the technical expertise of each team member to assign roles effectively. Then we explored potential data sources and determined the specific types of data and statistics to feature in the app. Lastly, we developed a structured plan for our meetings and developed a collaborative strategy to achieve our project deliverables.
 
-The first step we took was to assess the technical expertise within the team, which allowed us to assign roles
-effectively. Next, we researched potential data sources and decided on the types of statistics we wanted to showcase in
-the app. Finally, we developed a plan for meetings and outlined how we would work collaboratively toward our
-deliverables.
+### Football API 
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation. 
 
 ### Learning new technologies
 
 At the beginning of the project, we dedicated significant time to familiarizing ourselves with new technologies,
 exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
 codebase, experimenting with various approaches and ideas.
+
+### **Project Management**
+
+Early in the project, we established a structured approach to manage our tasks and collaborations effectively. We utilized **GitHub Issues** and the **GitHub Project Board** to coordinate efforts and maintain a clear overview of our progress. We also scheduled two weekly meetings to discuss progress, address challenges, and plan further development.
 
 
 ## Technologies & Tools
