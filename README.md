@@ -11,26 +11,6 @@ from [Football-API](https://www.api-football.com/).
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
 
-## Roadmap
-
-### **Completed:**
-
-✅ Dashboard displaying all players  
-✅ Base for design system  
-✅ Caching in frontend  
-✅ Robust state management  
-✅ Detailed player information page  
-✅ Automated data import  
-✅ Search bar and filters on dashboard  
-✅ Hashing of sensitive information in database  
-✅ Authentication and authorization  
-✅ Rating system  
-✅ "My profile" functionality
-✅ "Threads" functionality
-
-
----
-
 ## Features
 
 ### **Exploration**
@@ -139,7 +119,6 @@ to the NTNU network as all API-calls are done to the backend running on server:
 npm run dev
 ```
 
----
 
 ## Sustainable Web Design
 
@@ -181,7 +160,6 @@ has also been a priority, enabling us to reuse components and reduce redundant w
 development efficiency.
 
 
----
 
 ## Development process
 
@@ -204,7 +182,6 @@ At the beginning of the project, we dedicated significant time to familiarizing 
 exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
 codebase, experimenting with various approaches and ideas.
 
----
 
 ## Technologies & Tools
 
