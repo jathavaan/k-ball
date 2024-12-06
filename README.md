@@ -149,10 +149,6 @@ ensures a flexible and efficient way to query and interact with the applicationâ
 We used **PostgreSQL** as the database for storing and managing structured data, chosen for its reliability and robust
 relational capabilities.
 
-### **Testing**
-
-To maintain code reliability and stability, we used **Vitest** for comprehensive and fast testing during development.
-
 ### **Development Tools**
 
 To ensure a clean and maintainable codebase, we implemented:
@@ -161,10 +157,6 @@ To ensure a clean and maintainable codebase, we implemented:
 - **ESLint**: For identifying and fixing code quality issues.
 - **Husky**: To automate pre-commit and pre-push hooks, running format checks and tests.
 
-### **Project Management**
-
-The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
-an efficient development workflow.
 
 ## Football API 
 For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation. 
