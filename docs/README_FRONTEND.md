@@ -1,8 +1,10 @@
 # Frontend
 
+> This developer guide assumes that you are in the folder `src/frontend`
+
 ## Setup
 
-To set up and run the frontend of this project, please follow these steps. First, ensure you are in the frontend directory, as it is essential for launching the application. 
+To set up and run the frontend of this project, please follow these steps.  
 
 1. Navigate to the frontend folder:
 
