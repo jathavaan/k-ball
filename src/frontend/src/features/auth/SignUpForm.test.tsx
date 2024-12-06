@@ -51,7 +51,7 @@ describe("SignUpForm", () => {
     fireEvent.click(screen.getByText("Sign up"));
     await waitFor(() => {
       expect(
-        screen.getByText("Name can only contain letters"),
+        screen.getByText("First name can only contain letters"),
       ).toBeInTheDocument();
     });
   });

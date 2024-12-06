@@ -15,6 +15,7 @@ import {
   registerPasswordSelector,
 } from "@features/auth/auth.slice.ts";
 import { useSelector } from "react-redux";
+import React from "react";
 
 export const SignUpForm = () => {
   const navigate = useNavigate();
@@ -51,8 +52,21 @@ export const SignUpForm = () => {
     );
   };
 
+  const handleEnterKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    handleKeyDown(
+      e,
+      {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+      },
+      () => navigate("/project2/players"),
+    );
+  };
+
   return (
-    <StyledContainer maxWidth="sm" onKeyDown={(e) => handleKeyDown(e)}>
+    <StyledContainer maxWidth="sm" onKeyDown={(e) => handleEnterKeyDown(e)}>
       <StyledPaper elevation={3}>
         <Grid container spacing={2}>
           <Grid

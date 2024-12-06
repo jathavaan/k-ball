@@ -153,7 +153,16 @@ export const useRegister = () => {
     });
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+    userData: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+    },
+    onSuccessLogin: () => void,
+  ) => {
     if (event.key === "Enter" && !isRegisterButtonDisabled) {
       onRegisterClick(
         {
@@ -162,7 +171,19 @@ export const useRegister = () => {
           email: email.value,
           password: password.value,
         },
-        () => {},
+        () => {
+          authenticateUser(
+            { email: userData.email, password: userData.password },
+            {
+              onSuccess: (authData) => {
+                if (authData) {
+                  localStorage.setItem("token", String(authData));
+                  onSuccessLogin();
+                }
+              },
+            },
+          );
+        },
       );
     }
   };
@@ -187,9 +208,20 @@ export const useRegisterForm = () => {
       return;
     }
 
+    if (value !== value.trim()) {
+      dispatch(
+        setRegisterFirstNameError(
+          "First name cannot begin or end with a whitespace",
+        ),
+      );
+      return;
+    }
+
     const nameRegex = /^[A-Za-zÆØÅæøå]+(?: [A-Za-zÆØÅæøå]+)*$/;
     if (!nameRegex.test(value)) {
-      dispatch(setRegisterFirstNameError("Name can only contain letters"));
+      dispatch(
+        setRegisterFirstNameError("First name can only contain letters"),
+      );
       return;
     }
 
@@ -204,9 +236,18 @@ export const useRegisterForm = () => {
       return;
     }
 
+    if (value !== value.trim()) {
+      dispatch(
+        setRegisterLastNameError(
+          "Last name cannot begin or end with a whitespace",
+        ),
+      );
+      return;
+    }
+
     const nameRegex = /^[A-Za-zÆØÅæøå]+(?: [A-Za-zÆØÅæøå]+)*$/;
     if (!nameRegex.test(value)) {
-      dispatch(setRegisterLastNameError("Name can only contain letters"));
+      dispatch(setRegisterLastNameError("Last name can only contain letters"));
       return;
     }
 
