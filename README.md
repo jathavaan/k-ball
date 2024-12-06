@@ -110,6 +110,11 @@ changes quickly without the extensive manual effort often required with a databa
 tools, such as `select`, we ensure that only the strictly necessary data is fetched from the database. This optimization
 minimizes data retrieval from the database to the frontend, significantly improving efficiency.
 
+The team have utilized design patterns such as dependency injection and singleton-pattern to ensure that that only one
+instance of each service is initialized at runtime. Choices like this have reduced resource consumption in the backend,
+which results in lower energy
+consumption.
+
 Furthermore, the group has invested considerable time in designing a scalable architecture built on well-maintained
 frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
