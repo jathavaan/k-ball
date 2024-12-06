@@ -5,14 +5,18 @@ With almost **500 players** from **15+ countries**, there are plenty of stats av
 from [Football-API](https://www.api-football.com/).
 
 > ### **See the project here**: [K-Ball](http://it2810-25.idi.ntnu.no/project2/)
+>
 > Make sure you are connected to the NTNU network<br>
 > Other important links:
+>
 > - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Frontend guide](./docs/README_FRONTEND.md)
 > - [Backend guide](./docs/README_BACKEND.md)
+
 ---
-## Features 
+
+## Features
 
 ### **Exploration**
 
@@ -90,20 +94,42 @@ priorities:
 
 ## Getting started
 
+When you launch the application, you will be prompted to log in or sign up if it is your first visit.
+
+To facilitate testing and exploration, we have provided a pre-configured user account:
+
+### User Information:
+
+**Email:** `kim@email.com`  
+**Password:** `kim`
+
+Using this account, you can experience the application as a user who has actively interacted with **K-Ball's** features. This includes:
+
+- Submitting player ratings
+- Participating in player-related discussions through threads and comments
+
+Kim, like the developers, is a big fan of the team **Ulsan Hyundai FC**, so maybe check out their players. Feel free to explore the site as Kim and see how the app enhances the fan experience!
+
+### Application Configurations
+
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
-|:--------:|:-------:|:--------:|
+| :------: | :-----: | :------: |
 |  Local   | Server  |  Server  |
 |  Local   |  Local  |  Server  |
 |  Local   |  Local  |  Local   |
 
 The app will run using the first configuration when cloning the repo. Check
 out [Backend guide](./docs/README_BACKEND.md) to modify the configuration.
+The app will run using the first configuration when cloning the repo.
 
 > ⚠️ **Requirements:**
+>
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
+
+### Setting Up the Application
 
 The repo consists of two different node projects: one for the `frontend` and one for the `backend`. Navigate to
 the `frontend` folder to be able to install the dependencies.
@@ -120,6 +146,27 @@ to the NTNU network as all API-calls are done to the backend running on server:
 npm run dev
 ```
 
+### Switching to a Local Backend
+
+If you'd like the frontend to connect to a locally running backend, update the uri in the following file:
+
+```powershell
+src/shared/api.client.ts
+```
+
+Change the uri from
+
+```Typescript
+uri: "http://it2810-25.idi.ntnu.no:3001/graphql"
+```
+
+to:
+
+```Typescript
+uri: "http://localhost:3001/graphql".
+```
+
+Make sure your backend is running locally on the specified port before applying this change.
 
 ## Sustainable Web Design
 
@@ -160,9 +207,9 @@ frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
 development efficiency.
 
-
-
 ## From Concept to Execution: The K-Ball Project
+
+## Development process
 
 ### Forming a plan
 
@@ -172,8 +219,9 @@ us while standing out as unique. Being based in South Korea and sharing a deep p
 
 Initially, we evaluated the technical expertise of each team member to assign roles effectively. Then we explored potential data sources and determined the specific types of data and statistics to feature in the app. Lastly, we developed a structured plan for our meetings and developed a collaborative strategy to achieve our project deliverables.
 
-### Football API 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation. 
+### Football API
+
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation.
 
 ### Learning new technologies
 
@@ -185,7 +233,6 @@ codebase, experimenting with various approaches and ideas.
 
 Early in the project, we established a structured approach to manage our tasks and collaborations effectively. We utilized **GitHub Issues** and the **GitHub Project Board** to coordinate efforts and maintain a clear overview of our progress. We also scheduled two weekly meetings to discuss progress, address challenges, and plan further development.
 
-
 ## Technologies & Tools
 
 ### **Frontend**
@@ -194,6 +241,7 @@ The application was written in **React** with **TypeScript**, using **Vite** as 
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
 appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and
 consistency when building large and complex components.
+appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
 
 ### **Backend**
 
@@ -242,7 +290,7 @@ following the single responsibility principle (SRP) and splitting each feature i
 convention decided by the team:
 
 | File Ending   | Responsibility                                        |
-|:--------------|:------------------------------------------------------|
+| :------------ | :---------------------------------------------------- |
 | `*.api.ts`    | API-calls to the backend                              |
 | `*.query.ts`  | API state management with TanStackQuery               |
 | `*.slice.ts`. | State management with Redux                           |
@@ -260,7 +308,6 @@ A structure like this makes the frontend scalable, testable and easy to read.
 
 The backend is designed after Clean Architecture principles with command query responsibility segregation (CQRS) and is
 split into different layers:
-
 
 <div align="center">
   <img src="./docs/images/clean-architecture.png" alt="Alt text" width="500">
@@ -292,8 +339,8 @@ football league in South Korea. The entire team is currently on exchange in Sout
 something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various
 functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access
 restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying
-for additional access, we had to hardcode player statistics into the database. This work is further explained in the *
-*Limitations** section of the documentation.
+for additional access, we had to hardcode player statistics into the database. This work is further explained in the \*
+\*Limitations\*\* section of the documentation.
 
 ## Limitations
 
@@ -310,4 +357,4 @@ already built support for, ensuring the application remained functional despite 
 Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API
 calls across a significant geographical distance. This might result in slower API response times for us compared to
 users closer to the server. As a result, it has been challenging to fully test the application's actual speed and
-performance. 
+performance.
