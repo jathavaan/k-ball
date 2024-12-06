@@ -14,52 +14,61 @@ from [Football-API](https://www.api-football.com/).
 > - [Developer guide](./docs/README4DEVS.md)
 
 ---
-## Features 
 
-### **Exploration** 
+## Features
+
+### **Exploration**
+
 Explore the players in the Korean football league, K-League. These features are designed to ensure a user-friendly, engaging, and targeted experience.
+
 - **Search:**
-Users can search for players by name. The search is performed dynamically with debouncing. Feedback on the number of matches is displayed, and the search can be easily cleared and reset.
+  Users can search for players by name. The search is performed dynamically with debouncing. Feedback on the number of matches is displayed, and the search can be easily cleared and reset.
 - **Filter:**
-Users can filter players by clubs, nationality and posistion. Filters are only applied when explicitly triggered by the user, ensuring full control over the experience. Feedback on the number of matches is provided, and filters can be easily reset.
+  Users can filter players by clubs, nationality and posistion. Filters are only applied when explicitly triggered by the user, ensuring full control over the experience. Feedback on the number of matches is provided, and filters can be easily reset.
 - **Sort:**
-Players can be sorted alphabetically in ascending (A-Z) or descending (Z-A) order.
+  Players can be sorted alphabetically in ascending (A-Z) or descending (Z-A) order.
 
 ### **Details About Players**
+
 View detailed information about each player by clicking on a player card from the dashboard. The player profile page includes:
+
 - **Player Statistics** from the seasons they have played in the K-League
 - **Personal Information** about the player
 - **Player Rating:** An average rating from all users. If you have rated the player, your personal rating will also be displayed
 - **Threads:** Discussion and comments related to the player.
 
 ### **My Profile**
+
 - **Authentication**:
-Users can easily log in or sign up with clear feedback on input requirements. Upon successful sign-up, users are automatically logged in for a seamless experience. 
+  Users can easily log in or sign up with clear feedback on input requirements. Upon successful sign-up, users are automatically logged in for a seamless experience.
 - **Post Threads:**
-Users can create new threads on player pages or reply to existing threads. Threads can also be deleted, offering full control over user contributions.
+  Users can create new threads on player pages or reply to existing threads. Threads can also be deleted, offering full control over user contributions.
 - **Rate Players:**
-Users can rate players on various metrics, update existing ratings, or delete them entirely.
+  Users can rate players on various metrics, update existing ratings, or delete them entirely.
 - **Profile Information:**
-Personal information and submitted ratings are accessible via the sidebar. Ratings can also be navigated directly from the sidebar, making it easy to manage user activity.
+  Personal information and submitted ratings are accessible via the sidebar. Ratings can also be navigated directly from the sidebar, making it easy to manage user activity.
 
 ### **Other Features**
-- **Infinite Scroll:**
-The player dashboard supports infinite scrolling for effortless exploration, with a "Scroll to Top" button for quick navigation.
-- **Responsive Design:**
-The application is fully responsive, providing an optimized experience across all screen sizes and devices.
-- **Keyboard Navigation:**
-All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls.
 
-### **Further Improvements** 
+- **Infinite Scroll:**
+  The player dashboard supports infinite scrolling for effortless exploration, with a "Scroll to Top" button for quick navigation.
+- **Responsive Design:**
+  The application is fully responsive, providing an optimized experience across all screen sizes and devices.
+- **Keyboard Navigation:**
+  All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls.
+
+### **Further Improvements**
+
 If we were to continue with the project, these are the features and improvements we consider as natural next steps and priorities:
+
 - **Thread Activity Overview:**
-Adding functionality to allow users to view their thread activity via the side menu, similar to how ratings are displayed. This would give users an easy way to track and revisit their contributions, enhancing the overall user experience. 
+  Adding functionality to allow users to view their thread activity via the side menu, similar to how ratings are displayed. This would give users an easy way to track and revisit their contributions, enhancing the overall user experience.
 - **Reply Notifications:**
-Implementing a notification system to alert users when they receive replies to their threads. In a full-scale application with a large user base, this feature would be particularly valuable, as users would likely receive numerous replies to their posts.
+  Implementing a notification system to alert users when they receive replies to their threads. In a full-scale application with a large user base, this feature would be particularly valuable, as users would likely receive numerous replies to their posts.
 - **Additional Sorting Options:**
-Expanding the sorting functionality to include options such as sorting by rating. Since the rating functionality was introduced relatively late in the development process, we did not have time to implement it as a sorting criterion. However, the backend already supports this feature, as each player in the database has an overall rating that updates dynamically whenever users add or modify their ratings.
+  Expanding the sorting functionality to include options such as sorting by rating. Since the rating functionality was introduced relatively late in the development process, we did not have time to implement it as a sorting criterion. However, the backend already supports this feature, as each player in the database has an overall rating that updates dynamically whenever users add or modify their ratings.
 - **Improved Filter Logic:**
-Making filter options unavailable if they result in no matches, preventing users from applying invalid filters. While the current implementation provides feedback by showing the count of matches for a given filter, disabling invalid filters would improve usability. However, the current solution reduces API calls compared to dynamically disabling filter options. This makes it a reasonable trade-off from a sustainability perspective.
+  Making filter options unavailable if they result in no matches, preventing users from applying invalid filters. While the current implementation provides feedback by showing the count of matches for a given filter, disabling invalid filters would improve usability. However, the current solution reduces API calls compared to dynamically disabling filter options. This makes it a reasonable trade-off from a sustainability perspective.
 
 ## Getting started
 
@@ -202,13 +211,21 @@ One of the limitations we encountered during the project was the need to hardcod
 
 To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible and factors such as player position were considered. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
 
-Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API calls across a significant geographical distance. This might result in slower API response times for us compared to users closer to the server. As a result, it has been challenging to fully test the application's actual speed and performance. 
+Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API calls across a significant geographical distance. This might result in slower API response times for us compared to users closer to the server. As a result, it has been challenging to fully test the application's actual speed and performance.
 
 ---
 
 ## Testing
 
-### Frontend
+Our application underwent extensive testing across both the frontend and backend, with over 80 tests implemented.
+
+### Frontend Testing
+
+### Component Test Description
+
+To maintain code reliability and stability, we used Vitest for comprehensive and fast testing during development. We utilized component testing to validate the behavior, rendering, and interactions of UI components in isolation, ensuring they function as intended under various conditions with relevant data **mocked**. Additionally, we used snapshot testing to capture and verify the visual structure of components, detecting unintended UI changes during development.
+
+Our tests provide extensive coverage across multiple components, with a total of 52 component tests.
 
 ### End-to-End (E2E) Test Description
 
@@ -222,4 +239,12 @@ Here's a summary of the degree of coverage our tests provide:
 
 - **Dynamic Interactions:** Tests cover UI elements that dynamically update based on user actions, such as search results, sorting, scrolling, adding ratings, and threads with replies.
 
+### Running Tests
 
+To learn how to run the tests for the frontend, refer to the [Frontend guide](./docs/README4DEVS.md)
+
+### Further improvements
+
+Throughout development, we implemented simple component tests alongside the creation of new components and features, ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted to end-to-end (E2E) tests that simulate core user workflows.
+
+However, we could improve by adding more integration tests to further check how components, Redux state, and GraphQL APIs work together. Using more advanced mocks for these dependencies would make the tests more reliable and thorough. This was the next step in the frontend testing.
