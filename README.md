@@ -77,7 +77,7 @@ includes:
   The player dashboard supports infinite scrolling for effortless exploration, with a "Scroll to Top" button for quick
   navigation.
 - **Responsive Design:**
-  The application is fully responsive, providing an optimized experience across all screen sizes and devices.
+  The application is responsive, providing an optimized experience across multiple screen sizes and devices.
 - **Keyboard Navigation:**
   All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls.
 
