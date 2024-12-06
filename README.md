@@ -94,6 +94,24 @@ priorities:
 
 ## Getting started
 
+When you launch the application, you will be prompted to log in or sign up if it is your first visit.
+
+To facilitate testing and exploration, we have provided a pre-configured user account:
+
+### User Information:
+
+**Email:** `kim@email.com`  
+**Password:** `kim`
+
+Using this account, you can experience the application as a user who has actively interacted with **K-Ball's** features. This includes:
+
+- Submitting player ratings
+- Participating in player-related discussions through threads and comments
+
+Kim, like the developers, is a big fan of the team **Ulsan Hyundai FC**, so maybe check out their players. Feel free to explore the site as Kim and see how the app enhances the fan experience!
+
+### Application Configurations
+
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
@@ -104,11 +122,14 @@ There are three possible configurations when running the application locally:
 
 The app will run using the first configuration when cloning the repo. Check
 out [Backend guide](./docs/README_BACKEND.md) to modify the configuration.
+The app will run using the first configuration when cloning the repo.
 
 > ⚠️ **Requirements:**
 >
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
+
+### Setting Up the Application
 
 The repo consists of two different node projects: one for the `frontend` and one for the `backend`. Navigate to
 the `frontend` folder to be able to install the dependencies.
@@ -124,6 +145,28 @@ to the NTNU network as all API-calls are done to the backend running on server:
 ```powershell
 npm run dev
 ```
+
+### Switching to a Local Backend
+
+If you'd like the frontend to connect to a locally running backend, update the uri in the following file:
+
+```powershell
+src/shared/api.client.ts
+```
+
+Change the uri from
+
+```Typescript
+uri: "http://it2810-25.idi.ntnu.no:3001/graphql"
+```
+
+to:
+
+```Typescript
+uri: "http://localhost:3001/graphql".
+```
+
+Make sure your backend is running locally on the specified port before applying this change.
 
 ## Sustainable Web Design
 
@@ -165,6 +208,8 @@ has also been a priority, enabling us to reuse components and reduce redundant w
 development efficiency.
 
 ## From Concept to Execution: The K-Ball Project
+
+## Development process
 
 ### Forming a plan
 
