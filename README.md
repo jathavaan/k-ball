@@ -239,23 +239,28 @@ Early in the project, we established a structured approach to manage our tasks a
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and
-consistency when building large and complex components.
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
+appealing user interface. MUI's pre-designed components also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
+
+For state management, we utilized **Redux**. Key benefits include:
+
+- **Global State Synchronization:** Ensuring consistent state updates across components
+
+- **Scalability:** By structuring state management with slices, we’ve made it easier to scale the application as more features are added.
+
+- **Developer Experience:** The Redux DevTools extension simplifies tracking state changes and debugging.
+
+We integrated **Apollo Client** for handling **GraphQL** queries and caching, enabling seamless interactions with the backend and reducing redundant network requests. Additionally, **TanStack Query** was used for its powerful data-fetching capabilities, including caching, real-time updates, and optimized re-renders.
 
 ### **Backend**
 
 The backend is powered by an **Express** server, hosting a **GraphQL API** built with **Apollo**. This combination
 ensures a flexible and efficient way to query and interact with the application’s data.
 
+We use **TypeORM** with the **code-first approach**, where the database schema is generated directly from TypeScript classes. This approach simplifies schema management, ensures consistency between the database and codebase, and allows for seamless migrations and updates as the application evolves.
+
 ### **Database**
 
-We used **PostgreSQL** as the database for storing and managing structured data, chosen for its reliability and robust
-relational capabilities.
-
-### **Testing**
-
-To maintain code reliability and stability, we used **Vitest** for comprehensive and fast testing during development.
+We chose **PostgreSQL** as our database due to its ability to handle the structured and interconnected nature of our data. Its support for relationships, data integrity through constraints, and efficient querying of linked data (e.g., players, users, and reviews) makes it ideal for our application’s relational model. Additionally, PostgreSQL was straightforward to set up on our server, allowing us to quickly deploy and manage the database.
 
 ### **Development Tools**
 
@@ -265,10 +270,14 @@ To ensure a clean and maintainable codebase, we implemented:
 - **ESLint**: For identifying and fixing code quality issues.
 - **Husky**: To automate pre-commit and pre-push hooks, running format checks and tests.
 
-### **Project Management**
+### Further Reading
 
-The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
-an efficient development workflow.
+For a deeper dive into the technical details and implementation specifics of our application, refer to the following guides:
+
+- [Frontend Guide](./docs/README_FRONTEND.md)
+- [Backend Guide](./docs/README_BACKEND.md)
+
+---
 
 ## Architecture
 
@@ -331,16 +340,6 @@ database write operations. This is also helps to understand the purpose of the c
 The NPM package `inversify` is used to implement dependency injection (DI). By initializing services in a common
 container shared across the backend and then injecting them in individual services, handlers and resolvers reduces any
 unnecessary memory usage, this design pattern is also called **singleton-pattern**.
-
-## Football API
-
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier
-football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create
-something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various
-functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access
-restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying
-for additional access, we had to hardcode player statistics into the database. This work is further explained in the \*
-\*Limitations\*\* section of the documentation.
 
 ## Limitations
 
