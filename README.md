@@ -155,11 +155,11 @@ We integrated **Apollo Client** for handling **GraphQL** queries and caching, en
 The backend is powered by an **Express** server, hosting a **GraphQL API** built with **Apollo**. This combination
 ensures a flexible and efficient way to query and interact with the application’s data.
 
-We use **TypeORM** with the **code-first approach**, where the database schema is derived directly from TypeScript classes. This approach simplifies schema management, ensures consistency between the database and codebase, and allows for seamless migrations and updates as the application evolves.
+We use **TypeORM** with the **code-first approach**, where the database schema is generated directly from TypeScript classes. This approach simplifies schema management, ensures consistency between the database and codebase, and allows for seamless migrations and updates as the application evolves.
 
 ### **Database**
 
-We chose **PostgreSQL** as our database due to its ability to handle the structured and interconnected nature of our data. Its support for relationships, data integrity through constraints, and efficient querying of linked data (e.g., players, users, and reviews) makes it ideal for our application’s relational model.
+We chose **PostgreSQL** as our database due to its ability to handle the structured and interconnected nature of our data. Its support for relationships, data integrity through constraints, and efficient querying of linked data (e.g., players, users, and reviews) makes it ideal for our application’s relational model. Additionally, PostgreSQL was straightforward to set up on our server, allowing us to quickly deploy and manage the database.
 
 ### **Development Tools**
 
