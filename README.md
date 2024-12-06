@@ -107,19 +107,21 @@ To facilitate testing and exploration, we have provided a pre-configured user ac
 **Email:** `kim@email.com`  
 **Password:** `kim`
 
-Using this account, you can experience the application as a user who has actively interacted with **K-Ball's** features. This includes:
+Using this account, you can experience the application as a user who has actively interacted with **K-Ball's** features.
+This includes:
 
 - Submitting player ratings
 - Participating in player-related discussions through threads and comments
 
-Kim, like the developers, is a big fan of the team **Ulsan Hyundai FC**, so maybe check out their players. Feel free to explore the site as Kim and see how the app enhances the fan experience!
+Kim, like the developers, is a big fan of the team **Ulsan Hyundai FC**, so maybe check out their players. Feel free to
+explore the site as Kim and see how the app enhances the fan experience!
 
 ### Application Configurations
 
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
-| :------: | :-----: | :------: |
+|:--------:|:-------:|:--------:|
 |  Local   | Server  |  Server  |
 |  Local   |  Local  |  Server  |
 |  Local   |  Local  |  Local   |
@@ -152,7 +154,8 @@ npm run dev
 
 ### Switching to a Local Backend
 
-If you would like the frontend to connect to a locally running backend, update the uri in the `api.client.ts` file. Which can be found [here](src/frontend/src/shared/api.client.ts).
+If you would like the frontend to connect to a locally running backend, update the uri in the `api.client.ts` file.
+Which can be found [here](src/frontend/src/shared/api.client.ts).
 
 Change the uri from:
 
@@ -216,11 +219,19 @@ The team held several brainstorming sessions to decide on a project idea. Our go
 us while standing out as unique. Being based in South Korea and sharing a deep passion for football, the concept of
 **K-Ball** quickly became an obvious choice.
 
-Initially, we evaluated the technical expertise of each team member to assign roles effectively. Then we explored potential data sources and determined the specific types of data and statistics to feature in the app. Lastly, we developed a structured plan for our meetings and developed a collaborative strategy to achieve our project deliverables.
+Initially, we evaluated the technical expertise of each team member to assign roles effectively. Then we explored
+potential data sources and determined the specific types of data and statistics to feature in the app. Lastly, we
+developed a structured plan for our meetings and developed a collaborative strategy to achieve our project deliverables.
 
 ### Football API
 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation.
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier
+football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create
+something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various
+functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access
+restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying
+for additional access, we had to hardcode player statistics into the database. This work is further explained in
+the [Limitations](#limitations) section of the documentation.
 
 ### Learning new Technologies
 
@@ -307,16 +318,16 @@ so many different layers in a feature, the risk of the code getting cluttered an
 following the single responsibility principle (SRP) and splitting each feature into different files following a naming
 convention decided by the team:
 
-| File Ending   | Responsibility                                        |
-|:--------------|:------------------------------------------------------|
-| `*.api.ts`    | API-calls to the backend                              |
-| `*.query.ts`  | API state management with TanStackQuery               |
-| `*.slice.ts`. | State management with Redux                           |
-| `*.hooks.ts`  | Custom hooks                                          |
-| `*.style.ts`  | Feature specific styled components                    |
-| `*.types`     | Types related to the feature                         |
+| File Ending   | Responsibility                                         |
+|:--------------|:-------------------------------------------------------|
+| `*.api.ts`    | API-calls to the backend                               |
+| `*.query.ts`  | API state management with TanStackQuery                |
+| `*.slice.ts`. | State management with Redux                            |
+| `*.hooks.ts`  | Custom hooks                                           |
+| `*.style.ts`  | Feature specific styled components                     |
+| `*.types`     | Types related to the feature                           |
 | `*.tsx`       | React component which is exported and used on the site |
-| `*.test.tsx`  | Test file containing snapshot and unit tests          |
+| `*.test.tsx`  | Test file containing snapshot and unit tests           |
 
 `*` is the feature name.
 
@@ -355,7 +366,8 @@ unnecessary memory usage, this design pattern is also called **singleton-pattern
 One of the challenges we encountered during the project was the need to generate player statistics into the database.
 Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API
 provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the
-K-League. To work around this limitation without incurring personal expenses to pay for extended API access, we created a script
+K-League. To work around this limitation without incurring personal expenses to pay for extended API access, we created
+a script
 to generate statistics for all players in the database. The generated data was designed to be as realistic as possible
 and factors such as player position were considered. This approach allowed us to complete the functionality we had
 already built support for, ensuring the application remained functional despite the unexpected API restrictions.
@@ -418,7 +430,6 @@ seeded and run in-memory when running the tests. This ensures that the data prov
 each test. External libraries such as `bcrypt` was mocked using `jest` mocking.
 
 ### Further improvements
-### Further Improvements
 
 Throughout development, we implemented simple component tests alongside the creation of new components and features,
 ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted
