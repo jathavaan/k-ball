@@ -9,8 +9,8 @@ from [Football-API](https://www.api-football.com/).
 > Other important links:
 > - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
-> - [Developer guide](./docs/README4DEVS.md)
-
+> - [Frontend guide](./docs/README_FRONTEND.md)
+> - [Backend guide](./docs/README_BACKEND.md)
 ---
 ## Features 
 
@@ -99,7 +99,7 @@ There are three possible configurations when running the application locally:
 |  Local   |  Local  |  Local   |
 
 The app will run using the first configuration when cloning the repo. Check
-out [the developer guide](./docs/README4DEVS.md) to modify the configuration.
+out [Backend guide](./docs/README_BACKEND.md) to modify the configuration.
 
 > ⚠️ **Requirements:**
 > - Node version: `22.5.x` or higher
