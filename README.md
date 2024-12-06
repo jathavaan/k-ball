@@ -19,7 +19,16 @@ from [Football-API](https://www.api-football.com/).
 > `/home/jathavas/code/T25-Project-2`
  
 ---
-
+## Table of Contents
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Sustainable Web Design](#sustainable-web-design)
+- [From Concept to Execution: The K-Ball Project](#from-concept-to-execution-the-k-ball-project)
+- [Technologies & Tools](#technologies--tools)
+- [Architecture](#architecture)
+- [Limitations](#limitations)
+- [Testing](#testing)
+  
 ## Features
 
 ### **Exploration**
@@ -233,7 +242,7 @@ restrictions to the API changed during the semester. To ensure we could complete
 for additional access, we had to hardcode player statistics into the database. This work is further explained in
 the [Limitations](#limitations) section of the documentation.
 
-### Learning new Technologies
+### Learning New Technologies
 
 At the beginning of the project, we dedicated significant time to familiarizing ourselves with new technologies,
 exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
@@ -305,7 +314,7 @@ We used a considerable amount of time on deciding the architecture before beginn
 of the main concerns was to underestimate how large project actually could become. Considering our ambitions for the
 project and a goal to make a scalable codebase as possible we decided on architecture in both frontend and backend.
 
-### Frontend
+### Frontend Architecture 
 
 We have chosen a feature-driven folder structure inspired
 by [this article](https://profy.dev/article/react-folder-structure). By dividing the codebase into folders based on
@@ -333,7 +342,7 @@ convention decided by the team:
 
 A structure like this makes the frontend scalable, testable and easy to read.
 
-### Backend
+### Backend Architecture 
 
 The backend is designed after Clean Architecture principles with command query responsibility segregation (CQRS) and is
 split into different layers:
@@ -429,7 +438,7 @@ An important aspect of the backend testing was mocking both the database and ext
 seeded and run in-memory when running the tests. This ensures that the data provided in the test cases are the same for
 each test. External libraries such as `bcrypt` was mocked using `jest` mocking.
 
-### Further improvements
+### Testing improvements
 
 Throughout development, we implemented simple component tests alongside the creation of new components and features,
 ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted
