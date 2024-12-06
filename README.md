@@ -5,8 +5,10 @@ With almost **500 players** from **15+ countries**, there are plenty of stats av
 from [Football-API](https://www.api-football.com/).
 
 > ### **See the project here**: [K-Ball](http://it2810-25.idi.ntnu.no/project2/)
+>
 > Make sure you are connected to the NTNU network<br>
 > Other important links:
+>
 > - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
@@ -26,8 +28,7 @@ from [Football-API](https://www.api-football.com/).
 ✅ Authentication and authorization  
 ✅ Rating system  
 ✅ "My profile" functionality
-✅ "Threads" functionality 
-
+✅ "Threads" functionality
 
 ---
 
@@ -52,7 +53,7 @@ from [Football-API](https://www.api-football.com/).
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
-|:--------:|:-------:|:--------:|
+| :------: | :-----: | :------: |
 |  Local   | Server  |  Server  |
 |  Local   |  Local  |  Server  |
 |  Local   |  Local  |  Local   |
@@ -61,6 +62,7 @@ The app will run using the first configuration when cloning the repo. Check
 out [the developer guide](./docs/README4DEVS.md) to modify the configuration.
 
 > ⚠️ **Requirements:**
+>
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
 
@@ -105,7 +107,6 @@ frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
 development efficiency.
 
-
 ---
 
 ## Development process
@@ -137,17 +138,28 @@ codebase, experimenting with various approaches and ideas.
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components. 
+appealing user interface. MUI's pre-designed components also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
+
+For state management, we utilized **Redux**. Key benefits include:
+
+- **Global State Synchronization:** Ensuring consistent state updates across components
+
+- **Scalability:** By structuring state management with slices, we’ve made it easier to scale the application as more features are added.
+
+- **Developer Experience:** The Redux DevTools extension simplifies tracking state changes and debugging.
+
+We integrated **Apollo Client** for handling **GraphQL** queries and caching, enabling seamless interactions with the backend and reducing redundant network requests. Additionally, **TanStack Query** was used for its powerful data-fetching capabilities, including caching, real-time updates, and optimized re-renders.
 
 ### **Backend**
 
 The backend is powered by an **Express** server, hosting a **GraphQL API** built with **Apollo**. This combination
 ensures a flexible and efficient way to query and interact with the application’s data.
 
+We use **TypeORM** with the **code-first approach**, where the database schema is derived directly from TypeScript classes. This approach simplifies schema management, ensures consistency between the database and codebase, and allows for seamless migrations and updates as the application evolves.
+
 ### **Database**
 
-We used **PostgreSQL** as the database for storing and managing structured data, chosen for its reliability and robust
-relational capabilities.
+We chose **PostgreSQL** as our database due to its ability to handle the structured and interconnected nature of our data. Its support for relationships, data integrity through constraints, and efficient querying of linked data (e.g., players, users, and reviews) makes it ideal for our application’s relational model.
 
 ### **Development Tools**
 
@@ -157,9 +169,18 @@ To ensure a clean and maintainable codebase, we implemented:
 - **ESLint**: For identifying and fixing code quality issues.
 - **Husky**: To automate pre-commit and pre-push hooks, running format checks and tests.
 
+### Further Reading
 
-## Football API 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation. 
+For a deeper dive into the technical details and implementation specifics of our application, refer to the following guides:
+
+- [Frontend Guide](./docs/README4DEVS.md)
+- [Backend Guide](./docs/README4DEVS.md)
+
+---
+
+## Football API
+
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation.
 
 ## Limitations
 
