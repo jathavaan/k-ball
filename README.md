@@ -112,16 +112,13 @@ minimizes data retrieval from the database to the frontend, significantly improv
 
 The team have utilized design patterns such as dependency injection and singleton-pattern to ensure that that only one
 instance of each service is initialized at runtime. Choices like this have reduced resource consumption in the backend,
-which results in lower energy
-consumption.
+which results in lower energy consumption. Early return pattern have also been used to reduce the number of database
+operations.
 
 Furthermore, the group has invested considerable time in designing a scalable architecture built on well-maintained
 frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
 development efficiency.
-
-
----
 
 ## Development process
 
@@ -143,8 +140,6 @@ deliverables.
 At the beginning of the project, we dedicated significant time to familiarizing ourselves with new technologies,
 exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
 codebase, experimenting with various approaches and ideas.
-
----
 
 ## Technologies & Tools
 
@@ -181,6 +176,69 @@ To ensure a clean and maintainable codebase, we implemented:
 
 The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
 an efficient development workflow.
+
+## Architecture
+
+We used a considerable amount of time on deciding the architecture before beginning the development of this project. One
+of the main concerns was to underestimate how large project actually could become. Considering our ambitions for the
+project and a goal to make a scalable codebase as possible we decided on architecture in both frontend and backend.
+
+### Frontend
+
+We have chosen a feature-driven folder structure inspired
+by [this article](https://profy.dev/article/react-folder-structure). By dividing the codebase into folders based on
+features in the application it is clear on where a developer can find files. A bug related to the searchbar will most
+likely be in the searchbar-feature. This type of structure also allows us to efficiently re-use components and ensure a
+streamlined design.
+
+Features often needed code for custom styling, custom hooks, state management, api calls, and API state management. With
+so many different layers in a feature, the risk of the code getting cluttered and coupled was high. This was avoided by
+following the single responsibility principle (SRP) and splitting each feature into different files following a naming
+convention decided by the team:
+
+| File Ending   | Responsibility                                        |
+|:--------------|:------------------------------------------------------|
+| `*.api.ts`    | API-calls to the backend                              |
+| `*.query.ts`  | API state management with TanStackQuery               |
+| `*.slice.ts`. | State management with Redux                           |
+| `*.hooks.ts`  | Custom hooks                                          |
+| `*.style.ts`  | Feature specific styled components                    |
+| `*.types`     | Types related toe the feature                         |
+| `*.tsx`       | React component wich is exported and used on the site |
+| `*.test.tsx`  | Test file containing snapshot and unit tests          |
+
+`*` is the feature name.
+
+A structure like this makes the frontend scalable, testable and easy to read.
+
+### Backend
+
+The backend is designed after Clean Architecture principles with command query responsibility segregation (CQRS) and is
+split into different layers:
+
+
+<div align="center">
+  <img src="./docs/images/clean-architecture.png" alt="Alt text" width="500">
+</div>
+
+The **domain layer** contains the definition of entities in the database. This layer is not dependent on any outer
+layers and form the core of our application.
+
+**Application layer** consists of handlers for each endpoint, contracts for each service and middleware. By doing so the
+business logic is abstracted away to the infrastructure layer. The code is not dependent on the implementation of the
+business logic, but rather the concepts of what should be the input and output of each method. This makes it easier to
+individually test and mock, expand and refactor functionality. The implementation of each contract is abstracted away to
+the **infrastructure layer**.
+
+The **presentation layer** contains all definitions of schemas and exposes the application to the internet. The query
+and mutation resolvers use handlers defined in the application layer which results in resolvers with minimal logic.
+
+**CQRS** is used to ensure that operations like fetching data stays as fast as possible and to avoid adding unnecessary
+database write operations. This is also helps to understand the purpose of the code at a quick glance.
+
+The NPM package `inversify` is used to implement dependency injection (DI). By initializing services in a common
+container shared across the backend and then injecting them in individual services, handlers and resolvers reduces any
+unnecessary memory usage, this design pattern is also called **singleton-pattern**.
 
 ## Football API
 
