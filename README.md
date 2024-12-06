@@ -11,41 +11,53 @@ from [Football-API](https://www.api-football.com/).
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
 
-## Roadmap
-
-### **Completed:**
-
-✅ Dashboard displaying all players  
-✅ Base for design system  
-✅ Caching in frontend  
-✅ Robust state management  
-✅ Detailed player information page  
-✅ Automated data import  
-✅ Search bar and filters on dashboard  
-✅ Hashing of sensitive information in database  
-✅ Authentication and authorization  
-✅ Rating system  
-✅ "My profile" functionality
-✅ "Threads" functionality 
-
-
 ---
+## Features 
 
-### **In Progress:**
+### **Exploration** 
+Explore the players in the Korean football league, K-League. These features are designed to ensure a user-friendly, engaging, and targeted experience.
+- **Search:**
+Users can search for players by name. The search is performed dynamically with debouncing. Feedback on the number of matches is displayed, and the search can be easily cleared and reset.
+- **Filter:**
+Users can filter players by clubs, nationality and posistion. Filters are only applied when explicitly triggered by the user, ensuring full control over the experience. Feedback on the number of matches is provided, and filters can be easily reset.
+- **Sort:**
+Players can be sorted alphabetically in ascending (A-Z) or descending (Z-A) order.
 
-🚧 Snapshot, unit, and E2E testing in frontend  
-🚧 Unit and integration testing in backend
+### **Details About Players**
+View detailed information about each player by clicking on a player card from the dashboard. The player profile page includes:
+- **Player Statistics** from the seasons they have played in the K-League
+- **Personal Information** about the player
+- **Player Rating:** An average rating from all users. If you have rated the player, your personal rating will also be displayed
+- **Threads:** Discussion and comments related to the player.
 
----
+### **My Profile**
+- **Authentication**:
+Users can easily log in or sign up with clear feedback on input requirements. Upon successful sign-up, users are automatically logged in for a seamless experience. 
+- **Post Threads:**
+Users can create new threads on player pages or reply to existing threads. Threads can also be deleted, offering full control over user contributions.
+- **Rate Players:**
+Users can rate players on various metrics, update existing ratings, or delete them entirely.
+- **Profile Information:**
+Personal information and submitted ratings are accessible via the sidebar. Ratings can also be navigated directly from the sidebar, making it easy to manage user activity.
 
-### **Requested Features:**
+### **Other Features**
+- **Infinite Scroll:**
+The player dashboard supports infinite scrolling for effortless exploration, with a "Scroll to Top" button for quick navigation.
+- **Responsive Design:**
+The application is fully responsive, providing an optimized experience across all screen sizes and devices.
+- **Keyboard Navigation:**
+All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls.
 
-📝 Server side caching  
-📝 Comment section  
-📝 Create your own team  
-📝 Chatbot
-
----
+### **Further Improvements** 
+If we were to continue with the project, these are the features and improvements we consider as natural next steps and priorities:
+- **Thread Activity Overview:**
+Adding functionality to allow users to view their thread activity via the side menu, similar to how ratings are displayed. This would give users an easy way to track and revisit their contributions, enhancing the overall user experience. 
+- **Reply Notifications:**
+Implementing a notification system to alert users when they receive replies to their threads. In a full-scale application with a large user base, this feature would be particularly valuable, as users would likely receive numerous replies to their posts.
+- **Additional Sorting Options:**
+Expanding the sorting functionality to include options such as sorting by rating. Since the rating functionality was introduced relatively late in the development process, we did not have time to implement it as a sorting criterion. However, the backend already supports this feature, as each player in the database has an overall rating that updates dynamically whenever users add or modify their ratings.
+- **Improved Filter Logic:**
+Making filter options unavailable if they result in no matches, preventing users from applying invalid filters. While the current implementation provides feedback by showing the count of matches for a given filter, disabling invalid filters would improve usability. However, the current solution reduces API calls compared to dynamically disabling filter options. This makes it a reasonable trade-off from a sustainability perspective.
 
 ## Getting started
 
@@ -108,26 +120,28 @@ development efficiency.
 
 ---
 
-## Development process
+## From Concept to Execution: The K-Ball Project
 
-### Brainstorming
+### Forming a plan
 
 The team held several brainstorming sessions to decide on a project idea. Our goal was to create something meaningful to
 us while standing out as unique. Being based in South Korea and sharing a deep passion for football, the concept of
 **K-Ball** quickly became an obvious choice.
 
-### Forming a plan
+Initially, we evaluated the technical expertise of each team member to assign roles effectively. Then we explored potential data sources and determined the specific types of data and statistics to feature in the app. Lastly, we developed a structured plan for our meetings and developed a collaborative strategy to achieve our project deliverables.
 
-The first step we took was to assess the technical expertise within the team, which allowed us to assign roles
-effectively. Next, we researched potential data sources and decided on the types of statistics we wanted to showcase in
-the app. Finally, we developed a plan for meetings and outlined how we would work collaboratively toward our
-deliverables.
+### Football API 
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation. 
 
 ### Learning new technologies
 
 At the beginning of the project, we dedicated significant time to familiarizing ourselves with new technologies,
 exploring how to leverage them effectively while avoiding potential pitfalls. Each team member worked on their own
 codebase, experimenting with various approaches and ideas.
+
+### **Project Management**
+
+Early in the project, we established a structured approach to manage our tasks and collaborations effectively. We utilized **GitHub Issues** and the **GitHub Project Board** to coordinate efforts and maintain a clear overview of our progress. We also scheduled two weekly meetings to discuss progress, address challenges, and plan further development.
 
 ---
 
@@ -161,16 +175,10 @@ To ensure a clean and maintainable codebase, we implemented:
 - **ESLint**: For identifying and fixing code quality issues.
 - **Husky**: To automate pre-commit and pre-push hooks, running format checks and tests.
 
-### **Project Management**
-
-The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
-an efficient development workflow.
-
-## Football API 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation. 
-
 ## Limitations
 
 One of the limitations we encountered during the project was the need to hardcode player statistics into the database. Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the K-League.
 
-To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible, considering factors such as player position. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
+To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible and factors such as player position were considered. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
+
+Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API calls across a significant geographical distance. This might result in slower API response times for us compared to users closer to the server. As a result, it has been challenging to fully test the application's actual speed and performance. 
