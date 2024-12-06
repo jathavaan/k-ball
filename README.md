@@ -148,9 +148,9 @@ npm run dev
 
 ### Switching to a Local Backend
 
-If you'd like the frontend to connect to a locally running backend, update the uri in the `api.client.ts` file. Which can be found [here](src/frontend/src/shared/api.client.ts).
+If you would like the frontend to connect to a locally running backend, update the uri in the `api.client.ts` file. Which can be found [here](src/frontend/src/shared/api.client.ts).
 
-Change the uri from
+Change the uri from:
 
 ```Typescript
 uri: "http://it2810-25.idi.ntnu.no:3001/graphql"
