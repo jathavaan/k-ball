@@ -5,14 +5,18 @@ With almost **500 players** from **15+ countries**, there are plenty of stats av
 from [Football-API](https://www.api-football.com/).
 
 > ### **See the project here**: [K-Ball](http://it2810-25.idi.ntnu.no/project2/)
+>
 > Make sure you are connected to the NTNU network<br>
 > Other important links:
+>
 > - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Frontend guide](./docs/README_FRONTEND.md)
 > - [Backend guide](./docs/README_BACKEND.md)
+
 ---
-## Features 
+
+## Features
 
 ### **Exploration**
 
@@ -90,20 +94,42 @@ priorities:
 
 ## Getting started
 
+When you launch the application, you will be prompted to log in or sign up if it is your first visit.
+
+To facilitate testing and exploration, we have provided a pre-configured user account:
+
+### User Information:
+
+**Email:** `kim@email.com`  
+**Password:** `kim`
+
+Using this account, you can experience the application as a user who has actively interacted with **K-Ball's** features. This includes:
+
+- Submitting player ratings
+- Participating in player-related discussions through threads and comments
+
+Kim, like the developers, is a big fan of the team **Ulsan Hyundai FC**, so maybe check out their players. Feel free to explore the site as Kim and see how the app enhances the fan experience!
+
+### Application Configurations
+
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
-|:--------:|:-------:|:--------:|
+| :------: | :-----: | :------: |
 |  Local   | Server  |  Server  |
 |  Local   |  Local  |  Server  |
 |  Local   |  Local  |  Local   |
 
 The app will run using the first configuration when cloning the repo. Check
 out [Backend guide](./docs/README_BACKEND.md) to modify the configuration.
+The app will run using the first configuration when cloning the repo.
 
 > ⚠️ **Requirements:**
+>
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
+
+### Setting Up the Application
 
 The repo consists of two different node projects: one for the `frontend` and one for the `backend`. Navigate to
 the `frontend` folder to be able to install the dependencies.
@@ -120,6 +146,23 @@ to the NTNU network as all API-calls are done to the backend running on server:
 npm run dev
 ```
 
+### Switching to a Local Backend
+
+If you would like the frontend to connect to a locally running backend, update the uri in the `api.client.ts` file. Which can be found [here](src/frontend/src/shared/api.client.ts).
+
+Change the uri from:
+
+```Typescript
+uri: "http://it2810-25.idi.ntnu.no:3001/graphql"
+```
+
+to:
+
+```Typescript
+uri: "http://localhost:3001/graphql".
+```
+
+Make sure your backend is running locally on the specified port before applying this change.
 
 ## Sustainable Web Design
 
@@ -160,8 +203,6 @@ frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
 development efficiency.
 
-
-
 ## From Concept to Execution: The K-Ball Project
 
 ### Forming a plan
@@ -172,8 +213,9 @@ us while standing out as unique. Being based in South Korea and sharing a deep p
 
 Initially, we evaluated the technical expertise of each team member to assign roles effectively. Then we explored potential data sources and determined the specific types of data and statistics to feature in the app. Lastly, we developed a structured plan for our meetings and developed a collaborative strategy to achieve our project deliverables.
 
-### Football API 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation. 
+### Football API
+
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the [Limitations](#limitations) section of the documentation.
 
 ### Learning new technologies
 
@@ -185,29 +227,34 @@ codebase, experimenting with various approaches and ideas.
 
 Early in the project, we established a structured approach to manage our tasks and collaborations effectively. We utilized **GitHub Issues** and the **GitHub Project Board** to coordinate efforts and maintain a clear overview of our progress. We also scheduled two weekly meetings to discuss progress, address challenges, and plan further development.
 
-
 ## Technologies & Tools
 
 ### **Frontend**
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and
-consistency when building large and complex components.
+appealing user interface. MUI's pre-designed components also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
+
+For state management, we utilized **Redux**. Key benefits include:
+
+- **Global State Synchronization:** Ensuring consistent state updates across components
+
+- **Scalability:** By structuring state management with slices, we’ve made it easier to scale the application as more features are added.
+
+- **Developer Experience:** The Redux DevTools extension simplifies tracking state changes and debugging.
+
+We integrated **Apollo Client** for handling **GraphQL** queries and caching, enabling seamless interactions with the backend and reducing redundant network requests. Additionally, **TanStack Query** was used for its powerful data-fetching capabilities, including caching, real-time updates, and optimized re-renders.
 
 ### **Backend**
 
 The backend is powered by an **Express** server, hosting a **GraphQL API** built with **Apollo**. This combination
 ensures a flexible and efficient way to query and interact with the application’s data.
 
+We use **TypeORM** with the **code-first approach**, where the database schema is generated directly from TypeScript classes. This approach simplifies schema management, ensures consistency between the database and codebase, and allows for seamless migrations and updates as the application evolves.
+
 ### **Database**
 
-We used **PostgreSQL** as the database for storing and managing structured data, chosen for its reliability and robust
-relational capabilities.
-
-### **Testing**
-
-To maintain code reliability and stability, we used **Vitest** for comprehensive and fast testing during development.
+We chose **PostgreSQL** as our database due to its ability to handle the structured and interconnected nature of our data. Its support for relationships, data integrity through constraints, and efficient querying of linked data (e.g., players, users, and reviews) makes it ideal for our application’s relational model. Additionally, PostgreSQL was straightforward to set up on our server, allowing us to quickly deploy and manage the database.
 
 ### **Development Tools**
 
@@ -217,10 +264,12 @@ To ensure a clean and maintainable codebase, we implemented:
 - **ESLint**: For identifying and fixing code quality issues.
 - **Husky**: To automate pre-commit and pre-push hooks, running format checks and tests.
 
-### **Project Management**
+### Further Reading
 
-The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
-an efficient development workflow.
+For a deeper dive into the technical details and implementation specifics of our application, refer to the following guides:
+
+- [Frontend Guide](./docs/README_FRONTEND.md)
+- [Backend Guide](./docs/README_BACKEND.md)
 
 ## Architecture
 
@@ -242,7 +291,7 @@ following the single responsibility principle (SRP) and splitting each feature i
 convention decided by the team:
 
 | File Ending   | Responsibility                                        |
-|:--------------|:------------------------------------------------------|
+| :------------ | :---------------------------------------------------- |
 | `*.api.ts`    | API-calls to the backend                              |
 | `*.query.ts`  | API state management with TanStackQuery               |
 | `*.slice.ts`. | State management with Redux                           |
@@ -260,7 +309,6 @@ A structure like this makes the frontend scalable, testable and easy to read.
 
 The backend is designed after Clean Architecture principles with command query responsibility segregation (CQRS) and is
 split into different layers:
-
 
 <div align="center">
   <img src="./docs/images/clean-architecture.png" alt="Alt text" width="500">
@@ -285,16 +333,6 @@ The NPM package `inversify` is used to implement dependency injection (DI). By i
 container shared across the backend and then injecting them in individual services, handlers and resolvers reduces any
 unnecessary memory usage, this design pattern is also called **singleton-pattern**.
 
-## Football API
-
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier
-football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create
-something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various
-functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access
-restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying
-for additional access, we had to hardcode player statistics into the database. This work is further explained in the *
-*Limitations** section of the documentation.
-
 ## Limitations
 
 One of the limitations we encountered during the project was the need to hardcode player statistics into the database.
@@ -307,7 +345,38 @@ to generate statistics for all players in the database. The generated data was d
 and factors such as player position were considered. This approach allowed us to complete the functionality we had
 already built support for, ensuring the application remained functional despite the unexpected API restrictions.
 
-Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API
-calls across a significant geographical distance. This might result in slower API response times for us compared to
-users closer to the server. As a result, it has been challenging to fully test the application's actual speed and
-performance. 
+Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API calls across a significant geographical distance. This might result in slower API response times for us compared to users closer to the server. As a result, it has been challenging to fully test the application's actual speed and performance.
+
+## Testing
+
+Our application underwent extensive testing across both the frontend and backend, with over 80 tests implemented.
+
+### Frontend Testing
+
+### Component Test Description
+
+To maintain code reliability and stability, we used Vitest for comprehensive and fast testing during development. We utilized component testing to validate the behavior, rendering, and interactions of UI components in isolation, ensuring they function as intended under various conditions with relevant data **mocked**. Additionally, we used snapshot testing to capture and verify the visual structure of components, detecting unintended UI changes during development.
+
+Our tests provide extensive coverage across multiple components, with a total of 52 component tests.
+
+### End-to-End (E2E) Test Description
+
+Our E2E tests ensure that key user workflows in the application are fully functional. For these tests, we use **Cypress**, a cutting-edge tool specifically designed for modern web applications. **Cypress** allows us to thoroughly simulate realistic user interactions across various components of the application. It also features an interactive testing environment, which is really useful. We have used Google Chrome when simulating the E2E tests in a browser.
+
+Here's a summary of the degree of coverage our tests provide:
+
+- **High Priority Features:** Core features such as "infinite" scrolling, search, sorting, player ratings, and threads are thoroughly tested. These workflows represent critical paths that users engage with frequently.
+
+- **User Authentication:** Login functionality is tested to ensure users can access restricted areas of the application.
+
+- **Dynamic Interactions:** Tests cover UI elements that dynamically update based on user actions, such as search results, sorting, scrolling, adding ratings, and threads with replies.
+
+### Running Tests
+
+To learn how to run the tests for the frontend, refer to the [Frontend guide](./docs/README_FRONTEND.md)
+
+### Further improvements
+
+Throughout development, we implemented simple component tests alongside the creation of new components and features, ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted to end-to-end (E2E) tests that simulate core user workflows.
+
+However, we could improve by adding more integration tests to further check how components, Redux state, and GraphQL APIs work together. Using more advanced mocks for these dependencies would make the tests more reliable and thorough. This was the next step in the frontend testing.
