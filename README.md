@@ -5,8 +5,10 @@ With almost **500 players** from **15+ countries**, there are plenty of stats av
 from [Football-API](https://www.api-football.com/).
 
 > ### **See the project here**: [K-Ball](http://it2810-25.idi.ntnu.no/project2/)
+>
 > Make sure you are connected to the NTNU network<br>
 > Other important links:
+>
 > - [API documentation](http://it2810-25.idi.ntnu.no:3001/docs)
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
@@ -26,8 +28,7 @@ from [Football-API](https://www.api-football.com/).
 ✅ Authentication and authorization  
 ✅ Rating system  
 ✅ "My profile" functionality
-✅ "Threads" functionality 
-
+✅ "Threads" functionality
 
 ---
 
@@ -49,20 +50,40 @@ from [Football-API](https://www.api-football.com/).
 
 ## Getting started
 
+When you launch the application, you will be prompted to log in or sign up if it is your first visit.
+
+To facilitate testing and exploration, we have provided a pre-configured user account:
+
+### User Information:
+
+**Email:** `kim@email.com`  
+**Password:** `kim`
+
+Using this account, you can experience the application as a user who has actively interacted with **K-Ball's** features. This includes:
+
+- Submitting player ratings
+- Participating in player-related discussions through threads and comments
+
+Kim, like the developers, is a big fan of the team **Ulsan Hyundai FC**, so maybe check out their players. Feel free to explore the site as Kim and see how the app enhances the fan experience!
+
+### Application Configurations
+
 There are three possible configurations when running the application locally:
 
 | Frontend | Backend | Database |
-|:--------:|:-------:|:--------:|
+| :------: | :-----: | :------: |
 |  Local   | Server  |  Server  |
 |  Local   |  Local  |  Server  |
 |  Local   |  Local  |  Local   |
 
-The app will run using the first configuration when cloning the repo. Check
-out [the developer guide](./docs/README4DEVS.md) to modify the configuration.
+The app will run using the first configuration when cloning the repo. Check out [the backend guide](./docs/README4DEVS.md) to modify the configuration.
 
 > ⚠️ **Requirements:**
+>
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
+
+### Setting Up the Application
 
 The repo consists of two different node projects: one for the `frontend` and one for the `backend`. Navigate to
 the `frontend` folder to be able to install the dependencies.
@@ -105,7 +126,6 @@ frameworks with long-term support. Developing a **design system**
 has also been a priority, enabling us to reuse components and reduce redundant work, thereby increasing overall
 development efficiency.
 
-
 ---
 
 ## Development process
@@ -137,7 +157,7 @@ codebase, experimenting with various approaches and ideas.
 
 The application was written in **React** with **TypeScript**, using **Vite** as the build tool for a fast and efficient
 development experience. The design system was built on **Material-UI (MUI)**, providing a consistent and visually
-appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components. 
+appealing user interface. Using MUI also allowed us to save time and reduce the workload while ensuring quality and consistency when building large and complex components.
 
 ### **Backend**
 
@@ -166,8 +186,9 @@ To ensure a clean and maintainable codebase, we implemented:
 The team effectively managed tasks and collaborated using **GitHub Issues** and the **GitHub Project Board**, enabling
 an efficient development workflow.
 
-## Football API 
-For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation. 
+## Football API
+
+For the project, we utilized [Football-API](https://www.api-football.com/) to retrieve data about K-League, the top-tier football league in South Korea. The entire team is currently on exchange in South Korea, and we wanted to create something inspired by the country. Additionally, the API provided a wealth of data that allowed us to build various functionalities around it, and its free, unlimited access made it a reasonable choice of API. Unfortunately, access restrictions to the API changed during the semester. To ensure we could complete planned functionality without paying for additional access, we had to hardcode player statistics into the database. This work is further explained in the **Limitations** section of the documentation.
 
 ## Limitations
 
