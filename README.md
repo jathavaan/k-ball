@@ -271,7 +271,6 @@ For a deeper dive into the technical details and implementation specifics of our
 - [Frontend Guide](./docs/README_FRONTEND.md)
 - [Backend Guide](./docs/README_BACKEND.md)
 
-
 ## Architecture
 
 We used a considerable amount of time on deciding the architecture before beginning the development of this project. One
@@ -381,7 +380,3 @@ To learn how to run the tests for the frontend, refer to the [Frontend guide](./
 Throughout development, we implemented simple component tests alongside the creation of new components and features, ensuring their behavior and rendering were validated early on. As the application grew in complexity, our focus shifted to end-to-end (E2E) tests that simulate core user workflows.
 
 However, we could improve by adding more integration tests to further check how components, Redux state, and GraphQL APIs work together. Using more advanced mocks for these dependencies would make the tests more reliable and thorough. This was the next step in the frontend testing.
-Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API
-calls across a significant geographical distance. This might result in slower API response times for us compared to
-users closer to the server. As a result, it has been challenging to fully test the application's actual speed and
-performance.
