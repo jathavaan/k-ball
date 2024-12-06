@@ -13,40 +13,62 @@ from [Football-API](https://www.api-football.com/).
 > - [ER-diagram](https://dbdiagram.io/d/K-Ball-ER-diagram-670626effb079c7ebdd50bbd)
 > - [Developer guide](./docs/README4DEVS.md)
 
-## Roadmap
-
-### **Completed:**
-
-✅ Dashboard displaying all players  
-✅ Base for design system  
-✅ Caching in frontend  
-✅ Robust state management  
-✅ Detailed player information page  
-✅ Automated data import  
-✅ Search bar and filters on dashboard  
-✅ Hashing of sensitive information in database  
-✅ Authentication and authorization  
-✅ Rating system  
-✅ "My profile" functionality
-✅ "Threads" functionality
-
 ---
 
-### **In Progress:**
+## Features
 
-🚧 Snapshot, unit, and E2E testing in frontend  
-🚧 Unit and integration testing in backend
+### **Exploration**
 
----
+Explore the players in the Korean football league, K-League. These features are designed to ensure a user-friendly, engaging, and targeted experience.
 
-### **Requested Features:**
+- **Search:**
+  Users can search for players by name. The search is performed dynamically with debouncing. Feedback on the number of matches is displayed, and the search can be easily cleared and reset.
+- **Filter:**
+  Users can filter players by clubs, nationality and posistion. Filters are only applied when explicitly triggered by the user, ensuring full control over the experience. Feedback on the number of matches is provided, and filters can be easily reset.
+- **Sort:**
+  Players can be sorted alphabetically in ascending (A-Z) or descending (Z-A) order.
 
-📝 Server side caching  
-📝 Comment section  
-📝 Create your own team  
-📝 Chatbot
+### **Details About Players**
 
----
+View detailed information about each player by clicking on a player card from the dashboard. The player profile page includes:
+
+- **Player Statistics** from the seasons they have played in the K-League
+- **Personal Information** about the player
+- **Player Rating:** An average rating from all users. If you have rated the player, your personal rating will also be displayed
+- **Threads:** Discussion and comments related to the player.
+
+### **My Profile**
+
+- **Authentication**:
+  Users can easily log in or sign up with clear feedback on input requirements. Upon successful sign-up, users are automatically logged in for a seamless experience.
+- **Post Threads:**
+  Users can create new threads on player pages or reply to existing threads. Threads can also be deleted, offering full control over user contributions.
+- **Rate Players:**
+  Users can rate players on various metrics, update existing ratings, or delete them entirely.
+- **Profile Information:**
+  Personal information and submitted ratings are accessible via the sidebar. Ratings can also be navigated directly from the sidebar, making it easy to manage user activity.
+
+### **Other Features**
+
+- **Infinite Scroll:**
+  The player dashboard supports infinite scrolling for effortless exploration, with a "Scroll to Top" button for quick navigation.
+- **Responsive Design:**
+  The application is fully responsive, providing an optimized experience across all screen sizes and devices.
+- **Keyboard Navigation:**
+  All interactive elements should be tabable, allowing users to navigate the application using only keyboard controls.
+
+### **Further Improvements**
+
+If we were to continue with the project, these are the features and improvements we consider as natural next steps and priorities:
+
+- **Thread Activity Overview:**
+  Adding functionality to allow users to view their thread activity via the side menu, similar to how ratings are displayed. This would give users an easy way to track and revisit their contributions, enhancing the overall user experience.
+- **Reply Notifications:**
+  Implementing a notification system to alert users when they receive replies to their threads. In a full-scale application with a large user base, this feature would be particularly valuable, as users would likely receive numerous replies to their posts.
+- **Additional Sorting Options:**
+  Expanding the sorting functionality to include options such as sorting by rating. Since the rating functionality was introduced relatively late in the development process, we did not have time to implement it as a sorting criterion. However, the backend already supports this feature, as each player in the database has an overall rating that updates dynamically whenever users add or modify their ratings.
+- **Improved Filter Logic:**
+  Making filter options unavailable if they result in no matches, preventing users from applying invalid filters. While the current implementation provides feedback by showing the count of matches for a given filter, disabling invalid filters would improve usability. However, the current solution reduces API calls compared to dynamically disabling filter options. This makes it a reasonable trade-off from a sustainability perspective.
 
 ## Getting started
 
@@ -83,6 +105,7 @@ The app will run using the first configuration when cloning the repo. Check out 
 > - Node version: `22.5.x` or higher
 > - Package manager: `npm`
 
+
 ### Setting Up the Application
 
 The repo consists of two different node projects: one for the `frontend` and one for the `backend`. Navigate to
@@ -99,6 +122,25 @@ to the NTNU network as all API-calls are done to the backend running on server:
 ```powershell
 npm run dev
 ```
+
+### Switching to a Local Backend
+
+If you'd like the frontend to connect to a locally running backend, update the uri in the following file:
+
+```powershell
+src/shared/api.client.ts
+```
+
+Change the uri from 
+```Typescript
+"http://it2810-25.idi.ntnu.no:3001/graphql" 
+```
+
+to:
+```Typescript
+"http://localhost:3001/graphql". 
+```
+Make sure your backend is running locally on the specified port before applying this change.
 
 ---
 
@@ -194,4 +236,6 @@ For the project, we utilized [Football-API](https://www.api-football.com/) to re
 
 One of the limitations we encountered during the project was the need to hardcode player statistics into the database. Midway throught the project period, the API we were using changed its free subscription rules. Initially, the API provided access to statistics for all players, but this was later restricted to only 3 out of 27 player pages in the K-League.
 
-To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible, considering factors such as player position. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
+To work around this limitation without incurring personal expenses to pay for extended API access, we created a script to generate statistics for all players in the database. The generated data was designed to be as realistic as possible and factors such as player position were considered. This approach allowed us to complete the functionality we had already built support for, ensuring the application remained functional despite the unexpected API restrictions.
+
+Since we are based in South Korea and the server is hosted in Norway, all development and testing involved making API calls across a significant geographical distance. This might result in slower API response times for us compared to users closer to the server. As a result, it has been challenging to fully test the application's actual speed and performance.
